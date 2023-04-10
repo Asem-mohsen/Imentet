@@ -1,0 +1,6 @@
+#Prevent Directory Listting 
+
+Options -Indexes
+
+# Echo Error Message
+ErrorDocument 403 "You are Not Allowed to see The Directory"
