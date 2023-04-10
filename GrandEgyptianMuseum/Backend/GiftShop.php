@@ -40,16 +40,16 @@ if (isset($_SESSION["AdminID"])) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=CheckAll">
-                                    <i class="fa-solid fa-search fa-fw"></i><span> Check All Items </span>
-                                    </a>
-                                </li>
-                                <li>
                                     <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=ItemsSold">
                                     <i class="fa-solid fa-circle-dollar-to-slot fa-fw"></i><span> Items Sold </span>
                                     </a>
                                 </li>
                         <?php } ?>
+                        <li>
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=CheckAll">
+                                <i class="fa-solid fa-search fa-fw"></i><span> Check All Items </span>
+                            </a>
+                        </li>
                         <li>
                             <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
                                 <i class="fa-solid fa-arrow-left fa-fw"></i><span> Back </span>
@@ -221,9 +221,14 @@ if (isset($_SESSION["AdminID"])) {
                                 echo "<td>" . $Items['CategoryName'] . "</td>";
                                 echo "<td>";
                                     echo "<div class='tableButtons'>";
+                                    if($AdminRole != 3){   
                                         echo "<a href='./GiftShop.php?action=Edit&ItemID="     . $Items['ID'] . "' class='btn btn-success'><i class='fa fa-edit'> </i> "       . 'Edit'  . "</a>";
                                         echo "<a href='./GiftShop.php?action=Delete&ItemID="   . $Items['ID'] . "' class='btn btn-danger confirm'><i class='fa fa-close'> </i> "   . 'Delete' . "</a>";
-                                    echo "</div>";
+                                    }else{
+                                        echo "<button class='btn btn-success' disabled><i class='fa fa-edit'> </i> "       . 'Edit'  . "</a>";
+                                        echo "<button class='btn btn-danger confirm' disabled><i class='fa fa-close'> </i> "   . 'Delete' . "</a>";
+                                    }
+                                        echo "</div>";
                                 echo "</td>";
                             echo "</tr>";
                         }
