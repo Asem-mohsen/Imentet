@@ -37,99 +37,81 @@ if (isset($_SESSION["AdminID"])) {
                 if($count > 0 ){
 
                 ?>
-                            <h1 class="PageName"> Users </h1>
-                                <div class="container mb-20">
-                                        <?php if($AdminRole == 1 || $AdminRole == 2 ){ ?>
-                                                <button class="Control" data-toggle="collapse" data-target="#Control">Control</button>
-                                            <form action="" method="GET">
-                                                <div class="buttons collapse buttonsUser" id="Control">
-                                                    <div class="buttons">
-                                                            <a href="./Users.php?action=AddUserRole" class="btn btn-primary">Add User Roles</a>
-                                                            <span class="line"> </span>
-                                                            <a href="./Users.php?action=AddMembership" class="btn btn-dark">Add Membership</a>
-                                                            <span class="line"> </span>
-                                                            <a href="./Users.php?action=CheckAllMembership" class="btn btn-info">Check All Membership</a>
-                                                    </div>
-                                                    <div class="Sort buttons collapse" id="Control" >
-                                                        <i class="fa-solid fa-sort"></i> Sorting : [
-                                                        <a href="?sort=ASC" class="<?php if ($sort == 'ASC') {
+                <div class="page d-flex">
+                        <div class=" w-280 sidepar bg-white p-20 p-relative">
+                            <h3 class="p-relative txt-center mt-0">Control</h3>
+                            <form method="post">
+                                <ul>
+                                    <?php if($AdminRole == 1 || $AdminRole == 2 ){ ?>
+                                        <li>
+                                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Users.php?action=AddUserRole">
+                                                <i class="fa-solid fa-plus fa-fw"></i><span>Add User Roles</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Users.php?action=AddMembership">
+                                                <i class="fa-solid fa-plus fa-fw"></i><span> Add Membership </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Users.php?action=CheckAllMembership">
+                                                <i class="fa-solid fa-search fa-fw"></i><span> Check All Membership </span>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
+                                            <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class='txt-center mt-20 cursor-d'> <i class="fa-solid fa-filter fa-fw"></i> Filters </h6>
+                                    </li>
+                                    <li>
+                                        <p class='mt-20 ml-20 cursor-d fw-bold'>By Membership </p>
+                                    </li>
+                                        <?php
+                                            
+                                            $MembershipSelect = "SELECT * FROM membership";
+                                            $Run = mysqli_query($con , $MembershipSelect);
+                                            $row = mysqli_fetch_assoc($Run);
+
+                                            foreach($Run as $Membership){ 
+                                                $Checked = [];
+                                                if(isset($_POST['Type'])){
+                                                    $Checked = $_POST['Type'];
+                                                }
+                                                ?>
+                                    <li>
+                                        <input type="checkbox" name="Type[]" value="<?php echo $Membership['ID'] ?>" <?php if(in_array( $Membership['ID'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                            <?php echo $Membership['Type'] ?>
+                                    </li>
+                                            <?php } 
+                                        ?>
+                                        
+                                            <button type="submit" class="filterCareersbutton">Filter</button>
+                                    <li>
+                                        <h6 class='txt-center mt-20'><i class="fa-solid fa-sort fa-fw"></i> Sorting </h6>
+                                    </li>
+                                    <li>
+                                        <div class="p-10 fs-14">
+                                            Sorting : [
+                                                        <a href="./Users.php?action=Manage&sort=ASC" class="<?php if ($sort == 'ASC') {
                                                                                         echo 'active';
                                                                                     } ?>"> Asc </a> |
-                                                        <a href="?sort=DESC" class="<?php if ($sort == 'DESC') {
+                                                        <a href="./Users.php?action=Manage&sort=DESC" class="<?php if ($sort == 'DESC') {
                                                                                         echo 'active';
                                                                                     } ?>"> Desc </a> ]
-                                                    </div>
-                                                    <div class="Filter">
-                                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fa-solid fa-filter"></i>Filter
-                                                        </button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <?php
-                                                            $MembershipSelect = "SELECT * FROM membership";
-                                                            $Run = mysqli_query($con , $MembershipSelect);
-                                                            $row = mysqli_fetch_assoc($Run);
-
-                                                            foreach($Run as $Membership){ 
-                                                                $Checked = [];
-                                                                if(isset($_GET['Type'])){
-                                                                    $Checked = $_GET['Type'];
-                                                                }
-                                                                ?>
-                                                                <label class="dropdown-item">
-                                                                    <input type="checkbox" name="Type[]" value="<?php echo $Membership['ID'] ?>" <?php if(in_array( $Membership['ID'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                        <?php echo $Membership['Type'] ?>
-                                                                </label>
-                                                            <?php } ?>
-                                                            <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        <?php }else{ ?>
-                                        
-                                                    <button class="Control" data-toggle="collapse" data-target="#Control">Control</button>
-                                                <form action="" method="GET">
-                                                    
-                                                    <div class="buttons collapse buttonsUser" id="Control">
-                                                        <div class="Sort buttons collapse" id="Control" >
-                                                            <i class="fa-solid fa-sort"></i> Sorting : [
-                                                            <a href="?sort=ASC" class="<?php if ($sort == 'ASC') {
-                                                                                            echo 'active';
-                                                                                        } ?>"> Asc </a> |
-                                                            <a href="?sort=DESC" class="<?php if ($sort == 'DESC') {
-                                                                                            echo 'active';
-                                                                                        } ?>"> Desc </a> ]
-                                                        </div>
-                                                        <div class="Filter">
-                                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fa-solid fa-filter"></i>Filter
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                <?php
-                                                                $MembershipSelect = "SELECT * FROM membership";
-                                                                $Run = mysqli_query($con , $MembershipSelect);
-                                                                $row = mysqli_fetch_assoc($Run);
-
-                                                                foreach($Run as $Membership){ 
-                                                                    $Checked = [];
-                                                                    if(isset($_GET['Type'])){
-                                                                        $Checked = $_GET['Type'];
-                                                                    }
-                                                                    ?>
-                                                                    <label class="dropdown-item">
-                                                                        <input type="checkbox" name="Type[]" value="<?php echo $Membership['ID'] ?>" <?php if(in_array( $Membership['ID'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                            <?php echo $Membership['Type'] ?>
-                                                                    </label>
-                                                                <?php } ?>
-                                                                <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                            
-                                        <?php } ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                                <div class="container mb-20">
+                                    <h1 class="PageName"> Users </h1>
+                                    
                                     <div class="table-responsive">
-                                        <table class="main-table table table-bordered table-hover">
+                                        <table class="main-table table table-bordered table-hover table-light">
                                             <tr>
                                                 <td>ID</td>
                                                 <td>Name</td>
@@ -142,9 +124,9 @@ if (isset($_SESSION["AdminID"])) {
 
                                             </tr>
                                             <?php
-                                            if(isset($_GET['Type'])){
+                                            if(isset($_POST['Type'])){
                                                 $TypeChecked = [];
-                                                $TypeChecked = $_GET['Type'];
+                                                $TypeChecked = $_POST['Type'];
                                                 foreach($TypeChecked as $rowTypes){
                                                     $UserInfo = "SELECT user.* , userrole.RoleName AS UserRole, membership.Type AS MembershipType , membership.ID As MembershipID FROM user 
                                                     LEFT JOIN userrole ON userrole.ID = user.RoleID 
@@ -210,7 +192,7 @@ if (isset($_SESSION["AdminID"])) {
                 echo "<div class='NoData'>";
                     echo "No Current Data";
                 echo "</div>";
-
+            echo "</div>";
                 }
         }elseif($do == "MoreInfo"){
                 $UserID = filter_var($_GET['UserID'], FILTER_SANITIZE_NUMBER_INT); 

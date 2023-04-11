@@ -42,89 +42,93 @@ if (isset($_SESSION["AdminID"])) {
             $count =mysqli_num_rows($Query);
             if($count > 0 ){
                 ?>
-                    <h1 class="PageName"> Donations </h1>
+                    <div class="page d-flex">
+                        <div class="w-280 sidepar bg-white p-20 p-relative">
+                            <h3 class="p-relative txt-center mt-0">Control</h3>
+                            <form method="post">
+                                <ul>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
+                                            <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class='txt-center mt-20 cursor-d'> <i class="fa-solid fa-filter fa-fw"></i> Filters </h6>
+                                    </li>
+                                    <li>
+                                        <p class='mt-20 ml-20 cursor-d fw-bold'>By Place </p>
+                                    </li>
+                                        <?php
+                                            $PlaceSelect = "SELECT DISTINCT place.Name AS PlaceName , donations.PlaceID AS PlaceID FROM `donations` JOIN place ON place.ID = donations.PlaceID  ";
+                                            $Run = mysqli_query($con , $PlaceSelect);
+                                            $row = mysqli_fetch_assoc($Run);
+
+                                            foreach($Run as $Place){ 
+                                                $Checked = [];
+                                                if(isset($_POST['PlaceID'])){
+                                                    $Checked = $_POST['PlaceID'];
+                                                }
+                                        ?>
+                                    <li>
+                                            <input type="checkbox" name="PlaceID[]" value="<?php echo $Place['PlaceID'] ?>" <?php if(in_array( $Place['PlaceID'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                            <?php echo $Place['PlaceName'] ; ?>
+                                    </li>
+                                            <?php } 
+                                        ?>
+                                        
+                                    <li>
+                                        <p class='mt-20 ml-20 cursor-d fw-bold'>By Payment </p>
+                                    </li>
+                                            <?php
+                                                $PaymentSelect = "SELECT DISTINCT paymentoptions.PaymentType AS PaymentType , donations.PaymentID AS PaymentID FROM `donations` JOIN paymentoptions ON paymentoptions.ID = donations.PaymentID  ";
+                                                $Run = mysqli_query($con , $PaymentSelect);
+                                                $row = mysqli_fetch_assoc($Run);
+
+                                                foreach($Run as $Payment){ 
+                                                    $Checked = [];
+                                                    if(isset($_POST['PaymentID'])){
+                                                        $Checked = $_POST['PaymentID'];
+                                                    }
+                                            ?>
+                                    <li>
+                                            <input type="checkbox" name="PaymentID[]" value="<?php echo $Payment['PaymentID'] ?>" <?php if(in_array( $Payment['PaymentID'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                            <?php echo $Payment['PaymentType'] ; ?>
+                                    </li>
+                                            <?php } 
+                                        ?>
+                                            <button type="submit" class="filterCareersbutton">Filter</button>
+                                    <li>
+                                        <h6 class='txt-center mt-20'><i class="fa-solid fa-sort fa-fw"></i> Sorting </h6>
+                                    </li>
+                                    <li>
+                                        <div class="p-10 fs-14">
+                                            Sorting : [
+                                                        <a href="./Donatiton.php?action=Manage&sort=ASC" class="<?php if ($sort == 'ASC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Asc </a> |
+                                                        <a href="./Donatiton.php?action=Manage&sort=DESC" class="<?php if ($sort == 'DESC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Desc </a> ]
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="p-10 fs-14">
+                                            Amount : [
+                                                        <a href="./Donatiton.php?action=Manage&Amountsort=ASC" class="<?php if ($Amountsort == 'ASC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Lowest </a> |
+                                                        <a href="./Donatiton.php?action=Manage&Amountsort=DESC" class="<?php if ($Amountsort == 'DESC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Highest</a>]
+                                        </div>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
                         <div class="container">
-                        <button class="Control" data-toggle="collapse" data-target="#Control">Control</button>
-                                <div class="buttons collapse" id="Control">
-                                    <div class='FilterAndButtons'>
-                                        <a href="./Dashboard.php" class="btn btn-info">Back</a>
-                                        <form method="POST">
-                                            <div class="MultiFilters">
-                                                <div class="RoleFilter">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fa-solid fa-filter"></i>  Filter By Place
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <?php
-                                                        $PlaceSelect = "SELECT DISTINCT place.Name AS PlaceName , donations.PlaceID AS PlaceID FROM `donations` JOIN place ON place.ID = donations.PlaceID  ";
-                                                        $Run = mysqli_query($con , $PlaceSelect);
-                                                        $row = mysqli_fetch_assoc($Run);
-
-                                                        foreach($Run as $Place){ 
-                                                            $Checked = [];
-                                                            if(isset($_POST['PlaceName'])){
-                                                                $Checked = $_POST['PlaceName'];
-                                                            }
-                                                            ?>
-                                                            <label class="dropdown-item">
-                                                                <input type="checkbox" name="PlaceID[]" value="<?php echo $Place['PlaceID'] ?>" <?php if(in_array( $Place['PlaceID'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                    <?php echo $Place['PlaceName'] ; ?>
-                                                            </label>
-                                                        <?php } ?>
-                                                            <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                    </div>
-                                                </div>
-                                                <div class="RoleFilter">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fa-solid fa-filter"></i>  Filter By Payment
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <?php
-                                                        $PaymentSelect = "SELECT DISTINCT paymentoptions.PaymentType AS PaymentType , donations.PaymentID AS PaymentID FROM `donations` JOIN paymentoptions ON paymentoptions.ID = donations.PaymentID  ";
-                                                        $Run = mysqli_query($con , $PaymentSelect);
-                                                        $row = mysqli_fetch_assoc($Run);
-
-                                                        foreach($Run as $Payment){ 
-                                                            $Checked = [];
-                                                            if(isset($_POST['PaymentType'])){
-                                                                $Checked = $_POST['PaymentType'];
-                                                            }
-                                                            ?>
-                                                            <label class="dropdown-item">
-                                                                <input type="checkbox" name="PaymentID[]" value="<?php echo $Payment['PaymentID'] ?>" <?php if(in_array( $Payment['PaymentID'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                    <?php echo $Payment['PaymentType'] ; ?>
-                                                            </label>
-                                                        <?php } ?>
-                                                            <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    
-                                    <div class='MultiSorting'>
-                                        <div class="MultiSort collapse" id="Control" >
-                                            <i class="fa-solid fa-sort"></i> Sorting : [
-                                                <a href="./Donatiton.php?action=Manage&sort=ASC" class="<?php if ($sort == 'ASC') {
-                                                                                echo 'active';
-                                                                            } ?>"> Asc </a> |
-                                                <a href="./Donatiton.php?action=Manage&sort=DESC" class="<?php if ($sort == 'DESC') {
-                                                                                echo 'active';
-                                                                            } ?>"> Desc </a> ]
-                                        </div>
-                                        <div class="MultiSort collapse" id="Control" >
-                                            <i class="fa-solid fa-sort"></i> Amount : [
-                                                <a href="./Donatiton.php?action=Manage&Amountsort=ASC" class="<?php if ($Amountsort == 'ASC') {
-                                                                                echo 'active';
-                                                                            } ?>"> Lowest </a> |
-                                                <a href="./Donatiton.php?action=Manage&Amountsort=DESC" class="<?php if ($Amountsort == 'DESC') {
-                                                                                echo 'active';
-                                                                            } ?>"> Highest </a> ]
-                                        </div>
-                                    </div>
-                                </div>
+                        <h1 class="PageName"> Donations </h1>
                             <div class="table-responsive">
-                                <table class="main-table table table-bordered table-hover">
+                                <table class="main-table table table-bordered table-hover table-light">
                                     <tr>
                                         <td>ID</td>
                                         <td>Name</td>

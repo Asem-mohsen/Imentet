@@ -46,7 +46,7 @@ if (isset($_SESSION["AdminID"])) {
                             <?php } ?>
                             <li>
                                 <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
-                                    <i class="fa-solid fa-arrow-left fa-fw"></i><span> Back </span>
+                                    <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
                                 </a>
                             </li>
                         </ul>
@@ -428,8 +428,8 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                             </div>
                             <div class="form-group insertInput mb-0">
-                                <div class="m-auto">
-                                    <input type="number" name="VIP" class="form-control" placeholder="VIP Price" required="required" />
+                                <div class="mb-20">
+                                    <input type="number" name="VIP" class="form-control" placeholder="VIP Price" />
                                 </div>
                             </div>
 
@@ -479,9 +479,14 @@ if (isset($_SESSION["AdminID"])) {
                         $Name         = $_POST['Name'];
                         $PlaceID      = $_POST['Place'];
                         $RegularPrice = $_POST['RegularPrice'];
-                        $VIP          = $_POST['VIP'];
                         $SponsoredBy  = $_POST['SponsoredBy'];
 
+                        if(empty($_POST['VIP'])){
+                            $VIP = Null;
+                        }else{
+                            $VIP          = $_POST['VIP'];
+                        }
+                        
                         if(empty($_POST['Everyday'])){
                             $Everyday =Null;
                         }else{
@@ -516,9 +521,6 @@ if (isset($_SESSION["AdminID"])) {
                         if (empty($RegularPrice)) {
                             $FormErrors[] = "Please Enter a Regular Price for the Event ";
                         }
-                        if (empty($VIP)) {
-                            $FormErrors[] = "Please Enter a VIP Price for the Event";
-                        }
                         if ($PlaceID == 0) {
                             $FormErrors[] = "You Must Select a Correct Place For The Event";
                         }
@@ -534,7 +536,7 @@ if (isset($_SESSION["AdminID"])) {
 
                         if (empty($FormErrors)) {
 
-                            $InsertQuery = "INSERT INTO `entertainmnet` Values( Null , '$Name' , '$image' , $PlaceID , '$Date', '$DateTo' , '$Everyday' , $RegularPrice , $VIP , $CategoryID ) ";
+                            $InsertQuery = "INSERT INTO `entertainmnet` Values( Null , '$Name' , '$image' , $PlaceID , '$Date', '$DateTo' , '$Everyday' , $RegularPrice , '$VIP' , $CategoryID ) ";
                             $InsertEvent = mysqli_query($con, $InsertQuery);
 
 
@@ -650,6 +652,8 @@ if (isset($_SESSION["AdminID"])) {
                             <?php if($AdminRole == 1 || $AdminRole == 2){ 
                                         if($Event['Date'] < $now){ 
                                             echo "<button class='btn btn-success' disabled> Past </button>";
+                                        }elseif($Event['EventStatus'] == "Cancelled"){
+                                            echo "<button class='btn btn-danger' disabled> Cancelled </button>";
                                         }else{ ?>
                                 <a href="./Entertainments.php?action=Edit&EventID=<?php echo $Event['ID'] ?>" class="btn btn-success"> Edit</a>
                             <?php }  }
@@ -731,7 +735,7 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                                 <div class="form-group insertInput mb-0">
                                     <div class="m-auto">
-                                        <input type="number" name="VIP" class="form-control" placeholder="VIP Price" required="required" value="<?php echo $row['VipPrice'] ?>" />
+                                        <input type="number" name="VIP" class="form-control" placeholder="VIP Price" value="<?php echo $row['VipPrice'] ?>" />
                                     </div>
                                 </div>
                                 
@@ -831,8 +835,13 @@ if (isset($_SESSION["AdminID"])) {
                             $Name         = $_POST['Name'];
                             $PlaceID      = $_POST['Place'];
                             $RegularPrice = $_POST['RegularPrice'];
-                            $VIP          = $_POST['VIP'];
                             $SponsoredBy  = $_POST['SponsoredBy'];
+
+                            if(empty($_POST['VIP'])){
+                                $VIP = Null;
+                            }else{
+                                $VIP      = $_POST['VIP'];
+                            }
 
                             if(empty($_POST['Everyday'])){
                                 $Everyday =Null;
@@ -873,9 +882,7 @@ if (isset($_SESSION["AdminID"])) {
                             if (empty($RegularPrice)) {
                                 $FormErrors[] = "Please Enter a Regular Price for the Event ";
                             }
-                            if (empty($VIP)) {
-                                $FormErrors[] = "Please Enter a VIP Price for the Event";
-                            }
+
                             if (empty($image)){
                                 $FormErrors[] = "You Must Select an Image For The Event";
                             }
@@ -897,7 +904,7 @@ if (isset($_SESSION["AdminID"])) {
 
                             if (empty($FormErrors)) {
 
-                                $UpdateQuery = "UPDATE `entertainmnet` SET Name = '$Name' , Image = '$image' , PlaceID = $PlaceID , Date = '$Date', DateTo = '$DateTo'  , Everyday = '$Everyday'  , RegularPrice = $RegularPrice , VipPrice = $VIP , CatID = $CategoryID WHERE ID = $EventID ";
+                                $UpdateQuery = "UPDATE `entertainmnet` SET Name = '$Name' , Image = '$image' , PlaceID = $PlaceID , Date = '$Date', DateTo = '$DateTo'  , Everyday = '$Everyday'  , RegularPrice = $RegularPrice , VipPrice = '$VIP' , CatID = $CategoryID WHERE ID = $EventID ";
                                 $Update = mysqli_query($con, $UpdateQuery);
 
                                 $UpdateAll = "UPDATE `eventsponsor` SET  EventID = $EventID , ContractID = $SponsoredBy WHERE EventID = $EventID ";

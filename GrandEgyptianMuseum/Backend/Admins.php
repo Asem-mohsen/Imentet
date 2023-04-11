@@ -18,36 +18,7 @@ if (isset($_SESSION["AdminID"])) {
 
         $do = isset($_GET['action']) ?  $_GET['action'] : "Manage";
 
-        if ($do == "Manage") { ?>
-
-            <style>
-                body{
-                        background-image: url("./Images/333691937_546800627550330_2976087108571575641_n.jpg") , url("./Images/pexels-photo-3199399.jpeg");
-                        background-position: 652px, -435px;
-                        background-size: cover , cover;
-                        height: 634px;
-                        background-repeat: no-repeat, no-repeat;
-                    }
-            </style>
-                
-            <div class="Ticketspage">
-                <div class="tickets Admins">
-                    <a href="./Admins.php?action=Add">
-                        Add Admin
-                    </a>
-                </div>
-                <div class="tickets Admins">
-                    <a href="./Admins.php?action=CheckAdmins" >
-                        Check All Admins
-                    </a>
-                </div>
-            </div>
-            <div class="AdminHeading">
-                <h1 class="page-name Admins"> Admins </h1>
-            </div>
-
-            <?php
-        } elseif ($do == "Add") {  ?>
+        if ($do == "Add") {  ?>
             <h1 class="PageName"> Add Admin </h1>
             <div class="container">
                 <form class="form-horizontal" action="?action=Insert" method="POST">
@@ -147,7 +118,7 @@ if (isset($_SESSION["AdminID"])) {
                     }
                 }
             } 
-        } elseif ($do == "CheckAdmins") {
+        } elseif ($do == "Manage") {
 
                     $sort = 'ASC';
                     $sortarray = array('ASC', 'DESC');
@@ -162,85 +133,92 @@ if (isset($_SESSION["AdminID"])) {
                     $Admins = mysqli_query($con, $SelectAdmins);
                     $fetchquery = mysqli_fetch_assoc($Admins);
                     ?>
-                        <h1 class="PageName">All Admins </h1>
+                    <div class="page d-flex">
+                        <div class=" w-280 sidepar bg-white p-20 p-relative">
+                            <h3 class="p-relative txt-center mt-0">Control</h3>
+                            <form method="post">
+                                <ul>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Admins.php?action=Add">
+                                            <i class="fa-solid fa-plus fa-fw"></i><span> Add Admin</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Admins.php?action=Status">
+                                            <i class="fa-solid fa-search fa-fw"></i><span>Check Status</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
+                                            <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class='txt-center mt-20 cursor-d'> <i class="fa-solid fa-filter fa-fw"></i> Filters </h6>
+                                    </li>
+                                    <li>
+                                        <p class='mt-20 ml-20 cursor-d fw-bold'>By Role </p>
+                                    </li>
+                                        <?php
+                                            $RoleSelect = "SELECT * FROM adminrole";
+                                            $Run = mysqli_query($con , $RoleSelect);
+                                            $row = mysqli_fetch_assoc($Run);
+
+                                            foreach($Run as $Role){ 
+                                                $Checked = [];
+                                                if(isset($_POST['Role'])){
+                                                    $Checked = $_POST['Role'];
+                                                }
+                                                ?>
+                                    <li>
+                                        <input type="checkbox" name="Role[]" id="Role" class="FilterCheck" value="<?php echo $Role['ID'] ?>" <?php if(in_array( $Role['ID'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                        <?php echo $Role['Role'] ?>
+                                    </li>
+                                            <?php } 
+                                        ?>
+                                        
+                                    <li>
+                                        <p class='mt-20 ml-20 cursor-d fw-bold'>By Status </p>
+                                    </li>
+                                            <?php
+                                            $ActiveSelect = "SELECT DISTINCT Active FROM admin";
+                                            $Run = mysqli_query($con , $ActiveSelect);
+                                            $row = mysqli_fetch_assoc($Run);
+
+                                            foreach($Run as $Active){ 
+                                                $Checked = [];
+                                                if(isset($_POST['Active'])){
+                                                    $Checked = $_POST['Active'];
+                                                }
+                                                ?>
+                                    <li>
+                                            <input type="checkbox" name="Active[]" id="Active" class="FilterCheck" value="<?php echo $Active['Active'] ?>" <?php if(in_array( $Active['Active'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                            <?php if($Active['Active'] == 1){ echo "Active" ; }else{ echo "Deactivated";} ?>
+                                    </li>
+                                            <?php } 
+                                        ?>
+                                            <button type="submit" class="filterCareersbutton">Filter</button>
+                                    <li>
+                                        <h6 class='txt-center mt-20'><i class="fa-solid fa-sort fa-fw"></i> Sorting </h6>
+                                    </li>
+                                    <li>
+                                        <div class="p-10 fs-14">
+                                            Sorting : [
+                                                        <a href="./Admins.php?action=Manage&sort=ASC" class="<?php if ($sort == 'ASC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Asc </a> |
+                                                        <a href="./Admins.php?action=Manage&sort=DESC" class="<?php if ($sort == 'DESC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Desc </a> ]
+                                        </div>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
                         <div class="container">
-                            <button class="Control" data-toggle="collapse" data-target="#Control">Control</button>
-                                <div class="buttons collapse" id="Control">
-                                    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="GET">
-                                        <div class="Adminbuttons">
-                                            <a href="./Admins.php?action=Status" class="btn btn-success">Check Status</a>
-                                            <span class="AdminLine"> </span>
-                                            <a href="./Admins.php?action=Add" class="btn btn-primary"> <i class="fa fa-plus"></i> Add Admin</a>
-                                            <span class="AdminLine"> </span>
-                                            <a href="./Admins.php?action=Manage" class="btn btn-info">Back</a>
-                                            <div class="AdminSort collapse" id="Control" >
-                                                <i class="fa-solid fa-sort"></i> Sorting : [
-                                                <a href="./Admins.php?action=CheckAdmins&sort=ASC" class="<?php if ($sort == 'ASC') {
-                                                                                echo 'active';
-                                                                            } ?>"> Asc </a> |
-                                                <a href="./Admins.php?action=CheckAdmins&sort=DESC" class="<?php if ($sort == 'DESC') {
-                                                                                echo 'active';
-                                                                            } ?>"> Desc </a> ]
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <form method="POST">
-                                        <div class="MultiFilter">
-                                            <div class="RoleFilter">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fa-solid fa-filter"></i>  Filter By Role
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <?php
-                                                    $RoleSelect = "SELECT * FROM adminrole";
-                                                    $Run = mysqli_query($con , $RoleSelect);
-                                                    $row = mysqli_fetch_assoc($Run);
-
-                                                    foreach($Run as $Role){ 
-                                                        $Checked = [];
-                                                        if(isset($_POST['Role'])){
-                                                            $Checked = $_POST['Role'];
-                                                        }
-                                                        ?>
-                                                        <label class="dropdown-item">
-                                                            <input type="checkbox" name="Role[]" id="Role" class="FilterCheck" value="<?php echo $Role['ID'] ?>" <?php if(in_array( $Role['ID'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                <?php echo $Role['Role'] ?>
-                                                        </label>
-                                                    <?php } ?>
-                                                        <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                </div>
-                                            </div>
-                                            <div class="ActiveFilter">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fa-solid fa-filter"></i>  Filter By Status
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <?php
-                                                        $ActiveSelect = "SELECT DISTINCT Active FROM admin";
-                                                        $Run = mysqli_query($con , $ActiveSelect);
-                                                        $row = mysqli_fetch_assoc($Run);
-
-                                                        foreach($Run as $Active){ 
-                                                            $Checked = [];
-                                                            if(isset($_POST['Active'])){
-                                                                $Checked = $_POST['Active'];
-                                                            }
-                                                            ?>
-                                                            <label class="dropdown-item">
-                                                                <input type="checkbox" name="Active[]" id="Active" class="FilterCheck" value="<?php echo $Active['Active'] ?>" <?php if(in_array( $Active['Active'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                    <?php if($Active['Active'] == 1){ echo "Active" ; }else{ echo "Deactivated";} ?>
-                                                            </label>
-                                                        <?php } ?>
-                                                            <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </form>
-                                </div>
+                            <h1 class="PageName">All Admins </h1>
                             <div class="table-responsive">
-                                <table class="main-table table table-bordered table-hover">
+                                <table class="main-table table table-bordered table-hover table-light">
                                     <tr>
                                         <td>ID</td>
                                         <td>Name</td>
@@ -433,7 +411,7 @@ if (isset($_SESSION["AdminID"])) {
                                 </table>
                             </div>
                         </div>
-
+                    </div>
                         <?php 
                         
         } elseif ($do == "Status") {
@@ -451,87 +429,100 @@ if (isset($_SESSION["AdminID"])) {
                 $Admins = mysqli_query($con, $SelectAdmins);
                 $fetchquery = mysqli_fetch_assoc($Admins);
                 ?>
-                <h1 class="PageName">Status</h1>
-                <div class="container">
-                            <button class="Control" data-toggle="collapse" data-target="#Control">Control</button>
-                                <div class="buttons collapse" id="Control">
-                                    <div class="Adminbuttons">
-                                        <a href="./Admins.php?action=Add" class="btn btn-primary"> <i class="fa fa-plus"></i> Add Admin</a>
-                                        <span class="AdminLine"> </span>
-                                        <a href="./Admins.php?action=CheckAdmins" class="btn btn-info">Back</a>
-                                        <div class="AdminSort collapse" id="Control" >
-                                            <i class="fa-solid fa-sort"></i> Sorting : [
-                                            <a href="./Admins.php?action=Status&sort=ASC" class="<?php if ($sort == 'ASC') {
-                                                                            echo 'active';
-                                                                        } ?>"> Asc </a> |
-                                            <a href="./Admins.php?action=Status&sort=DESC" class="<?php if ($sort == 'DESC') {
-                                                                            echo 'active';
-                                                                        } ?>"> Desc </a> ]
-                                        </div>
-                                    </div>
-                                    <form method="POST">
-                                        <div class="MultiFilter">
-                                            <div class="RoleFilter">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fa-solid fa-filter"></i>  Filter By Role
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <?php
-                                                    $RoleSelect = "SELECT * FROM adminrole";
-                                                    $Run = mysqli_query($con , $RoleSelect);
-                                                    $row = mysqli_fetch_assoc($Run);
+                    <div class="page d-flex">
+                        <div class=" w-280 sidepar bg-white p-20 p-relative">
+                            <h3 class="p-relative txt-center mt-0">Control</h3>
+                            <form method="post">
+                                <ul>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Admins.php?action=Add">
+                                            <i class="fa-solid fa-plus fa-fw"></i><span> Add Admin</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Admins.php?action=Manage">
+                                            <i class="fa-solid fa-arrow-left fa-fw"></i><span>Back</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
+                                            <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class='txt-center mt-20 cursor-d'> <i class="fa-solid fa-filter fa-fw"></i> Filters </h6>
+                                    </li>
+                                    <li>
+                                        <p class='mt-20 ml-20 cursor-d fw-bold'>By Role </p>
+                                    </li>
+                                        <?php
+                                            $RoleSelect = "SELECT * FROM adminrole";
+                                            $Run = mysqli_query($con , $RoleSelect);
+                                            $row = mysqli_fetch_assoc($Run);
 
-                                                    foreach($Run as $Role){ 
-                                                        $Checked = [];
-                                                        if(isset($_POST['Role'])){
-                                                            $Checked = $_POST['Role'];
-                                                        }
-                                                        ?>
-                                                        <label class="dropdown-item">
-                                                            <input type="checkbox" name="Role[]" id="Role" class="FilterCheck" value="<?php echo $Role['ID'] ?>" <?php if(in_array( $Role['ID'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                <?php echo $Role['Role'] ?>
-                                                        </label>
-                                                    <?php } ?>
-                                                        <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                </div>
-                                            </div>
-                                            <div class="ActiveFilter">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fa-solid fa-filter"></i>  Filter By Status
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <?php
-                                                        $ActiveSelect = "SELECT DISTINCT Active FROM admin";
-                                                        $Run = mysqli_query($con , $ActiveSelect);
-                                                        $row = mysqli_fetch_assoc($Run);
+                                            foreach($Run as $Role){ 
+                                                $Checked = [];
+                                                if(isset($_POST['Role'])){
+                                                    $Checked = $_POST['Role'];
+                                                }
+                                                ?>
+                                    <li>
+                                        <input type="checkbox" name="Role[]" id="Role" class="FilterCheck" value="<?php echo $Role['ID'] ?>" <?php if(in_array( $Role['ID'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                        <?php echo $Role['Role'] ?>
+                                    </li>
+                                            <?php } 
+                                        ?>
+                                        
+                                    <li>
+                                        <p class='mt-20 ml-20 cursor-d fw-bold'>By Status </p>
+                                    </li>
+                                            <?php
+                                            $ActiveSelect = "SELECT DISTINCT Active FROM admin";
+                                            $Run = mysqli_query($con , $ActiveSelect);
+                                            $row = mysqli_fetch_assoc($Run);
 
-                                                        foreach($Run as $Active){ 
-                                                            $Checked = [];
-                                                            if(isset($_POST['Active'])){
-                                                                $Checked = $_POST['Active'];
-                                                            }
-                                                            ?>
-                                                            <label class="dropdown-item">
-                                                                <input type="checkbox" name="Active[]" id="Active" class="FilterCheck" value="<?php echo $Active['Active'] ?>" <?php if(in_array( $Active['Active'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                    <?php if($Active['Active'] == 1){ echo "Active" ; }else{ echo "Deactivated";} ?>
-                                                            </label>
-                                                        <?php } ?>
-                                                            <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                </div>
-                                            </div>
+                                            foreach($Run as $Active){ 
+                                                $Checked = [];
+                                                if(isset($_POST['Active'])){
+                                                    $Checked = $_POST['Active'];
+                                                }
+                                                ?>
+                                    <li>
+                                            <input type="checkbox" name="Active[]" id="Active" class="FilterCheck" value="<?php echo $Active['Active'] ?>" <?php if(in_array( $Active['Active'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                            <?php if($Active['Active'] == 1){ echo "Active" ; }else{ echo "Deactivated";} ?>
+                                    </li>
+                                            <?php } 
+                                        ?>
+                                            <button type="submit" class="filterCareersbutton">Filter</button>
+                                    <li>
+                                        <h6 class='txt-center mt-20'><i class="fa-solid fa-sort fa-fw"></i> Sorting </h6>
+                                    </li>
+                                    <li>
+                                        <div class="p-10 fs-14">
+                                            Sorting : [
+                                                        <a href="./Admins.php?action=Status&sort=ASC" class="<?php if ($sort == 'ASC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Asc </a> |
+                                                        <a href="./Admins.php?action=Status&sort=DESC" class="<?php if ($sort == 'DESC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Desc </a> ]
                                         </div>
-                                    </form>
-                                </div>
-                <div class="table-responsive">
-                    <table class="main-table table table-bordered table-hover">
-                        <tr>
-                            <td>ID</td>
-                            <td>Name</td>
-                            <td>Role</td>
-                            <td>Statues</td>
-                            <td>Control</td>
-                        </tr>
-                        <?php
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                        <div class="container">
+                            <h1 class="PageName">Status</h1>
+                            <div class="table-responsive">
+                                <table class="main-table table table-bordered table-hover table-light">
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>Name</td>
+                                        <td>Role</td>
+                                        <td>Statues</td>
+                                        <td>Control</td>
+                                    </tr>
+                                    <?php
                                         if(isset($_POST['Active']) && isset($_POST['Role'])){
                                             $sql = "WHERE admin.AdminRole IN(".implode(',', $_POST['Role'] ).") AND admin.Active IN (".implode(',', $_POST['Active']).")" ; 
                                             $SelectAdmins = "SELECT admin .* , adminrole.ID AS RoleID , adminrole.Role AS Role FROM admin 
@@ -703,10 +694,11 @@ if (isset($_SESSION["AdminID"])) {
                                                 } 
                                             }
                                         }
-                        ?>
-                    </table>
-                </div>
-            </div>
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
             <?php
         } elseif ($do == "Edit") {
 

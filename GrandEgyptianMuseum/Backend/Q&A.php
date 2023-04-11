@@ -35,53 +35,62 @@ if (isset($_SESSION["AdminID"])) {
                 $count =mysqli_num_rows($QA);
                 if($count > 0 ){
                     ?>
-                            <h1 class="PageName">Questions And Answers </h1>
-                                <div class="container">
-                                    <button class="Control" data-toggle="collapse" data-target="#Control">Control</button>
-                                    <div class="buttons collapse" id="Control">
-                                            <div class="Adminbuttons">
-                                                <a href="./Dashboard.php" class="btn btn-info">Back</a>
-                                                <span class="AdminLine"> </span>
-                                                <form method="POST">
-                                                    <div class="RoleFilter">
-                                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fa-solid fa-filter"></i>  Filter By Response
-                                                        </button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <?php
-                                                            $ResponseSelect = "SELECT DISTINCT ResponseFilter FROM `q&a` ";
-                                                            $Run = mysqli_query($con , $ResponseSelect);
-                                                            $row = mysqli_fetch_assoc($Run);
+                        <div class="page d-flex">
+                            <div class=" w-280 sidepar bg-white p-20 p-relative">
+                                <h3 class="p-relative txt-center mt-0">Control</h3>
+                                <form method="post">
+                                    <ul>
+                                        <li>
+                                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
+                                                <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <h6 class='txt-center mt-20 cursor-d'> <i class="fa-solid fa-filter fa-fw"></i> Filters </h6>
+                                        </li>
+                                        <li>
+                                            <p class='mt-20 ml-20 cursor-d fw-bold'>By Response </p>
+                                        </li>
+                                            <?php
+                                                $ResponseSelect = "SELECT DISTINCT ResponseFilter FROM `q&a` ";
+                                                $Run = mysqli_query($con , $ResponseSelect);
+                                                $row = mysqli_fetch_assoc($Run);
 
-                                                            foreach($Run as $Response){ 
-                                                                $Checked = [];
-                                                                if(isset($_POST['ResponseFilter'])){
-                                                                    $Checked = $_POST['ResponseFilter'];
-                                                                }
-                                                                ?>
-                                                                <label class="dropdown-item">
-                                                                    <input type="checkbox" name="ResponseFilter[]" value="<?php echo $Response['ResponseFilter'] ?>" <?php if(in_array( $Response['ResponseFilter'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                        <?php if($Response['ResponseFilter'] == 1){ echo 'Answered' ; }elseif($Response['ResponseFilter'] == 0){ echo 'No Response' ; } ?>
-                                                                </label>
-                                                            <?php } ?>
-                                                                <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <div class="AdminSort collapse" id="Control" >
-                                                    <i class="fa-solid fa-sort"></i> Sorting : [
-                                                        <a href="./Q&A.php?action=Manage&sort=ASC" class="<?php if ($sort == 'ASC') {
-                                                                                        echo 'active';
-                                                                                    } ?>"> Asc </a> |
-                                                        <a href="./Q&A.php?action=Manage&sort=DESC" class="<?php if ($sort == 'DESC') {
-                                                                                        echo 'active';
-                                                                                    } ?>"> Desc </a> ]
-                                                </div>
+                                                foreach($Run as $Response){ 
+                                                    $Checked = [];
+                                                    if(isset($_POST['ResponseFilter'])){
+                                                        $Checked = $_POST['ResponseFilter'];
+                                                    }
+                                            ?>
+                                        <li>
+                                            <input type="checkbox" name="ResponseFilter[]" value="<?php echo $Response['ResponseFilter'] ?>" <?php if(in_array( $Response['ResponseFilter'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                                <?php if($Response['ResponseFilter'] == 1){ echo 'Answered' ; }elseif($Response['ResponseFilter'] == 0){ echo 'No Response' ; } ?>
+                                        </li>
+                                                <?php } 
+                                            ?>
+                                            
+                                                <button type="submit" class="filterCareersbutton">Filter</button>
+                                        <li>
+                                            <h6 class='txt-center mt-20'><i class="fa-solid fa-sort fa-fw"></i> Sorting </h6>
+                                        </li>
+                                        <li>
+                                            <div class="p-10 fs-14">
+                                                Sorting : [
+                                                            <a href="./Q&A.php?action=Manage&sort=ASC" class="<?php if ($sort == 'ASC') {
+                                                                                            echo 'active';
+                                                                                        } ?>"> Asc </a> |
+                                                            <a href="./Q&A.php?action=Manage&sort=DESC" class="<?php if ($sort == 'DESC') {
+                                                                                            echo 'active';
+                                                                                        } ?>"> Desc </a> ]
                                             </div>
-                                        
-                                    </div>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                                <div class="container">
+                                    <h1 class="PageName">Questions And Answers </h1>
                                     <div class="table-responsive">
-                                        <table class="main-table table table-bordered table-hover">
+                                        <table class="main-table table table-bordered table-hover table-light">
                                             <tr>
                                                 <td>ID</td>
                                                 <td>Question</td>
@@ -247,7 +256,7 @@ if (isset($_SESSION["AdminID"])) {
                 if(isset($row['ID'])){
 
             ?>
-            <h1 class="PageName"> Edit Replay </h1>
+            <h1 class="PageName"> Edit Reply </h1>
             <div class="container">
                 <form class="form-horizontal" action="?action=UpdateReplay" method="POST">
                 <div class="form-group insertInput ">

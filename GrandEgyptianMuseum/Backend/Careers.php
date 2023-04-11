@@ -57,7 +57,7 @@ if (isset($_SESSION["AdminID"])) {
                                     </li>
                                     <li>
                                         <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
-                                            <i class="fa-solid fa-arrow-left fa-fw"></i><span> Back </span>
+                                            <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
                                         </a>
                                     </li>
                                     <li>
@@ -68,7 +68,7 @@ if (isset($_SESSION["AdminID"])) {
                                     </li>
                                         <?php
                                             $CareersSelect = "SELECT DISTINCT careers.ID AS CareerID , careers.Careers As Career FROM `careers` 
-                                                                JOIN applications ON careers.ID = applications.CareerID  ";
+                                                                LEFT JOIN applications ON careers.ID = applications.CareerID  ";
                                             $Run = mysqli_query($con , $CareersSelect);
                                             $row = mysqli_fetch_assoc($Run);
 
