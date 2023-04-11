@@ -55,7 +55,7 @@ if (isset($_SESSION["AdminID"])) {
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Tickets.php?action=Manage">
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Tickets.php?action=Visit">
                                 <i class="fa-solid fa-ticket fa-fw"></i><span> Tickets </span>
                             </a>
                         </li>

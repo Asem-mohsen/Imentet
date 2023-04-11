@@ -18,34 +18,9 @@ if (isset($_SESSION["AdminID"])) {
     
     if( $AdminRole != 4 ){
         include "./Nav.php";
-        $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
+        $do = isset($_GET['action']) ?  $_GET['action'] : "Visit" ;
 
-        if($do == "Manage"){ ?>
-            <style>
-                body{
-                    background-image: url("./Images/pexels-diego-ferrari-13865652.jpg") , url("./Images/pexels-taha-abbas-11208768.jpg");
-                    background-position: 753px, -404px;
-                    background-size: cover , cover;
-                    height: 718px;                 
-                    background-repeat: no-repeat, no-repeat;
-                }
-            </style>
-                
-            <div class="Ticketspage">
-                <div class="tickets">
-                    <a href="./Tickets.php?action=Entertainment">
-                        Entertainments
-                    </a>
-                </div>
-                <div class="tickets">
-                    <a href="./Tickets.php?action=Visit" >
-                        Visits
-                    </a>
-                </div>
-            </div>
-            <h1 class="page-name "> Tickets </h1>
-            <?php 
-        }elseif($do == "Entertainment"){
+        if($do == "Entertainment"){
             $sort = 'ASC';
             $PriceSort ='ASC';
             $sortarray = array('ASC', 'DESC');
