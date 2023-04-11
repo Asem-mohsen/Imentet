@@ -6,6 +6,7 @@ $PageTitle = "Entertainments Platform ";
 include './init.php';
 
 session_start();
+session_regenerate_id();
 
 
 
@@ -102,7 +103,6 @@ if (isset($_SESSION["AdminID"])) {
                 </div>
         <?php }elseif($do == "CheckAll"){ 
 
-            // SORTING 
             $sort = 'ASC';
             $Pricesort ='ASC';
             $sortarray = array('ASC', 'DESC');
@@ -124,88 +124,98 @@ if (isset($_SESSION["AdminID"])) {
             $fetchquery = mysqli_fetch_row($Select);
             
             ?>  
-            <h1 class="PageName">All Events </h1>
-                            <div class="container mb-20">
-                                    <button class="Control" data-toggle="collapse" data-target="#Control">Control</button>
-                                        <div class="buttons collapse" id="Control">
-                                            <div class='FilterAndButtons'>
-                                                <a href="./Entertainments.php?action=Manage" class="btn btn-info">Back</a>
-                                                <form method="POST">
-                                                    <div class="MultiFilters"> 
-                                                        <div class="RoleFilter">
-                                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fa-solid fa-filter"></i>  Filter By Category
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                <?php
-                                                                $ResponseSelect = "SELECT DISTINCT entertainmnetcategory.Name AS CatName ,entertainmnet.CatID AS CatID FROM `entertainmnet` JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID ";
-                                                                $Run = mysqli_query($con , $ResponseSelect);
-                                                                $row = mysqli_fetch_assoc($Run);
-                                                                foreach($Run as $Category){ 
-                                                                    $Checked = [];
-                                                                    if(isset($_POST['CatName'])){
-                                                                        $Checked = $_POST['CatName'];
-                                                                    }
-                                                                    ?>
-                                                                    <label class="dropdown-item">
-                                                                        <input type="checkbox" name="CatID[]" value="<?php echo $Category['CatID'] ?>" <?php if(in_array( $Category['CatID'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                            <?php echo $Category['CatName'] ; ?>
-                                                                    </label>
-                                                                <?php } ?>
-                                                                    <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                            </div>
-                                                        </div>
+                    <div class="page d-flex">
+                        <div class=" w-280 sidepar bg-white p-20 p-relative">
+                            <h3 class="p-relative txt-center mt-0">Control</h3>
+                            <form method="post">
+                                <ul>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Entertainments.php?action=Manage">
+                                            <i class="fa-solid fa-arrow-left fa-fw"></i><span> Back </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
+                                            <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class='txt-center mt-20 cursor-d'> <i class="fa-solid fa-filter fa-fw"></i> Filters </h6>
+                                    </li>
+                                    <li>
+                                        <p class='mt-20 ml-20 cursor-d fw-bold'>By Category </p>
+                                    </li>
+                                        <?php
+                                            $ResponseSelect = "SELECT DISTINCT entertainmnetcategory.Name AS CatName ,entertainmnet.CatID AS CatID FROM `entertainmnet` JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID ";
+                                            $Run = mysqli_query($con , $ResponseSelect);
+                                            $row = mysqli_fetch_assoc($Run);
+                                            foreach($Run as $Category){ 
+                                                $Checked = [];
+                                                if(isset($_POST['CatID'])){
+                                                    $Checked = $_POST['CatID'];
+                                                }
+                                        ?>
+                                    <li>
+                                            <input type="checkbox" name="CatID[]" value="<?php echo $Category['CatID'] ?>" <?php if(in_array( $Category['CatID'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                            <?php echo $Category['CatName'] ; ?>
+                                    </li>
+                                            <?php } 
+                                        ?>
+                                        
+                                    <li>
+                                        <p class='mt-20 ml-20 cursor-d fw-bold'>By Place </p>
+                                    </li>
+  
+                                        <?php
+                                            $PlaceSelect = "SELECT DISTINCT place.Name AS PlaceName , entertainmnet.PlaceID AS PlaceID FROM `entertainmnet` JOIN place ON place.ID = entertainmnet.PlaceID  ";
+                                            $Run = mysqli_query($con , $PlaceSelect);
+                                            $row = mysqli_fetch_assoc($Run);
 
-                                                        <div class="RoleFilter">
-                                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fa-solid fa-filter"></i>  Filter By Place
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                <?php
-                                                                $PlaceSelect = "SELECT DISTINCT place.Name AS PlaceName , entertainmnet.PlaceID AS PlaceID FROM `entertainmnet` JOIN place ON place.ID = entertainmnet.PlaceID  ";
-                                                                $Run = mysqli_query($con , $PlaceSelect);
-                                                                $row = mysqli_fetch_assoc($Run);
-
-                                                                foreach($Run as $Place){ 
-                                                                    $Checked = [];
-                                                                    if(isset($_POST['PlaceName'])){
-                                                                        $Checked = $_POST['PlaceName'];
-                                                                    }
-                                                                    ?>
-                                                                    <label class="dropdown-item">
-                                                                        <input type="checkbox" name="PlaceID[]" value="<?php echo $Place['PlaceID'] ?>" <?php if(in_array( $Place['PlaceID'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                            <?php echo $Place['PlaceName'] ; ?>
-                                                                    </label>
-                                                                <?php } ?>
-                                                                    <button type="submit" class="btn btn-primary filterbutton">Search</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                                <div class="TripleSort"> 
-                                                    <div class="MultiSort collapse" id="Control" >
-                                                        <i class="fa-solid fa-sort"></i> Sorting : [
-                                                            <a href="./Entertainments.php?action=CheckAll&sort=ASC" class="<?php if ($sort == 'ASC') {
-                                                                                            echo 'active';
-                                                                                        } ?>"> Asc </a> |
-                                                            <a href="./Entertainments.php?action=CheckAll&sort=DESC" class="<?php if ($sort == 'DESC') {
-                                                                                            echo 'active';
-                                                                                        } ?>"> Desc </a> ]
-                                                    </div>
-                                                    <div class="MultiSort collapse" id="Control" >
-                                                        <i class="fa-solid fa-sort"></i> Regular Sort : [
-                                                            <a href="./Entertainments.php?action=CheckAll&Pricesort=DESC" class="<?php if ($Pricesort == 'DESC') {
-                                                                                            echo 'active';
-                                                                                        } ?>"> Highest </a> |
-                                                            <a href="./Entertainments.php?action=CheckAll&Pricesort=ASC" class="<?php if ($Pricesort == 'ASC') {
-                                                                                            echo 'active';
-                                                                                        } ?>"> Lowest </a> ]
-                                                    </div>
-                                                </div>
+                                            foreach($Run as $Place){ 
+                                                $Checked = [];
+                                                if(isset($_POST['PlaceID'])){
+                                                    $Checked = $_POST['PlaceID'];
+                                                }
+                                            ?>
+                                    <li>
+                                        <input type="checkbox" name="PlaceID[]" value="<?php echo $Place['PlaceID'] ?>" <?php if(in_array( $Place['PlaceID'] , $Checked)){ echo "Checked" ;  } ?>/>
+                                            <?php echo $Place['PlaceName'] ; ?>
+                                    </li>
+                                            <?php } 
+                                        ?>
+                                            <button type="submit" class="filterCareersbutton">Filter</button>
+                                    <li>
+                                        <h6 class='txt-center mt-20'><i class="fa-solid fa-sort fa-fw"></i> Sorting </h6>
+                                    </li>
+                                    <li>
+                                        <div class="p-10 fs-14">
+                                            Sorting : [
+                                                        <a href="./Entertainments.php?action=CheckAll&sort=ASC" class="<?php if ($sort == 'ASC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Asc </a> |
+                                                        <a href="./Entertainments.php?action=CheckAll&sort=DESC" class="<?php if ($sort == 'DESC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Desc </a> ]
                                         </div>
+                                    </li>
+                                    <li>
+                                        <div class="p-10 fs-14">
+                                            Price : [
+                                                        <a href="./Entertainments.php?action=CheckAll&Pricesort=ASC" class="<?php if ($Pricesort == 'ASC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Lowest </a> |
+                                                        <a href="./Entertainments.php?action=CheckAll&Pricesort=DESC" class="<?php if ($Pricesort == 'DESC') {
+                                                                                        echo 'active';
+                                                                                    } ?>"> Highest </a> ]
+                                        </div>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                            <div class="container mb-20">
+                                <h1 class="PageName">All Events </h1>
                                 <div class="table-responsive">
-                                    <table class="main-table table table-bordered table-hover">
+                                    <table class="main-table table table-bordered table-hover table-light">
                                         <tr>
                                             <td>ID</td>
                                             <td>Title</td>
@@ -484,7 +494,7 @@ if (isset($_SESSION["AdminID"])) {
                         if(empty($_POST['VIP'])){
                             $VIP = Null;
                         }else{
-                            $VIP          = $_POST['VIP'];
+                            $VIP      = $_POST['VIP'];
                         }
                         
                         if(empty($_POST['Everyday'])){
@@ -617,7 +627,10 @@ if (isset($_SESSION["AdminID"])) {
                             </div>
                             <div class="LastInfo">
                                 <p>Regular Price : <?php echo $Event['RegularPrice'] ?> LE</p>
-                                <p>Vip Price: <?php echo $Event['VipPrice'] ?> LE</p> 
+                                <?php if(($Event['VipPrice'] == 0 ) || ($Event['VipPrice'] == NULL)){ ?>
+                                <?php }else{ ?>
+                                    <p>Vip Price: <?php echo $Event['VipPrice'] ?> LE</p>   
+                                <?php } ?>
                             </div>
                             
                             <?php if($Event['EventStatus']){ ?>
@@ -650,13 +663,14 @@ if (isset($_SESSION["AdminID"])) {
                         <div class="EnterSpecialButtons">
                             <h2 class='ControlEnter'>Controls</h2>
                             <?php if($AdminRole == 1 || $AdminRole == 2){ 
-                                        if($Event['Date'] < $now){ 
+                                        if($Event['Date'] < $now && !($Event['Everyday'] == 'Daily')){ 
                                             echo "<button class='btn btn-success' disabled> Past </button>";
                                         }elseif($Event['EventStatus'] == "Cancelled"){
                                             echo "<button class='btn btn-danger' disabled> Cancelled </button>";
                                         }else{ ?>
                                 <a href="./Entertainments.php?action=Edit&EventID=<?php echo $Event['ID'] ?>" class="btn btn-success"> Edit</a>
-                            <?php }  }
+                            <?php }  
+                            }
                             if($AdminRole == 1){ ?>
                                 <a href="./Entertainments.php?action=Delete&EventID=<?php echo $Event['ID'] ?>" class="btn btn-danger">Delete</a>
                             <?php } ?>

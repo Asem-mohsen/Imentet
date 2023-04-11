@@ -6,6 +6,7 @@ $PageTitle = "Careers";
 include './init.php';
 
 session_start();
+session_regenerate_id();
 
 if (isset($_SESSION["AdminID"])) { 
 
@@ -185,14 +186,15 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
                                                             echo "<td>" ; 
                                                                             if($ApplicationsQuery['Date'] == NULL ){ 
-                                                                                echo "Not Determined yet" ;
+                                                                            
+                                                                                echo "<p class='fs-13'>Not Determined yet</p>" ;
                                                                             }else{
                                                                                 echo $ApplicationsQuery['Date'];
                                                                             } ; 
                                                             echo "</td>";
                                                             echo "<td>" ; 
                                                                             if($ApplicationsQuery['Approved'] == 2 ){ 
-                                                                                echo "Not Determined Yet" ;
+                                                                                echo "<p class='fs-13'> Not Determined Yet</p>" ;
                                                                             }elseif($ApplicationsQuery['Approved'] == 1 ){
                                                                                 echo "Accepted";
                                                                             }else{
@@ -255,14 +257,15 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
                                                             echo "<td>" ; 
                                                                             if($ApplicationsQuery['Date'] == NULL ){ 
-                                                                                echo "Not Determined yet" ;
+                                                                            
+                                                                                echo "<p class='fs-13'>Not Determined yet</p>" ;
                                                                             }else{
                                                                                 echo $ApplicationsQuery['Date'];
                                                                             } ; 
                                                             echo "</td>";
                                                             echo "<td>" ; 
                                                                             if($ApplicationsQuery['Approved'] == 2 ){ 
-                                                                                echo "Not Determined Yet" ;
+                                                                                echo "<p class='fs-13'> Not Determined Yet</p>" ;
                                                                             }elseif($ApplicationsQuery['Approved'] == 1 ){
                                                                                 echo "Accepted";
                                                                             }else{
@@ -324,14 +327,15 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
                                                             echo "<td>" ; 
                                                                             if($ApplicationsQuery['Date'] == NULL ){ 
-                                                                                echo "Not Determined yet" ;
+                                                                            
+                                                                                echo "<p class='fs-13'>Not Determined yet</p>" ;
                                                                             }else{
                                                                                 echo $ApplicationsQuery['Date'];
                                                                             } ; 
                                                             echo "</td>";
                                                             echo "<td>" ; 
                                                                             if($ApplicationsQuery['Approved'] == 2 ){ 
-                                                                                echo "Not Determined Yet" ;
+                                                                                echo "<p class='fs-13'> Not Determined Yet</p>" ;
                                                                             }elseif($ApplicationsQuery['Approved'] == 1 ){
                                                                                 echo "Accepted";
                                                                             }else{
@@ -389,14 +393,15 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
                                                             echo "<td>" ; 
                                                                             if($ApplicationsQuery['Date'] == NULL ){ 
-                                                                                echo "Not Determined yet" ;
+                                                                            
+                                                                                echo "<p class='fs-13'>Not Determined yet</p>" ;
                                                                             }else{
                                                                                 echo $ApplicationsQuery['Date'];
                                                                             } ; 
                                                             echo "</td>";
                                                             echo "<td>" ; 
                                                                             if($ApplicationsQuery['Approved'] == 2 ){ 
-                                                                                echo "Not Determined Yet" ;
+                                                                                echo "<p class='fs-13'> Not Determined Yet</p>" ;
                                                                             }elseif($ApplicationsQuery['Approved'] == 1 ){
                                                                                 echo "Accepted";
                                                                             }else{
@@ -461,7 +466,7 @@ if (isset($_SESSION["AdminID"])) {
                 <input type="hidden" name="ApplicantID" value="<?php echo $ApplicantID ?>">
                     <div class="form-group insertInput mb-0">
                         <div class="m-auto">
-                            <input type="text" name="Name" placeholder="Applicant Name" class="form-control" value="<?php echo $row['UserName'] ?>" disabled required="required" />
+                            <input type="text" name="Name" placeholder="Applicant Name" class="form-control" value="<?php if(isset($row['UserName'])){ echo $row['UserName'] ; }else{ echo $row['ContractName']; } ?>" disabled required="required" />
                         </div>
                     </div>
                     <div class="form-group insertInput mb-0">

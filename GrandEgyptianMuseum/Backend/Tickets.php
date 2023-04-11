@@ -6,6 +6,7 @@ $PageTitle = "Tickets Platform";
 include './init.php';
 
 session_start();
+session_regenerate_id();
 
 if (isset($_SESSION["AdminID"])) { 
 
