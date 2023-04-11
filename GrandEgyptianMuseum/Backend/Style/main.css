@@ -776,11 +776,7 @@ div.bottomBox a{
     font-weight: bold;
     text-decoration: none;
 }
-div.PlusBox{
-    border: 1px solid  #e9e5e5;
-    border-radius: 6px;
-    width: 217px;
-}
+
 div.PlusBox a,
 div.PlusBoxEntertainment a
 {
@@ -792,11 +788,11 @@ div.PlusBoxEntertainment a
     color: #4087a3;
     text-align: center;
 }
-div.PlusBoxEntertainment{
+.Boxes div.PlusBoxEntertainment{
     border: 1px solid  #e9e5e5;
     border-radius: 6px;
     width: 217px;
-    height: initial;
+    height: 305px;
 }
 .swiper {
     width: 105%;

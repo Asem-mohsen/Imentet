@@ -168,7 +168,7 @@ if (isset($_SESSION["AdminID"])) {
                                 <div class="buttons collapse" id="Control">
                                     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="GET">
                                         <div class="Adminbuttons">
-                                            <a href="./Admins.php?action=Resigned" class="btn btn-success">Check Resignations</a>
+                                            <a href="./Admins.php?action=Status" class="btn btn-success">Check Status</a>
                                             <span class="AdminLine"> </span>
                                             <a href="./Admins.php?action=Add" class="btn btn-primary"> <i class="fa fa-plus"></i> Add Admin</a>
                                             <span class="AdminLine"> </span>
@@ -228,7 +228,7 @@ if (isset($_SESSION["AdminID"])) {
                                                             ?>
                                                             <label class="dropdown-item">
                                                                 <input type="checkbox" name="Active[]" id="Active" class="FilterCheck" value="<?php echo $Active['Active'] ?>" <?php if(in_array( $Active['Active'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                    <?php if($Active['Active'] == 1){ echo "Active" ; }elseif($Active['Active'] == 2){ echo "Resigned" ;}else{ echo "Deactivated";} ?>
+                                                                    <?php if($Active['Active'] == 1){ echo "Active" ; }else{ echo "Deactivated";} ?>
                                                             </label>
                                                         <?php } ?>
                                                             <button type="submit" class="btn btn-primary filterbutton">Search</button>
@@ -282,8 +282,6 @@ if (isset($_SESSION["AdminID"])) {
                                                                         echo "<button class='btn btn-dark' disabled> Not Activated </button>";
                                                                     }elseif($Admin['Active'] == 1) {
                                                                         echo "<button class='btn btn-primary' disabled> Activated </button>";
-                                                                    }else{
-                                                                        echo "<button class='btn btn-danger' disabled> Resigned </button>";
                                                                     }
                                                             echo "</td>";
                                                             echo "<td> ";
@@ -328,8 +326,6 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<button class='btn btn-dark' disabled> Not Activated </button>";
                                                                 }elseif($Admin['Active'] == 1) {
                                                                     echo "<button class='btn btn-primary' disabled> Activated </button>";
-                                                                }else{
-                                                                    echo "<button class='btn btn-danger' disabled> Resigned </button>";
                                                                 }
                                                         echo "</td>";
                                                         echo "<td> ";
@@ -374,8 +370,6 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<button class='btn btn-dark' disabled> Not Activated </button>";
                                                                 }elseif($Admin['Active'] == 1) {
                                                                     echo "<button class='btn btn-primary' disabled> Activated </button>";
-                                                                }else{
-                                                                    echo "<button class='btn btn-danger' disabled> Resigned </button>";
                                                                 }
                                                         echo "</td>";
                                                         echo "<td> ";
@@ -418,8 +412,6 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<button class='btn btn-dark' disabled> Not Activated </button>";
                                                                 }elseif($Admin['Active'] == 1) {
                                                                     echo "<button class='btn btn-primary' disabled> Activated </button>";
-                                                                }else{
-                                                                    echo "<button class='btn btn-danger' disabled> Resigned </button>";
                                                                 }
                                                         echo "</td>";
                                                         echo "<td> ";
@@ -444,7 +436,7 @@ if (isset($_SESSION["AdminID"])) {
 
                         <?php 
                         
-        } elseif ($do == "Resigned") {
+        } elseif ($do == "Status") {
                     
                     $sort = 'ASC';
                     $sortarray = array('ASC', 'DESC');
@@ -459,7 +451,7 @@ if (isset($_SESSION["AdminID"])) {
                 $Admins = mysqli_query($con, $SelectAdmins);
                 $fetchquery = mysqli_fetch_assoc($Admins);
                 ?>
-                <h1 class="PageName">Resignstions</h1>
+                <h1 class="PageName">Status</h1>
                 <div class="container">
                             <button class="Control" data-toggle="collapse" data-target="#Control">Control</button>
                                 <div class="buttons collapse" id="Control">
@@ -469,10 +461,10 @@ if (isset($_SESSION["AdminID"])) {
                                         <a href="./Admins.php?action=CheckAdmins" class="btn btn-info">Back</a>
                                         <div class="AdminSort collapse" id="Control" >
                                             <i class="fa-solid fa-sort"></i> Sorting : [
-                                            <a href="./Admins.php?action=Resigned&sort=ASC" class="<?php if ($sort == 'ASC') {
+                                            <a href="./Admins.php?action=Status&sort=ASC" class="<?php if ($sort == 'ASC') {
                                                                             echo 'active';
                                                                         } ?>"> Asc </a> |
-                                            <a href="./Admins.php?action=Resigned&sort=DESC" class="<?php if ($sort == 'DESC') {
+                                            <a href="./Admins.php?action=Status&sort=DESC" class="<?php if ($sort == 'DESC') {
                                                                             echo 'active';
                                                                         } ?>"> Desc </a> ]
                                         </div>
@@ -521,7 +513,7 @@ if (isset($_SESSION["AdminID"])) {
                                                             ?>
                                                             <label class="dropdown-item">
                                                                 <input type="checkbox" name="Active[]" id="Active" class="FilterCheck" value="<?php echo $Active['Active'] ?>" <?php if(in_array( $Active['Active'] , $Checked)){ echo "Checked" ;  } ?>/>
-                                                                    <?php if($Active['Active'] == 1){ echo "Active" ; }elseif($Active['Active'] == 2){ echo "Resigned" ;}else{ echo "Deactivated";} ?>
+                                                                    <?php if($Active['Active'] == 1){ echo "Active" ; }else{ echo "Deactivated";} ?>
                                                             </label>
                                                         <?php } ?>
                                                             <button type="submit" class="btn btn-primary filterbutton">Search</button>
@@ -564,21 +556,14 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "</td>";
                                                             echo "<td>" . $Admin['Role']   . "</td>";
                                                             echo "<td>";
-                                                                        if ($Admin['Active'] == 2) {
-                                                                            echo "<button class='btn btn-danger' disabled> Resigned </button>";
-                                                                        }elseif($Admin['Active'] == 1){
+                                                                        if($Admin['Active'] == 1){
                                                                             echo "<a href='Admins.php?action=Deactive&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Activated ... Tab here To Deactivate It Temporarily' . "</a>";
                                                                         }elseif($Admin['Active'] == 0){
                                                                             echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Deactivated ... Tab here To Activate' . "</a>";
                                                                         }
                                                             echo "</td>";
                                                             echo "<td>" ;
-                                                                        if ($Admin['Active'] == 2) {
-                                                                            echo "<div class='tableButtons'>";
-                                                                                echo "<a href='Admins.php?action=Delete&ID=" . $Admin['ID'] . "' class='btn btn-danger'><i class='fa fa-close'> </i> " . 'Accept'  . "</a>";
-                                                                                echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='btn btn-primary'><i class='fa fa-edit'> </i> " . 'Refuse'  . "</a>";
-                                                                            echo "</div>";
-                                                                        }elseif($Admin['ID'] == $AdminID){
+                                                                        if($Admin['ID'] == $AdminID){
                                                                             echo "<a href='Profile.php?action=Manage&AdminID="     . $Admin['ID'] . "' class='btn btn-primary'>"  . 'Your Profile'  . "</a> ";
                                                                         }else{
                                                                             echo "<div class='tableButtons'>";
@@ -614,21 +599,14 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "</td>";
                                                         echo "<td>" . $Admin['Role']   . "</td>";
                                                         echo "<td>";
-                                                                    if ($Admin['Active'] == 2) {
-                                                                        echo "<button class='btn btn-danger' disabled> Resigned </button>";
-                                                                    }elseif($Admin['Active'] == 1){
+                                                                    if($Admin['Active'] == 1){
                                                                         echo "<a href='Admins.php?action=Deactive&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Activated ... Tab here To Deactivate It Temporarily' . "</a>";
                                                                     }elseif($Admin['Active'] == 0){
                                                                         echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Deactivated ... Tab here To Activate' . "</a>";
                                                                     }
                                                         echo "</td>";
                                                         echo "<td>" ;
-                                                                    if ($Admin['Active'] == 2) {
-                                                                        echo "<div class='tableButtons'>";
-                                                                            echo "<a href='Admins.php?action=Delete&ID=" . $Admin['ID'] . "' class='btn btn-danger'><i class='fa fa-close'> </i> " . 'Accept'  . "</a>";
-                                                                            echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='btn btn-primary'><i class='fa fa-edit'> </i> " . 'Refuse'  . "</a>";
-                                                                        echo "</div>";
-                                                                    }elseif($Admin['ID'] == $AdminID){
+                                                                    if($Admin['ID'] == $AdminID){
                                                                         echo "<a href='Profile.php?action=Manage&AdminID="     . $Admin['ID'] . "' class='btn btn-primary'>"  . 'Your Profile'  . "</a> ";
                                                                     }else{
                                                                         echo "<div class='tableButtons'>";
@@ -664,21 +642,14 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "</td>";
                                                         echo "<td>" . $Admin['Role']   . "</td>";
                                                         echo "<td>";
-                                                                    if ($Admin['Active'] == 2) {
-                                                                        echo "<button class='btn btn-danger' disabled> Resigned </button>";
-                                                                    }elseif($Admin['Active'] == 1){
+                                                                    if($Admin['Active'] == 1){
                                                                         echo "<a href='Admins.php?action=Deactive&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Activated ... Tab here To Deactivate It Temporarily' . "</a>";
                                                                     }elseif($Admin['Active'] == 0){
                                                                         echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Deactivated ... Tab here To Activate' . "</a>";
                                                                     }
                                                         echo "</td>";
                                                         echo "<td>" ;
-                                                                    if ($Admin['Active'] == 2) {
-                                                                        echo "<div class='tableButtons'>";
-                                                                            echo "<a href='Admins.php?action=Delete&ID=" . $Admin['ID'] . "' class='btn btn-danger'><i class='fa fa-close'> </i> " . 'Accept'  . "</a>";
-                                                                            echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='btn btn-primary'><i class='fa fa-edit'> </i> " . 'Refuse'  . "</a>";
-                                                                        echo "</div>";
-                                                                    }elseif($Admin['ID'] == $AdminID){
+                                                                    if($Admin['ID'] == $AdminID){
                                                                         echo "<a href='Profile.php?action=Manage&AdminID="     . $Admin['ID'] . "' class='btn btn-primary'>"  . 'Your Profile'  . "</a> ";
                                                                     }else{
                                                                         echo "<div class='tableButtons'>";
@@ -712,21 +683,14 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "</td>";
                                                         echo "<td>" . $Admin['Role']   . "</td>";
                                                         echo "<td>";
-                                                                    if ($Admin['Active'] == 2) {
-                                                                        echo "<button class='btn btn-danger' disabled> Resigned </button>";
-                                                                    }elseif($Admin['Active'] == 1){
+                                                                    if($Admin['Active'] == 1){
                                                                         echo "<a href='Admins.php?action=Deactive&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Activated ... Tab here To Deactivate It Temporarily' . "</a>";
                                                                     }elseif($Admin['Active'] == 0){
                                                                         echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Deactivated ... Tab here To Activate' . "</a>";
                                                                     }
                                                         echo "</td>";
                                                         echo "<td>" ;
-                                                                    if ($Admin['Active'] == 2) {
-                                                                        echo "<div class='tableButtons'>";
-                                                                            echo "<a href='Admins.php?action=Delete&ID=" . $Admin['ID'] . "' class='btn btn-danger'><i class='fa fa-close'> </i> " . 'Accept'  . "</a>";
-                                                                            echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='btn btn-primary'><i class='fa fa-edit'> </i> " . 'Refuse'  . "</a>";
-                                                                        echo "</div>";
-                                                                    }elseif($Admin['ID'] == $AdminID){
+                                                                    if($Admin['ID'] == $AdminID){
                                                                         echo "<a href='Profile.php?action=Manage&AdminID="     . $Admin['ID'] . "' class='btn btn-primary'>"  . 'Your Profile'  . "</a> ";
                                                                     }else{
                                                                         echo "<div class='tableButtons'>";

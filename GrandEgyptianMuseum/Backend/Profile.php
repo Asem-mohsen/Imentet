@@ -64,12 +64,7 @@ if (isset($_SESSION["AdminID"])) {
                                     </div>
                                     <div class="mt-5 text-center">
                                         <a href="./Profile.php?action=Edit&AdminID=<?php echo $Admin['ID'] ?>" class="btn btn-success profile-button">Edit</a>
-                                        <?php if($row['AdminRole'] == 1){
-                                            echo "<button class='btn btn-danger profile-button' disabled >Resign</button> ";
-                                            echo "<p class='c-gray fs-13'> You Cannot Resign </p>";
-                                            }else{ ?>
-                                            <a href="./Profile.php?action=Resign&AdminID=<?php echo $Admin['ID'] ?>" class="btn btn-danger profile-button" >Resign</a>
-                                           <?php } ?>
+                                        <a href="./Dashboard.php" class="btn btn-primary profile-button">Back</a>
                                     </div>
                                 </div>
                             </div>
@@ -144,8 +139,6 @@ if (isset($_SESSION["AdminID"])) {
     }elseif($do == "Update"){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                //Get variables from form
-
                 $AdminID   = $_POST['AdminID'];
                 $Name      = $_POST['Name'];
                 $Phone     = $_POST['Phone'];
@@ -196,28 +189,6 @@ if (isset($_SESSION["AdminID"])) {
                 // RedirectIndex($TheMsg, "Back", 5);
                 echo "</div>";
             } 
-    }elseif($do == "Resign"){
-        $AdminID = isset($_GET['AdminID']) && is_numeric($_GET['AdminID']) ? intval($_GET['AdminID']) : 0;
-
-        $Check = "SELECT * FROM admin WHERE ID = $AdminID ";
-        $CheckAdmin = mysqli_query($con, $Check);
-
-        if ($Check > 0) {
-
-            $UpdateQuery = "UPDATE admin SET Active = 2 WHERE ID = $AdminID";
-            $Update = mysqli_query($con, $UpdateQuery);
-            if($Update){
-                session_unset();
-                session_destroy();
-                header("Location: ./SignIn.php");
-            }
-
-        }else {
-            echo "<div class='container'>";
-            $TheMsg = "<div class='alert alert-danger'>" . "This Admin is Not Exist"  . "</div>";
-            // RedirectIndex($TheMsg);
-            echo "</div>";
-        }
     }else{
         echo "<div class='container'>";
         $TheMsg = "<div class='alert alert-danger'>" . "This Page Does Not Exist"  . "</div>";
@@ -225,7 +196,7 @@ if (isset($_SESSION["AdminID"])) {
         echo "</div>";
     }
 
-include "./Includes/PageContent/Footer.php";
+    include "./Includes/PageContent/Footer.php";
 
 
 

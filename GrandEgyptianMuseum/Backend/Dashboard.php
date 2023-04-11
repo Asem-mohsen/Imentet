@@ -17,7 +17,7 @@ if (isset($_SESSION["AdminID"])) {
 
     <div class="page d-flex">
         <div class="sidepar bg-white p-20 p-relative">
-            <h3 class="p-relative txt-center mt-0">Admin Panal</h3>
+            <h3 class="p-relative txt-center mt-0">Admin Panel</h3>
             <ul>
                 <li>
                     <a class="active d-flex align-center fs-14 c-b p-10 rad-6" href="">
@@ -78,7 +78,7 @@ if (isset($_SESSION["AdminID"])) {
                         </li>
                         <li>
                             <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Donatiton.php?action=Manage">
-                            <i class="fa-solid fa-hand-holding-dollar fa-fw"></i><span> Donatation </span>
+                            <i class="fa-solid fa-hand-holding-dollar fa-fw"></i><span> Donations </span>
                             </a>
                         </li>
                         <li>
