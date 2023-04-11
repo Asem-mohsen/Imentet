@@ -34,9 +34,10 @@ if (isset($_SESSION["AdminID"])) {
                     $DateSort = $_GET['DateSort'];
                 }
 
-                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career FROM applications 
-                                    JOIN user ON user.ID = applications.UserID 
+                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                    LEFT JOIN user ON user.ID = applications.UserID 
                                     JOIN careers ON careers.ID = applications.CareerID
+                                    LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
                                     ORDER BY applications.Date $DateSort ,applications.ID $sort 
                                 ";
             
@@ -141,7 +142,7 @@ if (isset($_SESSION["AdminID"])) {
                                         <table class="main-table table table-bordered table-hover">
                                             <tr>
                                                 <td>ID</td>
-                                                <td>User</td>
+                                                <td>Applicant</td>
                                                 <td>Career</td>
                                                 <td>Appointment Date</td>
                                                 <td>Statues</td>
@@ -152,12 +153,13 @@ if (isset($_SESSION["AdminID"])) {
                                             if(isset($_POST['CareerID']) && isset($_POST['Approved'])){
                                                 $sql = "WHERE applications.CareerID IN(".implode(',', $_POST['CareerID'] ).") AND applications.Approved IN (".implode(',', $_POST['Approved']).")" ; 
 
-                                                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career FROM applications 
-                                                JOIN user ON user.ID = applications.UserID 
-                                                JOIN careers ON careers.ID = applications.CareerID
-                                                $sql
-                                                ORDER BY applications.Date $DateSort ,applications.ID $sort 
-                                                ";
+                                                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                                                        LEFT JOIN user ON user.ID = applications.UserID 
+                                                                        JOIN careers ON careers.ID = applications.CareerID
+                                                                        LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
+                                                                        $sql
+                                                                        ORDER BY applications.Date $DateSort ,applications.ID $sort 
+                                                                        ";
 
                                                 $Query = mysqli_query($con , $ApplicationsQuery);
                                                 $fetchquery = mysqli_fetch_row($Query);
@@ -174,6 +176,8 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
                                                                 }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
                                                                     echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
+                                                                }elseif($ApplicationsQuery['UserID'] == NULL){
+                                                                    echo $ApplicationsQuery['ContractName'] ;
                                                                 }else{
                                                                     echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
                                                                 }
@@ -214,17 +218,18 @@ if (isset($_SESSION["AdminID"])) {
                                                                             }
                                                             echo "</td>";
                                                         echo "</tr>";
-                                                    } 
+                                                    }
                                                 }
                                             }elseif(isset($_POST['CareerID']) && !isset($_POST['Approved'])){
                                                 $sql = "WHERE applications.CareerID IN(".implode(',', $_POST['CareerID']).")";
 
-                                                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career FROM applications 
-                                                JOIN user ON user.ID = applications.UserID 
-                                                JOIN careers ON careers.ID = applications.CareerID
-                                                $sql
-                                                ORDER BY applications.Date $DateSort ,applications.ID $sort 
-                                                ";
+                                                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                                                        LEFT JOIN user ON user.ID = applications.UserID 
+                                                                        JOIN careers ON careers.ID = applications.CareerID
+                                                                        LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
+                                                                        $sql
+                                                                        ORDER BY applications.Date $DateSort ,applications.ID $sort 
+                                                                        ";
 
                                                 $Query = mysqli_query($con , $ApplicationsQuery);
                                                 $fetchquery = mysqli_fetch_row($Query);
@@ -241,6 +246,8 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
                                                                 }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
                                                                     echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
+                                                                }elseif($ApplicationsQuery['UserID'] == NULL){
+                                                                    echo $ApplicationsQuery['ContractName'] ;
                                                                 }else{
                                                                     echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
                                                                 }
@@ -281,16 +288,17 @@ if (isset($_SESSION["AdminID"])) {
                                                                             }
                                                             echo "</td>";
                                                         echo "</tr>";
-                                                    } 
+                                                    }
                                                 }
                                             }elseif(isset($_POST['Approved']) && !isset($_POST['CareerID'])){
                                                 $sql = "WHERE applications.Approved IN(". implode(',', $_POST['Approved']).")";
-                                                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career FROM applications 
-                                                    JOIN user ON user.ID = applications.UserID 
-                                                    JOIN careers ON careers.ID = applications.CareerID
-                                                    $sql
-                                                    ORDER BY applications.Date $DateSort ,applications.ID $sort 
-                                                    ";
+                                                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                                                        LEFT JOIN user ON user.ID = applications.UserID 
+                                                                        JOIN careers ON careers.ID = applications.CareerID
+                                                                        LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
+                                                                        $sql
+                                                                        ORDER BY applications.Date $DateSort ,applications.ID $sort 
+                                                                        ";
 
                                                     $Query = mysqli_query($con , $ApplicationsQuery);
                                                     $fetchquery = mysqli_fetch_row($Query);
@@ -307,6 +315,8 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
                                                                 }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
                                                                     echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
+                                                                }elseif($ApplicationsQuery['UserID'] == NULL){
+                                                                    echo $ApplicationsQuery['ContractName'] ;
                                                                 }else{
                                                                     echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
                                                                 }
@@ -347,16 +357,16 @@ if (isset($_SESSION["AdminID"])) {
                                                                             }
                                                             echo "</td>";
                                                         echo "</tr>";
-                                                    } 
+                                                    }
                                                 }
                                             }else{
                                                     
-                                                    $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career FROM applications 
-                                                    JOIN user ON user.ID = applications.UserID 
-                                                    JOIN careers ON careers.ID = applications.CareerID
-                                                    ORDER BY applications.Date $DateSort ,applications.ID $sort 
-                                                    ";
-
+                                                    $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                                                        LEFT JOIN user ON user.ID = applications.UserID 
+                                                                        JOIN careers ON careers.ID = applications.CareerID
+                                                                        LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
+                                                                        ORDER BY applications.Date $DateSort ,applications.ID $sort 
+                                                                        ";
                                                     $Query = mysqli_query($con , $ApplicationsQuery);
                                                     $fetchquery = mysqli_fetch_row($Query);
                                                     $count =mysqli_num_rows($Query);
@@ -370,6 +380,8 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
                                                                 }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
                                                                     echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
+                                                                }elseif($ApplicationsQuery['UserID'] == NULL){
+                                                                    echo $ApplicationsQuery['ContractName'] ;
                                                                 }else{
                                                                     echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
                                                                 }
@@ -431,9 +443,10 @@ if (isset($_SESSION["AdminID"])) {
                         echo "<p>We don't hire Ghosts yet </p>";
                     echo "</div>";
                 }else{
-                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName , careers.Careers As Career FROM applications 
-                                        JOIN user ON user.ID = applications.UserID 
-                                        JOIN careers ON careers.ID = applications.CareerID 
+                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                        LEFT JOIN user ON user.ID = applications.UserID 
+                                        JOIN careers ON careers.ID = applications.CareerID
+                                        LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
                                         WHERE applications.ID = $ApplicantID "; 
                                         
                 $Query = mysqli_query($con , $ApplicationsQuery);
