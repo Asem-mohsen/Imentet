@@ -762,7 +762,7 @@ if (isset($_SESSION["AdminID"])) {
                         <div class="form-group">
                             <div class="InsertButton">
                                 <input type="submit" value="Update" class="btn btn-success w-10" />
-                                <a href="./Admins.php?action=CheckAdmins" class="btn btn-danger btn-md w-10"> Cancel </a>
+                                <a href="./Admins.php?action=Manage" class="btn btn-danger btn-md w-10"> Cancel </a>
                             </div>
                         </div>
                     </form>

@@ -658,7 +658,6 @@ if (isset($_SESSION["AdminID"])) {
                                         </div>
                                     </div>
                                     <div class="mt-5 text-center">
-                                        <a href="./Careers.php?action=Dismissal&UserID=<?php echo $Equestrian['UserID'] ?>" class="btn btn-danger profile-button" >Dismissal</a>
                                         <a href="./Careers.php?action=Manage" class="btn btn-primary btn-md"> Back </a>
                                     </div>
                                     
@@ -742,7 +741,6 @@ if (isset($_SESSION["AdminID"])) {
                                         </div>
                                     </div>
                                     <div class="mt-5 text-center">
-                                        <a href="./Careers.php?action=Dismissal&UserID=<?php echo $TourGuide['UserID'] ?>" class="btn btn-danger profile-button" >Dismissal</a>
                                         <a href="./Careers.php?action=Manage" class="btn btn-primary btn-md"> Back </a>
                                     </div>
                                     
@@ -773,29 +771,6 @@ if (isset($_SESSION["AdminID"])) {
                                     echo "</div>";
                             }
                         }
-        }elseif($do == "Dismissal"){
-            $UserID = isset($_GET['UserID']) && is_numeric($_GET['UserID']) ? intval($_GET['UserID']) : 0;
-                
-            $Check = "SELECT * FROM applications WHERE UserID = $UserID";
-            $CheckApplications = mysqli_query($con, $Check);
-
-            if ($Check > 0) {
-                
-                $Reason = "Was Fired due to Users Rating and Evaluations";
-                
-                $UpdateQuery = "UPDATE `applications` SET Approved = 0 , Reason = '$Reason' WHERE UserID = $UserID";
-                $Delete = mysqli_query($con, $UpdateQuery);
-
-                echo "<div class='container'>";
-                $TheMsg = "<div class='alert alert-success'>"  . "The Person Fired Successfully" . '</div>';
-                RedirectIndex($TheMsg, "Back");
-                echo "</div>";
-            } else {
-                echo "<div class='container'>";
-                $TheMsg = "<div class='alert alert-danger'>" . "Error" . "</div>";
-                RedirectIndex($TheMsg);
-                echo "</div>";
-            }
         }else{
             echo "<div class='container'>";
             $TheMsg = "<div class='alert alert-danger'>" . "No Page With This Name"  . "</div>";

@@ -159,3 +159,22 @@ $('.options span').click(function(){
       }       
     }
   }
+
+
+// Image Updload in Admin Profile
+
+document.getElementById('AdminImage').onchange = function(){
+  document.getElementById('image').src = URL.createObjectURL(AdminImage.files[0]); //Preview New Image
+
+  document.getElementById('Cancel').style.display = "block";
+  document.getElementById('Confirm').style.display = "block";
+  document.getElementById('upload').style.display = "none";
+}
+var AdminImg = document.getElementById('image').src ;
+document.getElementById('Cancel').onclick = function(){
+  document.getElementById('image').src = AdminImg ;      // Back to previous Image
+
+  document.getElementById('Cancel').style.display = "none";
+  document.getElementById('Confirm').style.display = "none";
+  document.getElementById('upload').style.display = "block";
+}

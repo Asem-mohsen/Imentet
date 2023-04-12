@@ -29,6 +29,7 @@ if (isset($_SESSION["AdminID"])) {
                             <div class="col-md-3 border-right">
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                                     <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+
                                     <span class="font-weight-bold"><?php echo $Admin['Name']?></span>
                                     <span class="text-black-50"><?php echo $Admin['Email']?></span>
                                     <span> </span>
@@ -74,7 +75,10 @@ if (isset($_SESSION["AdminID"])) {
 
         <?php
     }elseif($do == "Edit"){
-        $SelectAdmins = "SELECT admin . * , adminrole.Role AS RoleName , adminrole.ID AS RoleID FROM admin INNER JOIN adminrole ON adminrole.ID = admin.AdminRole WHERE admin.ID = $AdminID";
+        $SelectAdmins = "SELECT admin . * , adminrole.Role AS RoleName , adminrole.ID AS RoleID, adminimage.Image AS Image FROM admin 
+                        INNER JOIN adminrole ON adminrole.ID = admin.AdminRole
+                        LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
+                        WHERE admin.ID = $AdminID";
         $Admins = mysqli_query($con, $SelectAdmins);
         $Admin = mysqli_fetch_assoc($Admins);
         ?>
@@ -82,9 +86,20 @@ if (isset($_SESSION["AdminID"])) {
             <div class="container rounded bg-white mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-3 border-right">
-                            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                <span class="font-weight-bold"><?php echo $Admin['Name']?></span>
+                            <div class="ProfileInfo d-flex flex-column align-items-center text-center p-3 py-5">
+                                <img class="rounded-circle mt-5" width="150px" height="150px" id="image" src="<?php $Admin['Image']?>">
+                                    <div class="RightRound" id="upload">
+                                        <input type="file" name="AdminImage" id="AdminImage" accept=".jpg , .png , .jpeg">
+                                        <i class="fa fa-camera"></i>
+                                    </div>
+                                    <div class="LeftRound" id="Cancel"  style="display: none;">
+                                        <i class="fa fa-times"></i>
+                                    </div>
+                                    <div class="RightRound" id="Confirm" style="display: none;">
+                                        <input type="submit" name="" id="">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                <span class="font-weight-bold mt-40"><?php echo $Admin['Name']?></span>
                                 <span class="text-black-50"><?php echo $Admin['Email']?></span>
                                 <span> </span>
                             </div>
@@ -148,6 +163,15 @@ if (isset($_SESSION["AdminID"])) {
                 $Password  = $_POST['Password'];
                 $Role      = $_POST['RoleID'];
 
+                $AdminImage        = $_FILES['Image']['name'];
+                $folder       = "Images\Uploads\\".$image;
+                if (isset($AdminImage)) {
+                    $imageName = $_FILES['Image']['name'];
+                    $imageType = $_FILES['Image']['type'];
+                    $imageTmp = $_FILES['Image']['tmp_name'];
+                    move_uploaded_file($imageTmp,$folder);              
+                }
+
                 $hashedPassword = password_hash($Password , PASSWORD_DEFAULT);
 
                 //Validate The form 
@@ -172,8 +196,7 @@ if (isset($_SESSION["AdminID"])) {
                 //Loop into error array and print the error
                 foreach ($FormErrors as $error) {
                     echo "<div class='container'>";
-                    echo "<div class='alert alert-danger'>" . $error . "</div>";
-                    // RedirectIndex($TheMsg, "back", 5);
+                        echo "<div class='alert alert-danger'>" . $error . "</div>";
                     echo "</div>";
                 }
 
@@ -181,6 +204,9 @@ if (isset($_SESSION["AdminID"])) {
                     // Update DB with this info
                     $UpdateQuery = "UPDATE admin SET Name = '$Name' , Phone = $Phone , Address = '$Address' , Email = '$Email' , Password = '$hashedPassword' , AdminRole = '$Role'  WHERE ID = $AdminID ";
                     $Update = mysqli_query($con, $UpdateQuery);
+
+                    $InsertQuery = "INSERT INTO adminimage VALUES(NULL , $AdminID , '$Image')";
+                    $Insert = mysqli_query($con, $InsertQuery);
                     header("Location: ./Profile.php?action=Manage");
                 }
             } else {

@@ -110,8 +110,12 @@ if (isset($_SESSION["AdminID"])) {
         <div class="content-area w-full overflow-h">
             <div class="head bg-white p-15 between-flex">
                 <div class="icon d-flex align-center">
-                <a href="./Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">
+                    <a href="./Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">
+                    <div class="d-flex">
                         <img src="images/avatar.png" alt="" />
+                        <h5 class="ml-15"><?php echo $row['Name'] ?></h5>
+                    </div>
+                        
                     </a>
                 </div>
                 <div class="icon d-flex align-center">
