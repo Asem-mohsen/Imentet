@@ -18,7 +18,10 @@ if (isset($_SESSION["AdminID"])) {
     $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
     include "Nav.php";
     if($do == 'Manage'){
-                    $SelectAdmins = "SELECT admin . * , adminrole.Role AS RoleName FROM admin INNER JOIN adminrole ON adminrole.ID = admin.AdminRole WHERE admin.ID = $AdminID";
+                    $SelectAdmins = "SELECT admin . * , adminrole.Role AS RoleName ,adminimage.Image AS Image FROM admin 
+                                    INNER JOIN adminrole ON adminrole.ID = admin.AdminRole 
+                                    LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
+                                    WHERE admin.ID = $AdminID";
                     $Admins = mysqli_query($con, $SelectAdmins);
                     $Admin = mysqli_fetch_assoc($Admins);
                     ?>
@@ -28,9 +31,9 @@ if (isset($_SESSION["AdminID"])) {
                         <div class="row">
                             <div class="col-md-3 border-right">
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                    <img class="rounded-circle mt-5" width="150px" src="./Images/AdminImages/<?php echo $Admin['Image'] ?>">
 
-                                    <span class="font-weight-bold"><?php echo $Admin['Name']?></span>
+                                    <span class="font-weight-bold mt-15"><?php echo $Admin['Name']?></span>
                                     <span class="text-black-50"><?php echo $Admin['Email']?></span>
                                     <span> </span>
                                 </div>
@@ -82,12 +85,12 @@ if (isset($_SESSION["AdminID"])) {
         $Admins = mysqli_query($con, $SelectAdmins);
         $Admin = mysqli_fetch_assoc($Admins);
         ?>
-        <form action="?action=Update" method="POST">
+        <form action="?action=Update" method="POST" enctype="multipart/form-data">
             <div class="container rounded bg-white mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-3 border-right">
                             <div class="ProfileInfo d-flex flex-column align-items-center text-center p-3 py-5">
-                                <img class="rounded-circle mt-5" width="150px" height="150px" id="image" src="<?php $Admin['Image']?>">
+                                <img class="rounded-circle mt-5" width="150px" height="150px" id="image" src="./Images/AdminImages/<?php echo $Admin['Image']?>">
                                     <div class="RightRound" id="upload">
                                         <input type="file" name="AdminImage" id="AdminImage" accept=".jpg , .png , .jpeg">
                                         <i class="fa fa-camera"></i>
@@ -163,15 +166,6 @@ if (isset($_SESSION["AdminID"])) {
                 $Password  = $_POST['Password'];
                 $Role      = $_POST['RoleID'];
 
-                $AdminImage        = $_FILES['Image']['name'];
-                $folder       = "Images\Uploads\\".$image;
-                if (isset($AdminImage)) {
-                    $imageName = $_FILES['Image']['name'];
-                    $imageType = $_FILES['Image']['type'];
-                    $imageTmp = $_FILES['Image']['tmp_name'];
-                    move_uploaded_file($imageTmp,$folder);              
-                }
-
                 $hashedPassword = password_hash($Password , PASSWORD_DEFAULT);
 
                 //Validate The form 
@@ -205,9 +199,19 @@ if (isset($_SESSION["AdminID"])) {
                     $UpdateQuery = "UPDATE admin SET Name = '$Name' , Phone = $Phone , Address = '$Address' , Email = '$Email' , Password = '$hashedPassword' , AdminRole = '$Role'  WHERE ID = $AdminID ";
                     $Update = mysqli_query($con, $UpdateQuery);
 
-                    $InsertQuery = "INSERT INTO adminimage VALUES(NULL , $AdminID , '$Image')";
-                    $Insert = mysqli_query($con, $InsertQuery);
-                    header("Location: ./Profile.php?action=Manage");
+                    if (isset($_FILES['AdminImage']['name'])){
+                        $AdminID    = $_POST['AdminID'];
+                        $AdminImage = $_FILES['AdminImage']['name'];
+                        $imageTmp = $_FILES['AdminImage']['tmp_name'];
+    
+                        $folder       = "Images\Uploads\\".$AdminImage;
+                        move_uploaded_file($imageTmp,$folder);  
+
+                        $UpdateImgQuery = "UPDATE adminimage SET Image = '$AdminImage' WHERE AdminID = $AdminID";
+                        $UpdateImg = mysqli_query($con, $UpdateImgQuery);  
+                        header("Location: ./Profile.php?action=Manage");         
+                    }
+                    
                 }
             } else {
 

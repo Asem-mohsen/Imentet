@@ -134,6 +134,8 @@ ul {
     width: 32px;
     height: 32px;
     margin-left: 15px;
+    border-radius: 50%;
+
 }
 
 .content-area h1 {
@@ -1642,8 +1644,8 @@ img.TableImage{
 /* Profile */
 .ProfileInfo .RightRound{
     position: absolute;
-    bottom: 434px;
-    right: 71px;
+    bottom: 448px;
+    right: 78px;
     width: 32px;
     height: 32px;
     line-height: 33px;
@@ -1655,8 +1657,8 @@ img.TableImage{
 }
 .ProfileInfo .LeftRound{
     position: absolute;
-    bottom: 434px;
-    left: 71px;
+    bottom: 448px;
+    left: 78px;
     width: 32px;
     height: 32px;
     line-height: 33px;

@@ -9,8 +9,10 @@ include './init.php';
 if (isset($_SESSION["AdminID"])) {
 
     $AdminID = $_SESSION['AdminID'];
-    $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName FROM admin LEFT JOIN adminrole
-                    ON admin.AdminRole = adminrole.ID WHERE admin.ID = $AdminID";
+    $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName , adminimage.Image AS Image FROM admin
+                    LEFT JOIN adminrole ON admin.AdminRole = adminrole.ID 
+                    LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
+                    WHERE admin.ID = $AdminID";
     $Select = mysqli_query($con, $SelectQuery);
     $row = mysqli_fetch_assoc($Select);
     $AdminRole =$row['AdminRole']
@@ -112,7 +114,7 @@ if (isset($_SESSION["AdminID"])) {
                 <div class="icon d-flex align-center">
                     <a href="./Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">
                     <div class="d-flex">
-                        <img src="images/avatar.png" alt="" />
+                        <img src="images/AdminImages/<?php echo $row['Image'] ?>" alt="" />
                         <h5 class="ml-15"><?php echo $row['Name'] ?></h5>
                     </div>
                         
@@ -197,7 +199,7 @@ if (isset($_SESSION["AdminID"])) {
                             </div>
                             <img class="hide-mobile" src="images/welcome.png" alt="" />
                         </div>
-                        <img class="avatar" src="images/avatar.png" alt="" />
+                        <img class="avatar" src="images/AdminImages/<?php echo $row['Image'] ?>" alt="" />
                         <div class="body txt-center d-flex p-20 mt-20 mb-20 dis-block-mobile">
                             <div>
                                 <?php echo $row['Name'] ?><span class="d-block fs-14 c-gray mt-20">

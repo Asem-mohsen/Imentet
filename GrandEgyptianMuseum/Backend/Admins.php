@@ -67,7 +67,7 @@ if (isset($_SESSION["AdminID"])) {
                     <div class="form-group">
                         <div class="InsertButton">
                             <input type="submit" value="Add" class="btn btn-primary btn-md w-10" />
-                            <a href="./Admins.php?action=CheckAdmins" class="btn btn-danger btn-md w-10"> Cancel </a>
+                            <a href="./Admins.php?action=Manage" class="btn btn-danger btn-md w-10"> Cancel </a>
                         </div>
                     </div>
                 </form>
@@ -83,7 +83,8 @@ if (isset($_SESSION["AdminID"])) {
                 $Password  = $_POST['Password'];
                 $Role      = $_POST['Role'];
                 $hashedPassword = password_hash($Password , PASSWORD_DEFAULT);
-
+                
+                $Image = "avatar.png";
                 $FormErrors = array();
 
                 if (empty($Name)) {
@@ -109,6 +110,10 @@ if (isset($_SESSION["AdminID"])) {
 
                     $InsertQuery = "INSERT INTO `admin` Values( Null , '$Name' , $Phone , '$Address' , '$Email' , '$hashedPassword' , 1 , $Role )";
                     $Insert = mysqli_query($con, $InsertQuery);
+
+                    $InsertImgQuery = "INSERT INTO `adminimage` Values( Null , '". mysqli_insert_id($con) . "' , '$Image' )";
+                    $Insert = mysqli_query($con, $InsertImgQuery);
+
                     echo "<div class='container'>";
                     $TheMsg =  "<div class='alert alert-success'> Admin Added Successfully </div>";
                     RedirectIndex($TheMsg, "Back");
@@ -838,9 +843,14 @@ if (isset($_SESSION["AdminID"])) {
                 $CheckAdmin = mysqli_query($con, $Check);
 
                 if ($Check > 0) {
+                    
+                    $DeleteImgQuery = "DELETE FROM adminimage WHERE AdminID = $AdminID ";
+                    $Delete = mysqli_query($con, $DeleteImgQuery);
 
                     $DeleteQuery = "DELETE FROM admin WHERE ID = $AdminID ";
                     $Delete = mysqli_query($con, $DeleteQuery);
+
+                    
 
                     echo "<div class='container'>";
                     $TheMsg = "<div class='alert alert-success'>"  . "Deleted Successfully" . '</div>';

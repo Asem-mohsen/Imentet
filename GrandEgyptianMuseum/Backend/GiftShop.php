@@ -138,7 +138,7 @@ if (isset($_SESSION["AdminID"])) {
             <?php
 
             }
-        }elseif($do =="ItemsSold"){
+        }elseif($do == "ItemsSold"){
             $SelectQuery = "SELECT useritems.* , giftshop.Item AS ItemName , giftshop.Price AS ItemPrice , user.Name AS UserName , user.ID AS UserID FROM useritems 
             JOIN giftshop ON useritems.GiftShopID = giftshop.ID 
             JOIN user ON useritems.UserID = user.ID ";
