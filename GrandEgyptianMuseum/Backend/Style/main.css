@@ -1,10 +1,9 @@
+
 :root {
-    --blue-color: #0075ff;
-    --blue-alt-color: #0d69d5;
-    --orange-color: #f59e0b;
-    --green-color: #22c55e;
-    --red-color: #f44336;
-    --gray-color: #888;
+    --LightRose-color: #D99578;
+    --LighWhite-color: #f5F5F5;
+    --White-color: white;
+    --Font-DIDOT: 'GFS Didot';
 }
 
 * {
@@ -12,7 +11,7 @@
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: var(--Font-DIDOT);
     margin: 0;
 }
 
@@ -112,6 +111,8 @@ ul {
     .sidepar>h3 {
         font-size: 13px;
         margin-bottom: 15px;
+        font-family: var(--Font-DIDOT);
+
     }
 
     .sidepar>h3::before,
@@ -121,6 +122,8 @@ ul {
 
     .sidepar ul li a span {
         display: none;
+        font-family: var(--Font-DIDOT);
+
     }
 
 }
@@ -137,9 +140,9 @@ ul {
     border-radius: 50%;
 
 }
-
 .content-area h1 {
     margin: 20px 20px 40px;
+    font-family: var(--Font-DIDOT);
 }
 
 .content-area h1.inDashboard::before,
@@ -235,6 +238,8 @@ h1.page-name {
     cursor: default;
     text-align: right;
     margin: 0;
+    font-family: var(--Font-DIDOT);
+
 }
 .EventPage h1:hover{
     left: 0px;
@@ -251,10 +256,11 @@ img.EventImage{
     
 }
 .EventPage .info h3{
+
     text-align: center;
     font-size: 32px;
-    font-family: serif;
     cursor: default;
+    font-family: var(--Font-DIDOT);
 
 }
 .EventPage .info .MoreInfo{
@@ -1218,9 +1224,6 @@ a.TotalLink{
     transition: 0.3s;
 }
 
-.welcome .visit:hover {
-    background-color: var(--blue-alt-color);
-}
 
 @media(max-width:767px) {
     .welcome .intro {
