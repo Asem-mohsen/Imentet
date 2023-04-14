@@ -9,34 +9,46 @@ include './init.php';
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-    $AdminEmail = $_POST['Email'];
-    $AdminPassword = $_POST['Password'];
+    $Email = $_POST['Email'];
+    $Password = $_POST['Password'];
 
-    //Check If ADMIN Exist
 
-    $SelectQuery = "SELECT * FROM admin WHERE Email = '$AdminEmail' AND Active = 1 LIMIT 1 ";
-    $Select = mysqli_query($con , $SelectQuery);
+    $SelectAdmin = "SELECT * FROM admin WHERE Email = '$Email' AND IsAdmin = 1 LIMIT 1";
+    $Select = mysqli_query($con , $SelectAdmin);
     $count = mysqli_num_rows($Select);
-    
-    if($count > 0){
-        while($row = mysqli_fetch_assoc($Select)){
-            if (password_verify( $AdminPassword, $row['Password'])) {
-                
-                    $_SESSION['AdminID'] = $row['ID'];     //Register Sesstion ID
-                    header('Location: Dashboard.php');
-                    exit();
-                
-            }else{
-                echo "<div class='container'>";
-                    echo "<div class='alert alert-danger'> Password or Email is Not Correct </div>";
-                echo "</div>";
-            }
+    $AdminRow = mysqli_fetch_assoc($Select) ; 
+
+        if(isset($AdminRow['IsAdmin']) == 1 ){
+                if($count > 0){
+                    if($AdminRow['Active'] == 0){
+                        echo "<div class='container'>";
+                            echo "<div class='alert alert-danger'> Your Account Is Deactiveted </div>";
+                        echo "</div>";
+                    }elseif(password_verify( $Password, $AdminRow['Password'])) {
+
+                        $_SESSION['AdminID'] = $AdminRow['ID'];     //Register Sesstion ID
+                        header('Location: Dashboard.php');
+                        exit();
+                    
+                    }else{
+                                echo "<div class='container'>";
+                                    echo "<div class='alert alert-danger'> Password or Email is Not Correct </div>";
+                                echo "</div>";
+                    }
+                    
+                }
+        }elseif(isset($AdminRow['IsAdmin']) != 1 ){
+                $SelectUser = "SELECT * FROM user WHERE Email = '$Email' AND Password = '$Password' LIMIT 1";
+                $Select = mysqli_query($con , $SelectUser);
+                $count = mysqli_num_rows($Select);
+                if($count > 0){
+                    // $_SESSION['AdminID'] = $row['ID'];     //Register Sesstion ID
+
+                    // header('Location: Dashboard.php');
+
+                    echo "Is User but i cannot redirect now";
+                }
         }
-    }elseif(isset($row['Active']) != 1) {
-        echo "<div class='container'>";
-            echo "<div class='alert alert-danger'> You have Submitted Your Resignation Or Your Account Is Deactiveted  </div>";
-        echo "</div>";    
-    }
 }
 
 ?>

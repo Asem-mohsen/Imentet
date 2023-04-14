@@ -107,17 +107,22 @@ if (isset($_SESSION["AdminID"])) {
                 }
 
                 if (empty($FormErrors)) {
+                    $Select = " SELECT * FROM admin WHERE Email = '$Email' ";
+                    $Result = mysqli_query($con, $Select);
+                    if(mysqli_num_rows($Result) > 0){
+                        $FormErrors[] = "Admin Email Already Exist !";
+                    }else{
+                        $InsertQuery = "INSERT INTO `admin` Values( Null , '$Name' , $Phone , '$Address' , '$Email' , '$hashedPassword' , 1 , $Role , 1)";
+                        $Insert = mysqli_query($con, $InsertQuery);
 
-                    $InsertQuery = "INSERT INTO `admin` Values( Null , '$Name' , $Phone , '$Address' , '$Email' , '$hashedPassword' , 1 , $Role )";
-                    $Insert = mysqli_query($con, $InsertQuery);
+                        $InsertImgQuery = "INSERT INTO `adminimage` Values( Null , '". mysqli_insert_id($con) . "' , '$Image' )";
+                        $Insert = mysqli_query($con, $InsertImgQuery);
 
-                    $InsertImgQuery = "INSERT INTO `adminimage` Values( Null , '". mysqli_insert_id($con) . "' , '$Image' )";
-                    $Insert = mysqli_query($con, $InsertImgQuery);
-
-                    echo "<div class='container'>";
-                    $TheMsg =  "<div class='alert alert-success'> Admin Added Successfully </div>";
-                    RedirectIndex($TheMsg, "Back");
-                    echo "</div>";
+                        echo "<div class='container'>";
+                        $TheMsg =  "<div class='alert alert-success'> Admin Added Successfully </div>";
+                        RedirectIndex($TheMsg, "Back");
+                        echo "</div>";
+                    }
                 }else{
                     foreach ($FormErrors as $error) {
                         echo "<div class='alert alert-danger'>" . $error . "</div>";
