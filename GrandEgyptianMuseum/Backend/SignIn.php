@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 </style>
 <div class="SignIn">
 
-  <h1 class="PageTitle"> Sign In</h1>
+    <h1 class="PageTitle"> Sign In</h1>
         <div class="container">
             <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
                 <div class="form-group mb-0">

@@ -16,11 +16,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $Pass = md5($_POST['Password']);
         $Cpass = md5($_POST['Cpassword']);
         $UserRole = $_POST['UserRole'];
-     
+    
         $Select = " SELECT * FROM user WHERE Email = '$Email' && Password = '$Pass' ";
-     
+    
         $Result = mysqli_query($con, $Select);
-     
+    
         if(mysqli_num_rows($Result) > 0){
         
             $error[] = 'User Already Exist!';
@@ -30,7 +30,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             if($Pass != $Cpass){
                 $error[] = 'Password Not Matched!';
             }else{
-                $Insert = "INSERT INTO user(Name, Email, Password, RoleID) VALUES('$Name','$Email','$Pass', $UserRole)";
+                $SplitedName = split_name($Name);
+                $FirstName = $SplitedName[0];
+                $LastName = $SplitedName[1];
+
+                $Insert = "INSERT INTO user(Name, LastName , Email, Password, RoleID) VALUES('$FirstName' , '$LastName' ,'$Email','$Pass', $UserRole)";
                 mysqli_query($con, $Insert);
                 header('location:SignIn.php');
             }
@@ -38,7 +42,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     
     }
 }
-
 
 ?>
 

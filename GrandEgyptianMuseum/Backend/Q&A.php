@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-$PageTitle = "Question And Answers";
+$PageTitle = "Messages";
 
 include './init.php';
 
@@ -89,12 +89,12 @@ if (isset($_SESSION["AdminID"])) {
                                 </form>
                             </div>
                                 <div class="container">
-                                    <h1 class="PageName">Questions And Answers </h1>
+                                    <h1 class="PageName"> Messages </h1>
                                     <div class="table-responsive">
                                         <table class="main-table table table-bordered table-hover table-light">
                                             <tr>
                                                 <td>ID</td>
-                                                <td>Question</td>
+                                                <td>Message</td>
                                                 <td>Answer</td>
                                                 <td>Action</td>
                                             </tr>
@@ -190,7 +190,7 @@ if (isset($_SESSION["AdminID"])) {
                 <div class="form-group insertInput">
                     <input type="hidden" name="AdminID" value="<?php echo $AdminID ?>">
                     <input type="hidden" name="QestionID" value="<?php echo $QestionID ?>">
-                        <label class="mt-20 control-label">The Question</label>
+                        <label class="mt-20 control-label">User's Message</label>
                         <div class="m-auto">
                             <textarea type="text" name="Question" rows="5" class="form-control" disabled > <?php echo $row['UsersQuestion'] ?></textarea>
                         </div>
@@ -212,14 +212,14 @@ if (isset($_SESSION["AdminID"])) {
                         <ul>
                             <li>Your Response will be reviewed by another Admins </li>
                             <li>Keep in mind that you represent the entity as a whole </li>
-                            <li>Whatever the Questin, The Answer is MUST</li>
+                            <li>Whatever the Messages, The Answer is MUST</li>
                         </ul>
                     </div>
                 </form>
             <?php 
             }else{
                         echo "<div class='NoData'>";
-                            echo "<p>Question Does Not Exist </p>";
+                            echo "<p>Message Does Not Exist </p>";
                         echo "</div>";
                     }
                 }
@@ -263,7 +263,7 @@ if (isset($_SESSION["AdminID"])) {
                 <div class="form-group insertInput ">
                     <input type="hidden" name="AdminID" value="<?php echo $AdminID ?>">
                     <input type="hidden" name="QestionID" value="<?php echo $QestionID ?>">
-                        <label class="control-label mt-20">The Question</label>
+                        <label class="control-label mt-20">User's Message</label>
                         <div class="m-auto">
                             <textarea type="text" name="Question" rows="5" class="form-control" disabled > <?php echo $row['UsersQuestion'] ?></textarea>
                         </div>
@@ -285,14 +285,14 @@ if (isset($_SESSION["AdminID"])) {
                         <ul>
                             <li>Your Response will be reviewed by another Admins </li>
                             <li>Keep in mind that you represent the entity as a whole </li>
-                            <li>Whatever the Questin, The Answer is MUST</li>
+                            <li>Whatever the Message, The Answer is MUST</li>
                         </ul>
                     </div>
                 </form>
             <?php 
                 }else{
                     echo "<div class='NoData'>";
-                        echo "<p>Question Does Not Exist </p>";
+                        echo "<p>Message Does Not Exist </p>";
                     echo "</div>";
                 }
             }

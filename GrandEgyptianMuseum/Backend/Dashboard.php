@@ -42,7 +42,7 @@ if (isset($_SESSION["AdminID"])) {
                 <?php if ($row['AdminRole'] == 4 || $row['AdminRole'] == 1) { ?>
                     <li>
                         <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Q&A.php?action=Manage">
-                        <i class="fa-regular fa-circle-question fa-fw"></i><span> Questions </span>
+                        <i class="fa-regular fa-circle-question fa-fw"></i><span> Messages </span>
                         </a>
                     </li>
                 <?php } ?>
