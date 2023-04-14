@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 </style>
 <div class="SignIn">
 
-  <h1 class="PageTitle"> Admins Platform </h1>
+  <h1 class="PageTitle"> Sign In</h1>
         <div class="container">
             <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
                 <div class="form-group mb-0">
@@ -80,6 +80,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     </div>
                 </div>
             </form>
+            <p class="c-white">Doesn't have an Account ? .. <a href="./SignUp.php">  Sign Up Now </a></p>
         </div>
 </div>
 
