@@ -85,11 +85,6 @@ if (isset($_SESSION["AdminID"])) {
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Payments.php?action=Manage">
-                            <i class="fa-solid fa-circle-dollar-to-slot fa-fw"></i><span> Payments </span>
-                            </a>
-                        </li>
-                        <li>
                             <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Sponsorship.php?action=Manage">
                             <i class="fa-solid fa-rectangle-ad fa-fw"></i><span> Sponsorship </span>
                             </a>
@@ -155,7 +150,7 @@ if (isset($_SESSION["AdminID"])) {
                     <div class="TotalBox TotalUsers">
                         <div class="d-flex p-20 space-between ">
                             <div class="TotalInfo">
-                                <span class="TotalUsers"><?php echo $NumUsers ?></span>
+                                <span class="TotalUsers"><?php echo thousandsCurrencyFormat($NumUsers) ?></span>
                                 <i class="fa fa-user fa-fw fa-2x TotalUsers"></i>
                                 <a href="./Users.php?action=Manage" class="TotalLink">Users</a>
                             </div>
@@ -164,7 +159,7 @@ if (isset($_SESSION["AdminID"])) {
                     <div class="TotalBox TotalCareers">
                         <div class="p-20  d-flex space-between ">
                             <div class="TotalInfo">
-                                <span class="TotalCareers"><?php echo $NumEmployees ?></span>
+                                <span class="TotalCareers"><?php echo thousandsCurrencyFormat($NumEmployees) ?></span>
                                 <i class="fa-solid fa-user-tie TotalCareers"></i>
                                 <a href="./Careers.php?action=Manage" class="TotalLink">Employees</a>
                             </div>
@@ -173,7 +168,7 @@ if (isset($_SESSION["AdminID"])) {
                     <div class="TotalBox TotalSpon">
                         <div class="p-20 d-flex space-between ">
                             <div class="TotalInfo">
-                                <span class="TotalSpon"><?php echo $NumSponsorship ?></span>
+                                <span class="TotalSpon"><?php echo thousandsCurrencyFormat($NumSponsorship) ?></span>
                                 <i class="fa-solid fa-play TotalSpon"></i>
                                 <a href="./Sponsorship.php?action=Manage" class="TotalLink">Sponsorships</a>
                             </div>
@@ -182,7 +177,7 @@ if (isset($_SESSION["AdminID"])) {
                     <div class="TotalBox TotalProducts">
                         <div class="p-20 d-flex space-between ">
                             <div class="TotalInfo">
-                                <span class="TotalProducts"><?php echo $NumGiftshop ?></span>
+                                <span class="TotalProducts"><?php echo thousandsCurrencyFormat($NumGiftshop) ?></span>
                                 <i class="fa-solid fa-tag TotalProducts"></i>
                                 <a href="./GiftShop.php?action=CheckAll" class="TotalLink">Products</a>
                             </div>

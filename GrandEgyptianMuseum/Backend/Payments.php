@@ -34,49 +34,74 @@ if (isset($_SESSION["AdminID"])) {
             $count = mysqli_num_rows($PaymentsQuery);
         
             ?>
-
-            <h1 class="PageName">Methods of Payments</h1>
-            <div class="container">
-            <?php if ($row['AdminRole'] == 1 ) { ?> 
-                <button class="Control ml-15" data-toggle="collapse" data-target="#Control">Control</button>
-                <div class="PaymentsButtons collapse m-rl-15" id="Control">
-                    <a href="./Payments.php?action=Add" class="btn btn-primary">Add New Method</a>
-                        <div class="Sort buttons collapse" id="Control" >
-                            <i class="fa-solid fa-sort"></i> Sorting : [
-                            <a href="./Payments.php?action=Manage&sort=ASC" class="<?php if ($sort == 'ASC') {
-                                                            echo 'active';
-                                                        } ?>"> Asc </a> |
-                            <a href="./Payments.php?action=Manage&sort=DESC" class="<?php if ($sort == 'DESC') {
-                                                            echo 'active';
-                                                        } ?>"> Desc </a> ]
-                        </div>
+            <div class="page d-flex">
+                <div class=" w-280 sidepar bg-white p-20 p-relative">
+                    <h3 class="p-relative txt-center mt-0">Control</h3>
+                    <form method="post">
+                        <ul>
+                            <?php if ($row['AdminRole'] == 1 ) { ?> 
+                                <li>
+                                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Payments.php?action=Add">
+                                        <i class="fa-solid fa-plus fa-fw"></i><span> Add New Payment Method </span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                            <li>
+                                <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Pricing.php?action=Manage">
+                                    <i class="fa-solid fa-circle-dollar-to-slot fa-fw"></i><span> Pricing </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
+                                    <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
+                                </a>
+                            </li>
+                            <li>
+                                <h6 class='txt-center mt-20'><i class="fa-solid fa-sort fa-fw"></i> Sorting </h6>
+                            </li>
+                            <li>
+                                <div class="p-10 fs-14">
+                                    Sorting : [
+                                                <a href="./Payments.php?action=Manage&sort=ASC" class="<?php if ($sort == 'ASC') {
+                                                                                echo 'active';
+                                                                            } ?>"> Asc </a> |
+                                                <a href="./Payments.php?action=Manage&sort=DESC" class="<?php if ($sort == 'DESC') {
+                                                                                echo 'active';
+                                                                            } ?>"> Desc </a> ]
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
                 </div>
-                <?php } 
-                if($count > 0) { ?>
-                        <div class="container">
-                            <div class="table-responsive">
-                                <table class="main-table table table-bordered table-hover">
-                                    <tr>
-                                        <td>#</td>
-                                        <td>Method</td>
-                                    </tr>
-                                    <?php
-                                    foreach ($PaymentsQuery as $Payments) {
-                                        echo "<tr>";
-                                            echo "<td>" . $Payments['ID']     . "</td>";
-                                            echo "<td>" . $Payments['PaymentType']  . "</td>";
-                                        echo "</tr>";
-                                    } ?>
-                                </table>
+                <div class="container">
+                    <h1 class="PageName">Methods of Payments</h1>
+                <?php if($count > 0) { ?>
+                            <div class="container">
+                                <div class="table-responsive">
+                                    <table class="main-table table table-bordered table-hover table-light">
+                                        <tr>
+                                            <td>#</td>
+                                            <td>Method</td>
+                                        </tr>
+                                        <?php
+                                        foreach ($PaymentsQuery as $Payments) {
+                                            echo "<tr>";
+                                                echo "<td>" . $Payments['ID']     . "</td>";
+                                                echo "<td>" . $Payments['PaymentType']  . "</td>";
+                                            echo "</tr>";
+                                        } ?>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-            <?php }else{
-                    echo "<div class='NoData'>";
-                        echo "<p>No data to show </p>";
-                        echo "<a href='./Dashboard.php' class='btn btn-primary'> Back </a>";
-                    echo "</div>";          
+                <?php }else{
+                        echo "<div class='NoData'>";
+                            echo "<p>No data to show </p>";
+                            echo "<a href='./Dashboard.php' class='btn btn-primary'> Back </a>";
+                        echo "</div>";          
                 }
                 echo "</div>";
+            echo "</div>";
+
         }elseif($do == 'Add'){ 
             ?>
             <h1 class="PageName"> Add New Payment Method </h1>

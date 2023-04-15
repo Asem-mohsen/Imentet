@@ -700,9 +700,14 @@ if (isset($_SESSION["AdminID"])) {
                     echo "<p>Where is The Event to Edit !</p>";
                 echo "</div>";
             }else{
-
             
-                $SelectQuery = "SELECT * FROM entertainmnet WHERE ID = $EventID ";
+                $SelectQuery = "SELECT entertainmnet.* , place.Name AS PlaceName, place.ID AS PlaceID , sponsorship.ContractID AS SponsorshipID ,  sponsorship.Name AS SponsorshipName, entertainmnetcategory.Name AS CatName ,entertainmnetcategory.ID AS CatID
+                                FROM entertainmnet
+                                JOIN place ON place.ID = entertainmnet.PlaceID
+                                JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
+                                JOIN eventsponsor ON eventsponsor.EventID = entertainmnet.ID
+                                JOIN sponsorship ON eventsponsor.ContractID = sponsorship.ContractID 
+                                WHERE entertainmnet.ID = $EventID ";
                 $Select = mysqli_query($con, $SelectQuery);
                 $row = mysqli_fetch_assoc($Select);
                 $count = mysqli_num_rows($Select);
@@ -737,7 +742,7 @@ if (isset($_SESSION["AdminID"])) {
                                 <div class="input-group insertInput mb-3">
                                     <div class="input-group-prepend mt-20">
                                         <div class="input-group-text">
-                                            <input type="checkbox" aria-label="Checkbox for following text input" name="Everyday"  value="Daily">
+                                            <input type="checkbox" aria-label="Checkbox for following text input" name="Everyday"  value="Daily" <?php if($row['Everyday'] == "Daily"){echo "Checked" ;} ?>>
                                         </div>
                                     </div>
                                     <input type="text" placeholder="Everday Event" class="form-control mt-20" aria-label="Text input with checkbox" disabled>
@@ -754,9 +759,9 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                                 
                                 <div class="form-group insertInput mb-0">
-                                    <div class="mb-20">
+                                    <div class="mb-20 mt-20">
                                         <select name="Place" class="custom-select">
-                                            <option value="0"> Select a Place</option>
+                                            <option value="<?php echo $row['PlaceID']?>"> <?php echo $row['PlaceName']?></option>
                                             <?php
                                             $SelectQuery = "SELECT * FROM place ";
                                             $Select = mysqli_query($con, $SelectQuery);
@@ -772,8 +777,7 @@ if (isset($_SESSION["AdminID"])) {
                                 <div class="form-group insertInput mb-0">
                                     <div class="mb-20">
                                         <select name="CatID" class="custom-select">
-                                            <option value="0"> Change Category </option>
-                                            <option value="No"> Doesn't want to Change The Category </option>
+                                        <option value="<?php echo $row['CatID']?>"> <?php echo $row['CatName']?></option>
                                             <?php
                                             $SelectQuery = "SELECT * FROM entertainmnetcategory ";
                                             $Select = mysqli_query($con, $SelectQuery);
@@ -789,7 +793,7 @@ if (isset($_SESSION["AdminID"])) {
                                 <div class="form-group insertInput mb-0">
                                     <div class="m-auto">
                                         <select name="SponsoredBy" class="custom-select" >
-                                            <option value="0"> Sponsored By </option>
+                                        <option value="<?php echo $row['SponsorshipID']?>"> <?php echo $row['SponsorshipName']?></option>
                                             <?php
                                             $SelectQuery = "SELECT * FROM sponsorship ";
                                             $Select = mysqli_query($con, $SelectQuery);
@@ -900,15 +904,7 @@ if (isset($_SESSION["AdminID"])) {
                             if (empty($image)){
                                 $FormErrors[] = "You Must Select an Image For The Event";
                             }
-                            if ($PlaceID == 0) {
-                                $FormErrors[] = "You Must Select a Correct Place For The Event";
-                            }
-                            if (empty($CategoryID) || $CategoryID == 0 || $CategoryID == 'No' ){
-                                $CategoryID = $_GET['CatID'];
-                            }
-                            if ($SponsoredBy == 0) {
-                                $FormErrors[] = "You Must Select a Sponsoreship For The Event";
-                            }
+
                             if($Date < $now) {
                                 $FormErrors[] = "The Event's Date Cannot be in the past";
                             }
@@ -931,13 +927,13 @@ if (isset($_SESSION["AdminID"])) {
                                 
 
                                 echo "<div class='container'>";
-                                $TheMsg = "<div class='alert alert-success'> Event Updated Successfully </div>";
+                                $TheMsg = "<div class='alert alert-success txt-center'> Event Updated Successfully </div>";
                                 RedirectIndex($TheMsg, "Back");
                                 echo "</div>";
                                 
                             }else{
                                 foreach ($FormErrors as $error) {
-                                    echo "<div class='alert alert-danger'>" . $error . "</div>";
+                                    echo "<div class='alert alert-danger txt-center'>" . $error . "</div>";
                                 }
                             }
                         } ?>

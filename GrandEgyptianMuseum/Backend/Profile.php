@@ -165,10 +165,8 @@ if (isset($_SESSION["AdminID"])) {
                 $Email     = $_POST['Email'];
                 $Password  = $_POST['Password'];
                 $Role      = $_POST['RoleID'];
-
                 $hashedPassword = password_hash($Password , PASSWORD_DEFAULT);
 
-                //Validate The form 
                 $FormErrors = array();
 
                 if (empty($Name)) {
@@ -185,13 +183,6 @@ if (isset($_SESSION["AdminID"])) {
                 }
                 if (empty($Password)) {
                     $FormErrors[] = "Password Cannot be Empty";
-                }
-
-                //Loop into error array and print the error
-                foreach ($FormErrors as $error) {
-                    echo "<div class='container'>";
-                        echo "<div class='alert alert-danger'>" . $error . "</div>";
-                    echo "</div>";
                 }
 
                 if (empty($FormErrors)) {
@@ -212,12 +203,18 @@ if (isset($_SESSION["AdminID"])) {
                         header("Location: ./Profile.php?action=Manage");         
                     }
                     
+                }else{
+                    foreach ($FormErrors as $error) {
+                        echo "<div class='container'>";
+                            echo "<div class='alert alert-danger txt-center'>" . $error . "</div>";
+                        echo "</div>";
+                    }
                 }
             } else {
 
                 echo "<div class='container'>";
-                echo "<div class='alert alert-danger'>" . "Unuthorized access"  . "</div>";
-                // RedirectIndex($TheMsg, "Back", 5);
+                $TheMsg ="<div class='alert alert-danger'>" . "Unuthorized access"  . "</div>";
+                RedirectIndex($TheMsg, "Back");
                 echo "</div>";
             } 
     }else{

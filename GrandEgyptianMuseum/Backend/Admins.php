@@ -110,7 +110,11 @@ if (isset($_SESSION["AdminID"])) {
                     $Select = " SELECT * FROM admin WHERE Email = '$Email' ";
                     $Result = mysqli_query($con, $Select);
                     if(mysqli_num_rows($Result) > 0){
-                        $FormErrors[] = "Admin Email Already Exist !";
+                        echo "<div class='container'>";
+                            $TheMsg = "<div class='alert alert-success txt-center'> Admin Email Already Exist ! </div>";
+                            RedirectIndex($TheMsg, "Back");
+                        echo "</div>";
+
                     }else{
                         $InsertQuery = "INSERT INTO `admin` Values( Null , '$Name' , $Phone , '$Address' , '$Email' , '$hashedPassword' , 1 , $Role , 1)";
                         $Insert = mysqli_query($con, $InsertQuery);
@@ -119,8 +123,8 @@ if (isset($_SESSION["AdminID"])) {
                         $Insert = mysqli_query($con, $InsertImgQuery);
 
                         echo "<div class='container'>";
-                        $TheMsg =  "<div class='alert alert-success'> Admin Added Successfully </div>";
-                        RedirectIndex($TheMsg, "Back");
+                            $TheMsg =  "<div class='alert alert-success txt-center'> Admin Added Successfully </div>";
+                            RedirectIndex($TheMsg, "Back");
                         echo "</div>";
                     }
                 }else{
@@ -715,7 +719,9 @@ if (isset($_SESSION["AdminID"])) {
 
             $AdminID = isset($_GET['ID']) && is_numeric($_GET['ID']) ? intval($_GET['ID']) : 0;
 
-            $SelectQuery = "SELECT * FROM admin WHERE ID = $AdminID ";
+            $SelectQuery = "SELECT admin.* , adminrole.ID AS RoleID , adminrole.Role AS RoleName FROM admin 
+                            JOIN adminrole ON admin.AdminRole = adminrole.ID
+                            WHERE admin.ID = $AdminID ";
             $Select = mysqli_query($con, $SelectQuery);
             $row = mysqli_fetch_assoc($Select);
             $count = mysqli_num_rows($Select);
@@ -745,18 +751,18 @@ if (isset($_SESSION["AdminID"])) {
                         </div>
                         <div class="form-group insertInput">
                             <div class="m-auto">
-                                <input type="email" name="Email" placeholder="Email" class="form-control" value="<?php echo $row['Email']; ?>" required="required" />
+                                <input type="email" name="Email" placeholder="Email" disabled class="form-control" value="<?php echo $row['Email']; ?>"  />
                             </div>
                         </div>
                         <div class="form-group insertInput">
-                            <div class="m-auto">
-                                <input type="password" name="Password" placeholder="Password" class="form-control" value="<?php echo $row['Password']; ?>" required="required" disabled />
+                            <div class="mt-20">
+                                <input type="password" name="Password" placeholder="Password" class="form-control" value="<?php echo $row['Password']; ?>"  disabled />
                             </div>
                         </div>
                         <div class="form-group insertInput">
-                            <div class="m-auto">
+                            <div class="mt-20">
                                 <select name="Role" class="custom-select">
-                                    <option value="0"> Admin Role </option>
+                                    <option value="<?php echo $row['RoleID'] ?>"><?php echo $row['RoleName'] ?> </option>
                                     <?php
                                     $SelectRole = "SELECT * FROM adminrole";
                                     $Roles = mysqli_query($con, $SelectRole);
@@ -794,7 +800,6 @@ if (isset($_SESSION["AdminID"])) {
                 $Name       = $_POST['Name'];
                 $Phone      = $_POST['Phone'];
                 $Address    = $_POST['Address'];
-                $Email      = $_POST['Email'];
                 $Role       = $_POST['Role'];
 
                 $FormErrors = array();
@@ -809,15 +814,12 @@ if (isset($_SESSION["AdminID"])) {
                 if (empty($Address)) {
                     $FormErrors[] = "Address Cannot be Empty";
                 }
-                if (empty($Email)) {
-                    $FormErrors[] = "Email Cannot be Empty";
-                }
                 if ($Role == 0) {
                     $FormErrors[] = "Role Cannot be Empty";
                 }
 
                 if (empty($FormErrors)) {
-                    $UpdateQuery = "UPDATE admin SET Name = '$Name' , Phone = $Phone , Address = '$Address' , Email = '$Email' , AdminRole = '$Role'  WHERE ID = $AdminID ";
+                    $UpdateQuery = "UPDATE admin SET Name = '$Name' , Phone = $Phone , Address = '$Address' , AdminRole = '$Role'  WHERE ID = $AdminID ";
                     $Update = mysqli_query($con, $UpdateQuery);
 
                     echo "<div class='container'>";

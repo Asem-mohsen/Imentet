@@ -249,8 +249,10 @@ if (isset($_SESSION["AdminID"])) {
                 echo "</div>";
             }else{
 
-            $SelectItems = "SELECT giftshop .* , giftcategory.Category As CatName , giftcategory.ID AS GiftCategoryID FROM giftshop LEFT JOIN giftcategory 
-                        ON giftcategory.ID = giftshop.CategoryID WHERE giftshop.ID = $ItemID ";
+            $SelectItems = "SELECT giftshop .* , giftcategory.Category As CatName , giftcategory.ID AS GiftCategoryID FROM giftshop 
+                        LEFT JOIN giftcategory ON giftcategory.ID = giftshop.CategoryID 
+                        WHERE giftshop.ID = $ItemID ";
+                        
             $Query = mysqli_query($con, $SelectItems);
             $row = mysqli_fetch_assoc($Query);
             
@@ -285,7 +287,7 @@ if (isset($_SESSION["AdminID"])) {
                     <div class="form-group insertInput">
                                 <div class="m-auto">
                                     <select name="Categories"  class="custom-select">
-                                        <option value="<?php echo $row['CategoryID'] ?>"> The Same Category With No Change </option>
+                                        <option value="<?php echo $row['CategoryID'] ?>"> <?php  echo $row['CatName']?> </option>
                                         <?php 
                                         $Select = "SELECT * FROM giftcategory";
                                         $Query = mysqli_query($con, $Select);

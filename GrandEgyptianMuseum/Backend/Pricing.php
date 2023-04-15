@@ -52,6 +52,11 @@ if (isset($_SESSION["AdminID"])) {
                                         </a>
                                     </li>
                                     <li>
+                                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Payments.php?action=Manage">
+                                            <i class="fa-solid fa-circle-dollar-to-slot fa-fw"></i><span> Payments </span>
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
                                             <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
                                         </a>
