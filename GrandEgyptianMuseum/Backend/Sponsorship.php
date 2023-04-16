@@ -27,9 +27,10 @@ if (isset($_SESSION["AdminID"])) {
                 if (isset($_GET['sort']) && in_array($_GET['sort'], $sortarray)) {
                     $sort = $_GET['sort'];
                 }
-                $SelectQuery = "SELECT sponsorship .* , eventsponsor.EventID AS EventID , entertainmnet.Name AS EventName FROM sponsorship
+                $SelectQuery = "SELECT sponsorship .* , eventsponsor.EventID AS EventID , entertainmnet.Name AS EventName , membership.Type AS Type FROM sponsorship
                 LEFT JOIN eventsponsor ON sponsorship.ContractID = eventsponsor.ContractID
                 LEFT JOIN entertainmnet ON eventsponsor.EventID = entertainmnet.ID
+                JOIN membership ON sponsorship.MembershipID = membership.ID
                 ORDER BY sponsorship.ContractID $sort
                 ";
                     $Select = mysqli_query($con , $SelectQuery);
@@ -104,14 +105,16 @@ if (isset($_SESSION["AdminID"])) {
                                     <td>Company</td>
                                     <td>Contracted for</td>
                                     <td>Signed With </td>
+                                    <td>Membership </td>
                                     <td>Control</td>
                                 </tr>
                                 <?php
                                 if(isset($_POST['ContractID'])){
                                     $sql = "WHERE sponsorship.ContractID IN(".implode(',', $_POST['ContractID'] ).")" ; 
-                                    $SelectQuery = "SELECT sponsorship .* , eventsponsor.EventID AS EventID , entertainmnet.Name AS EventName FROM sponsorship
+                                    $SelectQuery = "SELECT sponsorship .* , eventsponsor.EventID AS EventID , entertainmnet.Name AS EventName , membership.Type AS Type FROM sponsorship
                                     LEFT JOIN eventsponsor ON sponsorship.ContractID = eventsponsor.ContractID
                                     LEFT JOIN entertainmnet ON eventsponsor.EventID = entertainmnet.ID
+                                    JOIN membership ON sponsorship.MembershipID = membership.ID
                                     $sql
                                     ORDER BY sponsorship.ContractID $sort
                                     ";
@@ -132,6 +135,7 @@ if (isset($_SESSION["AdminID"])) {
                                                             }
                                                     echo "</td>";
                                                     echo "<td>" .  $Sponsorship['ContractedWith'] . "</td>" ;
+                                                    echo "<td>" .  $Sponsorship['Type'] . "</td>" ;
                                                     echo "<td>";
                                                                 if( $Sponsorship['EventName'] == NULL && $row['AdminRole'] == 1){
                                                                     echo "<a href='./Sponsorship.php?action=Delete&SponsorshipID=".$Sponsorship['ContractID']."' class='btn btn-danger' '> Terminate The Contract </a>"; 
@@ -146,42 +150,43 @@ if (isset($_SESSION["AdminID"])) {
                                             }
                                         }
                                 }else{
-                                    $SelectQuery = "SELECT sponsorship .* , eventsponsor.EventID AS EventID , entertainmnet.Name AS EventName FROM sponsorship
+                                    $SelectQuery = "SELECT sponsorship .* , eventsponsor.EventID AS EventID , entertainmnet.Name AS EventName , membership.Type AS Type FROM sponsorship
                                     LEFT JOIN eventsponsor ON sponsorship.ContractID = eventsponsor.ContractID
                                     LEFT JOIN entertainmnet ON eventsponsor.EventID = entertainmnet.ID
+                                    JOIN membership ON sponsorship.MembershipID = membership.ID
                                     ORDER BY sponsorship.ContractID $sort
                                     ";
                                         $Select = mysqli_query($con , $SelectQuery);
                                         $fecthquery = mysqli_fetch_row($Select);
                                         $count = mysqli_num_rows($Select);
-
-                                    
-                                    if($count > 0 ){
-                                        foreach ($Select as $Sponsorship) {
-                                            echo "<tr>";
-                                                echo "<td>" . $Sponsorship['ContractID']     . "</td>";
-                                                echo "<td>". $Sponsorship['Name'] . "</td>";
-                                                echo "<td>" ;
-                                                        if( $Sponsorship['EventName'] == NULL){
-                                                            echo "<p class='c-gray fs-13'>Doesn't Contracted For Any Entertainment Yet </p>"; 
-                                                        }else{
-                                                            echo "<a href='./Entertainments.php?action=MoreInfo&EventID=". $Sponsorship['EventID'] ."'> " . $Sponsorship['EventName']   . "</a>" ;
-                                                        }
-                                                echo "</td>";
-                                                echo "<td>" .  $Sponsorship['ContractedWith'] . "</td>" ;
-                                                echo "<td>";
-                                                            if( $Sponsorship['EventName'] == NULL && $row['AdminRole'] == 1){
-                                                                echo "<a href='./Sponsorship.php?action=Delete&SponsorshipID=".$Sponsorship['ContractID']."' class='btn btn-danger' '> Terminate The Contract </a>"; 
+                                        
+                                        if($count > 0 ){
+                                            foreach ($Select as $Sponsorship) {
+                                                echo "<tr>";
+                                                    echo "<td>" . $Sponsorship['ContractID']     . "</td>";
+                                                    echo "<td>". $Sponsorship['Name'] . "</td>";
+                                                    echo "<td>" ;
+                                                            if( $Sponsorship['EventName'] == NULL){
+                                                                echo "<p class='c-gray fs-13'>Doesn't Contracted For Any Entertainment Yet </p>"; 
                                                             }else{
-                                                                echo "<div class='Terminate'>" ;
-                                                                    echo "<button class='btn btn-danger' disabled > Terminate The Contract </button>"; 
-                                                                    echo "<p class='fs-5 c-gray fs'>You Have to Change The Event's Sponsorship First In order to Terminate The Contract </p>" ;
-                                                                echo "</div" ;
+                                                                echo "<a href='./Entertainments.php?action=MoreInfo&EventID=". $Sponsorship['EventID'] ."'> " . $Sponsorship['EventName']   . "</a>" ;
                                                             }
-                                                echo "</td>";
-                                            echo "</tr>";
+                                                    echo "</td>";
+                                                    echo "<td>" .  $Sponsorship['ContractedWith'] . "</td>" ;
+                                                    echo "<td>" .  $Sponsorship['Type'] . "</td>" ;
+                                                    echo "<td>";
+                                                                if( $Sponsorship['EventName'] == NULL && $row['AdminRole'] == 1){
+                                                                    echo "<a href='./Sponsorship.php?action=Delete&SponsorshipID=".$Sponsorship['ContractID']."' class='btn btn-danger' '> Terminate The Contract </a>"; 
+                                                                }else{
+                                                                    echo "<div class='Terminate'>" ;
+                                                                        echo "<button class='btn btn-danger' disabled > Terminate The Contract </button>"; 
+                                                                        echo "<p class='fs-5 c-gray fs'>You Have to Change The Event's Sponsorship First In order to Terminate The Contract </p>" ;
+                                                                    echo "</div" ;
+                                                                }
+                                                    echo "</td>";
+                                                echo "</tr>";
+                                            }
                                         }
-                                    }
                                 }
                                 ?>
                             </table>
@@ -230,16 +235,16 @@ if (isset($_SESSION["AdminID"])) {
                         }
                 
                         if(empty($FormErrors)){
-                            $InsertQuery = "INSERT INTO `sponsorship` Values( Null , '$Name' , '$Signed' )";
+                            $InsertQuery = "INSERT INTO `sponsorship` Values( Null , '$Name' , '$Signed' , 12 )";
                             $Insert = mysqli_query($con, $InsertQuery);
 
                                     echo "<div class='container'>";
-                                    $TheMsg = "<div class='alert alert-success'> Sponsorship Added Successfuly </div>";
+                                    $TheMsg = "<div class='alert alert-success txt-center'> Sponsorship Added Successfuly </div>";
                                     RedirectIndex($TheMsg, "Back");
                                     echo "</div>";
                         }else{
                             foreach($FormErrors as $error){
-                                echo "<div class='alert alert-danger'>" . $error . "</div>";
+                                echo "<div class='alert alert-danger  txt-center'>" . $error . "</div>";
                             }
                         }
                     }
@@ -255,12 +260,12 @@ if (isset($_SESSION["AdminID"])) {
                     $Delete = mysqli_query($con, $DeleteQuery);
 
                     echo "<div class='container'>";
-                    $TheMsg = "<div class='alert alert-success'>"  . "Deleted Successfully" . '</div>';
+                    $TheMsg = "<div class='alert alert-success  txt-center'>"  . "Deleted Successfully" . '</div>';
                     RedirectIndex($TheMsg, "Back");
                     echo "</div>";
                 } else {
                     echo "<div class='container'>";
-                    $TheMsg = "<div class='alert alert-danger'>" . "Error" . "</div>";
+                    $TheMsg = "<div class='alert alert-danger  txt-center'>" . "Error" . "</div>";
                     RedirectIndex($TheMsg);
                     echo "</div>";
                 }

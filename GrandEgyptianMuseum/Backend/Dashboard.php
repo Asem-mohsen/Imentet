@@ -32,6 +32,11 @@ if (isset($_SESSION["AdminID"])) {
                         <i class="fa-solid fa-users fa-fw"></i><span> Users </span>
                     </a>
                 </li>
+                <li>
+                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Users.php?action=CheckAllMembership">
+                        <i class="fa-solid fa-key fa-fw"></i><span> Membership </span>
+                    </a>
+                </li>
                 <?php if ($row['AdminRole'] == 1) { ?>
                     <li>
                         <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Admins.php?action=Manage">
