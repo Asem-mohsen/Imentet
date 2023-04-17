@@ -893,7 +893,7 @@ div.Terminate p{
     display: grid;
     gap: 55px;
     margin: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(249px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
 }
 .GiftPage .Giftboxes .box img{
     width: -webkit-fill-available;

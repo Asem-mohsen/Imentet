@@ -343,9 +343,6 @@ if (isset($_SESSION["AdminID"])) {
                                         ?>
                                     </table>
                                 </div>
-                                <div class="Backbutton mt-0">
-                                    <a href="./Entertainments.php?action=Manage"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
-                                </div> 
                             </div>
         <?php }elseif($do == "AddCategory"){
             ?>

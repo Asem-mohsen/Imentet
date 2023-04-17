@@ -163,12 +163,17 @@ if (isset($_SESSION["AdminID"])) {
                                             
                                             if($count > 0 ){
                                                 foreach ($Query as $Transportation) {
+                                                    $Time24FormatArrival = $Transportation['ArrivalTime']  ;
+                                                    $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
+    
+                                                    $Time24FormatDeparture = $Transportation['DepartureTime']  ;
+                                                    $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
                                                     echo "<tr>";
                                                         echo "<td>" . $Transportation['ID']     . "</td>";
                                                         echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
-                                                        echo "<td>" . $Transportation['ArrivalTime']  . "</td>";
+                                                        echo "<td>" . $Time12FormatArrival  . "</td>";
                                                         echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
-                                                        echo "<td>" . $Transportation['DepartureTime']  . "</td>";
+                                                        echo "<td>" . $Time12FormatDeparture  . "</td>";
                                                         echo "<td>" ;
                                                                     if($AdminRole == 2){
                                                                         echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
@@ -206,12 +211,17 @@ if (isset($_SESSION["AdminID"])) {
                                             
                                             if($count > 0 ){
                                                 foreach ($Query as $Transportation) {
+                                                    $Time24FormatArrival = $Transportation['ArrivalTime']  ;
+                                                    $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
+    
+                                                    $Time24FormatDeparture = $Transportation['DepartureTime']  ;
+                                                    $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
                                                     echo "<tr>";
                                                         echo "<td>" . $Transportation['ID']     . "</td>";
                                                         echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
-                                                        echo "<td>" . $Transportation['ArrivalTime']  . "</td>";
+                                                        echo "<td>" . $Time12FormatArrival  . "</td>";
                                                         echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
-                                                        echo "<td>" . $Transportation['DepartureTime']  . "</td>";
+                                                        echo "<td>" . $Time12FormatDeparture  . "</td>";
                                                         echo "<td>" ;
                                                                     if($AdminRole == 2){
                                                                         echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
@@ -224,7 +234,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                     }
                                                         echo "</td>";
                                                     echo "</tr>";
-                                                } 
+                                                }  
                                             }
                                         }elseif(isset($_POST['StationIDF1']) && !isset($_POST['StationIDF2'])){
                                             $Select = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
@@ -249,12 +259,17 @@ if (isset($_SESSION["AdminID"])) {
                                             
                                             if($count > 0 ){
                                                 foreach ($Query as $Transportation) {
+                                                    $Time24FormatArrival = $Transportation['ArrivalTime']  ;
+                                                    $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
+    
+                                                    $Time24FormatDeparture = $Transportation['DepartureTime']  ;
+                                                    $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
                                                     echo "<tr>";
                                                         echo "<td>" . $Transportation['ID']     . "</td>";
                                                         echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
-                                                        echo "<td>" . $Transportation['ArrivalTime']  . "</td>";
+                                                        echo "<td>" . $Time12FormatArrival  . "</td>";
                                                         echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
-                                                        echo "<td>" . $Transportation['DepartureTime']  . "</td>";
+                                                        echo "<td>" . $Time12FormatDeparture  . "</td>";
                                                         echo "<td>" ;
                                                                     if($AdminRole == 2){
                                                                         echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
@@ -280,12 +295,17 @@ if (isset($_SESSION["AdminID"])) {
                                             $count = mysqli_num_rows($Query);
                                             
                                             foreach ($Query as $Transportation) {
+                                                $Time24FormatArrival = $Transportation['ArrivalTime']  ;
+                                                $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
+
+                                                $Time24FormatDeparture = $Transportation['DepartureTime']  ;
+                                                $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
                                                 echo "<tr>";
                                                     echo "<td>" . $Transportation['ID']     . "</td>";
                                                     echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
-                                                    echo "<td>" . $Transportation['ArrivalTime']  . "</td>";
+                                                    echo "<td>" . $Time12FormatArrival  . "</td>";
                                                     echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
-                                                    echo "<td>" . $Transportation['DepartureTime']  . "</td>";
+                                                    echo "<td>" . $Time12FormatDeparture  . "</td>";
                                                     echo "<td>" ;
                                                                 if($AdminRole == 2){
                                                                     echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";

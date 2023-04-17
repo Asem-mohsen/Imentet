@@ -503,7 +503,7 @@ if (isset($_SESSION["AdminID"])) {
                                 if($count > 0 ){
                                     
                                     foreach($Query as $Membership){ ?>
-                            
+                        
                                         <div class="plan bg-white rad-10 p-20 blue">
                                             <a href="#">
                                                 <div class="top mb-20 txt-center p-20">
@@ -717,7 +717,11 @@ if (isset($_SESSION["AdminID"])) {
                                                     <i class="fa-solid fa-circle-info help"></i>
                                                 </li>
                                             </ul>
-                                            <a href="./Users.php?action=EditMembership&MembershipID=<?php echo $Membership['ID'] ?>" class="btn btn-success mt-20 w-100"> Edit </a>
+                                            <?php if($AdminRole == 1 || $AdminRole == 2){ ?>
+                                                <a href="./Users.php?action=EditMembership&MembershipID=<?php echo $Membership['ID'] ?>" class="btn btn-success mt-20 w-100"> Edit </a>
+                                            <?php }else{ ?>
+                                                <button class="btn btn-success mt-20 w-100" disabled> Edit </button>
+                                            <?php } ?>
                                         </div>
                                     <?php } 
                                 }
@@ -737,7 +741,7 @@ if (isset($_SESSION["AdminID"])) {
                                 if($count > 0 ){
                                     
                                     foreach($Query as $Membership){ ?>
-                            
+                        
                                         <div class="plan bg-white rad-10 p-20 blue">
                                             <a href="#">
                                                 <div class="top mb-20 txt-center p-20">
@@ -951,7 +955,11 @@ if (isset($_SESSION["AdminID"])) {
                                                     <i class="fa-solid fa-circle-info help"></i>
                                                 </li>
                                             </ul>
-                                            <a href="./Users.php?action=EditMembership&MembershipID=<?php echo $Membership['ID'] ?>" class="btn btn-success mt-20 w-100"> Edit </a>
+                                            <?php if($AdminRole == 1 || $AdminRole == 2){ ?>
+                                                <a href="./Users.php?action=EditMembership&MembershipID=<?php echo $Membership['ID'] ?>" class="btn btn-success mt-20 w-100"> Edit </a>
+                                            <?php }else{ ?>
+                                                <button class="btn btn-success mt-20 w-100" disabled> Edit </button>
+                                            <?php } ?>
                                         </div>
                                     <?php } 
                                 }
@@ -969,7 +977,7 @@ if (isset($_SESSION["AdminID"])) {
                                 if($count > 0 ){
                                     
                                     foreach($Query as $Membership){ ?>
-                            
+                        
                                         <div class="plan bg-white rad-10 p-20 blue">
                                             <a href="#">
                                                 <div class="top mb-20 txt-center p-20">
@@ -1183,9 +1191,13 @@ if (isset($_SESSION["AdminID"])) {
                                                     <i class="fa-solid fa-circle-info help"></i>
                                                 </li>
                                             </ul>
-                                            <a href="./Users.php?action=EditMembership&MembershipID=<?php echo $Membership['ID'] ?>" class="btn btn-success mt-20 w-100"> Edit </a>
+                                            <?php if($AdminRole == 1 || $AdminRole == 2){ ?>
+                                                <a href="./Users.php?action=EditMembership&MembershipID=<?php echo $Membership['ID'] ?>" class="btn btn-success mt-20 w-100"> Edit </a>
+                                            <?php }else{ ?>
+                                                <button class="btn btn-success mt-20 w-100" disabled> Edit </button>
+                                            <?php } ?>
                                         </div>
-                                    <?php } 
+                                    <?php }  
                                 }
                             }else{
                                 $SelectMembership = "SELECT membership.* , membershipperiod.ID AS PeriodID ,  membershipperiod.Period AS PeriodTime  FROM membership
@@ -1410,7 +1422,11 @@ if (isset($_SESSION["AdminID"])) {
                                                 <i class="fa-solid fa-circle-info help"></i>
                                             </li>
                                         </ul>
-                                        <a href="./Users.php?action=EditMembership&MembershipID=<?php echo $Membership['ID'] ?>" class="btn btn-success mt-20 w-100"> Edit </a>
+                                        <?php if($AdminRole == 1 || $AdminRole == 2){ ?>
+                                            <a href="./Users.php?action=EditMembership&MembershipID=<?php echo $Membership['ID'] ?>" class="btn btn-success mt-20 w-100"> Edit </a>
+                                        <?php }else{ ?>
+                                            <button class="btn btn-success mt-20 w-100" disabled> Edit </button>
+                                        <?php } ?>
                                     </div>
                                 <?php } 
                                 
@@ -1437,7 +1453,11 @@ if (isset($_SESSION["AdminID"])) {
             $fetchquery = mysqli_fetch_row($Info);
             $count =mysqli_num_rows($Info);
             if($count > 0 ){
-
+                if($AdminRole != 1 && $AdminRole != 2){
+                    echo "<div class='NoData'>";
+                        echo "<p>Again ! You are Not allowed to see this Page </p>";
+                    echo "</div>";
+                }else{ 
             ?>
             <div class="page d-flex">
                     <div class=" w-280 sidepar bg-white p-20 p-relative">
@@ -1591,8 +1611,9 @@ if (isset($_SESSION["AdminID"])) {
                                     </table>
                                 </div>
                             </div>
-                            
-            <?php }else{
+                    
+            <?php }
+            }else{
                 echo "<div class='NoData'>";
                     echo "No Current Data";
                 echo "</div>";
@@ -1644,7 +1665,12 @@ if (isset($_SESSION["AdminID"])) {
                         echo "</div>";
                         }
                 }
-        }elseif($do == "AddMembership"){ ?>
+        }elseif($do == "AddMembership"){ 
+            if($AdminRole != 1 && $AdminRole != 2){
+                echo "<div class='NoData'>";
+                    echo "<p>Again ! You are not allowd to Add Membership </p>";
+                echo "</div>";
+            }else{ ?>
                     <h1 class="PageHeader"> Add Membership </h1>
                         <form class="form-horizontal" action="?action=InsertMembership" method="POST">
                             <div class="form-group insertInput mb-0">
@@ -1806,7 +1832,8 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                             </div>
                         </form>
-            <?php
+                    <?php
+            }
         }elseif($do == "InsertMembership"){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $Membership = $_POST['Name'];
@@ -1931,6 +1958,10 @@ if (isset($_SESSION["AdminID"])) {
             if(empty($MembershipID)){
                 echo "<div class='NoData'>";
                     echo "<p>Where is The Membership to Edit !</p>";
+                echo "</div>";
+            }elseif($AdminRole != 1 && $AdminRole != 2){
+                echo "<div class='NoData'>";
+                    echo "<p>Again ! You are not allowd to Edit Anything </p>";
                 echo "</div>";
             }else{
                 $SelectMembership = "SELECT membership.* , membershipperiod.ID AS PeriodID ,  membershipperiod.Period AS PeriodTime  FROM membership

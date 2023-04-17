@@ -136,6 +136,7 @@ if (isset($_SESSION["AdminID"])) {
                                         <td>Email</td>
                                         <td>Place</td>
                                         <td>Payment</td>
+                                        <td>Membership</td>
                                         <td>Amount</td>
                                     </tr>
                                     <?php
@@ -143,14 +144,17 @@ if (isset($_SESSION["AdminID"])) {
                                     if(isset($_POST['PlaceID']) && isset($_POST['PaymentID'])){
                                         $sql = "WHERE donations.PlaceID IN(".implode(',', $_POST['PlaceID'] ).") AND donations.PaymentID IN (".implode(',', $_POST['PaymentID']).")" ; 
 
-                                            $DonationsQuery = "SELECT donations . * , user.Name AS UserName, user.Email AS UserEmail , paymentoptions.PaymentType AS Payment , place.Name AS PlaceName FROM donations
-                                            left JOIN user ON donations.UserID = user.ID
-                                            JOIN paymentoptions ON donations.PaymentID = paymentoptions.ID
-                                            JOIN place ON donations.PlaceID = place.ID
-                                            $sql
-                                            ORDER BY donations.Amount $Amountsort, donations.ID $sort
-                                            ";                            
-                                        
+                                            $DonationsQuery = "SELECT donations . * , user.Name AS UserName, user.Email AS UserEmail , paymentoptions.PaymentType AS Payment ,
+                                                                place.Name AS PlaceName , membership.Type AS MembershipType
+                                                                FROM donations
+                                                                left JOIN user ON donations.UserID = user.ID
+                                                                JOIN paymentoptions ON donations.PaymentID = paymentoptions.ID
+                                                                JOIN place ON donations.PlaceID = place.ID
+                                                                LEFT JOIN membershippayemnts ON membershippayemnts.UserID = user.ID 
+                                                                LEFT JOIN membership ON membershippayemnts.MembershipID = membership.ID
+                                                                $sql
+                                                                ORDER BY donations.Amount $Amountsort, donations.ID $sort
+                                                                ";                            
                                             $Query = mysqli_query($con , $DonationsQuery);
                                             $fetchquery = mysqli_fetch_row($Query);
                                             $count =mysqli_num_rows($Query);
@@ -177,17 +181,28 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "</td>";
                                                         echo "<td>" . $Donation['PlaceName']   . "</td>";
                                                         echo "<td>" . $Donation['Payment']   . "</td>";
+                                                        echo "<td>";
+                                                                    if($Donation['MembershipType'] != NULL){
+                                                                        echo $Donation['MembershipType'] ;
+                                                                    }else{
+                                                                        echo "<p class='fs-13 c-gray'> Doesn't have Membership </p>";
+                                                                    } 
+                                                        echo "</td>";
                                                         echo "<td>" . $Donation['Amount']   . "</td>";
                                                     echo "</tr>";
-                                                } 
+                                                }
                                             }
                                     }elseif(isset($_POST['PlaceID']) && !isset($_POST['PaymentID'])){
                                         $sql = "WHERE donations.PlaceID IN(".implode(',', $_POST['PlaceID']).")";
 
-                                            $DonationsQuery = "SELECT donations . * , user.Name AS UserName, user.Email AS UserEmail , paymentoptions.PaymentType AS Payment , place.Name AS PlaceName FROM donations
+                                            $DonationsQuery = "SELECT donations . * , user.Name AS UserName, user.Email AS UserEmail , paymentoptions.PaymentType AS Payment ,
+                                                                place.Name AS PlaceName , membership.Type AS MembershipType
+                                                                FROM donations
                                                                 left JOIN user ON donations.UserID = user.ID
                                                                 JOIN paymentoptions ON donations.PaymentID = paymentoptions.ID
                                                                 JOIN place ON donations.PlaceID = place.ID
+                                                                LEFT JOIN membershippayemnts ON membershippayemnts.UserID = user.ID 
+                                                                LEFT JOIN membership ON membershippayemnts.MembershipID = membership.ID
                                                                 $sql
                                                                 ORDER BY donations.Amount $Amountsort, donations.ID $sort
 
@@ -219,20 +234,30 @@ if (isset($_SESSION["AdminID"])) {
                                                     echo "</td>";
                                                     echo "<td>" . $Donation['PlaceName']   . "</td>";
                                                     echo "<td>" . $Donation['Payment']   . "</td>";
+                                                    echo "<td>";
+                                                                if($Donation['MembershipType'] != NULL){
+                                                                    echo $Donation['MembershipType'] ;
+                                                                }else{
+                                                                    echo "<p class='fs-13 c-gray'> Doesn't have Membership </p>";
+                                                                } 
+                                                    echo "</td>";
                                                     echo "<td>" . $Donation['Amount']   . "</td>";
                                                 echo "</tr>";
                                             }  
                                         }
                                     }elseif(isset($_POST['PaymentID']) && !isset($_POST['PlaceID'])){
                                         $sql = "WHERE donations.PaymentID IN(". implode(',', $_POST['PaymentID']).")";
-                                        $DonationsQuery = "SELECT donations . * , user.Name AS UserName, user.Email AS UserEmail , paymentoptions.PaymentType AS Payment , place.Name AS PlaceName FROM donations
-                                            left JOIN user ON donations.UserID = user.ID
-                                            JOIN paymentoptions ON donations.PaymentID = paymentoptions.ID
-                                            JOIN place ON donations.PlaceID = place.ID
-                                            $sql
-                                            ORDER BY donations.Amount $Amountsort, donations.ID $sort
-
-                                            ";
+                                        $DonationsQuery = "SELECT donations . * , user.Name AS UserName, user.Email AS UserEmail , paymentoptions.PaymentType AS Payment ,
+                                                            place.Name AS PlaceName , membership.Type AS MembershipType
+                                                            FROM donations
+                                                            left JOIN user ON donations.UserID = user.ID
+                                                            JOIN paymentoptions ON donations.PaymentID = paymentoptions.ID
+                                                            JOIN place ON donations.PlaceID = place.ID
+                                                            LEFT JOIN membershippayemnts ON membershippayemnts.UserID = user.ID 
+                                                            LEFT JOIN membership ON membershippayemnts.MembershipID = membership.ID
+                                                            $sql
+                                                            ORDER BY donations.Amount $Amountsort, donations.ID $sort
+                                                            ";
                                         
                                             $Query = mysqli_query($con , $DonationsQuery);
                                             $fetchquery = mysqli_fetch_row($Query);
@@ -260,18 +285,28 @@ if (isset($_SESSION["AdminID"])) {
                                                     echo "</td>";
                                                     echo "<td>" . $Donation['PlaceName']   . "</td>";
                                                     echo "<td>" . $Donation['Payment']   . "</td>";
+                                                    echo "<td>";
+                                                                if($Donation['MembershipType'] != NULL){
+                                                                    echo $Donation['MembershipType'] ;
+                                                                }else{
+                                                                    echo "<p class='fs-13 c-gray'> Doesn't have Membership </p>";
+                                                                } 
+                                                    echo "</td>";
                                                     echo "<td>" . $Donation['Amount']   . "</td>";
                                                 echo "</tr>";
                                             }
                                         }
                                     }else{
-                                            $DonationsQuery = "SELECT donations . * , user.Name AS UserName, user.Email AS UserEmail , paymentoptions.PaymentType AS Payment , place.Name AS PlaceName FROM donations
-                                            left JOIN user ON donations.UserID = user.ID
-                                            JOIN paymentoptions ON donations.PaymentID = paymentoptions.ID
-                                            JOIN place ON donations.PlaceID = place.ID
-                                            ORDER BY donations.Amount $Amountsort, donations.ID $sort
-
-                                            ";
+                                            $DonationsQuery = "SELECT donations . * , user.Name AS UserName, user.Email AS UserEmail , paymentoptions.PaymentType AS Payment ,
+                                                                place.Name AS PlaceName , membership.Type AS MembershipType
+                                                                FROM donations
+                                                                left JOIN user ON donations.UserID = user.ID
+                                                                JOIN paymentoptions ON donations.PaymentID = paymentoptions.ID
+                                                                JOIN place ON donations.PlaceID = place.ID
+                                                                LEFT JOIN membershippayemnts ON membershippayemnts.UserID = user.ID 
+                                                                LEFT JOIN membership ON membershippayemnts.MembershipID = membership.ID 
+                                                                ORDER BY donations.Amount $Amountsort, donations.ID $sort
+                                                                ";
                                             $Query = mysqli_query($con , $DonationsQuery);
                                             $fetchquery = mysqli_fetch_assoc($Query);
                                             $count =mysqli_num_rows($Query);
@@ -296,6 +331,13 @@ if (isset($_SESSION["AdminID"])) {
                                                     echo "</td>";
                                                     echo "<td>" . $Donation['PlaceName']   . "</td>";
                                                     echo "<td>" . $Donation['Payment']   . "</td>";
+                                                    echo "<td>";
+                                                                if($Donation['MembershipType'] != NULL){
+                                                                    echo $Donation['MembershipType'] ;
+                                                                }else{
+                                                                    echo "<p class='fs-13 c-gray'> Doesn't have Membership </p>";
+                                                                } 
+                                                    echo "</td>";
                                                     echo "<td>" . $Donation['Amount']   . "</td>";
                                                 echo "</tr>";
                                             }
@@ -307,7 +349,9 @@ if (isset($_SESSION["AdminID"])) {
                         </div>
                                 
                 <?php }else{
-                echo "No Current Data";
+                    echo "<div class='NoData'>";
+                        echo "No Current Data";
+                    echo "</div>";
                 }
         }else{
             echo "<div class='container'>";
