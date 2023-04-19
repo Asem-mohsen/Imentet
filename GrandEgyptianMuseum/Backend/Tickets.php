@@ -67,7 +67,7 @@ if (isset($_SESSION["AdminID"])) {
                                         <p class='mt-20 ml-20 cursor-d fw-bold'>By Payment </p>
                                     </li>
                                         <?php
-   
+
                                             $PaymentSelect = "SELECT DISTINCT paymentoptions.PaymentType AS PaymentType , entertainmnetticket.PaymentID AS PaymentID FROM `entertainmnetticket` 
                                                             JOIN paymentoptions ON paymentoptions.ID = entertainmnetticket.PaymentID  ";
                                             $Run = mysqli_query($con , $PaymentSelect);
@@ -123,7 +123,8 @@ if (isset($_SESSION["AdminID"])) {
                                                 <td>ID</td>
                                                 <td>User Name</td>
                                                 <td>Entertainment</td>
-                                                <td>Price</td>
+                                                <td>Quantity</td>
+                                                <td>Total</td>
                                                 <td>Payment</td>
                                             </tr>
                                             <?php
@@ -151,6 +152,7 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "<td>" . $ETicket['ID']     . "</td>";
                                                         echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $ETicket['UserID'] ."'>" . $ETicket['UserName']   . "</a></td>";
                                                         echo "<td><a href='./Entertainments.php?action=MoreInfo&EventID=". $ETicket['EventID'] ."'>" . $ETicket['EventName']   . "</a></td>";
+                                                        echo "<td>" . $ETicket['Quantity']   . "</td>";
                                                         echo "<td>" . $ETicket['Price']   . "</td>";
                                                         echo "<td>" . $ETicket['Payment']   . "</td>";
                                                     echo "</tr>";
@@ -173,6 +175,7 @@ if (isset($_SESSION["AdminID"])) {
                                                     echo "<td>" . $ETicket['ID']     . "</td>";
                                                     echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $ETicket['UserID'] ."'>" . $ETicket['UserName']   . "</a></td>";
                                                     echo "<td><a href='./Entertainments.php?action=MoreInfo&EventID=". $ETicket['EventID'] ."'>" . $ETicket['EventName']   . "</a></td>";
+                                                    echo "<td>" . $ETicket['Quantity']   . "</td>";
                                                     echo "<td>" . $ETicket['Price']   . "</td>";
                                                     echo "<td>" . $ETicket['Payment']   . "</td>";
                                                 echo "</tr>";
@@ -313,8 +316,8 @@ if (isset($_SESSION["AdminID"])) {
                                             <td>Role</td>
                                             <td>Place</td>
                                             <td>Date</td>
-                                            <td>Entrance Fees</td>
-                                            <td>Museum Fees</td>
+                                            <td>Quantity</td>
+                                            <td>Total</td>
                                             <td>Payment</td>
                                         </tr>
                                         <?php
@@ -345,20 +348,8 @@ if (isset($_SESSION["AdminID"])) {
                                                                 echo "<td>" . $VTicket['RoleName']   . "</td>";
                                                                 echo "<td>" . $VTicket['PlaceName']   . "</td>";
                                                                 echo "<td>" . $VTicket['Date']   . "</td>";
-                                                                    $RoleID = $VTicket['RoleID'];
-                                                                    $PlaceID = $VTicket['PlaceID'];
-                                                                        $Select = "SELECT * FROM visitpricing WHERE UserRole = $RoleID AND PlaceID = $PlaceID";
-                                                                        $QueryS = mysqli_query($con , $Select);
-                                                                        $row = mysqli_fetch_row($QueryS);
-                                                                    foreach($QueryS as $Price){
-                                                                        if($Price['MuseumFee'] == 0 || $Price['MuseumFee'] == NULL){
-                                                                            echo "<td>" . $Price['EntranceFee']   . "</td>";
-                                                                            echo "<td class='c-gray fs-13'> No Museum Fee</td>";
-                                                                        }else{
-                                                                            echo "<td>" . $Price['EntranceFee']   . "</td>";
-                                                                            echo "<td>" . $Price['MuseumFee']   . "</td>";
-                                                                        }
-                                                                    }
+                                                                echo "<td>" . $VTicket['Quantity']   . "</td>";
+                                                                echo "<td>" . $VTicket['Total']   . "</td>";
                                                                 echo "<td>" . $VTicket['Payment']   . "</td>";
                                                             echo "</tr>";
                                                         } 
@@ -383,27 +374,15 @@ if (isset($_SESSION["AdminID"])) {
                                             
                                             if($count > 0 ){
                                                 foreach ($Query as $VTicket) {
-
+                
                                                     echo "<tr>";
                                                         echo "<td>" . $VTicket['ID']     . "</td>";
                                                         echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $VTicket['UserName']   . "</td>";
                                                         echo "<td>" . $VTicket['RoleName']   . "</td>";
                                                         echo "<td>" . $VTicket['PlaceName']   . "</td>";
                                                         echo "<td>" . $VTicket['Date']   . "</td>";
-                                                            $RoleID = $VTicket['RoleID'];
-                                                            $PlaceID = $VTicket['PlaceID'];
-                                                                $Select = "SELECT * FROM visitpricing WHERE UserRole = $RoleID AND PlaceID = $PlaceID";
-                                                                $QueryS = mysqli_query($con , $Select);
-                                                                $row = mysqli_fetch_row($QueryS);
-                                                            foreach($QueryS as $Price){
-                                                                if($Price['MuseumFee'] == 0 || $Price['MuseumFee'] == NULL){
-                                                                    echo "<td>" . $Price['EntranceFee']   . "</td>";
-                                                                    echo "<td class='c-gray fs-13'> No Museum Fee</td>";
-                                                                }else{
-                                                                    echo "<td>" . $Price['EntranceFee']   . "</td>";
-                                                                    echo "<td>" . $Price['MuseumFee']   . "</td>";
-                                                                }
-                                                            }
+                                                        echo "<td>" . $VTicket['Quantity']   . "</td>";
+                                                        echo "<td>" . $VTicket['Total']   . "</td>";
                                                         echo "<td>" . $VTicket['Payment']   . "</td>";
                                                     echo "</tr>";
                                                 } 
@@ -426,27 +405,15 @@ if (isset($_SESSION["AdminID"])) {
                                             
                                             if($count > 0 ){
                                                 foreach ($Query as $VTicket) {
-
+                
                                                     echo "<tr>";
                                                         echo "<td>" . $VTicket['ID']     . "</td>";
                                                         echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $VTicket['UserName']   . "</td>";
                                                         echo "<td>" . $VTicket['RoleName']   . "</td>";
                                                         echo "<td>" . $VTicket['PlaceName']   . "</td>";
                                                         echo "<td>" . $VTicket['Date']   . "</td>";
-                                                            $RoleID = $VTicket['RoleID'];
-                                                            $PlaceID = $VTicket['PlaceID'];
-                                                                $Select = "SELECT * FROM visitpricing WHERE UserRole = $RoleID AND PlaceID = $PlaceID";
-                                                                $QueryS = mysqli_query($con , $Select);
-                                                                $row = mysqli_fetch_row($QueryS);
-                                                            foreach($QueryS as $Price){
-                                                                if($Price['MuseumFee'] == 0 || $Price['MuseumFee'] == NULL){
-                                                                    echo "<td>" . $Price['EntranceFee']   . "</td>";
-                                                                    echo "<td class='c-gray fs-13'> No Museum Fee</td>";
-                                                                }else{
-                                                                    echo "<td>" . $Price['EntranceFee']   . "</td>";
-                                                                    echo "<td>" . $Price['MuseumFee']   . "</td>";
-                                                                }
-                                                            }
+                                                        echo "<td>" . $VTicket['Quantity']   . "</td>";
+                                                        echo "<td>" . $VTicket['Total']   . "</td>";
                                                         echo "<td>" . $VTicket['Payment']   . "</td>";
                                                     echo "</tr>";
                                                 } 
@@ -464,27 +431,15 @@ if (isset($_SESSION["AdminID"])) {
                                             $count =mysqli_num_rows($Query);
                                             
                                             foreach ($Query as $VTicket) {
-
+                
                                                 echo "<tr>";
                                                     echo "<td>" . $VTicket['ID']     . "</td>";
                                                     echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $VTicket['UserName']   . "</td>";
                                                     echo "<td>" . $VTicket['RoleName']   . "</td>";
                                                     echo "<td>" . $VTicket['PlaceName']   . "</td>";
                                                     echo "<td>" . $VTicket['Date']   . "</td>";
-                                                        $RoleID = $VTicket['RoleID'];
-                                                        $PlaceID = $VTicket['PlaceID'];
-                                                            $Select = "SELECT * FROM visitpricing WHERE UserRole = $RoleID AND PlaceID = $PlaceID";
-                                                            $QueryS = mysqli_query($con , $Select);
-                                                            $row = mysqli_fetch_row($QueryS);
-                                                        foreach($QueryS as $Price){
-                                                            if($Price['MuseumFee'] == 0 || $Price['MuseumFee'] == NULL){
-                                                                echo "<td>" . $Price['EntranceFee']   . "</td>";
-                                                                echo "<td class='c-gray fs-13'> No Museum Fee</td>";
-                                                            }else{
-                                                                echo "<td>" . $Price['EntranceFee']   . "</td>";
-                                                                echo "<td>" . $Price['MuseumFee']   . "</td>";
-                                                            }
-                                                        }
+                                                    echo "<td>" . $VTicket['Quantity']   . "</td>";
+                                                    echo "<td>" . $VTicket['Total']   . "</td>";
                                                     echo "<td>" . $VTicket['Payment']   . "</td>";
                                                 echo "</tr>";
                                             } 

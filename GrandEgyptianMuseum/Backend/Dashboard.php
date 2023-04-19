@@ -306,24 +306,10 @@ if (isset($_SESSION["AdminID"])) {
                         $Giftshop = mysqli_query($con ,$SumGiftShop);
                         $GiftshopMoney = mysqli_fetch_array($Giftshop);
 
-                        $VisitTickets = "SELECT visitticket . * , user.Name AS UserName , user.RoleID  AS RoleID, visitticket.UserID AS UserID , userrole.RoleName AS RoleName , place.Name AS PlaceName , place.ID AS PlaceID FROM visitticket
-                                            JOIN user ON visitticket.UserID = user.ID 
-                                                JOIN userrole ON userrole.ID = user.RoleID
-                                            JOIN place ON visitticket.PlaceID = place.ID
-                                            ";
-                            $VisitsQuery = mysqli_query($con ,$VisitTickets);
-                            $VisitsFetch = mysqli_fetch_array($VisitsQuery);
-
-                            foreach ($VisitsQuery as $VTicket) {
-                                $UserID = $VTicket['UserID'];
-                                $RoleID = $VTicket['RoleID'];
-                                $PlaceID = $VTicket['PlaceID'];
-                                $VisitTicketsSum = "SELECT SUM((coalesce(EntranceFee ,0)) + (coalesce(MuseumFee ,0))) AS TotalSum FROM visitpricing WHERE $UserID IN (SELECT UserID FROM visitticket ) AND PlaceID = $PlaceID AND UserRole = $RoleID";
-                                $Visits = mysqli_query($con ,$VisitTicketsSum);
-                                $SumMoneyVisits = mysqli_fetch_array($Visits);
-                            }
-                            
-
+                        $VisitTickets = "SELECT  SUM(visitticket.Total) AS TotalSum FROM visitticket ";
+                        $VisitsQuery = mysqli_query($con ,$VisitTickets);
+                        $SumMoneyVisits = mysqli_fetch_array($VisitsQuery);
+                        
                         // Chart
                         $dataPoints1 = array();
                         $dataPoints2 = array();

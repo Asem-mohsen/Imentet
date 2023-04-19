@@ -1,8 +1,7 @@
 ----------------------------------Pyramids Project---------------------------------------------------------
 
 Project Name => Imentet
-Basic Colors =>
-Prject Logo  =>
+
 
 
 
@@ -17,21 +16,21 @@ Prject Logo  =>
                             2ndLevel        Users
 
 --------------Definations---------
-AdminPanal => are the backbone of the entire system, it shows the users, events information with making the CRUD
+AdminPanel => are the backbone of the entire system, it shows the users, events information with making the CRUD
               operations on all of them
-              it Consisties of 4 Levels, They are =>
-                         *
-                        / \
-                       /   \
-                      /     \
-                     /Master \
-                    -----------
-                   /SystemLevel\
-                  ---------------
-                 /Operation Level\
-                -------------------
-               /Customer Care Level\
-              /---------------------\
+              it Consisties of 4 Levels,  =>
+                          *
+                        /   \
+                       /     \
+                      /       \
+                     /  Master \
+                    ----------  \
+                   /StratigcLevel\
+                  --------------- \
+                 / Operation Level \
+                ------------------- \
+               / Customer Care Level \
+              /---------------------  \
 
 Master Level => The Master admins here are responsible for 
                 1- Delete events
@@ -61,14 +60,10 @@ Operations Level => The Admins here are responsible for
 Customer Care Level => Admins here are responsible for
                 1- Chatting with users 
                 2- Answer questions on the questinner platform
-                3- Edit the ansers or replayes
+                3- Edit the answers or replyes
 
 
 
-
-
-
- 
 -------------------- HOW TO IMPORT DATABASE ------------------------------------------------------------------
 1-Download the file
 2-Open Localhost php myadmin

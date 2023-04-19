@@ -13,8 +13,8 @@ function GetTitle()
 /*
 Redirect Function [This function accept parameters]
    1/TheMsg "Which echo the error message" it might be [ERROR / Success / Warning]
-   2/Seconds = seconds before the redirecting happen
-   3/URL = the link which i wanna redircted to 
+   2/Seconds = seconds before the redirecting happen -by default it's 3s-
+   3/URL = the link which to redirect 
 */
 
 function RedirectIndex($TheMsg, $URL = Null, $Seconds = 3)
@@ -33,7 +33,9 @@ function RedirectIndex($TheMsg, $URL = Null, $Seconds = 3)
         }
     }
     echo  $TheMsg;
-    echo "<div class='alert alert-info text-center'> You Will be Redirected to  " . $Link . "  After " . $Seconds  . " seconds </div>";
+    echo "<div class='alert alert-info text-center'>
+                You Will be Redirected to  " . $Link . "  After " . $Seconds  . " seconds 
+        </div>";
 
     header("refresh:$Seconds;url=$URL");
     exit();

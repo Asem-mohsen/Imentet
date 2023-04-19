@@ -651,10 +651,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['AccessToEvents'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Access to Exclusive Events held at the Museum/Pyramid's Grounds" ; 
+                                                                        echo "Access to Exclusive Events" ; 
                                                                 }elseif($Membership['AccessToEvents'] == NULL || $Membership['AccessToEvents'] == 0){
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Access to Exclusive Events held at the Museum/Pyramid's Grounds" ; 
+                                                                        echo "Access to Exclusive Events" ; 
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -707,10 +707,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['AccessToMonuments'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "FREE Access to Exclusive Monuments in The Grand Egyptian Museum" ;
+                                                                        echo "FREE Access to Exclusive Monuments in The Museum" ;
                                                                 }elseif($Membership['AccessToMonuments'] == NULL || $Membership['AccessToMonuments'] == 0){
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "FREE Access to Exclusive Monuments in The Grand Egyptian Museum" ;
+                                                                        echo "FREE Access to Exclusive Monuments in The Museum" ;
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -889,10 +889,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['AccessToEvents'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Access to Exclusive Events held at the Museum/Pyramid's Grounds" ; 
+                                                                        echo "Access to Exclusive Events" ; 
                                                                 }elseif($Membership['AccessToEvents'] == NULL || $Membership['AccessToEvents'] == 0){
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Access to Exclusive Events held at the Museum/Pyramid's Grounds" ; 
+                                                                        echo "Access to Exclusive Events" ; 
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -945,10 +945,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['AccessToMonuments'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "FREE Access to Exclusive Monuments in The Grand Egyptian Museum" ;
+                                                                        echo "FREE Access to Exclusive Monuments in The Museum" ;
                                                                 }elseif($Membership['AccessToMonuments'] == NULL || $Membership['AccessToMonuments'] == 0){
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "FREE Access to Exclusive Monuments in The Grand Egyptian Museum" ;
+                                                                        echo "FREE Access to Exclusive Monuments in The Museum" ;
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -1125,10 +1125,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['AccessToEvents'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Access to Exclusive Events held at the Museum/Pyramid's Grounds" ; 
+                                                                        echo "Access to Exclusive Events" ; 
                                                                 }elseif($Membership['AccessToEvents'] == NULL || $Membership['AccessToEvents'] == 0){
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Access to Exclusive Events held at the Museum/Pyramid's Grounds" ; 
+                                                                        echo "Access to Exclusive Events" ; 
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -1181,10 +1181,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['AccessToMonuments'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "FREE Access to Exclusive Monuments in The Grand Egyptian Museum" ;
+                                                                        echo "FREE Access to Exclusive Monuments in The Museum" ;
                                                                 }elseif($Membership['AccessToMonuments'] == NULL || $Membership['AccessToMonuments'] == 0){
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "FREE Access to Exclusive Monuments in The Grand Egyptian Museum" ;
+                                                                        echo "FREE Access to Exclusive Monuments in The Museum" ;
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -1356,10 +1356,10 @@ if (isset($_SESSION["AdminID"])) {
                                                         <?php
                                                             if($Membership['AccessToEvents'] == 1){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Access to Exclusive Events held at the Museum/Pyramid's Grounds" ; 
+                                                                    echo "Access to Exclusive Events" ; 
                                                             }elseif($Membership['AccessToEvents'] == NULL || $Membership['AccessToEvents'] == 0){
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Access to Exclusive Events held at the Museum/Pyramid's Grounds" ; 
+                                                                    echo "Access to Exclusive Events" ; 
                                                             }
                                                         ?>
                                                 </span>                                       
@@ -1412,10 +1412,10 @@ if (isset($_SESSION["AdminID"])) {
                                                         <?php
                                                             if($Membership['AccessToMonuments'] == 1){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "FREE Access to Exclusive Monuments in The Grand Egyptian Museum" ;
+                                                                    echo "FREE Access to Exclusive Monuments in The Museum" ;
                                                             }elseif($Membership['AccessToMonuments'] == NULL || $Membership['AccessToMonuments'] == 0){
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "FREE Access to Exclusive Monuments in The Grand Egyptian Museum" ;
+                                                                    echo "FREE Access to Exclusive Monuments in The Museum" ;
                                                             }
                                                         ?>
                                                 </span>                                       

@@ -343,7 +343,11 @@ if (isset($_SESSION["AdminID"])) {
                     echo "<p>Literally No Way</p>";
                 echo "</div>";
             }else{
-                $Select = "SELECT * FROM transportation WHERE ID = $TransportationID  ";
+                // $Select = "SELECT * FROM transportation WHERE ID = $TransportationID  ";
+                $Select = " SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
+                            JOIN stations AS F1 ON transportation.StationID = F1.StationID 
+                            JOIN stations AS F2 ON transportation.StationTo = F2.StationID  
+                            ";
                 $Query = mysqli_query($con , $Select);
                 $row = mysqli_fetch_assoc($Query);
                 if(isset($row['ID'])){
@@ -369,7 +373,7 @@ if (isset($_SESSION["AdminID"])) {
                             <label class="control-label"> Select a Start Point </label>
                                 <div class="m-auto">
                                     <select name="Start" class="custom-select">
-                                        <option value="0"> --- </option>
+                                        <option value="<?php echo $row['StationID'] ?>"> <?php  echo $row['StationName'] ?> </option>
                                         <?php
                                         $SelectQuery = "SELECT * FROM stations ";
                                         $Select = mysqli_query($con, $SelectQuery);
@@ -385,7 +389,7 @@ if (isset($_SESSION["AdminID"])) {
                             <label class="control-label mt-20"> End Point </label>
                                 <div class="m-auto">
                                     <select name="End" class="custom-select">
-                                        <option value="0"> --- </option>
+                                    <option value="<?php echo $row['StationTo'] ?>"> <?php  echo $row['StationTo'] ?> </option>
                                         <?php
                                         $SelectQuery = "SELECT * FROM stations ";
                                         $Select = mysqli_query($con, $SelectQuery);
