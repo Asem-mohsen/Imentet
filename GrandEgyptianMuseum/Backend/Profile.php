@@ -186,23 +186,27 @@ if (isset($_SESSION["AdminID"])) {
                 }
 
                 if (empty($FormErrors)) {
-                    // Update DB with this info
-                    $UpdateQuery = "UPDATE admin SET Name = '$Name' , Phone = $Phone , Address = '$Address' , Email = '$Email' , Password = '$hashedPassword' , AdminRole = '$Role'  WHERE ID = $AdminID ";
-                    $Update = mysqli_query($con, $UpdateQuery);
 
                     if (isset($_FILES['AdminImage']['name'])){
                         $AdminID    = $_POST['AdminID'];
                         $AdminImage = $_FILES['AdminImage']['name'];
                         $imageTmp = $_FILES['AdminImage']['tmp_name'];
-    
+
                         $folder       = "Images\Uploads\\".$AdminImage;
                         move_uploaded_file($imageTmp,$folder);  
+                        $UpdateQuery = "UPDATE admin SET Name = '$Name' , Phone = $Phone , Address = '$Address' , Email = '$Email' , Password = '$hashedPassword' , AdminRole = '$Role'  WHERE ID = $AdminID ";
+                        $Update = mysqli_query($con, $UpdateQuery);
 
                         $UpdateImgQuery = "UPDATE adminimage SET Image = '$AdminImage' WHERE AdminID = $AdminID";
                         $UpdateImg = mysqli_query($con, $UpdateImgQuery);  
-                        header("Location: ./Profile.php?action=Manage");         
+                        header("Location: ./Profile.php?action=Manage");
+                    }else{
+                        
+                        $UpdateQuery = "UPDATE admin SET Name = '$Name' , Phone = $Phone , Address = '$Address' , Email = '$Email' , Password = '$hashedPassword' , AdminRole = '$Role'  WHERE ID = $AdminID ";
+                        $Update = mysqli_query($con, $UpdateQuery);
+                        header("Location: ./Profile.php?action=Manage");
                     }
-                    
+
                 }else{
                     foreach ($FormErrors as $error) {
                         echo "<div class='container'>";
@@ -210,6 +214,7 @@ if (isset($_SESSION["AdminID"])) {
                         echo "</div>";
                     }
                 }
+                
             } else {
 
                 echo "<div class='container'>";

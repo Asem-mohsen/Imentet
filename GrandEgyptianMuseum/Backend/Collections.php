@@ -22,7 +22,8 @@ if (isset($_SESSION["AdminID"])) {
         $do = isset($_GET['action']) ? $_GET['action'] : "Manage" ;
             
         if($do == "Manage"){ 
-            $CollectionSelect = "SELECT collections .* , place.Name AS PlaceName FROM collections JOIN place ON collections.PlaceID = place.ID ";
+            $CollectionSelect = "SELECT collections .* , place.Name AS PlaceName FROM collections 
+                                JOIN place ON collections.PlaceID = place.ID ";
             $SelectQuery = mysqli_query($con , $CollectionSelect);
             $row = mysqli_fetch_assoc($SelectQuery)
             ?>
@@ -180,7 +181,9 @@ if (isset($_SESSION["AdminID"])) {
                     echo "<p> ID is Empty !</p>";
                 echo "</div>";
             }else{
-                $SelectQuery = "SELECT * FROM collections WHERE ID = $CollectionID ";
+                $SelectQuery = "SELECT collections.* ,  place.Name AS PlaceName , place.ID AS PlaceID FROM collections 
+                                JOIN place ON collections.PlaceID = place.ID
+                                WHERE collections.ID = $CollectionID ";
                 $Select = mysqli_query($con, $SelectQuery);
                 $row = mysqli_fetch_assoc($Select);
                 $count = mysqli_num_rows($Select);
@@ -213,7 +216,7 @@ if (isset($_SESSION["AdminID"])) {
                                     <label class="mt-20 control-label">Place</label>
                                     <div class="m-auto">
                                         <select name="Place" class="custom-select">
-                                            <option value="0"> --- </option>
+                                            <option value="<?php echo $row['PlaceID'] ?>"> <?php echo $row['PlaceName'] ?> </option>
                                             <?php
                                             $SelectQuery = "SELECT * FROM place ";
                                             $Select = mysqli_query($con, $SelectQuery);
