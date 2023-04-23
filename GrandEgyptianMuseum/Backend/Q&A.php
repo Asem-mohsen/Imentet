@@ -187,9 +187,15 @@ if (isset($_SESSION["AdminID"])) {
             <h1 class="PageName"> Reply </h1>
             <div class="container">
                 <form class="form-horizontal" action="?action=InsertReplay" method="POST">
-                <div class="form-group insertInput">
-                    <input type="hidden" name="AdminID" value="<?php echo $AdminID ?>">
-                    <input type="hidden" name="QestionID" value="<?php echo $QestionID ?>">
+                    <div class="form-group insertInput">
+                        <label class="mt-20 control-label">Email</label>
+                        <div class="m-auto">
+                            <input type="email" name="Email" class="form-control" value="<?php echo $row['Email'] ?>" disabled />
+                        </div>
+                    </div> 
+                    <div class="form-group insertInput">
+                        <input type="hidden" name="AdminID" value="<?php echo $AdminID ?>">
+                        <input type="hidden" name="QestionID" value="<?php echo $QestionID ?>">
                         <label class="mt-20 control-label">User's Message</label>
                         <div class="m-auto">
                             <textarea type="text" name="Question" rows="5" class="form-control" disabled > <?php echo $row['UsersQuestion'] ?></textarea>
@@ -260,6 +266,12 @@ if (isset($_SESSION["AdminID"])) {
             <h1 class="PageName"> Edit Reply </h1>
             <div class="container">
                 <form class="form-horizontal" action="?action=UpdateReplay" method="POST">
+                    <div class="form-group insertInput">
+                        <label class="mt-20 control-label">Email</label>
+                        <div class="m-auto">
+                            <input type="email" name="Email" class="form-control" value="<?php echo $row['Email'] ?>" disabled />
+                        </div>
+                    </div> 
                 <div class="form-group insertInput ">
                     <input type="hidden" name="AdminID" value="<?php echo $AdminID ?>">
                     <input type="hidden" name="QestionID" value="<?php echo $QestionID ?>">

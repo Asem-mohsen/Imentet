@@ -42,10 +42,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $SelectUser = "SELECT * FROM user WHERE Email = '$Email' AND Password = '$Password' LIMIT 1";
                 $Select = mysqli_query($con , $SelectUser);
                 $count = mysqli_num_rows($Select);
+                $UserRow = mysqli_fetch_assoc($Select) ; 
                 if($count > 0){
-                    // $_SESSION['AdminID'] = $row['ID'];     //Register Sesstion ID
-
-                    // header('Location: Dashboard.php');
+                    $_SESSION['UserID'] = $UserRow['ID'];     //Register Sesstion ID
+                    header('Location: ContactUs.php');
 
                     echo "Is User but i cannot redirect now";
                 }
