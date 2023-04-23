@@ -27,6 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     }elseif(password_verify( $Password, $AdminRow['Password'])) {
 
                         $_SESSION['AdminID'] = $AdminRow['ID'];     //Register Sesstion ID
+                        $_SESSION['AdminPassword'] = $_POST['Password'];     //Register Sesstion ID
                         header('Location: Dashboard.php');
                         exit();
                     

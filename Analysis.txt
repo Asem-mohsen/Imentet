@@ -58,9 +58,8 @@ Operations Level => The Admins here are responsible for
                 4- access to Collections page AND Add them
 
 Customer Care Level => Admins here are responsible for
-                1- Chatting with users 
-                2- Answer questions on the questinner platform
-                3- Edit the answers or replyes
+                1- Answer questions on the Messages platform 
+                2- Edit the answers or replyes
 
 
 

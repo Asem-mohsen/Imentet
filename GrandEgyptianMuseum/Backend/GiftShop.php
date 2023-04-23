@@ -100,6 +100,11 @@ if (isset($_SESSION["AdminID"])) {
                 <div class="Boxes">
                     <?php foreach($Query as $Item){ ?>
                         <div class="items bg-white rad-6 p-relative">
+                            <?php if( $Item['Quantity'] == 0 ){
+                                echo "<div class='SoldOut'>";
+                                    echo "<p> Sold Out </p> ";
+                                echo "</div>" ;
+                            } ?>
                             <img class="cover" src="./Images/<?php echo $Item['Image'] ?>">
                             <div class="itemName">
                                 <h4 class="m-0"><?php echo $Item['Item'] ?></h4>
@@ -217,7 +222,16 @@ if (isset($_SESSION["AdminID"])) {
                                 echo "<td>" . $Items['ID']     . "</td>";
                                 echo "<td><img src='./Images/" . $Items['Image'] . " ' class='TableImage'></td>";
                                 echo "<td>" . $Items['Item']  . "</td>";
-                                echo "<td>" . $Items['Quantity']  . "</td>";
+                                echo "<td>"; 
+                                            if( $Items['Quantity'] == 0){
+                                                    echo "<div class='txt-center c-red fw-bold'>";
+                                                        echo "<p> Sold Out </p> ";
+                                                    echo "</div>" ;
+                                                }else{
+                                                    echo $Items['Quantity'] ;
+                                                }
+                                
+                                echo "</td>";
                                 echo "<td>" . $Items['Price'] . "</td>";
                                 echo "<td>" . $Items['CategoryName'] . "</td>";
                                 echo "<td>";

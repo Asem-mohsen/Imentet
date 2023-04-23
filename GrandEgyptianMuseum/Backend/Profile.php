@@ -136,7 +136,7 @@ if (isset($_SESSION["AdminID"])) {
                                     </div>
                                     <div class="col-md-12">
                                         <label class="labels">Password</label>
-                                        <input type="password" name="Password" class="form-control" value="<?php echo $Admin['Password']?>">
+                                        <input type="password" name="Password" class="form-control" value="<?php echo $_SESSION['AdminPassword'] ; ?>">
                                     </div>
                                     <div class="col-md-12">
                                         <label class="labels">Position</label>
