@@ -11,13 +11,23 @@ session_regenerate_id();
 if (isset($_SESSION["AdminID"])) { 
 
     $AdminID = $_SESSION['AdminID'];
-    $SelectQuery = "SELECT * FROM admin WHERE ID = $AdminID";
+    $SelectQuery = "SELECT * FROM admin WHERE ID = $AdminID LIMIT 1";
     $Select = mysqli_query($con, $SelectQuery);
     $row = mysqli_fetch_assoc($Select);
 
     $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
     include "Nav.php";
     if($do == 'Manage'){
+        $IDAdmin =  filter_var($_GET['AdminID'], FILTER_SANITIZE_NUMBER_INT);
+        if(empty($IDAdmin)){
+            echo "<div class='NoData'>";
+                echo "<p>Sorry, We don't have Ghosts </p>";
+            echo "</div>";
+        }elseif($AdminID != $IDAdmin){
+            echo "<div class='NoData'>";
+                echo "<p>Trying to Access another profile ! GET BACK NOW </p>";
+            echo "</div>";
+        }else{
                     $SelectAdmins = "SELECT admin . * , adminrole.Role AS RoleName ,adminimage.Image AS Image FROM admin 
                                     INNER JOIN adminrole ON adminrole.ID = admin.AdminRole 
                                     LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
@@ -75,8 +85,8 @@ if (isset($_SESSION["AdminID"])) {
                             </div>
                         </div>
                     </div>
-
         <?php
+        }
     }elseif($do == "Edit"){
         $SelectAdmins = "SELECT admin . * , adminrole.Role AS RoleName , adminrole.ID AS RoleID, adminimage.Image AS Image FROM admin 
                         INNER JOIN adminrole ON adminrole.ID = admin.AdminRole
