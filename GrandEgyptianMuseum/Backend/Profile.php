@@ -168,7 +168,7 @@ if (isset($_SESSION["AdminID"])) {
 
                                     <div class="mt-5 text-center">
                                         <button class="btn btn-success profile-button" type="submit">Update</button>
-                                        <a href="./Profile.php?action=Manage" class="btn btn-primary profile-button" type="button">Back</a>
+                                        <a href="./Profile.php?action=Manage&AdminID=<?php echo $Admin['ID'] ?>" class="btn btn-danger profile-button" type="button">Cancel</a>
                                     </div>
                                 </div>
                             </div>

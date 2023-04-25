@@ -110,9 +110,12 @@ if (isset($_SESSION["AdminID"])) {
                         </div>
                                 <div class="container mb-20">
                                     <h1 class="PageName"> Users </h1>
-                                    
+                                    <div class="input-group md-form form-sm form-2 pl-0 mb-20">
+                                        <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search something here..." id="myInput" onkeyup="myFunction()" aria-label="Search">
+                                        <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
+                                    </div>
                                     <div class="table-responsive">
-                                        <table class="main-table table table-bordered table-hover table-light">
+                                        <table class="main-table table table-bordered table-hover table-light" id="myTable">
                                             <tr>
                                                 <td>ID</td>
                                                 <td>Name</td>
@@ -145,7 +148,7 @@ if (isset($_SESSION["AdminID"])) {
 
                                                                     $User['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                                 }
-                                                                echo "<tr>";
+                                                                echo "<tr id='TableData'>";
                                                                 echo "<td>" . $User['ID']     . "</td>";
                                                                 echo "<td>" . $User['Name']   . "</td>";
                                                                 echo "<td>" . $User['Age']  . "</td>";
@@ -169,7 +172,7 @@ if (isset($_SESSION["AdminID"])) {
 
                                                             $User['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                         }
-                                                        echo "<tr>";
+                                                        echo "<tr id='TableData'>";
                                                         echo "<td>" . $User['ID']     . "</td>";
                                                         echo "<td>" . $User['Name']   . "</td>";
                                                         echo "<td>" . $User['Age']  . "</td>";
@@ -1524,9 +1527,13 @@ if (isset($_SESSION["AdminID"])) {
                     </div>
                             <div class="container mb-20">
                                 <h1 class="PageName"> Users </h1>
-                                
+
+                                    <div class="input-group md-form form-sm form-2 pl-0 mb-20">
+                                        <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search something here..." id="myInput" onkeyup="myFunction()" aria-label="Search">
+                                        <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
+                                    </div>
                                 <div class="table-responsive">
-                                    <table class="main-table table table-bordered table-hover table-light">
+                                    <table class="main-table table table-bordered table-hover table-light" id="myTable">
                                         <tr>
                                             <td>ID</td>
                                             <td>Name</td>
@@ -1560,12 +1567,11 @@ if (isset($_SESSION["AdminID"])) {
 
                                                                 $MembershipUsers['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                             }
-                                                            echo "<tr>";
+                                                            echo "<tr id='TableData'>";
                                                             echo "<td>" . $MembershipUsers['ID']     . "</td>";
                                                             echo "<td> <a href='./Users.php?action=MoreInfo&UserID=" . $MembershipUsers['UserID'] . "'>" . $MembershipUsers['UserName']   . "</a></td>";
                                                             echo "<td>" . $MembershipUsers['MembershipType'] . "</td>";
-                                                                                                                    
-                                                            echo "<td>" . $MembershipUsers['Price']     . "</td>";
+                                                            echo "<td>" . thousandsCurrencyFormat($MembershipUsers['Cost'])  . "</td>";
                                                             echo "<td>" . $MembershipUsers['PaymentType']     . "</td>";
                                                             echo "<td>" . $MembershipUsers['Date']     . "</td>";
                                                             echo "<td>" . $MembershipUsers['Period']     . "</td>";
@@ -1593,12 +1599,11 @@ if (isset($_SESSION["AdminID"])) {
 
                                                                 $MembershipUsers['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                             }
-                                                            echo "<tr>";
+                                                            echo "<tr id='TableData'>";
                                                                 echo "<td>" . $MembershipUsers['ID']     . "</td>";
                                                                 echo "<td> <a href='./Users.php?action=MoreInfo&UserID=" . $MembershipUsers['UserID'] . "'>" . $MembershipUsers['UserName']   . "</a></td>";
                                                                 echo "<td>" . $MembershipUsers['MembershipType'] . "</td>";
-                                                                                                                        
-                                                                echo "<td>" . $MembershipUsers['Price']     . "</td>";
+                                                                echo "<td>" . thousandsCurrencyFormat($MembershipUsers['Cost'])     . "</td>";
                                                                 echo "<td>" . $MembershipUsers['PaymentType']     . "</td>";
                                                                 echo "<td>" . $MembershipUsers['Date']     . "</td>";
                                                                 echo "<td>" . $MembershipUsers['Period']     . "</td>";

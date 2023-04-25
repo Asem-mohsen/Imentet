@@ -1,41 +1,41 @@
 <?php
-ob_start();
+    ob_start();
 
-$PageTitle = "Contact Us";
+    $PageTitle = "Contact Us";
 
-include './init.php';
+    include './init.php';
 
-session_start();
-session_regenerate_id();
+    session_start();
+    session_regenerate_id();
 
 
-if(isset($_SESSION['UserID'])){
-    $UserID = $_SESSION['UserID'];
-    $SelectQuery = "SELECT * FROM user WHERE ID = $UserID LIMIT 1";
-    $Select = mysqli_query($con, $SelectQuery);
-    $row = mysqli_fetch_assoc($Select);
-}
-if(isset($_POST['Send'])){
-    $UsersQuestion = $_POST['UsersQuestion'];
-
-    if(empty($Email)){
-    $Email = $row['Email'];
-
-    }else{
-        $Email = $_POST['Email'];
-
+    if(isset($_SESSION['UserID'])){
+        $UserID = $_SESSION['UserID'];
+        $SelectQuery = "SELECT * FROM user WHERE ID = $UserID LIMIT 1";
+        $Select = mysqli_query($con, $SelectQuery);
+        $row = mysqli_fetch_assoc($Select);
     }
-    $InsertMessage = "INSERT INTO `q&a` (Email , UsersQuestion) VALUES( '$Email' ,'$UsersQuestion') ";
-    $InsertQuery = mysqli_query($con , $InsertMessage);
+    if(isset($_POST['Send'])){
+        $UsersQuestion = $_POST['UsersQuestion'];
 
-    if($InsertQuery){
-        echo "<div class='alert alert-success'>";
-            echo "Inserted Successfuly";
-        echo "</div>";
-    }else{
-        echo "not yet";
-    }
-}   
+        if(empty($Email)){
+        $Email = $row['Email'];
+
+        }else{
+            $Email = $_POST['Email'];
+
+        }
+        $InsertMessage = "INSERT INTO `q&a` (Email , UsersQuestion) VALUES( '$Email' ,'$UsersQuestion') ";
+        $InsertQuery = mysqli_query($con , $InsertMessage);
+
+        if($InsertQuery){
+            echo "<div class='alert alert-success'>";
+                echo "Inserted Successfuly";
+            echo "</div>";
+        }else{
+            echo "not yet";
+        }
+    }   
 
     $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
     // include "Nav.php";
@@ -96,5 +96,5 @@ if(isset($_POST['Send'])){
     
 
 
-ob_end_flush();
+    ob_end_flush();
 ?>

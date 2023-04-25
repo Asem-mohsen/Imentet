@@ -188,7 +188,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                         echo "<p class='fs-13 c-gray'> Doesn't have Membership </p>";
                                                                     } 
                                                         echo "</td>";
-                                                        echo "<td>" . $Donation['Amount']   . "</td>";
+                                                        echo "<td>" . thousandsCurrencyFormat($Donation['Amount'])   . "</td>";
                                                     echo "</tr>";
                                                 }
                                             }
@@ -241,7 +241,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<p class='fs-13 c-gray'> Doesn't have Membership </p>";
                                                                 } 
                                                     echo "</td>";
-                                                    echo "<td>" . $Donation['Amount']   . "</td>";
+                                                    echo "<td>" . thousandsCurrencyFormat($Donation['Amount'])  . "</td>";
                                                 echo "</tr>";
                                             }  
                                         }
@@ -292,7 +292,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<p class='fs-13 c-gray'> Doesn't have Membership </p>";
                                                                 } 
                                                     echo "</td>";
-                                                    echo "<td>" . $Donation['Amount']   . "</td>";
+                                                    echo "<td>" . thousandsCurrencyFormat($Donation['Amount'])   . "</td>";
                                                 echo "</tr>";
                                             }
                                         }
@@ -338,7 +338,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<p class='fs-13 c-gray'> Doesn't have Membership </p>";
                                                                 } 
                                                     echo "</td>";
-                                                    echo "<td>" . $Donation['Amount']   . "</td>";
+                                                    echo "<td>" . thousandsCurrencyFormat($Donation['Amount'])   . "</td>";
                                                 echo "</tr>";
                                             }
                                         
