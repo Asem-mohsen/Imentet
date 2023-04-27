@@ -45,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $UserRow = mysqli_fetch_assoc($Select) ; 
                 if($count > 0){
                     $_SESSION['UserID'] = $UserRow['ID'];     //Register Sesstion ID
-                    header('Location: MembershipUser.php?action=Manage&MembershipID=6');
+                    header('Location: OnlineShopping.php?action=Manage');
 
                     echo "Is User but i cannot redirect now";
                 }

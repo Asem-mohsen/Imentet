@@ -80,7 +80,28 @@ $('.options span').click(function(){
 
 
 
-
+$(document).ready(function(){
+  $('.increament-btn').click(function(e){
+    e.preventDefault();
+    var quantity = $(this).closest('.product-data').find('.input-quantity').val();
+    var value = parseInt(quantity , 10);
+    value = isNaN(value) ? 0 : value ;
+    if(value < 10 ){
+        value++;
+        $(this).closest('.product-data').find('.input-quantity').val(value);
+    }
+  })
+  $('.decreament-btn').click(function(e){
+    e.preventDefault();
+    var quantity = $(this).closest('.product-data').find('.input-quantity').val();
+    var value = parseInt(quantity , 10);
+    value = isNaN(value) ? 0 : value ;
+    if(value > 1 ){
+        value--;
+        $(this).closest('.product-data').find('.input-quantity').val(value);
+    }
+  })
+})
 
 
 
@@ -95,10 +116,6 @@ $('.options span').click(function(){
       clickable: true,
     },
   });
-
-
-
-
 
 
 
@@ -178,3 +195,22 @@ document.getElementById('Cancel').onclick = function(){
   document.getElementById('Confirm').style.display = "none";
   document.getElementById('upload').style.display = "block";
 }
+
+
+
+// Quantity and Price In Cart
+var  GT = 0;
+var IPrice = document.getElementsByClassName('Iprice');
+var IQuantity = document.getElementsByClassName('IQuantity');
+var ITotal = document.getElementsByClassName('Itotal');
+var GrandTotal = document.getElementById('GrandTotal');
+function subTotal(){
+    GT = 0;
+    for(i=0 ; i <IPrice.length ; i++){
+
+        ITotal[i].innerText = (IPrice[i].value)*(IQuantity[i].value);
+        GT = GT + (IPrice[i].value)*(IQuantity[i].value);
+    }
+    GrandTotal.innerText = GT;
+}
+subTotal(); 
