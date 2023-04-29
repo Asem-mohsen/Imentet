@@ -64,14 +64,15 @@ if (isset($_SESSION["AdminID"])) {
                             <div class="Giftboxes">
                                 <?php foreach($Query as $Category){?>
                                     <div class="box">
-                                        <img src="./Images/<?php echo $Category['Image'] ?>" alt="">
-                                        <a href="./GiftShop.php?action=CategoryItems&CatID=<?php echo $Category['ID'] ?>&CatName=<?php echo $Category['Category'] ?>"><?php echo $Category['Category'] ?></a>
-                                    
+                                    <!-- <img src="./Images/<?php //echo $Category['Image'] ?>" alt=""> -->
+                                        <div class='CatDiv'>
+                                            <a href="./GiftShop.php?action=CategoryItems&CatID=<?php echo $Category['ID'] ?>&CatName=<?php echo $Category['Category'] ?>"><?php echo $Category['Category'] ?></a>
+                                        </div>
                                     </div>
                                 <?php } ?>
-                                <div class="box circle">
+                                <div class="Add box">
+                                        <a href="./GiftShop.php?action=AddCategory"> Add New Category</a>
                                         <i class="fa fa-plus fa-fw"></i>
-                                        <a href="./GiftShop.php?action=AddItems"> Add</a>
                                 </div>
                             </div>
                         </div>
@@ -94,54 +95,87 @@ if (isset($_SESSION["AdminID"])) {
             $count = mysqli_num_rows($Query);
             
             ?>
-            <div class="GiftShop d-grid m-20 gap-20">
-                <h1 class='PageName'><?php echo $CategoryName?></h1>
-                <?php if($count > 0){ ?>
-                <div class="Boxes">
-                    <?php foreach($Query as $Item){ ?>
-                        <div class="items bg-white rad-6 p-relative">
-                            <?php if( $Item['Quantity'] == 0 ){
-                                echo "<div class='SoldOut'>";
-                                    echo "<p> Sold Out </p> ";
-                                echo "</div>" ;
-                            } ?>
-                            <img class="cover" src="./Images/<?php echo $Item['Image'] ?>">
-                            <div class="itemName">
-                                <h4 class="m-0"><?php echo $Item['Item'] ?></h4>
-                            </div>
-                            <div class="Buttom">
-                                <?php if($AdminRole == 2 || $AdminRole == 1 ){ ?>
-                                    <div class="Giftbuttons">
-                                        <a href="./GiftShop.php?action=Edit&ItemID=<?php echo $Item['ID'] ?>" class="title btn-shape bg-green c-white p-10">Edit</a>
-                                            <a href="./GiftShop.php?action=DeleteItem&ItemID=<?php echo $Item['ID'] ?>" class="title btn-shape bg-red c-white p-10">Delete</a>
-                                        </div>
-                                    <?php } ?>
-                                    <div class="Spans">
-                                        <span class="c-gray">
-                                            Quantity : 
-                                            <?php echo $Item['Quantity'] ?>
-                                        </span>
-                                        <span class="c-gray">
-                                            <i class="fa-solid fa-dollar-sign"></i>
-                                            <?php echo $Item['Price'] ?>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="page d-flex">
+                <div class="sidepar bg-white p-20 p-relative">
+                    <h3 class="p-relative txt-center mt-0">Control</h3>
+                    <ul>
+                        <li>
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
+                                <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=AddItems">
+                                <i class="fa-solid fa-plus fa-fw"></i><span> Add More Items </span>
+                            </a>
+                        </li>
+                        <?php if($AdminRole == 2 || $AdminRole == 1 ){ ?>
+                                <li>
+                                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=ItemsSold">
+                                    <i class="fa-solid fa-circle-dollar-to-slot fa-fw"></i><span> Items Sold </span>
+                                    </a>
+                                </li>
                         <?php } ?>
-                    </div>
+                        <li>
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=CheckAll">
+                                <i class="fa-solid fa-search fa-fw"></i><span> Check All Items </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=Manage">
+                                <i class="fa-solid fa-arrow-left fa-fw"></i><span> Categories </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="GiftShop d-grid m-aut gap-20 mt-20">
+                    <h1 class='PageName'><?php echo $CategoryName?></h1>
+                    <?php if($count > 0){ ?>
+                        <div class="Boxes">
+                            <?php foreach($Query as $Item){ ?>
+                                <div class="items bg-white rad-6 p-relative">
+                                    <?php if( $Item['Quantity'] == 0 ){
+                                        echo "<div class='SoldOut'>";
+                                            echo "<p> Sold Out </p> ";
+                                        echo "</div>" ;
+                                    } ?>
+                                    <img class="cover" src="./Images/<?php echo $Item['Image'] ?>">
+                                    <div class="itemName">
+                                        <h4 class="m-0"><?php echo $Item['Item'] ?></h4>
+                                    </div>
+                                    <div class="Buttom">
+                                        <?php if($AdminRole == 2 || $AdminRole == 1 ){ ?>
+                                            <div class="Giftbuttons">
+                                                <a href="./GiftShop.php?action=Edit&ItemID=<?php echo $Item['ID'] ?>" class="title btn-shape bg-green c-white p-10">Edit</a>
+                                                    <a href="./GiftShop.php?action=DeleteItem&ItemID=<?php echo $Item['ID'] ?>" class="title btn-shape bg-red c-white p-10">Delete</a>
+                                                </div>
+                                            <?php } ?>
+                                            <div class="Spans">
+                                                <span class="c-gray">
+                                                    Quantity : 
+                                                    <?php echo $Item['Quantity'] ?>
+                                                </span>
+                                                <span class="c-gray">
+                                                    <i class="fa-solid fa-dollar-sign"></i>
+                                                    <?php echo $Item['Price'] ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                        </div>
 
                     <?php 
-                    }else{
-                        echo "<div class='NoData'>";
-                            echo "<p>No data to show </p>";
-                            echo "<a href='./GiftShop.php?action=Manage' class='btn btn-primary'> Back </a>";
-                        echo "</div>";
-                    } ?> 
-                </div>
+                        }else{ ?>
+                        <?php
+                            echo "<div class='NoData'>";
+                                echo "<p>No data to show </p>";
+                                echo "<a href='./GiftShop.php?action=Manage' class='btn btn-primary'> Back </a>";
+                            echo "</div>";
+                        }
 
-            <?php
-
+            echo "</div>";
+            echo "</div>";
             }
         }elseif($do == "ItemsSold"){
             $SelectQuery = "SELECT useritems.* , giftshop.Item AS ItemName , giftshop.Price AS ItemPrice , user.Name AS UserName , user.ID AS UserID FROM useritems 
@@ -223,7 +257,7 @@ if (isset($_SESSION["AdminID"])) {
                                 echo "<td><img src='./Images/" . $Items['Image'] . " ' class='TableImage'></td>";
                                 echo "<td>" . $Items['Item']  . "</td>";
                                 echo "<td>"; 
-                                            if( $Items['Quantity'] == 0){
+                                            if( $Items['Quantity'] <= 0){
                                                     echo "<div class='txt-center c-red fw-bold'>";
                                                         echo "<p> Sold Out </p> ";
                                                     echo "</div>" ;

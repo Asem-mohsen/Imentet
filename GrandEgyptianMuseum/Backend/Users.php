@@ -143,14 +143,15 @@ if (isset($_SESSION["AdminID"])) {
                                                         if($count > 0 ){
 
                                                             foreach ($Info as $User) {
-                                                                
+                                                                $FullName =  $User['Name'] . ' ' .  $User['LastName'] ;
+
                                                                 if($User['MembershipType'] == NULL){
 
                                                                     $User['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                                 }
                                                                 echo "<tr id='TableData'>";
                                                                 echo "<td>" . $User['ID']     . "</td>";
-                                                                echo "<td>" . $User['Name']   . "</td>";
+                                                                echo "<td>" . $FullName   . "</td>";
                                                                 echo "<td>" . $User['Age']  . "</td>";
                                                                 echo "<td>" . $User['Phone']  . "</td>";
                                                                 echo "<td>" . $User['Nationality'] . "</td>";
@@ -167,14 +168,14 @@ if (isset($_SESSION["AdminID"])) {
                                                     }
                                                 }else{
                                                     foreach ($Info as $User) {
-                                                                
+                                                        $FullName =  $User['Name'] . ' ' .  $User['LastName'] ;
                                                         if($User['MembershipType'] == NULL){
 
                                                             $User['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                         }
                                                         echo "<tr id='TableData'>";
                                                         echo "<td>" . $User['ID']     . "</td>";
-                                                        echo "<td>" . $User['Name']   . "</td>";
+                                                        echo "<td>" . $FullName   . "</td>";
                                                         echo "<td>" . $User['Age']  . "</td>";
                                                         echo "<td>" . $User['Phone']  . "</td>";
                                                         echo "<td>" . $User['Nationality'] . "</td>";
@@ -217,8 +218,8 @@ if (isset($_SESSION["AdminID"])) {
                 $Query = mysqli_query($con , $Users);
                 $Userrow = mysqli_fetch_assoc($Query);
                 if(isset($Userrow['ID'])){
-
-                $UserName = $Userrow['Name'] ;
+                
+                $FullName =  $Userrow['Name'] . ' ' .  $Userrow['LastName'] ;
 
                 foreach($Query as $User){
                         ?>
@@ -227,7 +228,7 @@ if (isset($_SESSION["AdminID"])) {
                                 <div class="col-md-12">
                                     <div class="d-flex flex-column align-items-center text-center p-3 ">
                                         <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                        <span class="font-weight-bold"><?php echo $UserName ?></span>
+                                        <span class="font-weight-bold"><?php echo $FullName ?></span>
                                         <span class="text-black-50"><?php echo $User['Email'] ?></span>
                                         <span> </span>
                                     </div>
@@ -1548,7 +1549,7 @@ if (isset($_SESSION["AdminID"])) {
                                         <?php
                                             if(isset($_POST['Type'])){
                                                     $sql = " WHERE membershippayemnts.MembershipID IN(".implode(',', $_POST['Type'] ).")"; 
-                                                    $MembershipInfo = "SELECT membershippayemnts.* , user.Name AS UserName , user.ID AS UserID, membership.Price AS Price  , membership.Type AS MembershipType , paymentoptions.PaymentType AS PaymentType , membershipperiod.Period FROM membershippayemnts 
+                                                    $MembershipInfo = "SELECT membershippayemnts.* , user.Name AS UserName , user.LastName AS LastName , user.ID AS UserID, membership.Price AS Price  , membership.Type AS MembershipType , paymentoptions.PaymentType AS PaymentType , membershipperiod.Period FROM membershippayemnts 
                                                                         LEFT JOIN user ON membershippayemnts.UserID = user.ID
                                                                         LEFT JOIN membership ON membership.ID = membershippayemnts.MembershipID
                                                                         LEFT JOIN paymentoptions ON membershippayemnts.PaymentID = paymentoptions.ID
@@ -1562,14 +1563,15 @@ if (isset($_SESSION["AdminID"])) {
                                                     if($count > 0 ){
 
                                                         foreach ($Info as $MembershipUsers) {
-                                                            
+                                                            $FullName =  $MembershipUsers['UserName'] . ' ' .  $MembershipUsers['LastName'] ;
+
                                                             if($MembershipUsers['MembershipType'] == NULL){
 
                                                                 $MembershipUsers['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                             }
                                                             echo "<tr id='TableData'>";
                                                             echo "<td>" . $MembershipUsers['ID']     . "</td>";
-                                                            echo "<td> <a href='./Users.php?action=MoreInfo&UserID=" . $MembershipUsers['UserID'] . "'>" . $MembershipUsers['UserName']   . "</a></td>";
+                                                            echo "<td> <a href='./Users.php?action=MoreInfo&UserID=" . $MembershipUsers['UserID'] . "'>" . $FullName   . "</a></td>";
                                                             echo "<td>" . $MembershipUsers['MembershipType'] . "</td>";
                                                             echo "<td>" . thousandsCurrencyFormat($MembershipUsers['Cost'])  . "</td>";
                                                             echo "<td>" . $MembershipUsers['PaymentType']     . "</td>";
@@ -1581,7 +1583,7 @@ if (isset($_SESSION["AdminID"])) {
                                                         } 
                                                     }
                                             }else{
-                                                    $MembershipInfo = "SELECT membershippayemnts.* , user.Name AS UserName,  user.ID AS UserID , membership.Type AS MembershipType, membership.Price AS Price , paymentoptions.PaymentType AS PaymentType , membershipperiod.Period FROM membershippayemnts 
+                                                    $MembershipInfo = "SELECT membershippayemnts.* , user.Name AS UserName , user.LastName AS LastName,  user.ID AS UserID , membership.Type AS MembershipType, membership.Price AS Price , paymentoptions.PaymentType AS PaymentType , membershipperiod.Period FROM membershippayemnts 
                                                                         LEFT JOIN user ON membershippayemnts.UserID = user.ID
                                                                         LEFT JOIN membership ON membership.ID = membershippayemnts.MembershipID
                                                                         LEFT JOIN paymentoptions ON membershippayemnts.PaymentID = paymentoptions.ID
@@ -1594,14 +1596,15 @@ if (isset($_SESSION["AdminID"])) {
                                                     if($count > 0 ){
 
                                                         foreach ($Info as $MembershipUsers) {
-                                                            
+                                                            $FullName =  $MembershipUsers['UserName'] . ' ' .  $MembershipUsers['LastName'] ;
+
                                                             if($MembershipUsers['MembershipType'] == NULL){
 
                                                                 $MembershipUsers['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                             }
                                                             echo "<tr id='TableData'>";
                                                                 echo "<td>" . $MembershipUsers['ID']     . "</td>";
-                                                                echo "<td> <a href='./Users.php?action=MoreInfo&UserID=" . $MembershipUsers['UserID'] . "'>" . $MembershipUsers['UserName']   . "</a></td>";
+                                                                echo "<td> <a href='./Users.php?action=MoreInfo&UserID=" . $MembershipUsers['UserID'] . "'>" . $FullName   . "</a></td>";
                                                                 echo "<td>" . $MembershipUsers['MembershipType'] . "</td>";
                                                                 echo "<td>" . thousandsCurrencyFormat($MembershipUsers['Cost'])     . "</td>";
                                                                 echo "<td>" . $MembershipUsers['PaymentType']     . "</td>";

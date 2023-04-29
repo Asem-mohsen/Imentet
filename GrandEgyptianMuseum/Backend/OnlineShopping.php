@@ -76,7 +76,7 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
                             echo "<td>" . $Items['Item']  . "</td>";
                                 echo "<input type='hidden' name='Item' value=" . $Items['Item'] . " />";
                             echo "<td>"; 
-                                        if( $Items['Quantity'] == 0){
+                                        if( $Items['Quantity'] <= 0){
                                                 echo "<div class='txt-center c-red fw-bold'>";
                                                     echo "<p> Sold Out </p> ";
                                                 echo "</div>" ;
@@ -90,7 +90,11 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
                             echo "<td>" . $Items['CategoryName'] . "</td>";
                                 echo "<input type='hidden' name='CategoryName' value=" . $Items['CategoryName'] . " />";
                             echo "<td>";
-                                echo "<button class='btn btn-success' name='add_to_cart'> Add to Cart </button>";
+                                            if($Items['Quantity'] <= 0 ){
+                                                echo "<button class='btn btn-success' name='add_to_cart' disabled> Add to Cart </button>";
+                                            }else{
+                                                echo "<button class='btn btn-success' name='add_to_cart'> Add to Cart </button>";
+                                            }
                             echo "</td>";
                         echo "</tr>";
                         ?>
@@ -111,9 +115,55 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
     }elseif($do == 'Cart'){
         if(isset($_SESSION['UserID'])){
             $UserID = $_SESSION['UserID'];
-            // $SelectQuery = "SELECT * FROM user WHERE ID = $UserID LIMIT 1";
-            // $Select = mysqli_query($con, $SelectQuery);
-            // $row = mysqli_fetch_assoc($Select);
+
+            if(isset($_POST['BUY'])){
+                    
+                if(isset($_POST['ItemID'])){
+                    for($i = 0 ; $i < count($_POST['ItemID']) ; $i++){
+                        $UserID = $_POST['UserID'];
+                        $ProductID = $_POST['ItemID'][$i];
+                        $Quantity = $_POST['Quantity'][$i];
+                        $Payment = $_POST['Payment'];
+                        $Total = $_POST['Total'];
+                        
+                        $FormError = array();
+
+                        if($Quantity <= 0 ){
+                            $FormError[] = "Quantity Cannot be Less than or Equal Zero";
+                        }
+                        if($Quantity > 10 ){
+                            $FormError[] = "Quantity Cannot be More than 10";
+                        }
+                        if($Payment == 0 ){
+                            $FormError[] = "Payment Cannot be Empty";
+                        }
+
+                        if(empty($FormError)){
+
+                            $InsertGifts = "INSERT INTO useritems VALUES(NULL , $UserID , $ProductID , $Quantity , $Payment , '$Total')";
+                            $InsertQuery = mysqli_query($con , $InsertGifts);
+                            
+                            $UpdateGifts = "UPDATE giftshop SET Quantity = Quantity-$Quantity WHERE ID = $ProductID";
+                            $UpdateQuery = mysqli_query($con , $UpdateGifts);
+
+                        }
+                        
+                    }
+                    if(isset($InsertQuery) && isset($UpdateQuery)){
+                        echo "<div class='alert alert-success'>";
+                            echo "Done";
+                        echo "</div>";
+                    }
+                }else{
+                    $FormError[] = 'No Items Selected';
+                }
+                
+                foreach($FormError as $Error){
+                    echo "<div class='alert alert-danger' >";
+                        echo $Error ;
+                    echo "</div>";
+                }
+            }
         }
         ?>
         <section class="h-100 h-custom" style="background-color: #d2c9ff;">
@@ -149,15 +199,15 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
                                                     
                                                     if(!empty($_SESSION['cart'])){
                                                         foreach($_SESSION['cart'] as $value){ 
-                                                            $ProductID =$value['ID'];
-                                                            $Select = "SELECT * FROM giftshop WHERE ID =$ProductID ";
+                                                            $ProductID = $value['ID'];
+                                                            $Select = "SELECT * FROM giftshop WHERE ID = $ProductID ";
                                                             $Query = mysqli_query($con , $Select);
                                                             $row = mysqli_fetch_assoc($Query);
                                                             ?>
                                                             <tr class="product-data">
                                                                 <td>
                                                                     <input type="hidden" name="UserID" value="<?php if(isset($UserID)){echo $UserID ;} ; ?>">
-                                                                    <input type="hidden" name="ItemID" class="ItemID" value="<?php echo $ProductID ; ?>">
+                                                                    <input type="hidden" name="ItemID[]" class="ItemID" value="<?php echo $ProductID ; ?>">
                                                                     <div class="col-md-2 col-lg-2 col-xl-2">
                                                                         <img src="./Images/<?php echo $row['Image'] ?>" class="rounded-3" style="width: 100px; height:100px ;" alt="">
                                                                     </div>
@@ -171,7 +221,7 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
                                                                             <!-- <div class="input-group-prepend">
                                                                                 <button class="input-group-text ChangeQuantity increament-btn cursor-pointer" onchange="subTotal()">+</button>
                                                                             </div> -->
-                                                                                <input type="number" min="1" max="<?php echo $row['Quantity'] ?>" onchange="subTotal()" class="form-control bg-white input-quantity IQuantity" name="Quantity" value="1" />
+                                                                                <input type="number" min="1" max="<?php echo $row['Quantity'] ?>" onchange="subTotal()" class="form-control bg-white input-quantity IQuantity" name="Quantity[]" value="1" />
                                                                             <!-- <div class="input-group-append">
                                                                                 <button class="input-group-text ChangeQuantity decreament-btn cursor-pointer" onchange="subTotal()">-</button>
                                                                             </div> -->
@@ -205,9 +255,11 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
                                                 <tbody>
                                             </table>
                                         </div>
-                                        <a href="./OnlineShopping.php?action=Cart&Do=RemoveAll" class="text-muted">
-                                            <button class="btn btn-warning">Clear All</button>
-                                        </a>
+                                        <form action="" method="get">
+                                            <a href="./OnlineShopping.php?action=Cart&Do=RemoveAll "class="btn btn-warning">
+                                                Clear All
+                                            </a>
+                                        </form>
 
                                         <hr class="my-4">
                                         <div class="pt-5">
@@ -230,7 +282,10 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
 
                                             <div class="d-flex justify-content-between mb-5">
                                                 <h5 class="text-uppercase">Total price</h5>
-                                                <h5 id='GrandTotal'></h5>
+                                                    <h5 id='GrandTotal'>
+                                                        
+                                                    </h5>
+                                                    <input type="hidden" id='GrandTotal' value='' name="Total" />
                                             </div>
                                             <div class="d-flex justify-content-between mb-5">
                                                 <div class="form-group insertInput">
@@ -251,7 +306,11 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
                                             </div>
                                             <div class="form-group">
                                                 <div class="InsertButton">
-                                                    <input type="submit" name="BUY" value="BUY" class="btn btn-success btn-md " />
+                                                    <?php if(isset($UserID)){ ?>
+                                                        <input type="submit" name="BUY" value="BUY" class="btn btn-success btn-md " />
+                                                    <?php }else{
+                                                        echo "<a href='./SignIn.php' class='btn btn-primary'>Register</a>";
+                                                    } ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -266,20 +325,25 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
         </section>
 
         <script>
+
             var  GT = 0;
             var IPrice = document.getElementsByClassName('Iprice');
             var IQuantity = document.getElementsByClassName('IQuantity');
             var ITotal = document.getElementsByClassName('Itotal');
+            var FinalTotal = document.getElementById('FinalTotal');
             var GrandTotal = document.getElementById('GrandTotal');
             function subTotal(){
-                GT = 0;
+                GT = 0;    
                 for(i=0 ; i <IPrice.length ; i++){
 
                     ITotal[i].innerText = (IPrice[i].value)*(IQuantity[i].value);
                     GT = GT + (IPrice[i].value)*(IQuantity[i].value);
                 }
-                GrandTotal.innerText = GT;
+
+                GrandTotal.innerText = GT;   
+
             }
+
             subTotal(); 
 
             // Count Items In Tables  And inserting it to page

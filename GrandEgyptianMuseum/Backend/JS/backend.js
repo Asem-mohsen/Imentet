@@ -214,3 +214,4 @@ function subTotal(){
     GrandTotal.innerText = GT;
 }
 subTotal(); 
+
