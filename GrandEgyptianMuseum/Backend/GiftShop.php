@@ -53,7 +53,7 @@ if (isset($_SESSION["AdminID"])) {
                         </li>
                         <li>
                             <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
-                                <i class="fa-solid fa-arrow-left fa-fw"></i><span> Back </span>
+                                <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
                             </a>
                         </li>
                     </ul>
@@ -178,51 +178,82 @@ if (isset($_SESSION["AdminID"])) {
             echo "</div>";
             }
         }elseif($do == "ItemsSold"){
-            $SelectQuery = "SELECT useritems.* , giftshop.Item AS ItemName , giftshop.Price AS ItemPrice , user.Name AS UserName , user.ID AS UserID FROM useritems 
+            $SelectQuery = "SELECT useritems.* , giftshop.Item AS ItemName , giftshop.Price AS ItemPrice , user.Name AS UserName , user.LastName AS LastName,  user.ID AS UserID FROM useritems 
             JOIN giftshop ON useritems.GiftShopID = giftshop.ID 
             JOIN user ON useritems.UserID = user.ID ";
             $Select = mysqli_query($con , $SelectQuery);
             $fetchquery = mysqli_fetch_row($Select);
-            ?>  
-            <h1 class="PageName">Items Sold </h1>
-            <div class="container mb-20">
-                <div class="input-group md-form form-sm form-2 pl-0 mb-20">
-                        <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search something here..." id="myInput" onkeyup="myFunction()" aria-label="Search">
-                        <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
-                </div>
-                <div class="table-responsive">
-                    <table class="main-table table table-bordered table-hover" id="myTable">
-                        <tr>
-                            <td>#</td>
-                            <td>Buyer</td>
-                            <td>Item</td>
-                            <td>Quantity</td>
-                            <td>Price Per Unit</td>
-                            <td>Total</td>
-                        </tr>
-                        <?php
-                        foreach ($Select as $Items) {
-                        
-                            $TotalItem = $Items['Quantity'] * $Items['ItemPrice'];
+            ?>
+            <div class="page d-flex">
 
-                            echo "<tr  id='TableData'>";
-                                echo "<td>" . $Items['ID']     . "</td>";
-                                echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $Items['UserID'] ."'> " . $Items['UserName']   . "</a></td>";
-                                echo "<td>" . $Items['ItemName']  . "</td>";
-                                echo "<td>" . $Items['Quantity']  . "</td>";
-                                echo "<td>" . $Items['ItemPrice'] . "</td>";
-                                echo "<td>" . $TotalItem . "</td>";
-                            echo "</tr>";
-                        }
+                <div class="sidepar bg-white p-20 p-relative">
+                    <h3 class="p-relative txt-center mt-0">Control</h3>
+                    <ul>
+                        <li>
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=AddItems">
+                                <i class="fa-solid fa-plus fa-fw"></i><span> Add More Items </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=Manage">
+                                <i class="fa-solid fa-arrow-left fa-fw"></i><span> Categories </span>
+                            </a>
+                        </li>
+                        <?php if($AdminRole == 2 || $AdminRole == 1 ){ ?>
+                                <li>
+                                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=AddCategory">
+                                    <i class="fa-brands fa-plus fa-fw"></i><span> Add Category </span>
+                                    </a>
+                                </li>
+                        <?php } ?>
+                        <li>
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=CheckAll">
+                                <i class="fa-solid fa-search fa-fw"></i><span> Check All Items </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
+                                <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>  
+                <div class="container mb-20">
+                    <h1 class="PageName">Items Sold</h1>
+                    <div class="input-group md-form form-sm form-2 pl-0 mb-20">
+                            <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search something here..." id="myInput" onkeyup="myFunction()" aria-label="Search">
+                            <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="main-table table table-bordered table-hover" id="myTable">
+                            <tr>
+                                <td>#</td>
+                                <td>Buyer</td>
+                                <td>Item</td>
+                                <td>Quantity</td>
+                                <td>Price Per Unit</td>
+                                <td>Total</td>
+                            </tr>
 
-                        ?>
-                        
-                    </table>
+                            <?php
+                                foreach ($Select as $Items) {
+                                
+                                    $TotalItem = $Items['Quantity'] * $Items['ItemPrice'];
+                                    $FullName =  $Items['UserName'] . " " . $Items['LastName'];
+                                    echo "<tr  id='TableData'>";
+                                        echo "<td>" . $Items['ID']     . "</td>";
+                                        echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $Items['UserID'] ."'> " . $FullName   . "</a></td>";
+                                        echo "<td>" . $Items['ItemName']  . "</td>";
+                                        echo "<td>" . $Items['Quantity']  . "</td>";
+                                        echo "<td>" . $Items['ItemPrice'] . "</td>";
+                                        echo "<td>" . $TotalItem . "</td>";
+                                    echo "</tr>";
+                                }
+                            ?>
+                            
+                        </table>
+                    </div> 
                 </div>
-                <div class="Backbutton mt-0">
-                    <a href="./GiftShop.php?action=Manage"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
-                </div> 
-            </div>
             <?php
         }elseif($do == "CheckAll"){
             $SelectQuery = "SELECT giftshop.* , giftcategory.Category AS CategoryName FROM giftshop 

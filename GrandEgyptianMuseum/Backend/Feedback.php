@@ -24,7 +24,7 @@ if (isset($_SESSION["AdminID"])) {
         if (isset($_GET['sort']) && in_array($_GET['sort'], $sortarray)) {
             $sort = $_GET['sort'];                
         }
-        $Select = "SELECT feedback .* , user.Name AS UserName , user.ID AS UserID , entertainmnet.Name AS EntertainmentName , entertainmnet.ID AS EntertainmentID FROM feedback 
+        $Select = "SELECT feedback .* , user.Name AS UserName ,user.LastName AS LastName , user.ID AS UserID , entertainmnet.Name AS EntertainmentName , entertainmnet.ID AS EntertainmentID FROM feedback 
                     LEFT JOIN user ON feedback.UserID = user.ID
                     LEFT JOIN entertainmnet ON feedback.EntertainmnetID = entertainmnet.ID
                     ORDER BY feedback.ID $sort
@@ -63,9 +63,10 @@ if (isset($_SESSION["AdminID"])) {
                     </tr>
                     <?php
                     foreach ($FeedbackQuery as $Feedback) {
+                        $FullName = $Feedback['UserName'] . " " . $Feedback['LastName'] ;
                         echo "<tr  id='TableData'>";
                             echo "<td>" . $Feedback['ID']     . "</td>";
-                            echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $Feedback['UserID'] ."'> " . $Feedback['UserName']   . "</a></td>";
+                            echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $Feedback['UserID'] ."'> " . $FullName   . "</a></td>";
                             echo "<td><a href='./Entertainments.php?action=MoreInfo&EventID=". $Feedback['EntertainmentID'] ."'> " . $Feedback['EntertainmentName']  . "</td>";
                             echo "<td>" . $Feedback['Description'] . "</td>";
                         echo "</tr>";

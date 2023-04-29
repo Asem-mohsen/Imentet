@@ -301,8 +301,7 @@ if (isset($_SESSION["AdminID"])) {
                         $TotalSumEvents = mysqli_query($con ,$SumEvents);
                         $SumMoneyEvents = mysqli_fetch_array($TotalSumEvents);
 
-                        $SumGiftShop = "SELECT SUM(giftshop.Price) AS TotalMoney FROM useritems 
-                                            JOIN giftshop ON useritems.GiftShopID = giftshop.ID" ;
+                        $SumGiftShop = "SELECT SUM(useritems.Total) AS TotalMoney FROM useritems " ;
                         $Giftshop = mysqli_query($con ,$SumGiftShop);
                         $GiftshopMoney = mysqli_fetch_array($Giftshop);
 
@@ -433,7 +432,7 @@ if (isset($_SESSION["AdminID"])) {
                         <div class="p-20 FinanceInfo">
                         <i class="fa-solid fa-dollar-sign GiftShop"></i>
                             <div class="TotalInfo">
-                                <span class="GiftShop"><?php echo thousandsCurrencyFormat($GiftshopMoney['TotalMoney']) ?></span>
+                                <span class="GiftShop mt-0"><?php echo thousandsCurrencyFormat($GiftshopMoney['TotalMoney']) ?></span>
                                 <p>GiftShop</p>
                             </div>
                         </div>

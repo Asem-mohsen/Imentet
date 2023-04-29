@@ -155,285 +155,289 @@ if (isset($_SESSION["AdminID"])) {
                                                 <td>Actions </td>
                                             </tr>
                                             <?php
-                                            if(isset($_POST['CareerID']) && isset($_POST['Approved'])){
-                                                $sql = "WHERE applications.CareerID IN(".implode(',', $_POST['CareerID'] ).") AND applications.Approved IN (".implode(',', $_POST['Approved']).")" ; 
+                                                if(isset($_POST['CareerID']) && isset($_POST['Approved'])){
+                                                    $sql = "WHERE applications.CareerID IN(".implode(',', $_POST['CareerID'] ).") AND applications.Approved IN (".implode(',', $_POST['Approved']).")" ; 
 
-                                                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
-                                                                        LEFT JOIN user ON user.ID = applications.UserID 
-                                                                        JOIN careers ON careers.ID = applications.CareerID
-                                                                        LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
-                                                                        $sql
-                                                                        ORDER BY applications.Date $DateSort ,applications.ID $sort 
-                                                                        ";
-
-                                                $Query = mysqli_query($con , $ApplicationsQuery);
-                                                $fetchquery = mysqli_fetch_row($Query);
-                                                $count =mysqli_num_rows($Query);
-
-                                                
-                                                if($count > 0 ){
-                                                    foreach ($Query as $ApplicationsQuery) {
-
-                                                        echo "<tr id='TableData'>";
-                                                            echo "<td>" . $ApplicationsQuery['ID']     . "</td>";
-                                                            echo "<td>" ;
-                                                                if($ApplicationsQuery['CareerID'] == 2 && $ApplicationsQuery['Approved'] == 1  ){
-                                                                    echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
-                                                                    echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }elseif($ApplicationsQuery['UserID'] == NULL){
-                                                                    echo $ApplicationsQuery['ContractName'] ;
-                                                                }else{
-                                                                    echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }
-                                                            echo "</td>";
-                                                            echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
-                                                            echo "<td>" ; 
-                                                                            if($ApplicationsQuery['Date'] == NULL ){ 
-                                                                            
-                                                                                echo "<p class='fs-13'>Not Determined yet</p>" ;
-                                                                            }else{
-                                                                                echo $ApplicationsQuery['Date'];
-                                                                            } ; 
-                                                            echo "</td>";
-                                                            echo "<td>" ; 
-                                                                            if($ApplicationsQuery['Approved'] == 2 ){ 
-                                                                                echo "<p class='fs-13'> Not Determined Yet</p>" ;
-                                                                            }elseif($ApplicationsQuery['Approved'] == 1 ){
-                                                                                echo "Accepted";
-                                                                            }else{
-                                                                                echo "Rejected";
-                                                                            } ; 
-                                                            echo "</td>";
-                                                            echo "<td>" ;
-                                                                            if($ApplicationsQuery['Reason'] == NULL){
-                                                                                echo " ";
-                                                                            }else{
-                                                                                echo $ApplicationsQuery['Reason'];
-                                                                            }   
-                                                            echo "</td>";
-                                                            echo "<td>"; 
-                                                                            if($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 0){
-                                                                                echo "<button class='btn btn-danger' disabled> Rejected </button>";
-                                                                            }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 1){
-                                                                                echo "<button class='btn btn-success' disabled> Approved </button>";
-                                                                            }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 2){
-                                                                                echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-primary'>Reviewing</a>";
-                                                                            }else{
-                                                                                echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-dark'>Appointment</a>";
-                                                                            }
-                                                            echo "</td>";
-                                                        echo "</tr>";
-                                                    }
-                                                }
-                                            }elseif(isset($_POST['CareerID']) && !isset($_POST['Approved'])){
-                                                $sql = "WHERE applications.CareerID IN(".implode(',', $_POST['CareerID']).")";
-
-                                                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
-                                                                        LEFT JOIN user ON user.ID = applications.UserID 
-                                                                        JOIN careers ON careers.ID = applications.CareerID
-                                                                        LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
-                                                                        $sql
-                                                                        ORDER BY applications.Date $DateSort ,applications.ID $sort 
-                                                                        ";
-
-                                                $Query = mysqli_query($con , $ApplicationsQuery);
-                                                $fetchquery = mysqli_fetch_row($Query);
-                                                $count =mysqli_num_rows($Query);
-
-                                                
-                                                if($count > 0 ){
-                                                    foreach ($Query as $ApplicationsQuery) {
-
-                                                        echo "<tr id='TableData'>";
-                                                            echo "<td>" . $ApplicationsQuery['ID']     . "</td>";
-                                                            echo "<td>" ;
-                                                                if($ApplicationsQuery['CareerID'] == 2 && $ApplicationsQuery['Approved'] == 1  ){
-                                                                    echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
-                                                                    echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }elseif($ApplicationsQuery['UserID'] == NULL){
-                                                                    echo $ApplicationsQuery['ContractName'] ;
-                                                                }else{
-                                                                    echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }
-                                                            echo "</td>";
-                                                            echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
-                                                            echo "<td>" ; 
-                                                                            if($ApplicationsQuery['Date'] == NULL ){ 
-                                                                            
-                                                                                echo "<p class='fs-13'>Not Determined yet</p>" ;
-                                                                            }else{
-                                                                                echo $ApplicationsQuery['Date'];
-                                                                            } ; 
-                                                            echo "</td>";
-                                                            echo "<td>" ; 
-                                                                            if($ApplicationsQuery['Approved'] == 2 ){ 
-                                                                                echo "<p class='fs-13'> Not Determined Yet</p>" ;
-                                                                            }elseif($ApplicationsQuery['Approved'] == 1 ){
-                                                                                echo "Accepted";
-                                                                            }else{
-                                                                                echo "Rejected";
-                                                                            } ; 
-                                                            echo "</td>";
-                                                            echo "<td>" ;
-                                                                            if($ApplicationsQuery['Reason'] == NULL){
-                                                                                echo " ";
-                                                                            }else{
-                                                                                echo $ApplicationsQuery['Reason'];
-                                                                            }   
-                                                            echo "</td>";
-                                                            echo "<td>"; 
-                                                                            if($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 0){
-                                                                                echo "<button class='btn btn-danger' disabled> Rejected </button>";
-                                                                            }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 1){
-                                                                                echo "<button class='btn btn-success' disabled> Approved </button>";
-                                                                            }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 2){
-                                                                                echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-primary'>Reviewing</a>";
-                                                                            }else{
-                                                                                echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-dark'>Appointment</a>";
-                                                                            }
-                                                            echo "</td>";
-                                                        echo "</tr>";
-                                                    }
-                                                }
-                                            }elseif(isset($_POST['Approved']) && !isset($_POST['CareerID'])){
-                                                $sql = "WHERE applications.Approved IN(". implode(',', $_POST['Approved']).")";
-                                                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
-                                                                        LEFT JOIN user ON user.ID = applications.UserID 
-                                                                        JOIN careers ON careers.ID = applications.CareerID
-                                                                        LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
-                                                                        $sql
-                                                                        ORDER BY applications.Date $DateSort ,applications.ID $sort 
-                                                                        ";
+                                                    $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.LastName AS LastName , user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                                                            LEFT JOIN user ON user.ID = applications.UserID 
+                                                                            JOIN careers ON careers.ID = applications.CareerID
+                                                                            LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
+                                                                            $sql
+                                                                            ORDER BY applications.Date $DateSort ,applications.ID $sort 
+                                                                            ";
 
                                                     $Query = mysqli_query($con , $ApplicationsQuery);
                                                     $fetchquery = mysqli_fetch_row($Query);
                                                     $count =mysqli_num_rows($Query);
 
-                                                
-                                                if($count > 0 ){
-                                                    foreach ($Query as $ApplicationsQuery) {
-
-                                                        echo "<tr id='TableData'>";
-                                                            echo "<td>" . $ApplicationsQuery['ID']     . "</td>";
-                                                            echo "<td>" ;
-                                                                if($ApplicationsQuery['CareerID'] == 2 && $ApplicationsQuery['Approved'] == 1  ){
-                                                                    echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
-                                                                    echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }elseif($ApplicationsQuery['UserID'] == NULL){
-                                                                    echo $ApplicationsQuery['ContractName'] ;
-                                                                }else{
-                                                                    echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }
-                                                            echo "</td>";
-                                                            echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
-                                                            echo "<td>" ; 
-                                                                            if($ApplicationsQuery['Date'] == NULL ){ 
-                                                                            
-                                                                                echo "<p class='fs-13'>Not Determined yet</p>" ;
-                                                                            }else{
-                                                                                echo $ApplicationsQuery['Date'];
-                                                                            } ; 
-                                                            echo "</td>";
-                                                            echo "<td>" ; 
-                                                                            if($ApplicationsQuery['Approved'] == 2 ){ 
-                                                                                echo "<p class='fs-13'> Not Determined Yet</p>" ;
-                                                                            }elseif($ApplicationsQuery['Approved'] == 1 ){
-                                                                                echo "Accepted";
-                                                                            }else{
-                                                                                echo "Rejected";
-                                                                            } ; 
-                                                            echo "</td>";
-                                                            echo "<td>" ;
-                                                                            if($ApplicationsQuery['Reason'] == NULL){
-                                                                                echo " ";
-                                                                            }else{
-                                                                                echo $ApplicationsQuery['Reason'];
-                                                                            }   
-                                                            echo "</td>";
-                                                            echo "<td>"; 
-                                                                            if($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 0){
-                                                                                echo "<button class='btn btn-danger' disabled> Rejected </button>";
-                                                                            }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 1){
-                                                                                echo "<button class='btn btn-success' disabled> Approved </button>";
-                                                                            }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 2){
-                                                                                echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-primary'>Reviewing</a>";
-                                                                            }else{
-                                                                                echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-dark'>Appointment</a>";
-                                                                            }
-                                                            echo "</td>";
-                                                        echo "</tr>";
-                                                    }
-                                                }
-                                            }else{
                                                     
-                                                    $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
-                                                                        LEFT JOIN user ON user.ID = applications.UserID 
-                                                                        JOIN careers ON careers.ID = applications.CareerID
-                                                                        LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
-                                                                        ORDER BY applications.Date $DateSort ,applications.ID $sort 
-                                                                        ";
+                                                    if($count > 0 ){
+                                                        foreach ($Query as $ApplicationsQuery) {
+                                                                
+                                                            $FullName =  $ApplicationsQuery['UserName'] . " " .  $ApplicationsQuery['LastName'] ;
+                                                            echo "<tr id='TableData'>";
+                                                                echo "<td>" . $ApplicationsQuery['ID']     . "</td>";
+                                                                echo "<td>" ;
+                                                                    if($ApplicationsQuery['CareerID'] == 2 && $ApplicationsQuery['Approved'] == 1  ){
+                                                                        echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
+                                                                        echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }elseif($ApplicationsQuery['UserID'] == NULL){
+                                                                        echo $ApplicationsQuery['ContractName'] ;
+                                                                    }else{
+                                                                        echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }
+                                                                echo "</td>";
+                                                                echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
+                                                                echo "<td>" ; 
+                                                                                if($ApplicationsQuery['Date'] == NULL ){ 
+                                                                                
+                                                                                    echo "<p class='fs-13'>Not Determined yet</p>" ;
+                                                                                }else{
+                                                                                    echo $ApplicationsQuery['Date'];
+                                                                                } ; 
+                                                                echo "</td>";
+                                                                echo "<td>" ; 
+                                                                                if($ApplicationsQuery['Approved'] == 2 ){ 
+                                                                                    echo "<p class='fs-13'> Not Determined Yet</p>" ;
+                                                                                }elseif($ApplicationsQuery['Approved'] == 1 ){
+                                                                                    echo "Accepted";
+                                                                                }else{
+                                                                                    echo "Rejected";
+                                                                                } ; 
+                                                                echo "</td>";
+                                                                echo "<td>" ;
+                                                                                if($ApplicationsQuery['Reason'] == NULL){
+                                                                                    echo " ";
+                                                                                }else{
+                                                                                    echo $ApplicationsQuery['Reason'];
+                                                                                }   
+                                                                echo "</td>";
+                                                                echo "<td>"; 
+                                                                                if($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 0){
+                                                                                    echo "<button class='btn btn-danger' disabled> Rejected </button>";
+                                                                                }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 1){
+                                                                                    echo "<button class='btn btn-success' disabled> Approved </button>";
+                                                                                }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 2){
+                                                                                    echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-primary'>Reviewing</a>";
+                                                                                }else{
+                                                                                    echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-dark'>Appointment</a>";
+                                                                                }
+                                                                echo "</td>";
+                                                            echo "</tr>";
+                                                        }
+                                                    }
+                                                }elseif(isset($_POST['CareerID']) && !isset($_POST['Approved'])){
+                                                    $sql = "WHERE applications.CareerID IN(".implode(',', $_POST['CareerID']).")";
+
+                                                    $ApplicationsQuery = "SELECT applications .* ,user.LastName AS LastName , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                                                            LEFT JOIN user ON user.ID = applications.UserID 
+                                                                            JOIN careers ON careers.ID = applications.CareerID
+                                                                            LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
+                                                                            $sql
+                                                                            ORDER BY applications.Date $DateSort ,applications.ID $sort 
+                                                                            ";
+
                                                     $Query = mysqli_query($con , $ApplicationsQuery);
                                                     $fetchquery = mysqli_fetch_row($Query);
                                                     $count =mysqli_num_rows($Query);
-                                                                
-                                                    foreach ($Query as $ApplicationsQuery) {
 
-                                                        echo "<tr id='TableData'>";
-                                                            echo "<td>" . $ApplicationsQuery['ID']     . "</td>";
-                                                            echo "<td>" ;
-                                                                if($ApplicationsQuery['CareerID'] == 2 && $ApplicationsQuery['Approved'] == 1  ){
-                                                                    echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
-                                                                    echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }elseif($ApplicationsQuery['UserID'] == NULL){
-                                                                    echo $ApplicationsQuery['ContractName'] ;
-                                                                }else{
-                                                                    echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $ApplicationsQuery['UserName']   . "</a>";
-                                                                }
-                                                            echo "</td>";
-                                                            echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
-                                                            echo "<td>" ; 
-                                                                            if($ApplicationsQuery['Date'] == NULL ){ 
-                                                                            
-                                                                                echo "<p class='fs-13'>Not Determined yet</p>" ;
-                                                                            }else{
-                                                                                echo $ApplicationsQuery['Date'];
-                                                                            } ; 
-                                                            echo "</td>";
-                                                            echo "<td>" ; 
-                                                                            if($ApplicationsQuery['Approved'] == 2 ){ 
-                                                                                echo "<p class='fs-13'> Not Determined Yet</p>" ;
-                                                                            }elseif($ApplicationsQuery['Approved'] == 1 ){
-                                                                                echo "Accepted";
-                                                                            }else{
-                                                                                echo "Rejected";
-                                                                            } ; 
-                                                            echo "</td>";
-                                                            echo "<td>" ;
-                                                                            if($ApplicationsQuery['Reason'] == NULL){
-                                                                                echo " ";
-                                                                            }else{
-                                                                                echo $ApplicationsQuery['Reason'];
-                                                                            }   
-                                                            echo "</td>";
-                                                            echo "<td>"; 
-                                                                            if($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 0){
-                                                                                echo "<button class='btn btn-danger' disabled> Rejected </button>";
-                                                                            }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 1){
-                                                                                echo "<button class='btn btn-success' disabled> Approved </button>";
-                                                                            }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 2){
-                                                                                echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-primary'>Reviewing</a>";
-                                                                            }else{
-                                                                                echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-dark'>Appointment</a>";
-                                                                            }
-                                                            echo "</td>";
-                                                        echo "</tr>";
-                                                    } 
-                                                
-                                            }
+                                                    
+                                                    if($count > 0 ){
+                                                        foreach ($Query as $ApplicationsQuery) {
+                                                                
+                                                            $FullName =  $ApplicationsQuery['UserName'] . " " .  $ApplicationsQuery['LastName'] ;
+                                                            echo "<tr id='TableData'>";
+                                                                echo "<td>" . $ApplicationsQuery['ID']     . "</td>";
+                                                                echo "<td>" ;
+                                                                    if($ApplicationsQuery['CareerID'] == 2 && $ApplicationsQuery['Approved'] == 1  ){
+                                                                        echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
+                                                                        echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }elseif($ApplicationsQuery['UserID'] == NULL){
+                                                                        echo $ApplicationsQuery['ContractName'] ;
+                                                                    }else{
+                                                                        echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }
+                                                                echo "</td>";
+                                                                echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
+                                                                echo "<td>" ; 
+                                                                                if($ApplicationsQuery['Date'] == NULL ){ 
+                                                                                
+                                                                                    echo "<p class='fs-13'>Not Determined yet</p>" ;
+                                                                                }else{
+                                                                                    echo $ApplicationsQuery['Date'];
+                                                                                } ; 
+                                                                echo "</td>";
+                                                                echo "<td>" ; 
+                                                                                if($ApplicationsQuery['Approved'] == 2 ){ 
+                                                                                    echo "<p class='fs-13'> Not Determined Yet</p>" ;
+                                                                                }elseif($ApplicationsQuery['Approved'] == 1 ){
+                                                                                    echo "Accepted";
+                                                                                }else{
+                                                                                    echo "Rejected";
+                                                                                } ; 
+                                                                echo "</td>";
+                                                                echo "<td>" ;
+                                                                                if($ApplicationsQuery['Reason'] == NULL){
+                                                                                    echo " ";
+                                                                                }else{
+                                                                                    echo $ApplicationsQuery['Reason'];
+                                                                                }   
+                                                                echo "</td>";
+                                                                echo "<td>"; 
+                                                                                if($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 0){
+                                                                                    echo "<button class='btn btn-danger' disabled> Rejected </button>";
+                                                                                }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 1){
+                                                                                    echo "<button class='btn btn-success' disabled> Approved </button>";
+                                                                                }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 2){
+                                                                                    echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-primary'>Reviewing</a>";
+                                                                                }else{
+                                                                                    echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-dark'>Appointment</a>";
+                                                                                }
+                                                                echo "</td>";
+                                                            echo "</tr>";
+                                                        }
+                                                    }
+                                                }elseif(isset($_POST['Approved']) && !isset($_POST['CareerID'])){
+                                                    $sql = "WHERE applications.Approved IN(". implode(',', $_POST['Approved']).")";
+                                                    $ApplicationsQuery = "SELECT applications .* ,user.LastName AS LastName , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                                                            LEFT JOIN user ON user.ID = applications.UserID 
+                                                                            JOIN careers ON careers.ID = applications.CareerID
+                                                                            LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
+                                                                            $sql
+                                                                            ORDER BY applications.Date $DateSort ,applications.ID $sort 
+                                                                            ";
+
+                                                        $Query = mysqli_query($con , $ApplicationsQuery);
+                                                        $fetchquery = mysqli_fetch_row($Query);
+                                                        $count =mysqli_num_rows($Query);
+
+                                                    
+                                                    if($count > 0 ){
+                                                        foreach ($Query as $ApplicationsQuery) {
+                                                                
+                                                            $FullName =  $ApplicationsQuery['UserName'] . " " .  $ApplicationsQuery['LastName'] ;
+                                                            echo "<tr id='TableData'>";
+                                                                echo "<td>" . $ApplicationsQuery['ID']     . "</td>";
+                                                                echo "<td>" ;
+                                                                    if($ApplicationsQuery['CareerID'] == 2 && $ApplicationsQuery['Approved'] == 1  ){
+                                                                        echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
+                                                                        echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }elseif($ApplicationsQuery['UserID'] == NULL){
+                                                                        echo $ApplicationsQuery['ContractName'] ;
+                                                                    }else{
+                                                                        echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }
+                                                                echo "</td>";
+                                                                echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
+                                                                echo "<td>" ; 
+                                                                                if($ApplicationsQuery['Date'] == NULL ){ 
+                                                                                
+                                                                                    echo "<p class='fs-13'>Not Determined yet</p>" ;
+                                                                                }else{
+                                                                                    echo $ApplicationsQuery['Date'];
+                                                                                } ; 
+                                                                echo "</td>";
+                                                                echo "<td>" ; 
+                                                                                if($ApplicationsQuery['Approved'] == 2 ){ 
+                                                                                    echo "<p class='fs-13'> Not Determined Yet</p>" ;
+                                                                                }elseif($ApplicationsQuery['Approved'] == 1 ){
+                                                                                    echo "Accepted";
+                                                                                }else{
+                                                                                    echo "Rejected";
+                                                                                } ; 
+                                                                echo "</td>";
+                                                                echo "<td>" ;
+                                                                                if($ApplicationsQuery['Reason'] == NULL){
+                                                                                    echo " ";
+                                                                                }else{
+                                                                                    echo $ApplicationsQuery['Reason'];
+                                                                                }   
+                                                                echo "</td>";
+                                                                echo "<td>"; 
+                                                                                if($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 0){
+                                                                                    echo "<button class='btn btn-danger' disabled> Rejected </button>";
+                                                                                }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 1){
+                                                                                    echo "<button class='btn btn-success' disabled> Approved </button>";
+                                                                                }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 2){
+                                                                                    echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-primary'>Reviewing</a>";
+                                                                                }else{
+                                                                                    echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-dark'>Appointment</a>";
+                                                                                }
+                                                                echo "</td>";
+                                                            echo "</tr>";
+                                                        }
+                                                    }
+                                                }else{
+                                                        
+                                                        $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName,user.LastName AS LastName , user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                                                                            LEFT JOIN user ON user.ID = applications.UserID 
+                                                                            JOIN careers ON careers.ID = applications.CareerID
+                                                                            LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
+                                                                            ORDER BY applications.Date $DateSort ,applications.ID $sort 
+                                                                            ";
+                                                        $Query = mysqli_query($con , $ApplicationsQuery);
+                                                        $fetchquery = mysqli_fetch_row($Query);
+                                                        $count =mysqli_num_rows($Query);
+                                                                    
+                                                        foreach ($Query as $ApplicationsQuery) {
+                                                                
+                                                            $FullName =  $ApplicationsQuery['UserName'] . " " .  $ApplicationsQuery['LastName'] ;
+                                                            echo "<tr id='TableData'>";
+                                                                echo "<td>" . $ApplicationsQuery['ID']     . "</td>";
+                                                                echo "<td>" ;
+                                                                    if($ApplicationsQuery['CareerID'] == 2 && $ApplicationsQuery['Approved'] == 1  ){
+                                                                        echo "<a href='./Careers.php?action=EquestriansProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }elseif($ApplicationsQuery['CareerID'] == 3 && $ApplicationsQuery['Approved'] == 1 ){
+                                                                        echo "<a href='./Careers.php?action=TourGuideProfile&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }elseif($ApplicationsQuery['UserID'] == NULL){
+                                                                        echo $ApplicationsQuery['ContractName'] ;
+                                                                    }else{
+                                                                        echo "<a href='./Users.php?action=MoreInfo&UserID=". $ApplicationsQuery['UserID'] ."' >" . $FullName   . "</a>";
+                                                                    }
+                                                                echo "</td>";
+                                                                echo "<td>" . $ApplicationsQuery['Career']   . "</td>";
+                                                                echo "<td>" ; 
+                                                                                if($ApplicationsQuery['Date'] == NULL ){ 
+                                                                                
+                                                                                    echo "<p class='fs-13'>Not Determined yet</p>" ;
+                                                                                }else{
+                                                                                    echo $ApplicationsQuery['Date'];
+                                                                                } ; 
+                                                                echo "</td>";
+                                                                echo "<td>" ; 
+                                                                                if($ApplicationsQuery['Approved'] == 2 ){ 
+                                                                                    echo "<p class='fs-13'> Not Determined Yet</p>" ;
+                                                                                }elseif($ApplicationsQuery['Approved'] == 1 ){
+                                                                                    echo "Accepted";
+                                                                                }else{
+                                                                                    echo "Rejected";
+                                                                                } ; 
+                                                                echo "</td>";
+                                                                echo "<td>" ;
+                                                                                if($ApplicationsQuery['Reason'] == NULL){
+                                                                                    echo " ";
+                                                                                }else{
+                                                                                    echo $ApplicationsQuery['Reason'];
+                                                                                }   
+                                                                echo "</td>";
+                                                                echo "<td>"; 
+                                                                                if($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 0){
+                                                                                    echo "<button class='btn btn-danger' disabled> Rejected </button>";
+                                                                                }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 1){
+                                                                                    echo "<button class='btn btn-success' disabled> Approved </button>";
+                                                                                }elseif($ApplicationsQuery['Date'] != NULL && $ApplicationsQuery['Approved'] == 2){
+                                                                                    echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-primary'>Reviewing</a>";
+                                                                                }else{
+                                                                                    echo "<a href='./Careers.php?action=Appointement&ApplicantID=".$ApplicationsQuery['ID']."' class='btn btn-dark'>Appointment</a>";
+                                                                                }
+                                                                echo "</td>";
+                                                            echo "</tr>";
+                                                        } 
+                                                    
+                                                }
                                             ?>
                                         </table>
                                     </div>
@@ -452,7 +456,7 @@ if (isset($_SESSION["AdminID"])) {
                         echo "<p>We don't hire Ghosts yet </p>";
                     echo "</div>";
                 }else{
-                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
+                $ApplicationsQuery = "SELECT applications .* , user.Name AS UserName,  user.LastName AS LastName, user.ID AS UserID , careers.Careers As Career, sponsorship.Name As ContractName  FROM applications 
                                         LEFT JOIN user ON user.ID = applications.UserID 
                                         JOIN careers ON careers.ID = applications.CareerID
                                         LEFT JOIN sponsorship ON applications.ContractID = sponsorship.ContractID
@@ -462,6 +466,7 @@ if (isset($_SESSION["AdminID"])) {
                 $row = mysqli_fetch_assoc($Query);
                 $count =mysqli_num_rows($Query);
                 if(isset($row['ID'])){
+                    $FullName = $row['UserName'] . " " . $row['LastName'] ;
                             ?>
             <h1 class="PageName"> Interview </h1>
             <div class="container">
@@ -470,7 +475,7 @@ if (isset($_SESSION["AdminID"])) {
                 <input type="hidden" name="ApplicantID" value="<?php echo $ApplicantID ?>">
                     <div class="form-group insertInput mb-0">
                         <div class="m-auto">
-                            <input type="text" name="Name" placeholder="Applicant Name" class="form-control" value="<?php if(isset($row['UserName'])){ echo $row['UserName'] ; }else{ echo $row['ContractName']; } ?>" disabled required="required" />
+                            <input type="text" name="Name" placeholder="Applicant Name" class="form-control" value="<?php if(isset($row['UserName'])){ echo $FullName ; }else{ echo $row['ContractName']; } ?>" disabled required="required" />
                         </div>
                     </div>
                     <div class="form-group insertInput mb-0">
@@ -620,14 +625,14 @@ if (isset($_SESSION["AdminID"])) {
             $Select = mysqli_query($con , $SelectQuery);
             $Equestrian= mysqli_fetch_assoc($Select);
             if(isset($Equestrian['ID'])){
-
+                $FullName = $Equestrian['Name'] . " " . $Equestrian['LastName'] ;
                 ?>
             <div class="container rounded bg-white mt-5 mb-5">
                         <div class="row">
                             <div class="col-md-3 border-right">
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                                     <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                    <span class="font-weight-bold"><?php echo $Equestrian['Name']?></span>
+                                    <span class="font-weight-bold"><?php echo $FullName?></span>
                                     <span class="text-black-50"><?php echo $Equestrian['Email']?></span>
                                     <span> </span>
                                 </div>
@@ -635,12 +640,12 @@ if (isset($_SESSION["AdminID"])) {
                             <div class="col-md-5 border-right">
                                 <div class="p-3 py-5">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="text-right"><?php echo $Equestrian['Name']?> Profile</h4>
+                                        <h4 class="text-right"><?php echo $FullName?> Profile</h4>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-12">
                                             <label class="labels">Name</label>
-                                            <input type="text" class="form-control" placeholder="first name" disabled value="<?php echo $Equestrian['Name']?>">
+                                            <input type="text" class="form-control" placeholder="first name" disabled value="<?php echo $FullName?>">
                                         </div>
                                     </div>
                                     <div class="row mt-3">
@@ -703,6 +708,7 @@ if (isset($_SESSION["AdminID"])) {
             $Select = mysqli_query($con , $SelectQuery);
             $TourGuide= mysqli_fetch_assoc($Select);
             if(isset($TourGuide['ID'])){
+                $FullName = $TourGuide['Name'] . " " . $TourGuide['LastName'] ;
 
                 ?>
             <div class="container rounded bg-white mt-5 mb-5">
@@ -710,7 +716,7 @@ if (isset($_SESSION["AdminID"])) {
                             <div class="col-md-3 border-right">
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                                     <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                    <span class="font-weight-bold"><?php echo $TourGuide['Name']?></span>
+                                    <span class="font-weight-bold"><?php echo $FullName ?></span>
                                     <span class="text-black-50"><?php echo $TourGuide['Email']?></span>
                                     <span> </span>
                                 </div>
@@ -718,12 +724,12 @@ if (isset($_SESSION["AdminID"])) {
                             <div class="col-md-5 border-right">
                                 <div class="p-3 py-5">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="text-right"><?php echo $TourGuide['Name']?> Profile</h4>
+                                        <h4 class="text-right"><?php echo $FullName ?> Profile</h4>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-12">
                                             <label class="labels">Name</label>
-                                            <input type="text" class="form-control" placeholder="first name" disabled value="<?php echo $TourGuide['Name']?>">
+                                            <input type="text" class="form-control" placeholder="first name" disabled value="<?php echo $FullName ?>">
                                         </div>
                                     </div>
                                     <div class="row mt-3">

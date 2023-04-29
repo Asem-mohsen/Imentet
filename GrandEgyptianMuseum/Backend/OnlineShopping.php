@@ -119,12 +119,19 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
             if(isset($_POST['BUY'])){
                     
                 if(isset($_POST['ItemID'])){
+                    
                     for($i = 0 ; $i < count($_POST['ItemID']) ; $i++){
                         $UserID = $_POST['UserID'];
                         $ProductID = $_POST['ItemID'][$i];
                         $Quantity = $_POST['Quantity'][$i];
                         $Payment = $_POST['Payment'];
                         $Total = $_POST['Total'];
+                        $Price = $_POST['Price'][$i];
+
+                        $TotalValue[$i] = 0 ;
+                        $TotalValue[$i] += $Price * $Quantity ; 
+
+                        $TotalFinalValue = array_sum($TotalValue);
                         
                         $FormError = array();
 
@@ -140,19 +147,22 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
 
                         if(empty($FormError)){
 
-                            $InsertGifts = "INSERT INTO useritems VALUES(NULL , $UserID , $ProductID , $Quantity , $Payment , '$Total')";
+                            $InsertGifts = "INSERT INTO useritems VALUES(NULL , $UserID , $ProductID , $Quantity , $Payment , '$TotalFinalValue')";
                             $InsertQuery = mysqli_query($con , $InsertGifts);
                             
                             $UpdateGifts = "UPDATE giftshop SET Quantity = Quantity-$Quantity WHERE ID = $ProductID";
                             $UpdateQuery = mysqli_query($con , $UpdateGifts);
+                            
 
                         }
                         
                     }
                     if(isset($InsertQuery) && isset($UpdateQuery)){
-                        echo "<div class='alert alert-success'>";
-                            echo "Done";
-                        echo "</div>";
+
+                            echo "<div class='alert alert-success'>";
+                                echo "Done";
+                            echo "</div>";
+                        
                     }
                 }else{
                     $FormError[] = 'No Items Selected';
@@ -228,8 +238,8 @@ $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
                                                                         </div>
                                                                 </td>
                                                                 <td>
-                                                                    <p> <?php echo $value['Price'] ; ?> </p>
-                                                                    <input type="hidden" name="Price" class="Iprice" value="<?php echo $value['Price'] ; ?>">
+                                                                    <p> <?php echo $row['Price'] ; ?> </p>
+                                                                    <input type="hidden" name="Price[]" class="Iprice" value="<?php echo $value['Price'] ; ?>">
                                                                 </td>
                                                                 <td>                                    
                                                                     <div class="subtotal Itotal">

@@ -255,7 +255,7 @@ if (isset($_SESSION["AdminID"])) {
                     ?>
 
                         <div class="UserInteractions">
-                            <h3><?php echo $UserName ?> Interactions </h3>
+                            <h3><?php echo $Userrow['Name'] ?> Interactions </h3>
                             <div class="ShowFeedback">
                                 <h4 class="PanalHeading">Feedback</h4>
                                 <div class="Feedback">
@@ -265,7 +265,7 @@ if (isset($_SESSION["AdminID"])) {
                                             echo"<span class='rec'> </span>";
                                         echo "<p>" . $Feedback['Description'] . "</p>";
                                     } }else{
-                                        echo "<p class='NoData'>" .$UserName.  " Didn't Give a Feedback Yet </p>";
+                                        echo "<p class='NoData'>" .$Userrow['Name'].  " Didn't Give a Feedback Yet </p>";
                                     } ?>
                                 </div>
                             </div>
@@ -299,7 +299,7 @@ if (isset($_SESSION["AdminID"])) {
                                             <td><?php echo $VisitTicket['Date']  ?></td>
                                             <td><?php echo $VisitTicket['PlaceName']  ?></td>
                                             <?php } }else{
-                                                echo "<td class='NoData' colspan='3'> No Bookings for " .$UserName . "</td>";
+                                                echo "<td class='NoData' colspan='3'> No Bookings for " .$Userrow['Name'] . "</td>";
                                             } ?>
 
                                             </tr>
@@ -334,7 +334,7 @@ if (isset($_SESSION["AdminID"])) {
                                             <td><?php echo $Ticket['EventName']  ?></td>
                                             </tr>
                                     <?php  } }else{
-                                                echo "<td class='NoData' colspan='3'> No Bookings for " .$UserName . "</td>";
+                                                echo "<td class='NoData' colspan='3'> No Bookings for " .$Userrow['Name'] . "</td>";
                                             } ?>
                                     </tbody>
                                     </table>
@@ -364,7 +364,7 @@ if (isset($_SESSION["AdminID"])) {
                                             </div>
                                         </div>
                                         <?php } }else{
-                                                echo "<p class='NoData'>" .$UserName . " Didn't purchase any Items </p>";
+                                                echo "<p class='NoData'>" .$Userrow['Name'] . " Didn't purchase any Items </p>";
                                             }  ?>
                                     </div>
                             </div>
