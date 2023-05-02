@@ -125,7 +125,7 @@ if (isset($_SESSION["UserID"])) {
 
 }else{
     if(!isset($_SESSION["UserID"])){
-        header("Location: SignIn.php");
+        header("Location: login.php");
         exit();
     }
 }

@@ -369,7 +369,7 @@ if (isset($_SESSION["AdminID"])) {
     include "./Includes/PageContent/Footer.php";
 }else{
     if(!isset($_SESSION["AdminID"])){
-        header("Location: SignIn.php");
+        header("Location: login.php");
         exit();
     }
 }

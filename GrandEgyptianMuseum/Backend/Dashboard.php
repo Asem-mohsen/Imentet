@@ -24,7 +24,12 @@ if (isset($_SESSION["AdminID"])) {
             <ul>
                 <li>
                     <a class="active d-flex align-center fs-14 c-b p-10 rad-6" href="">
-                        <i class="fa-solid fa-chart-bar fa-fw"></i><span> Dashboard </span>
+                    <i class="fa-solid fa-chart-bar fa-fw"></i><span> Dashboard </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Project/index.php" target='_blank'>
+                        <i class="fa-solid fa-sitemap fa-fw"></i><span> Website </span>
                     </a>
                 </li>
                 <li>
@@ -476,7 +481,7 @@ if (isset($_SESSION["AdminID"])) {
     
     include "./Includes/PageContent/Footer.php";
 } else {
-    header("Location: SignIn.php");
+    header("Location: login.php");
     exit();
 }
 ?>

@@ -341,7 +341,7 @@ if (isset($_SESSION["AdminID"])) {
 
 }else{
     if(!isset($_SESSION["AdminID"])){
-        header("Location: SignIn.php");
+        header("Location: login.php");
         exit();
     }
 }

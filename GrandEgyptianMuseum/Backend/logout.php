@@ -5,7 +5,7 @@ session_unset();
 
 session_destroy();
 
-header("Location: ./SignIn.php");
+header("Location: ./login.php");
 
 exit();
 ?>

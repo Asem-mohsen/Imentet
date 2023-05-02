@@ -537,7 +537,7 @@ if (isset($_SESSION["AdminID"])) {
                         if($Date < $now) {
                             $FormErrors[] = "The Event's Date Cannot be in the past";
                         }
-                        if($DateTo = '0000-00-00') {
+                        if($DateTo == '0000-00-00') {
                             $DateTo = NULL ;
                         }
 
@@ -977,7 +977,7 @@ if (isset($_SESSION["AdminID"])) {
     } 
 }else{
     if(!isset($_SESSION["AdminID"])){
-        header("Location: SignIn.php");
+        header("Location: login.php");
         exit();
     }
 }

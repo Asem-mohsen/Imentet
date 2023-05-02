@@ -121,11 +121,9 @@ if (isset($_SESSION["AdminID"])) {
                                                 <td>Name</td>
                                                 <td>Age</td>
                                                 <td>Phone</td>
-                                                <td>Nationality</td>
                                                 <td>Role</td>
                                                 <td>Membership</td>
                                                 <td>Action</td>
-
                                             </tr>
                                             <?php
                                                 if(isset($_POST['Type'])){
@@ -144,24 +142,37 @@ if (isset($_SESSION["AdminID"])) {
 
                                                             foreach ($Info as $User) {
                                                                 $FullName =  $User['Name'] . ' ' .  $User['LastName'] ;
-
                                                                 if($User['MembershipType'] == NULL){
-
+        
                                                                     $User['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                                 }
                                                                 echo "<tr id='TableData'>";
-                                                                echo "<td>" . $User['ID']     . "</td>";
-                                                                echo "<td>" . $FullName   . "</td>";
-                                                                echo "<td>" . $User['Age']  . "</td>";
-                                                                echo "<td>" . $User['Phone']  . "</td>";
-                                                                echo "<td>" . $User['Nationality'] . "</td>";
-                                                                echo "<td>" . $User['UserRole'] . "</td>";
-                                                                echo "<td>" . $User['MembershipType'] . "</td>";
-                                                                                                                        
-                                                                echo "<td>";
-                                                                    echo "<a href='./Users.php?action=MoreInfo&UserID=" . $User['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
-                                                                echo "</td>";
-
+                                                                    echo "<td>" . $User['ID']     . "</td>";
+                                                                    echo "<td>" . $FullName   . "</td>";
+                                                                    echo "<td>";
+                                                                                if(isset($User['Age'])){
+                                                                                    echo $User['Age'] ;
+                                                                                }else{
+                                                                                    echo "<p class='fs-13 c-gray'> No Information Yet </p>";
+                                                                                }
+                                                                    echo "</td>";                                                        echo "<td>";
+                                                                                if(isset($User['Phone'])){
+                                                                                    echo $User['Phone'] ;
+                                                                                }else{
+                                                                                    echo "<p class='fs-13 c-gray'> No Information Yet </p>";
+                                                                                }
+                                                                    echo "</td>";                                                        echo "<td>";
+                                                                                if(isset($User['UserRole'])){
+                                                                                    echo $User['UserRole'] ;
+                                                                                }else{
+                                                                                    echo "<p class='fs-13 c-gray'> No Information Yet </p>";
+                                                                                }
+                                                                    echo "</td>";
+                                                                    echo "<td>" . $User['MembershipType'] . "</td>";
+                                                                                                                            
+                                                                    echo "<td>";
+                                                                        echo "<a href='./Users.php?action=MoreInfo&UserID=" . $User['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
+                                                                    echo "</td>";
                                                                 echo "</tr>";
                                                             } 
                                                         }
@@ -174,18 +185,32 @@ if (isset($_SESSION["AdminID"])) {
                                                             $User['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
                                                         }
                                                         echo "<tr id='TableData'>";
-                                                        echo "<td>" . $User['ID']     . "</td>";
-                                                        echo "<td>" . $FullName   . "</td>";
-                                                        echo "<td>" . $User['Age']  . "</td>";
-                                                        echo "<td>" . $User['Phone']  . "</td>";
-                                                        echo "<td>" . $User['Nationality'] . "</td>";
-                                                        echo "<td>" . $User['UserRole'] . "</td>";
-                                                        echo "<td>" . $User['MembershipType'] . "</td>";
-                                                                                                                
-                                                        echo "<td>";
-                                                            echo "<a href='./Users.php?action=MoreInfo&UserID=" . $User['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
-                                                        echo "</td>";
-
+                                                            echo "<td>" . $User['ID']     . "</td>";
+                                                            echo "<td>" . $FullName   . "</td>";
+                                                            echo "<td>";
+                                                                        if(isset($User['Age'])){
+                                                                            echo $User['Age'] ;
+                                                                        }else{
+                                                                            echo "<p class='fs-13 c-gray'> No Information Yet </p>";
+                                                                        }
+                                                            echo "</td>";                                                        echo "<td>";
+                                                                        if(isset($User['Phone'])){
+                                                                            echo $User['Phone'] ;
+                                                                        }else{
+                                                                            echo "<p class='fs-13 c-gray'> No Information Yet </p>";
+                                                                        }
+                                                            echo "</td>";                                                        echo "<td>";
+                                                                        if(isset($User['UserRole'])){
+                                                                            echo $User['UserRole'] ;
+                                                                        }else{
+                                                                            echo "<p class='fs-13 c-gray'> No Information Yet </p>";
+                                                                        }
+                                                            echo "</td>";
+                                                            echo "<td>" . $User['MembershipType'] . "</td>";
+                                                                                                                    
+                                                            echo "<td>";
+                                                                echo "<a href='./Users.php?action=MoreInfo&UserID=" . $User['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
+                                                            echo "</td>";
                                                         echo "</tr>";
                                                     } 
 
@@ -2290,7 +2315,7 @@ if (isset($_SESSION["AdminID"])) {
 
 }else{
     if(!isset($_SESSION["AdminID"])){
-        header("Location: SignIn.php");
+        header("Location: login.php");
         exit();
     }
 }
