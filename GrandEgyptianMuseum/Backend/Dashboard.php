@@ -105,11 +105,13 @@ if (isset($_SESSION["AdminID"])) {
                             </a>
                         </li>
                 <?php } ?>
+                <?php if($row['AdminRole'] == 4){ ?>
                 <li>
                     <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Feedback.php?action=Manage">
                         <i class="fa-solid fa-comment fa-fw"></i><span> Feedback </span>
                     </a>
                 </li>
+                <?php } ?>
             </ul>
         </div>
 

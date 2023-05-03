@@ -28,9 +28,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                             echo "<div class='alert alert-danger'> Your Account Is Deactiveted </div>";
                         echo "</div>";
                     }elseif(password_verify( $Password, $AdminRow['Password'])) {
-
                         $_SESSION['AdminID'] = $AdminRow['ID'];     //Register Sesstion ID
-                        $_SESSION['AdminPassword'] = $_POST['Password'];     //Register Sesstion ID
+                        $_SESSION['AdminPassword'] = $_POST['Password'];     //Register Sesstion Password
                         header('Location: ./Dashboard.php');
                         exit();
                     
@@ -42,13 +41,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     
                 }
         }elseif(isset($AdminRow['IsAdmin']) != 1 ){
-                $SelectUser = "SELECT * FROM user WHERE Email = '$Email' AND Password = '$Password' LIMIT 1";
+                $SelectUser = "SELECT * FROM user WHERE Email = '$Email' LIMIT 1";
                 $Select = mysqli_query($con , $SelectUser);
                 $count = mysqli_num_rows($Select);
                 $UserRow = mysqli_fetch_assoc($Select) ; 
-                if($count > 0){
-                    $_SESSION['UserID'] = $UserRow['ID'];     //Register Sesstion ID
-                    header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
+                if(password_verify( $Password, $UserRow['Password'])){
+                  if($count > 0){
+                      $_SESSION['UserID'] = $UserRow['ID'];     //Register Sesstion ID
+                      $_SESSION['UserPassword'] = $_POST['Password'];     //Register Sesstion Password
+
+                      header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
+                      exit();
+                  }
+                }else{
+                  echo "<div class='container'>";
+                      echo "<div class='alert alert-danger'> Password or Email is Not Correct </div>";
+                  echo "</div>";
                 }
         }
 }

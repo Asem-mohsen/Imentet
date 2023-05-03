@@ -43,7 +43,7 @@ if (isset($_SESSION["AdminID"])) {
                             </li>
                         <li>
                             <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Dashboard.php">
-                                <i class="fa-solid fa-arrow-left fa-fw"></i><span> Back </span>
+                                <i class="fa-solid fa-arrow-left fa-fw"></i><span> Dashboard </span>
                             </a>
                         </li>
                     </ul>
@@ -299,7 +299,7 @@ if (isset($_SESSION["AdminID"])) {
 
             } 
         }elseif($do == "Delete"){
-           $CollectionID = isset($_GET['CollectionID']) && is_numeric($_GET['CollectionID']) ? intval($_GET['CollectionID']) : 0;
+            $CollectionID = isset($_GET['CollectionID']) && is_numeric($_GET['CollectionID']) ? intval($_GET['CollectionID']) : 0;
 
             $Check = "SELECT * FROM collections WHERE ID = $CollectionID";
             $CheckCollection = mysqli_query($con, $Check);

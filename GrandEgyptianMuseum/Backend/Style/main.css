@@ -220,6 +220,8 @@ h1.page-name {
 .EventPage{
     display: grid;
     justify-content: center;
+    width: min-content;
+    margin: auto;
 }
 .EventPage .top{
     border: 1px solid gray;
@@ -738,6 +740,8 @@ div.Box img{
 div.bottomBox {
     text-align: center;
     padding-top: 10px;
+    height: 40px;
+    overflow-y: hidden;
 }
 div.bottomBox a{
     font-weight: bold;

@@ -14,7 +14,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $Name = mysqli_real_escape_string($con, $_POST['Name']);
         $Email = mysqli_real_escape_string($con, $_POST['Email']);
         $Pass = md5($_POST['Password']);
-        // $UserRole = $_POST['UserRole'];
     
         $Select = " SELECT * FROM user WHERE Email = '$Email' && Password = '$Pass' ";
     
@@ -31,7 +30,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $LastName = $SplitedName[1];
 
                 $Insert = "INSERT INTO user(Name, LastName , Email, Password) VALUES('$FirstName' , '$LastName' ,'$Email','$Pass')";
-                mysqli_query($con, $Insert);
+                $RunQuery = mysqli_query($con, $Insert);
+                
+                $Image = "avatar.png";
+
+                $InsertImgQuery = "INSERT INTO `userimages` Values( Null , '". mysqli_insert_id($con) . "' , '$Image' )";
+                $Insert = mysqli_query($con, $InsertImgQuery);
+                
                 header('location:login.php');
             
         }

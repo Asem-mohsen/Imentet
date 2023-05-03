@@ -34,6 +34,11 @@ if (isset($_SESSION["AdminID"])) {
                         <h3 class="p-relative txt-center mt-0">Control</h3>
                         <ul>
                             <li>
+                                <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Feedback.php?action=Manage">
+                                    <i class="fa-solid fa-comment fa-fw"></i><span> Feedback </span>
+                                </a>
+                            </li>
+                            <li>
                                 <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Entertainments.php?action=CheckAll">
                                     <i class="fa-solid fa-search fa-fw"></i><span> Check All Events </span>
                                 </a>

@@ -227,7 +227,7 @@ if(isset($_SESSION['AdminID'])){
                       </a>
                     </li>
                   </ul>
-                  <a href="#" class="event-two__more-link">
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php" class="event-two__more-link">
                     View All Upcoming Events 
                     <span>+</span>
                   </a>
@@ -260,7 +260,7 @@ if(isset($_SESSION['AdminID'])){
                             <div class="event-two__price">
                               <span><?php echo $Event['RegularPrice'] . " $" ?></span>
                             </div>
-                            <img src="images/event/event-2-1.jpeg" alt="Awesome Image" />
+                            <img src="./Images/<?php echo $Event['Image'] ?>" width="200px" height="200px" alt="Awesome Image" />
                           </div>
                         </div>
                         <div class="event-two__content">
@@ -274,14 +274,14 @@ if(isset($_SESSION['AdminID'])){
                             </div>
                           </div>
                           <h3 class="event-two__title">
-                            <a href="EventDetails.php">
+                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>">
                               <?php echo $Event['Name'] ?>
                             </a>
                           </h3>
                           <p class="event-two__text">
                             <?php echo $Event['PlaceName'] ?>
                           </p>
-                          <a href="EventDetails.php" class="event-two__link">
+                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="event-two__link">
                             <span>
                               <i class="fa fa-angle-right"></i>More Details</span>
                           </a>
@@ -314,7 +314,7 @@ if(isset($_SESSION['AdminID'])){
                             <div class="event-two__price">
                               <span><?php echo $UpcomingEvents['RegularPrice'] . " $" ?></span>
                             </div>
-                            <img src="images/event/event-2-1.jpeg" alt="Awesome Image" />
+                            <img src="./Images/<?php echo $UpcomingEvents['Image'] ?>" width="200px" height="200px"  alt="Awesome Image" />
                           </div>
                         </div>
                         <div class="event-two__content">
@@ -328,14 +328,14 @@ if(isset($_SESSION['AdminID'])){
                             </div>
                           </div>
                           <h3 class="event-two__title">
-                            <a href="EventDetails.php">
+                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $UpcomingEvents['ID'] ?>">
                               <?php echo $UpcomingEvents['Name'] ?>
                             </a>
                           </h3>
                           <p class="event-two__text">
                             <?php echo $UpcomingEvents['PlaceName'] ?>
                           </p>
-                          <a href="EventDetails.php" class="event-two__link">
+                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $UpcomingEvents['ID'] ?>" class="event-two__link">
                             <span>
                               <i class="fa fa-angle-right"></i>More Details</span>
                           </a>
@@ -368,7 +368,7 @@ if(isset($_SESSION['AdminID'])){
                             <div class="event-two__price">
                               <span><?php echo $PastEvents['RegularPrice'] ?></span>
                             </div>
-                            <img src="images/event/event-2-1.jpeg" alt="Awesome Image" />
+                            <img src="./Images/<?php echo $PastEvents['Image'] ?>" width="200px" height="200px" alt="Awesome Image" />
                           </div>
                         </div>
                         <div class="event-two__content">
@@ -382,14 +382,14 @@ if(isset($_SESSION['AdminID'])){
                             </div>
                           </div>
                           <h3 class="event-two__title">
-                            <a href="EventDetails.php">
+                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $PastEvents['ID'] ?>">
                               <?php echo $PastEvents['Name'] ?>
                             </a>
                           </h3>
                           <p class="event-two__text">
                             <?php echo $PastEvents['PlaceName'] ?>
                           </p>
-                          <a href="EventDetails.php" class="event-two__link"
+                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $PastEvents['ID'] ?>" class="event-two__link"
                             ><span
                               ><i class="fa fa-angle-right"></i>More Details</span
                             ></a

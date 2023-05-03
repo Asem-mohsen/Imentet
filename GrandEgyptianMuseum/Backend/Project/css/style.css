@@ -129,6 +129,11 @@ a:focus {
   margin-left: 13px;
 }
 
+.spacing {
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
 /* Cursor Style */
 .cursor {
   position: absolute;
@@ -5463,7 +5468,7 @@ a:focus {
 }
 
 .event-page-header {
-  background-image: url(../images/background/inner-banner-bg-2-1.jpeg);
+  background-image: url(../images/background/inner-banner-bg-2-1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -10041,6 +10046,58 @@ a:focus {
   margin-top: 20px;
   margin-bottom: 30px;
 }
+
+.user-icon {
+border-color: #d99578;
+}
+
+.user-icon i {
+  color: #d99578;
+}
+
+.profile {
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
+.profile .testimonials-one__info
+{
+  text-align: center;
+  width: 100%;
+}
+
+.profile .gap-4 
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.profile .has-seperator {
+  position: relative;
+}
+
+.profile .details {
+  margin: auto;
+}
+
+.profile .has-seperator::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: #eee;
+}
+
+input[type="file"] {
+  padding-top: 15px;
+}
+
 .product-details__categories a {
   font-family: "Muli";
   color: #777777;
@@ -11012,4 +11069,39 @@ a:focus {
 .list-unstyled cta-one_list {
   text-align: center;
   margin: auto;
+}
+
+.plan-visit__map-tab-links:before {
+content: initial !important;
+}
+
+.cart-table.custom {
+  min-width: auto !important;
+  margin-top: 30px;
+}
+.cart-table.custom th ,.cart-table.custom td{
+  padding: 15px;
+}
+.cart-table.custom th {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.mt-8 
+{
+  margin-top: 30px;
+}
+.select-date {
+  float:right;
+  margin-bottom: 10px;
+}
+.select-date .event-sorting__tab-content input[type=text]
+{
+  max-width: 160px;
+}
+
+.top-tabs 
+{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
 }
