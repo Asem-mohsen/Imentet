@@ -2600,9 +2600,13 @@ a:focus {
   border: 2px solid #e4e4e4;
   padding-top: 30.5px;
   padding-bottom: 30.5px;
-  padding-left: 28px;
+  /* padding-left: 25px; */
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
+  height: 470px;
+}
+.collection-four__single img{
+  width: "-webkit-fill-available";
 }
 .collection-four__single:hover {
   background-color: #f2ebe8;
@@ -2713,8 +2717,8 @@ a:focus {
 @media (max-width: 1440px) {
   .collection-four__link {
     position: absolute;
-    top: 0;
-    left: -10px;
+    top: -31px;
+    left: 244px;
     margin: 0;
   }
 }

@@ -2593,6 +2593,7 @@ a:focus {
     padding-right: 15px;
   }
 }
+
 .collection-four__single {
   margin-bottom: 48px;
   position: relative;
@@ -2600,9 +2601,13 @@ a:focus {
   border: 2px solid #e4e4e4;
   padding-top: 30.5px;
   padding-bottom: 30.5px;
-  padding-left: 28px;
+  /* padding-left: 25px; */
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
+  height: 450px;
+}
+.collection-four__single img{
+  width: "-webkit-fill-available";
 }
 .collection-four__single:hover {
   background-color: #f2ebe8;

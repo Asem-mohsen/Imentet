@@ -44,7 +44,7 @@ include "./Functions/Functions.php";
             <div class="container">
                 <div class="inner-container">
                     <div class="topbar-one__left">
-                        <a href="contact.html" class="topbar-one__link">
+                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php" class="topbar-one__link">
                             <i class="egypt-icon-clock"></i> Plan Your Visit Today :
                             <span class="topbar-one__time-wrap">
                                 <span class="topbar-one__time">
@@ -104,7 +104,7 @@ include "./Functions/Functions.php";
                             </li>
                         <?php }  ?>
                         <li>
-                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/product-details.php" class="thm-btn topbar-one__btn">Tickets</a>
+                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php" class="thm-btn topbar-one__btn">Tickets</a>
                         </li>
                     </ul>
                 </div>
@@ -142,22 +142,22 @@ include "./Functions/Functions.php";
                             </li>
 
                             <li>
-                                <a href="request-visit.php">Visit</a>
+                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php">Visit</a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="request-visit.php#open-hrs">Opening Hours</a>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#open-hrs">Opening Hours</a>
                                     </li>
                                     <li>
-                                        <a href="request-visit.php#admission">Admission Cost</a>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#admission">Admission Cost</a>
                                     </li>
                                     <li>
-                                        <a href="request-visit.php#how-to-get">How to Get Here</a>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#how-to-get">How to Get Here</a>
                                     </li>
                                     <li>
-                                        <a href="request-visit.php#anenities">Amenities</a>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#anenities">Amenities</a>
                                     </li>
                                     <li>
-                                        <a href="request-visit.php#interior">Interior Map</a>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#interior">Interior Map</a>
                                     </li>
                                 </ul>
                             </li>
@@ -180,10 +180,10 @@ include "./Functions/Functions.php";
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">Collections</a>
+                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php">Collections</a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="collection-antiquties.php">Antiquities</a>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php">Antiquities</a>
                                     </li>
                                     <li><a href="collection-cultural.html">Cultural</a></li>
                                     <li><a href="collection-drawing.html">Drawing</a></li>
@@ -207,17 +207,13 @@ include "./Functions/Functions.php";
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="./Project/proudcts.php">Shop</a>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php">Shop</a>
                                         <ul class="submenu right-align">
-                                            <li><a href="./Project/proudcts.php">Products</a></li>
-                                            <li>
-                                                <a href="product-details.html">Single Product</a>
-                                            </li>
-                                            <li><a href="cart.php">Shopping Cart</a></li>
+                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php">Products</a></li>
+                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Cart.php">Shopping Cart</a></li>
                                             <li><a href="checkhout.php">Checkout</a></li>
                                             <li><a href="my-account.php">My Account</a></li>
                                         </ul>
-                                        <!-- /.submenu -->
                                     </li>
                                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php">Donation</a></li>
                                     <li><a href="faq.php">FAQ’s</a></li>
@@ -227,9 +223,11 @@ include "./Functions/Functions.php";
                         </ul>
                     </div>
                     <div class="right-side-box">
-                        <a href="cart.html" class="site-header__cart">
+                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Cart.php" class="site-header__cart">
                             <i class="egypt-icon-supermarket"></i>
-                            <span class="count">3</span>
+                            <?php  if(isset($_SESSION['cart'])){ ?>
+                                <span class="count"><?php echo count($_SESSION['cart']) ?></span>
+                            <?php } ?>
                         </a>
 
                         <a href="#" class="site-header__sidemenu-nav side-menu__toggler">
