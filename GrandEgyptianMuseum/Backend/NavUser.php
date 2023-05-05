@@ -70,10 +70,9 @@ include "./Functions/Functions.php";
                     <ul class="topbar-one__right list-unstyled">
                         <li>
                             <div class="topbar-one__social">
-                                <a href="#"><i class="egypt-icon-logo"></i></a>
-                                <a href="#"><i class="egypt-icon-twitter"></i></a>
-                                <a href="#"><i class="egypt-icon-instagram"></i></a>
-                                <a href="#"><i class="egypt-icon-play"></i></a>
+                                <a href="https://www.facebook.com/GrandEgyptianMuseum/" target="_blank"><i class="egypt-icon-logo"></i></a>
+                                <a href="https://twitter.com/EgyptMuseumGem"  target="_blank"><i class="egypt-icon-twitter"></i></a>
+                                <a href="https://www.instagram.com/grandegyptianmuseum/?hl=en"  target="_blank"><i class="egypt-icon-instagram"></i></a>
                             </div>
                         </li>
                         <li>

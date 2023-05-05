@@ -14,10 +14,9 @@
             </button>
           </form>
           <div class="site-footer__social">
-            <a href="#"><i class="egypt-icon-logo"></i></a>
-            <a href="#"><i class="egypt-icon-twitter"></i></a>
-            <a href="#"><i class="egypt-icon-instagram"></i></a>
-            <a href="#"><i class="egypt-icon-play"></i></a>
+            <a href="https://www.facebook.com/GrandEgyptianMuseum/" target="_blank"><i class="egypt-icon-logo"></i></a>
+            <a href="https://twitter.com/EgyptMuseumGem"  target="_blank"><i class="egypt-icon-twitter"></i></a>
+            <a href="https://www.instagram.com/grandegyptianmuseum/?hl=en"  target="_blank"><i class="egypt-icon-instagram"></i></a>
           </div>
           <p class="site-footer__copy">
             Copyrights &copy; 2023 <a href="#">Egypt</a>, All Rights Reserved.

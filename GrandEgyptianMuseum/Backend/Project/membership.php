@@ -75,17 +75,17 @@ if(isset($_SESSION['AdminID'])){
                   $MembershipRow = mysqli_fetch_assoc($RunQuery);
                   foreach($RunQuery as $Membership){ ?>
                       <div class="col-lg-3 col-md-6">
-                        <div class="pricing-one__single wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="000ms">
+                        <div class="pricing-one__single wow fadeInUp" style="height: 560px;" data-wow-duration="1500ms" data-wow-delay="000ms">
                             <p class="pricing-one__name">Plan</p>
                             <h3 class="pricing-one__type"><?php echo $Membership['Type'] ?></h3>
                             <p class="pricing-one__amount"><?php echo $Membership['Price'] ?></p>
                             <p class="pricing-one__time">$ / <?php echo $Membership['PeriodTime'] ?></p>
                             <div class="pricing-one__bottom">
-                                <ul class="list-unstyled cta-one_list">
+                                <ul class="list-unstyled cta-one_list" style='line-height: 33px;'>
                                     <p class="pricing-one__text">Benefits</p> </br>
                                     <li>
                                         <i class="egypt-icon-check"></i>
-                                          Free entry for <?php echo $Membership['Entry'] ?> times
+                                            Free entry for <?php echo $Membership['Entry'] ?> times
                                     </li>
                                     <li>
                                         <i class="egypt-icon-check"></i>
@@ -93,18 +93,18 @@ if(isset($_SESSION['AdminID'])){
                                             if($Membership['AccessKidsArea'] == 1 ){ 
                                                 echo "Free Access to Kids Area" ;   
                                             }elseif($Membership['AccessMuseumLib'] == 1){
-                                                echo "Free Access to The Grand Egyptian Museum Library" ; 
+                                                echo "Access to The GEM Library" ; 
                                             }
                                         ?>
                                     </li>
                                     <li>
                                         <i class="egypt-icon-check"></i>
                                         <?php
-                                          if($Membership['VouchersMuseum'] == 1){ 
-                                              echo "Free Voucher for the Official Restaurant" ;   
-                                          }elseif($Membership['ChildernMuseum'] != 1 || $Membership['ChildernMuseum'] != NULL){ 
-                                            echo $Membership['ChildernMuseum'] . " Free Entries to Childern Museum " ;   
-                                          }
+                                            if($Membership['VouchersMuseum'] == 1){ 
+                                                echo "Voucher for the Official Restaurant" ;   
+                                            }elseif($Membership['ChildernMuseum'] != 1 || $Membership['ChildernMuseum'] != NULL){ 
+                                                echo $Membership['ChildernMuseum'] . " Free Entries to Childern Museum " ;   
+                                            }
                                         ?>
                                     </li>
                                 </ul>
@@ -112,7 +112,7 @@ if(isset($_SESSION['AdminID'])){
                             </div>
                         </div>
                     </div>
-                  <?php } ?>
+                <?php } ?>
                 </div>
             </div>
         </section>
