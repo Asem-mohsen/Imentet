@@ -165,7 +165,7 @@ include "./Functions/Functions.php";
                                 <a href="#">What’s On</a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php">Events </a>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php?Page=1">Events </a>
                                         <ul class="submenu">
                                             <?php 
                                                 $SelectEvent = "SELECT * FROM entertainmnet ORDER BY ID DESC LIMIT 4 ";
@@ -185,13 +185,14 @@ include "./Functions/Functions.php";
                                     <li>
                                         <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php">Antiquities</a>
                                     </li>
-                                    <li><a href="collection-cultural.html">Cultural</a></li>
-                                    <li><a href="collection-drawing.html">Drawing</a></li>
-                                    <li><a href="collection-painting.html">Painting</a></li>
-                                    <li><a href="collection-sculpture.html">Sculpture</a></li>
-                                    <li>
-                                        <a href="collection-details.html">Single Collection</a>
-                                    </li>
+                                        <?php 
+                                            $SelectCollections = "SELECT * FROM collectionscategories WHERE ID != 1 LIMIT 4 ";
+                                                                    
+                                            $SpecificCategory = mysqli_query($con , $SelectCollections);
+                                            $SpecificRow = mysqli_fetch_assoc($SpecificCategory); 
+                                            foreach ($SpecificCategory as $RowCat){ ?>
+                                                <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php?CatID=<?php echo $RowCat['ID'] ?>"><?php echo $RowCat['Category'] ?> </a></li>
+                                            <?php } ?>
                                 </ul>
                             </li>
                             <li>
@@ -207,9 +208,9 @@ include "./Functions/Functions.php";
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php">Shop</a>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1">Shop</a>
                                         <ul class="submenu right-align">
-                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php">Products</a></li>
+                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1">Products</a></li>
                                             <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Cart.php">Shopping Cart</a></li>
                                             <li><a href="checkhout.php">Checkout</a></li>
                                             <li><a href="my-account.php">My Account</a></li>

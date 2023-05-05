@@ -76,12 +76,17 @@ if(isset($_POST['Search'])){
 
   $SelectProducts = "SELECT giftshop.* , giftcategory.Category AS CategoryName FROM giftshop 
                     JOIN giftcategory ON giftshop.CategoryID = giftcategory.ID 
-                    ORDER BY Price $SortValue , giftshop.Quantity $QuantityValue 
+                    ORDER BY Price $SortValue , giftshop.Quantity $QuantityValue
+                    LIMIT $StartFrom , $RecoedPerPage 
                     ";
   $RunQuery = mysqli_query($con , $SelectProducts);
   $fetchquery = mysqli_fetch_row($RunQuery);
   $Count = mysqli_num_rows($RunQuery);
 
+  $SelectoCount = "SELECT * FROM giftshop " ;
+  $ToCount = mysqli_query($con , $SelectoCount);
+  $fetchquery = mysqli_fetch_row($RunQuery);
+  $TotalItemsCount = mysqli_num_rows($ToCount);
 
 ?>
 
@@ -113,7 +118,7 @@ if(isset($_POST['Search'])){
             </select>
             <button class="thm-btn topbar-one__btn" style="background-color: #d99578; color:white; height: 50px;" name="Search" > Search</button>
             </div>
-            <p class="product-sorting__text">Showing 1-<?php echo $RecoedPerPage ; ?> of <?php echo $Count ; ?> results</p>
+            <p class="product-sorting__text">Showing <?php echo $Count ; ?>-<?php echo $RecoedPerPage ; ?> of <?php echo $TotalItemsCount ; ?> results</p>
           </div>
         </form>
         </div>
@@ -168,7 +173,7 @@ if(isset($_POST['Search'])){
                         $TotalRecoerds = mysqli_num_rows($RunCount);
                         $TotalPages = ceil($TotalRecoerds / $RecoedPerPage );
             for($i = 1 ; $i <= $TotalPages ; $i++){ ?>
-              <a href="./events.php?Page=<?php echo $i ?>" <?php if(!isset($_GET['Page'])){ echo "class='active'" ; }elseif($_GET['Page'] == $i){ echo "class='active'" ;} ?> ><?php echo $i ?></a>
+              <a href="./OnlineShop.php?Page=<?php echo $i ?>" <?php  if(!isset($_GET['Page'])){ }elseif($_GET['Page'] == $i){ echo "class='active'" ;} ?> ><?php echo $i ?></a>
             <?php } ?>
           </div>
         </div>

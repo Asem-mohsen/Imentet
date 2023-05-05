@@ -12,7 +12,7 @@ if(isset($_SESSION['UserID'])){
   $UserPassword = $_SESSION['UserPassword'];
 
   $SelectQuery = "SELECT user.* , userrole.RoleName AS RoleName , userimages.Image AS Image FROM user 
-                  JOIN userrole ON user.RoleID = userrole.ID
+                  LEFT JOIN userrole ON user.RoleID = userrole.ID
                   LEFT JOIN userimages ON user.ID = userimages.UserID
                   WHERE user.ID = $UserID LIMIT 1";
   $Select = mysqli_query($con, $SelectQuery);

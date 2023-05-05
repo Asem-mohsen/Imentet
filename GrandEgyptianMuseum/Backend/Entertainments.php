@@ -10,7 +10,6 @@ session_regenerate_id();
 
 
 
-
 if (isset($_SESSION["AdminID"])) { 
         $AdminID = $_SESSION['AdminID'];
         $SelectQuery = "SELECT * FROM admin WHERE ID = $AdminID";
@@ -444,7 +443,11 @@ if (isset($_SESSION["AdminID"])) {
                                     <input type="number" name="VIP" class="form-control" placeholder="VIP Price" />
                                 </div>
                             </div>
-
+                            <div class="form-group insertInput">
+                                <div class="mb-20">
+                                    <textarea type="text" name="Description" rows="5" class="form-control" placeholder="Event Description" ></textarea>
+                                </div>
+                            </div> 
                             <div class="form-group insertInput mb-0">
                                 <div class="mb-20">
                                     <select name="Place" class="custom-select">
@@ -504,6 +507,12 @@ if (isset($_SESSION["AdminID"])) {
                         }else{
                             $Everyday = $_POST['Everyday'];
                         }
+
+                        if(empty($_POST['Description'])){
+                            $Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip";
+                        }else{
+                            $Description = $_POST['Description'];
+                        }
                         
                         $rawdate      = htmlentities($_POST['Date']);
                         $Date         = date('Y-m-d', strtotime($rawdate));
@@ -548,7 +557,7 @@ if (isset($_SESSION["AdminID"])) {
 
                         if (empty($FormErrors)) {
 
-                            $InsertQuery = "INSERT INTO `entertainmnet` Values( Null , '$Name' , '$image' , $PlaceID , '$Date', '$DateTo' , '$Everyday' , $RegularPrice , '$VIP' , $CategoryID ) ";
+                            $InsertQuery = "INSERT INTO `entertainmnet` Values( Null , '$Name' , '$image' , '$Description' , $PlaceID , '$Date', '$DateTo' , '$Everyday' , $RegularPrice , '$VIP' , $CategoryID ) ";
                             $InsertEvent = mysqli_query($con, $InsertQuery);
 
 
@@ -759,7 +768,11 @@ if (isset($_SESSION["AdminID"])) {
                                         <input type="number" name="VIP" class="form-control" placeholder="VIP Price" value="<?php echo $row['VipPrice'] ?>" />
                                     </div>
                                 </div>
-                                
+                                <div class="form-group insertInput">
+                                    <div class="mt-20">
+                                        <textarea type="text" name="Description" rows="5" class="form-control" placeholder="Event Description" ><?php echo $row['Description'] ?></textarea>
+                                    </div>
+                                </div>
                                 <div class="form-group insertInput mb-0">
                                     <div class="mb-20 mt-20">
                                         <select name="Place" class="custom-select">
@@ -853,6 +866,7 @@ if (isset($_SESSION["AdminID"])) {
                             $EventID      = $_POST['EventID'];
                             $CategoryID   = $_POST['CatID'];
                             $Name         = $_POST['Name'];
+                            $Description  = $_POST['Description'];
                             $PlaceID      = $_POST['Place'];
                             $RegularPrice = $_POST['RegularPrice'];
                             $SponsoredBy  = $_POST['SponsoredBy'];
@@ -916,7 +930,7 @@ if (isset($_SESSION["AdminID"])) {
 
                             if (empty($FormErrors)) {
 
-                                $UpdateQuery = "UPDATE `entertainmnet` SET Name = '$Name' , Image = '$image' , PlaceID = $PlaceID , Date = '$Date', DateTo = '$DateTo'  , Everyday = '$Everyday'  , RegularPrice = $RegularPrice , VipPrice = '$VIP' , CatID = $CategoryID WHERE ID = $EventID ";
+                                $UpdateQuery = "UPDATE `entertainmnet` SET Name = '$Name' , Image = '$image', Description = '$Description' , PlaceID = $PlaceID , Date = '$Date', DateTo = '$DateTo'  , Everyday = '$Everyday'  , RegularPrice = $RegularPrice , VipPrice = '$VIP' , CatID = $CategoryID WHERE ID = $EventID ";
                                 $Update = mysqli_query($con, $UpdateQuery);
 
                                 $UpdateAll = "UPDATE `eventsponsor` SET  EventID = $EventID , ContractID = $SponsoredBy WHERE EventID = $EventID ";

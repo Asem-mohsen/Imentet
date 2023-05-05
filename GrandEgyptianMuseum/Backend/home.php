@@ -97,7 +97,7 @@ if(isset($_SESSION['AdminID'])){
                   </h3>
                 </div>
                 <p class="about-two__text">
-                  Egypt is the world’s leading museum of history & culture,
+                  Grand Egyptian Museum is the world's leading museum of history & culture,
                   housing a <br />
                   permanent collection of over 2.3 million objects that span
                   over 5,000 <br />
@@ -108,7 +108,7 @@ if(isset($_SESSION['AdminID'])){
                   because occa- <br />
                   sionally circumstances occur some great pleasure.
                 </p>
-                <a href="#" class="thm-btn about-two__btn">More Details</a>
+                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php" class="thm-btn about-two__btn">More Details</a>
               </div>
             </div>
             <div class="col-lg-6 d-flex align-items-end justify-content-center wow fadeInRight" data-wow-duration="1500ms">
@@ -227,7 +227,7 @@ if(isset($_SESSION['AdminID'])){
                       </a>
                     </li>
                   </ul>
-                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php" class="event-two__more-link">
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php?Page=1" class="event-two__more-link">
                     View All Upcoming Events 
                     <span>+</span>
                   </a>
@@ -452,7 +452,7 @@ if(isset($_SESSION['AdminID'])){
           </div>
           <div class="row masonary-layout">
             <?php 
-              $SelectCollections = "SELECT * FROM `collections` WHERE PlaceID = 2 LIMIT 6";
+              $SelectCollections = "SELECT * FROM `collections` WHERE PlaceID = 2 LIMIT 7";
               $RunQuery = mysqli_query($con , $SelectCollections);
               $CollectionRow = mysqli_fetch_assoc($RunQuery);
               foreach($RunQuery as $Collection){ ?>
@@ -472,21 +472,14 @@ if(isset($_SESSION['AdminID'])){
                   </div>
                 </div>
             <?php } ?>
-
           </div>
 
           <div class="text-center">
-            <a
-              href="collection-cultural.html"
-              class="collection-three__more-link"
-              ><span
-                ><i class="fa fa-angle-right"></i>View All Collections</span
-              ></a
-            >
+            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php" class="collection-three__more-link">
+              <span><i class="fa fa-angle-right"></i>View All Collections</span>
+            </a>
           </div>
-          <!-- /.text-center -->
         </div>
-        <!-- /.container -->
       </section>
 
       <!-- Statistics -->

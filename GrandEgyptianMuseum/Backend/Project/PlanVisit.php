@@ -84,43 +84,40 @@ $PageTitle = "Plan Your Visit";
                         <div class="plan-visit__price-carousel owl-carousel owl-theme" >
                           <div class="item">
                             <ul class="list-unstyled plan-visit__price-list">
-                              <li>
-                                <span>Egyptian:</span>
-                                <span>$16</span>
-                              </li>
-                              <li>
-                                <span>Egyptian Students (Valid I.D.): </span>
-                                <span>$10</span>
-                              </li>
-                              <li>
-                                <span>Senior 60+ :</span>
-                                <span>$10</span>
-                              </li>
-                              <li>
-                                <span>Disabilites:</span>
-                                <span>$5</span>
-                              </li>
+                                <?php 
+                                  $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
+                                                    JOIN userrole ON visitpricing.UserRole = userrole.ID 
+                                                    JOIN place ON visitpricing.PlaceID = place.ID 
+                                                    WHERE PlaceID = 2 AND UserRole != 2 AND UserRole != 3 
+                                                    ORDER BY visitpricing.ID DESC";
+                                  $RunQuery = mysqli_query($con , $SelectVisitPrice);
+                                  $VisitRow = mysqli_fetch_assoc($RunQuery);
+                                  foreach($RunQuery as $Visit){ ?>
+                                    <li>
+                                      <span><?php echo $Visit['UserRole']  ?> :</span>
+                                      <span><?php echo $Visit['MuseumFee'] . "$" ?></span>
+                                    </li>
+                                  <?php } ?>
                             </ul>
+                            <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
                           </div>
                           <div class="item">
                             <ul class="list-unstyled plan-visit__price-list">
-                              <li>
-                                <span>Adults:</span>
-                                <span>$16</span>
-                              </li>
-                              <li>
-                                <span>Students (Valid I.D.): </span>
-                                <span>$10</span>
-                              </li>
-                              <li>
-                                <span>Senior 60+:</span>
-                                <span>$10</span>
-                              </li>
-                              <li>
-                                <span>Ages 6 and under 10:</span>
-                                <span>$5</span>
-                              </li>
+                                <?php 
+                                  $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
+                                              JOIN userrole ON visitpricing.UserRole = userrole.ID 
+                                              JOIN place ON visitpricing.PlaceID = place.ID 
+                                              WHERE PlaceID = 2 AND UserRole != 1 AND UserRole != 5 ";
+                                  $RunQuery = mysqli_query($con , $SelectVisitPrice);
+                                  $VisitRow = mysqli_fetch_assoc($RunQuery);
+                                  foreach($RunQuery as $VisitForegin){ ?>
+                                    <li>
+                                      <span><?php echo $VisitForegin['UserRole']  ?> :</span>
+                                      <span><?php echo $VisitForegin['MuseumFee'] . "$" ?></span>
+                                    </li>
+                                <?php } ?>
                             </ul>
+                            <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
                           </div>
                         </div>
                         <br />

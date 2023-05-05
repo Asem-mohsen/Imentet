@@ -145,7 +145,7 @@ $PageTitle = "Imentet";
             permanent collection of over 2.3 million objects that span over 5,000
             which is toil and pain these cases are perfectly. 
           </p>
-          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/product-details.php" class="thm-btn side-menu__block-about__btn">
+          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php" class="thm-btn side-menu__block-about__btn">
             Get Your Tickets
           </a>
         </div>

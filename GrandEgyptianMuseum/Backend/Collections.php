@@ -98,6 +98,21 @@ if (isset($_SESSION["AdminID"])) {
                                 <div class="mb-20">
                                     <textarea name="Description" placeholder="Description" class="form-control" rows="3"></textarea>
                                 </div>
+                            </div>
+                            <div class="form-group insertInput mb-0">
+                                <div class="mb-20">
+                                    <select name="Category" class="custom-select" >
+                                        <option value="0"> Category .. </option>
+                                        <?php
+                                        $SelectQuery = "SELECT * FROM collectionscategories ";
+                                        $Select = mysqli_query($con, $SelectQuery);
+                                        $fetchquery = mysqli_fetch_assoc($Select);
+                                        foreach ($Select as $Category) {
+                                            echo "<option value='" . $Category['ID'] . "' >" . $Category['Category'] . " </option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>  
                             <div class="form-group insertInput">
                                 <div class="m-auto">
@@ -130,6 +145,7 @@ if (isset($_SESSION["AdminID"])) {
                 $Collection   = $_POST['Collection'];
                 $Description  = $_POST['Description'];
                 $PlaceID      = $_POST['Place'];
+                $CategoryID      = $_POST['Category'];
 
                 $image        = $_FILES['Image']['name'];
                 $folder       = "Images\Uploads\\".$image;
@@ -157,10 +173,13 @@ if (isset($_SESSION["AdminID"])) {
                 if ($PlaceID == 0) {
                     $FormErrors[] = "You Must Select a Correct Place to show the Collection";
                 }
+                if ($CategoryID == 0) {
+                    $FormErrors[] = "You Must Select a Correct Category to the Collection";
+                }
 
                 if (empty($FormErrors)) {
 
-                    $InsertQuery = "INSERT INTO `collections` Values( Null , '$Collection' , '$image' , '$Description' , $PlaceID )";
+                    $InsertQuery = "INSERT INTO `collections` Values( Null , '$Collection' , '$image' , '$Description' , $PlaceID , $CategoryID)";
                     $Insert = mysqli_query($con, $InsertQuery);
                     echo "<div class='container'>";
                     $TheMsg = "<div class='alert alert-success'> Collection Added Successfully </div>";
@@ -181,8 +200,9 @@ if (isset($_SESSION["AdminID"])) {
                     echo "<p> ID is Empty !</p>";
                 echo "</div>";
             }else{
-                $SelectQuery = "SELECT collections.* ,  place.Name AS PlaceName , place.ID AS PlaceID FROM collections 
+                $SelectQuery = "SELECT collections.* ,  place.Name AS PlaceName , place.ID AS PlaceID , collectionscategories.Category AS CatName FROM collections 
                                 JOIN place ON collections.PlaceID = place.ID
+                                JOIN collectionscategories ON collections.CatID = collectionscategories.ID 
                                 WHERE collections.ID = $CollectionID ";
                 $Select = mysqli_query($con, $SelectQuery);
                 $row = mysqli_fetch_assoc($Select);
@@ -212,6 +232,22 @@ if (isset($_SESSION["AdminID"])) {
                                         <textarea name="Description" class="form-control" required="required"><?php echo $row['Description'] ?></textarea>
                                     </div>
                                 </div>
+                                <div class="form-group insertInput mb-0">
+                                    <label class="mt-20 control-label">Category</label>
+                                    <div class="mb-20">
+                                        <select name="Category" class="custom-select" >
+                                            <option value="<?php echo $row['CatID'] ?>"> <?php echo $row['CatName'] ?> </option>
+                                            <?php
+                                            $SelectQuery = "SELECT * FROM collectionscategories ";
+                                            $Select = mysqli_query($con, $SelectQuery);
+                                            $fetchquery = mysqli_fetch_assoc($Select);
+                                            foreach ($Select as $Category) {
+                                                echo "<option value='" . $Category['ID'] . "' >" . $Category['Category'] . " </option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>  
                                 <div class="form-group insertInput">
                                     <label class="mt-20 control-label">Place</label>
                                     <div class="m-auto">
@@ -253,6 +289,7 @@ if (isset($_SESSION["AdminID"])) {
                     $Collection         = $_POST['Collection'];
                     $PlaceID      = $_POST['Place'];
                     $Description = $_POST['Description'];
+                    $CategoryID = $_POST['Category'];
 
                     $image        = $_FILES['Image']['name'];
                     $folder       = "Images\Uploads\\".$image;
@@ -282,7 +319,7 @@ if (isset($_SESSION["AdminID"])) {
 
                     if (empty($FormErrors)) {
 
-                        $UpdateQuery = "UPDATE `collections` SET Collection = '$Collection' , Image = '$image' , Description = '$Description' , PlaceID = $PlaceID WHERE ID = $CollectionID ";
+                        $UpdateQuery = "UPDATE `collections` SET Collection = '$Collection' , Image = '$image' , Description = '$Description' , PlaceID = $PlaceID , CatID = $CategoryID WHERE ID = $CollectionID ";
                         $Update = mysqli_query($con, $UpdateQuery);
                         echo "<div class='container'>";
                         $TheMsg = "<div class='alert alert-success'> Collection Updated Successfully </div>";

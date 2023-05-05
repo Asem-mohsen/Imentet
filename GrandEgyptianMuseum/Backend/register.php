@@ -13,9 +13,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         $Name = mysqli_real_escape_string($con, $_POST['Name']);
         $Email = mysqli_real_escape_string($con, $_POST['Email']);
-        $Pass = md5($_POST['Password']);
+        $Password = $_POST['Password'];
+        $hashedPassword = password_hash($Password , PASSWORD_DEFAULT);
+
     
-        $Select = " SELECT * FROM user WHERE Email = '$Email' && Password = '$Pass' ";
+        $Select = " SELECT * FROM user WHERE Email = '$Email'  ";
     
         $Result = mysqli_query($con, $Select);
     
@@ -29,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $FirstName = $SplitedName[0];
                 $LastName = $SplitedName[1];
 
-                $Insert = "INSERT INTO user(Name, LastName , Email, Password) VALUES('$FirstName' , '$LastName' ,'$Email','$Pass')";
+                $Insert = "INSERT INTO user(Name, LastName , Email, Password) VALUES('$FirstName' , '$LastName' , '$Email' , '$hashedPassword')";
                 $RunQuery = mysqli_query($con, $Insert);
                 
                 $Image = "avatar.png";
@@ -189,7 +191,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             permanent collection of over 2.3 million objects that span over 5,000
             which is toil and pain these cases are perfectly. 
           </p>
-          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/product-details.php" class="thm-btn side-menu__block-about__btn">
+          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php" class="thm-btn side-menu__block-about__btn">
             Get Your Tickets
           </a>
         </div>

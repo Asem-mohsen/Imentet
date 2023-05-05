@@ -5,6 +5,9 @@ ob_start();
 session_start();
 session_regenerate_id();
 
+
+$Date = date('d - M - Y');
+$DateMonth = date('M - Y');
 $PageTitle = "Events";
 
 // Pagination 
@@ -21,35 +24,30 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
 
 
 <?php include "../NavUser.php"; ?>
+
+      <!-- Search By Date Section -->
       <section class="event-page-header">
         <section class="event-sorting event-page-three">
           <div class="container">
             <div class="tab-content">
               <div id="searchByMonth-tab" class="event-sorting__tab-content tab-pane show active animated fadeInUp" >
-                <input type="text" name="searchByMonth-datepicker" class="searchByMonth-datepicker" value="November - 2019" readonly />
+                <input type="text" name="searchByMonth-datepicker" class="searchByMonth-datepicker" value="<?php echo $DateMonth ?>" readonly />
               </div>
               <div id="searchByDate-tab" class="event-sorting__tab-content tab-pane animated fadeInUp" >
-                <input type="text" name="searchByDate-datepicker" class="searchByDate-datepicker" value="14 - Dec - 2019" readonly />
+                <input type="text" name="searchByDate-datepicker" class="searchByDate-datepicker" value="<?php echo $Date ; ?>" readonly />
               </div>
             </div>
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a
-                  href="#searchByMonth-tab"
-                  data-toggle="tab"
-                  class="nav-link active"
-                  >Search By Month</a
-                >
+                <a href="#searchByMonth-tab" data-toggle="tab" class="nav-link active">Search By Month</a>
               </li>
               <li class="nav-item">
-                <a href="#searchByDate-tab" data-toggle="tab" class="nav-link"
-                  >Search By Date <i class="fa fa-calendar-o"></i
-                ></a>
+                <a href="#searchByDate-tab" data-toggle="tab" class="nav-link">Search By Date 
+                  <i class="fa fa-calendar-o"></i>
+                </a>
               </li>
             </ul>
-            <!-- /.nav nav-tabs -->
           </div>
-          <!-- /.container -->
         </section>
         
         <!-- Search Options -->

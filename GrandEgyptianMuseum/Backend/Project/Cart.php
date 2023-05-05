@@ -15,7 +15,7 @@ if(isset($_GET['Do']) == 'Remove'){
   }
 }
 if(isset($_POST['Back'])){
-  header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php ');
+  header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1');
 }
 
 if(isset($_SESSION['UserID'])){

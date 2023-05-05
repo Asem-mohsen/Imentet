@@ -57,6 +57,9 @@ if(empty($EventID)){
   $PageTitle = $row['Name'] . " Event";
   $StartDate = date('d M Y', strtotime($row['Date'])); 
   $EndDate = date('d M Y', strtotime($row['DateTo'])); 
+  $TodaysDate = date("Y-m-d");
+  $StartDateInTime = date("Y-m-d" , strtotime($row['Date']));
+
 
   if($EventID != $row['ID']){
     header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php");
@@ -213,32 +216,67 @@ if(empty($EventID)){
                 </div>
               </div>
             </div>
+            <!-- Online Booking -->
             <div class="col-lg-4">
               <div class="event-details__form">
                 <form method="post">
                   <h3 class="event-details__form-title">Online Booking</h3>
                   <div class="row">
-                    <div class="col-sm-12">
-                      <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
-                      <input type="hidden" name="EventID" value="<?php echo $EventID ;  ?>" />
-                      <input type="hidden" name="Price" value="<?php echo $row['RegularPrice'] ;  ?>" />
-                      <input type="text" name="Name" placeholder="Your Name" value="<?php if(isset($FullName)){ echo $FullName ; } ?>"/>
-                    </div>
-                    <div class="col-sm-12">
-                      <input type="text" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ; } ?>"/>
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="quantity-spinner" type="text" value="1" max='10' name="Quantity" />
-                    </div>
-                    <div class="col-sm-12">
-                      <button type="submit" name="Book" class="thm-btn event-details__form-btn" >
-                        Proceed to Book
-                      </button>
-                    </div>
+                    <?php if($TodaysDate < $StartDateInTime && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
+                          <div class="col-sm-12">
+                            <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
+                            <input type="hidden" name="EventID" value="<?php echo $EventID ;  ?>" />
+                            <input type="hidden" name="Price" value="<?php echo $row['RegularPrice'] ;  ?>" />
+                            <input type="text" name="Name" placeholder="Your Name" value="<?php if(isset($FullName)){ echo $FullName ; } ?>"/>
+                          </div>
+                          <div class="col-sm-12">
+                            <input type="text" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ; } ?>"/>
+                          </div>
+                          <div class="col-sm-6">
+                            <input class="quantity-spinner" type="text" value="1" max='10' name="Quantity" />
+                          </div>
+                          <div class="col-sm-12">
+                            <?php if(isset($UserID)){ ?>
+                                <button type="submit" name="Book" class="thm-btn event-details__form-btn" >
+                                Proceed to Book
+                              </button>
+                            <?php }else{ ?>
+                              <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn event-details__form-btn" >
+                                Sign In to Continue
+                              </a>
+                            <?php } ?>
+                          </div>
+                    <?php }else{ ?>
+                        <div class="col-sm-12">
+                          <input type="text" name="Name" placeholder="Your Name"  disabled/>
+                        </div>
+                        <div class="col-sm-12">
+                          <input type="text" name="Email" placeholder="Email Address" disabled/>
+                        </div>
+                        <div class="col-sm-6">
+                          <input class="quantity-spinner" type="text" value="1" max='10' disabled/>
+                        </div>
+                        <div class="col-sm-12">
+                          <?php if($TodaysDate > $StartDateInTime){ ?>
+                              <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                  Event Date has Passed
+                              </button>
+                          <?php }elseif($row['EventStatus'] == 'Cancelled'){ ?>
+                              <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                  Event Cancelled
+                              </button>
+                          <?php }elseif($row['EventStatus'] == 'Postponed'){ ?>
+                            <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                  Event Postponed
+                              </button>
+                          <?php } ?>
+
+                        </div>
+                    <?php } ?>
                   </div>
                 </form>
               </div>
-          </div>
+            </div>
         </div>
       </section>
 
@@ -246,27 +284,62 @@ if(empty($EventID)){
       <div class="event-details__pagination">
         <div class="container">
           <div class="row">
+
+            <!-- Prev -->
+            <?php
+              $SelectEvent = "SELECT * FROM entertainmnet WHERE ID < $EventID ORDER BY ID DESC LIMIT 1 ";
+              $Events = mysqli_query($con , $SelectEvent);
+              $Prev = mysqli_fetch_assoc($Events);
+              $CountADD =mysqli_num_rows($Events);
+              
+            ?>
+            <?php if($CountADD >= 1 ){ ?>
+              <div class="col-lg-6">
+                <a href="./EventDetails.php?EventID=<?php echo $Prev['ID'] ?>" class="event-details__pagination__left">
+                  <div class="event-details__pagination-icon">
+                    <i class="fa fa-angle-left"></i>
+                  </div>
+                  <div class="event-details__pagination-content">
+                    <span>Prev Event</span>
+                    <h3><?php echo $Prev['Name'] ?></h3>
+                  </div>
+                </a>
+              </div>
+            <?php }else{ ?>
+              <div class="col-lg-6">
+                <a href="./events.php?Page1" class="event-details__pagination__left">
+                  <div class="event-details__pagination-icon">
+                    <i class="fa fa-angle-left"></i>
+                  </div>
+                  <div class="event-details__pagination-content">
+                    <span>Events Page</span>
+                    <h3>Back</h3>
+                  </div>
+                </a>
+              </div>
+            <?php } ?>            
+            <!-- NEXT  -->
+            <?php
+              $SelectEvent = "SELECT * FROM entertainmnet WHERE ID > $EventID ORDER BY ID ASC LIMIT 1 ";
+              $Events = mysqli_query($con , $SelectEvent);
+              $Next = mysqli_fetch_assoc($Events);
+              $CountNum =mysqli_num_rows($Events);
+              if($CountNum >= 1 ){
+            ?>
             <div class="col-lg-6">
-              <a href="#" class="event-details__pagination__left">
-                <div class="event-details__pagination-icon">
-                  <i class="fa fa-angle-left"></i>
-                </div>
-                <div class="event-details__pagination-content">
-                  <span>Prev Event</span>
-                  <h3>Are there Carbon Monoxide Detectors</h3>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-6">
-              <a href="#" class="event-details__pagination__right">
+              <a href="./EventDetails.php?EventID=<?php echo $Next['ID'] ?>" class="event-details__pagination__right">
                 <div class="event-details__pagination-icon">
                   <i class="fa fa-angle-right"></i>
                 </div>
                 <div class="event-details__pagination-content">
                   <span>Next Event</span>
-                  <h3>Are there Carbon Monoxide Detectors</h3>
+                  <h3><?php echo $Next['Name'] ?></h3>
                 </div>
               </a>
+            </div>
+            <?php } ?>
+            <div>
+
             </div>
           </div>
         </div>
