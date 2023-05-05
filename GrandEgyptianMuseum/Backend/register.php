@@ -26,6 +26,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             $error[] = 'User Already Exist!';
         
         }else{
+          $FormErrors = array();
+
+          if(empty($Name)){
+            $FormErrors[] = "Must Type Name";
+          }
+          if(empty($Email)){
+            $FormErrors[] = "Must Type Email";
+          }
+          if(empty($Password)){
+            $FormErrors[] = "Must Type Password";
+          }
+          if(strlen($Password) < 8){
+            $FormErrors[] = "Strength Your Password";
+          }
+          if(strlen($Name) < 3){
+            $FormErrors[] = "Type Your Full Name";
+          }
+              if(empty($FormErrors)){
 
                 $SplitedName = split_name($Name);
                 $FirstName = $SplitedName[0];
@@ -40,6 +58,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $Insert = mysqli_query($con, $InsertImgQuery);
                 
                 header('location:login.php');
+
+              }else{
+                foreach($FormErrors as $Error)
+                  echo $Error;
+              }
             
         }
     
@@ -151,15 +174,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                   <form method='POST'>
                     <div class="inputs login-form__form">
                       <div class="login-form__field">
-                        <input type="text" name="Name" placeholder="Username" />
+                        <input type="text" name="Name" placeholder="Username" required/>
                         <i class="fa fa-user"></i>
                       </div>
                       <div class="login-form__field">
-                        <input type="email" name="Email" placeholder="Email Address" />
+                        <input type="email" name="Email" placeholder="Email Address" required />
                           <i class="fa fa-envelope-o"></i>
                       </div>
                       <div class="login-form__field">
-                        <input type="password" name="Password" placeholder="Enter Password" />
+                        <input type="password" name="Password" placeholder="Enter Password" required/>
                         <i class="fa fa-lock"></i>
                       </div>
                       <button type="submit" name='submit' class="thm-btn contact-one__btn">

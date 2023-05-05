@@ -44,19 +44,20 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $SelectUser = "SELECT * FROM user WHERE Email = '$Email' LIMIT 1";
                 $Select = mysqli_query($con , $SelectUser);
                 $count = mysqli_num_rows($Select);
-                $UserRow = mysqli_fetch_assoc($Select) ; 
-                if(password_verify( $Password, $UserRow['Password'])){
-                  if($count > 0){
-                      $_SESSION['UserID'] = $UserRow['ID'];     //Register Sesstion ID
-                      $_SESSION['UserPassword'] = $_POST['Password'];     //Register Sesstion Password
+                $UserRow = mysqli_fetch_assoc($Select) ;
+                if($count > 0){
+                  if(password_verify($Password, $UserRow['Password'])){
+                    
+                        $_SESSION['UserID'] = $UserRow['ID'];     //Register Sesstion ID
+                        $_SESSION['UserPassword'] = $_POST['Password'];     //Register Sesstion Password
 
-                      header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
-                      exit();
+                        header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
+                        exit();
+                  }else{
+                    echo "<div class='container'>";
+                        echo "<div class='alert alert-danger'> Password or Email is Not Correct </div>";
+                    echo "</div>";
                   }
-                }else{
-                  echo "<div class='container'>";
-                      echo "<div class='alert alert-danger'> Password or Email is Not Correct </div>";
-                  echo "</div>";
                 }
         }
 }
