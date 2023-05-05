@@ -8,8 +8,6 @@ session_regenerate_id();
 
 $PageTitle = "Sign In";
 
-// include './init.php';
-
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $Email = $_POST['Email'];
@@ -28,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                             echo "<div class='alert alert-danger'> Your Account Is Deactiveted </div>";
                         echo "</div>";
                     }elseif(password_verify( $Password, $AdminRow['Password'])) {
-                        $_SESSION['AdminID'] = $AdminRow['ID'];     //Register Sesstion ID
+                        $_SESSION['AdminID'] = $AdminRow['ID'];              //Register Sesstion ID
                         $_SESSION['AdminPassword'] = $_POST['Password'];     //Register Sesstion Password
                         header('Location: ./Dashboard.php');
                         exit();
@@ -157,7 +155,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <div class="form">
                   <div class="content">
                     <h3 class="login-form__title">Sign In</h3>
-
                     <p>
                       New to Imentet ?
                       <a href="register.php">Create an Account</a>
@@ -166,16 +163,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <form method="POST" >
                   <div class="inputs login-form__form">
                     <div class="login-form__field">
-                      <input type="email" name="Email" placeholder="Email" />
+                      <input type="email" name="Email" placeholder="Email" required/>
                       <i class="fa fa-user"></i>
                     </div>
 
                     <div class="login-form__field">
-                      <input
-                        type="password"
-                        name="Password"
-                        placeholder="Enter Password"
-                      />
+                      <input type="password" name="Password" placeholder="Enter Password" required />
                       <i class="fa fa-lock"></i>
                     </div>
                     <p>
@@ -250,18 +243,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <div class="cursor"></div>
         <div class="cursor-follower"></div>
       </div>
-      <!-- /.search-popup__overlay -->
       <div class="search-popup__inner">
         <form action="#" class="search-popup__form">
-          <input
-            type="text"
-            name="search"
-            placeholder="Type here to Search...."
-          />
-          <button type="submit"><i class="egypt-icon-search"></i></button>
+          <input  type="text" name="search" placeholder="Type here to Search...." />
+          <button type="submit">
+            <i class="egypt-icon-search"></i>
+          </button>
         </form>
       </div>
-      <!-- /.search-popup__inner -->
     </div>
 
     <a href="#" data-target="html" class="scroll-to-target scroll-to-top">

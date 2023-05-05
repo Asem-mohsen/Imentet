@@ -3,7 +3,7 @@ ob_start();
 
 $PageTitle = "Payments";
 
-include './init.php';
+include "./DatabaseConnection/Connection.php";
 
 session_start();
 session_regenerate_id();
@@ -17,7 +17,7 @@ if (isset($_SESSION["AdminID"])) {
 
     if ($row['AdminRole'] == 1 || $row['AdminRole'] == 2 ) {
         
-        include "Nav.php";
+        include './NavAdmin.php';
         $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
 
         if($do == 'Manage'){ 
@@ -151,7 +151,9 @@ if (isset($_SESSION["AdminID"])) {
             RedirectIndex($TheMsg);
             echo "</div>"; 
         }
-    include "./Includes/PageContent/Footer.php";
+        include "./Includes/PageContent/Footer.php";
+        include "./AdminFooter.php";
+
 
     }else{
         echo "<div class='container'>";

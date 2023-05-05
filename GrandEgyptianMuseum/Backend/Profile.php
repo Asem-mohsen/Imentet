@@ -3,7 +3,7 @@ ob_start();
 
 $PageTitle = "Profile";
 
-include './init.php';
+include "./DatabaseConnection/Connection.php";
 
 session_start();
 session_regenerate_id();
@@ -16,7 +16,7 @@ if (isset($_SESSION["AdminID"])) {
     $row = mysqli_fetch_assoc($Select);
 
     $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
-    include "Nav.php";
+    include './NavAdmin.php';
     if($do == 'Manage'){
         $IDAdmin =  filter_var($_GET['AdminID'], FILTER_SANITIZE_NUMBER_INT);
         if(empty($IDAdmin)){
@@ -253,6 +253,7 @@ if (isset($_SESSION["AdminID"])) {
     }
 
     include "./Includes/PageContent/Footer.php";
+    include "./AdminFooter.php";
 
 
 

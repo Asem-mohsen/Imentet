@@ -140,9 +140,13 @@ ul {
     border-radius: 50%;
 
 }
+.content-area{
+    margin: 0 50px 0 50px;
+}
 .content-area h1 {
     margin: 20px 20px 40px;
-    font-family: var(--Font-DIDOT);
+    text-align: center;
+    color: black;
 }
 
 .content-area h1.inDashboard::before,
@@ -150,8 +154,8 @@ ul {
     content: '';
     height: 3px;
     position: absolute;
-    bottom: -10px;
-    left: 0;
+    bottom: -9px;
+    left: 500px;
 }
 
 .content-area h1.inDashboard::before {
@@ -160,7 +164,7 @@ ul {
 }
 
 .content-area h1.inDashboard::after {
-    background-color: black;
+    background-color: #d99578;
     width: 40px;
 }
 
@@ -440,9 +444,7 @@ div.SignInButton{
 }
 /* ------------------------------------------------------------------------------ */
 /* Users Page */
-nav.navbar {
-    padding: 11px 205px 13px 205px;
-}
+
 a.navbar-dark .navbar-brand{
     font-size: 30px;
 } 
@@ -454,6 +456,7 @@ h1.PageName{
     margin-top: 30px;
     cursor: default;
     margin-bottom: 50px;
+    color: black;
 }
 span.line{
     border: 1px solid #c5c5c5;
@@ -1152,7 +1155,7 @@ a.Logout{
     grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 150px;
 }
 
 div.Total{
@@ -1188,10 +1191,11 @@ div.Total .TotalBox{
 
 }
 .TotalBox div.TotalInfo span{
-    font-family: serif;
     font-size: 87px;
     position: relative;
-    color: black;
+    color: #d99578;
+    bottom: -59px;
+    left: -4px;
 }
 .TotalBox div.TotalInfo p{
     color: gray;
@@ -1209,11 +1213,10 @@ div.Total .TotalBox{
 
 a.TotalLink{
     font-size: 32px;
-    color: black;
+    color: #302e2f;
     position: absolute;
     cursor: pointer;
-    text-decoration: none !important;
-    bottom: -16px;
+    bottom: 1px;
 }
 .TotalBox i{
     margin: auto;
@@ -1362,10 +1365,10 @@ a.TotalLink{
     position: relative;
     font-size: 85px;
     transform: translateX(4px);
-    bottom: -35px;
+    bottom: -34px;
     text-align: center;
     z-index: 0;
-    color: #4c4c4c87;
+    color: #d99578;
     font-weight: 100;
 }
 .TotalBoxFinance .TotalInfo{
@@ -1373,12 +1376,13 @@ a.TotalLink{
     position: relative;
     justify-items: center;
     z-index: 9;
-    bottom: 20px;
+    bottom: -26px;
+    color: black;
 }
 .TotalBoxFinance .TotalInfo span{
-    font-size: 51px;
+    font-size: 67px;
     position: relative;
-    top: -36px;
+    top: -53px;
     font-weight: bold;
     font-family: math;
 }
@@ -1527,7 +1531,7 @@ transition: 0.3s;
     justify-content: center;
     gap: 55px;
 }
-grid
+
 .FilterAndButtons{
     display: flex;
     justify-content: space-between;

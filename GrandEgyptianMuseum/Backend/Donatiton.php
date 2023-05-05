@@ -3,7 +3,7 @@ ob_start();
 
 $PageTitle = "Donation";
 
-include './init.php';
+include "./DatabaseConnection/Connection.php";
 
 session_start();
 session_regenerate_id();
@@ -17,7 +17,7 @@ if (isset($_SESSION["AdminID"])) {
     $AdminRole = $row['AdminRole'];
     
     if($AdminRole == 1 || $AdminRole == 2){
-            include "./Nav.php";
+        include './NavAdmin.php';
         $do = isset($_GET['action']) ? $_GET['action'] : "Manage" ;
             
         if($do == "Manage"){
@@ -366,7 +366,9 @@ if (isset($_SESSION["AdminID"])) {
         RedirectIndex($TheMsg);
         echo "</div>";
     }
-    include "./Includes/PageContent/Footer.php";
+        include "./Includes/PageContent/Footer.php"; 
+        include "./AdminFooter.php";
+
 }else{
     if(!isset($_SESSION["AdminID"])){
         header("Location: login.php");

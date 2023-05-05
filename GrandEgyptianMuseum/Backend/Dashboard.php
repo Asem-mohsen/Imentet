@@ -4,8 +4,8 @@ session_start();
 session_regenerate_id();
 $PageTitle = "Dashboard";
 
-include './init.php';
-
+// include './init.php';
+include "./DatabaseConnection/Connection.php";
 if (isset($_SESSION["AdminID"])) {
 
     $AdminID = $_SESSION['AdminID'];
@@ -15,11 +15,12 @@ if (isset($_SESSION["AdminID"])) {
                     WHERE admin.ID = $AdminID";
     $Select = mysqli_query($con, $SelectQuery);
     $row = mysqli_fetch_assoc($Select);
-    $AdminRole =$row['AdminRole']
+    $AdminRole =$row['AdminRole'] ;
             ?>
 
+<?php include './NavAdmin.php'; ?> 
     <div class="page d-flex">
-        <div class="sidepar bg-white p-20 p-relative">
+        <!-- <div class="sidepar bg-white p-20 p-relative">
             <h3 class="p-relative txt-center mt-0">Admin Panel</h3>
             <ul>
                 <li>
@@ -113,32 +114,38 @@ if (isset($_SESSION["AdminID"])) {
                 </li>
                 <?php } ?>
             </ul>
-        </div>
+        </div> -->
 
 
         <div class="content-area w-full overflow-h">
-            <div class="head bg-white p-15 between-flex">
+            <!-- <div class="head bg-white p-15 between-flex">
                 <div class="icon d-flex align-center">
-                    <a href="./Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">
+                    <a href="./Profile.php?action=Manage&AdminID=<?php // echo $AdminID ?>">
                     <div class="d-flex">
-                        <img src="images/AdminImages/<?php echo $row['Image'] ?>" alt="" />
-                        <h5 class="ml-15"><?php echo $row['Name'] ?></h5>
+                        <img src="images/AdminImages/<?php // echo $row['Image'] ?>" alt="" />
+                        <h5 class="ml-15"><?php //echo $row['Name'] ?></h5>
                     </div>
                         
                     </a>
-                </div>
-                <div class="icon d-flex align-center">
-                    <?php if (isset($_SESSION["AdminID"])) {
+                </div> -->
+                <!-- <div class="icon d-flex align-center"> -->
+                    <?php // if (isset($_SESSION["AdminID"])) {
+                    //     echo "<a href='./logout.php' class='Logout'>" ;
+                    //         echo "<i class='fa-solid fa-arrow-right-from-bracket'></i>";
+                    //     echo " Logout </a>";
+                    // }
+                    ?>
+                    
+                <!-- </div>
+            </div> -->
+
+            <h1 class="p-relative inDashboard">Dashboard</h1>
+            <?php if (isset($_SESSION["AdminID"])) {
                         echo "<a href='./logout.php' class='Logout'>" ;
                             echo "<i class='fa-solid fa-arrow-right-from-bracket'></i>";
                         echo " Logout </a>";
                     }
                     ?>
-                    
-                </div>
-            </div>
-
-            <h1 class="p-relative inDashboard">Dashboard</h1>
             
                     <?php 
                         $CountUsers = "SELECT * FROM user" ;
@@ -298,7 +305,7 @@ if (isset($_SESSION["AdminID"])) {
                     </div>
             </div>
             <?php if($AdminRole != 4 ){ ?>
-                <h1 class="p-relative inDashboard">Financial Analysis</h1>
+                <h1 class="inDashboard">Financial Analysis</h1>
                     <?php 
                         $SumDonations = "SELECT SUM(Amount) AS TotalAmount FROM donations" ;
                         $Donations = mysqli_query($con ,$SumDonations);
@@ -419,7 +426,7 @@ if (isset($_SESSION["AdminID"])) {
                 <div class="TotalFinance bg-white rad-10 txt-c-mobile dis-block-mobile">
                     <div class="TotalBoxFinance Donations">
                         <div class="p-20 FinanceInfo">
-                        <i class="fa-solid fa-dollar-sign Donations"></i>
+                        <i class="fa-solid fa-dollar-sign "></i>
                                 <div class="TotalInfo">
                                 <span class="Donations"><?php echo thousandsCurrencyFormat($row['TotalAmount']) ?></span>
                                 <p>Donations</p>
@@ -428,18 +435,18 @@ if (isset($_SESSION["AdminID"])) {
                     </div>
                     <div class="TotalBoxFinance Events">
                         <div class="p-20 FinanceInfo">
-                        <i class="fa-solid fa-dollar-sign Events"></i>
+                        <i class="fa-solid fa-dollar-sign "></i>
                             <div class="TotalInfo">
                                 <span class="Events"><?php echo thousandsCurrencyFormat($SumMoneyEvents['TotalMoney'])?></span>
                                 <p>Events Tickets</p>
                             </div>
                         </div>
                     </div>
-                    <div class="TotalBoxFinance GiftShop">
+                    <div class="TotalBoxFinance ">
                         <div class="p-20 FinanceInfo">
-                        <i class="fa-solid fa-dollar-sign GiftShop"></i>
+                        <i class="fa-solid fa-dollar-sign "></i>
                             <div class="TotalInfo">
-                                <span class="GiftShop mt-0"><?php echo thousandsCurrencyFormat($GiftshopMoney['TotalMoney']) ?></span>
+                                <span class=" mt-0"><?php echo thousandsCurrencyFormat($GiftshopMoney['TotalMoney']) ?></span>
                                 <p>GiftShop</p>
                             </div>
                         </div>
@@ -480,7 +487,8 @@ if (isset($_SESSION["AdminID"])) {
     </div>
 
     <?php
-    
+        include './AdminFooter.php';
+
     include "./Includes/PageContent/Footer.php";
 } else {
     header("Location: login.php");

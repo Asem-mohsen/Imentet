@@ -3,7 +3,7 @@ ob_start();
 
 $PageTitle = "Entertainments Platform ";
 
-include './init.php';
+include "./DatabaseConnection/Connection.php";
 
 session_start();
 session_regenerate_id();
@@ -20,7 +20,7 @@ if (isset($_SESSION["AdminID"])) {
         $AdminRole = $row['AdminRole'];
 
         $do = isset($_GET['action']) ? $_GET['action'] : "Manage" ;
-        include "./Nav.php";
+        include './NavAdmin.php';
             if($do == "Manage"){
                 $CategoriesQuery = "SELECT * FROM entertainmnetcategory " ;
                 $Categories = mysqli_query($con , $CategoriesQuery);
@@ -987,6 +987,7 @@ if (isset($_SESSION["AdminID"])) {
         } 
     
             include "./Includes/PageContent/Footer.php";
+            include "./AdminFooter.php";
 
     }else{
         echo "<div class='container'>";

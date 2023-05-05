@@ -10832,13 +10832,14 @@ input[type="file"] {
   list-style: none;
   margin-top: 40px;
   margin-bottom: 40px;
-  border: 1px solid #e0cfc7;
+  /* border: 1px solid #e0cfc7; */
 }
 .side-menu__block .navigation-box ul {
   margin: 0;
   padding: 0;
   list-style: none;
   background-color: #f2ebe8;
+
 }
 .side-menu__block .navigation-box ul ul {
   background-color: #e0cfc7;
@@ -10860,12 +10861,14 @@ input[type="file"] {
   padding-left: 15px;
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
+  gap: 30px;
+
 }
-.side-menu__block .navigation-box li a:before {
+/* .side-menu__block .navigation-box li a:before {
   content: '\f101';
   font-family: FontAwesome;
   margin-right: 15px;
-}
+} */
 .side-menu__block .navigation-box li a .sub-nav-toggler {
   border: none;
   outline: none;

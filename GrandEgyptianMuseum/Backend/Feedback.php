@@ -3,7 +3,7 @@ ob_start();
 
 $PageTitle = "Feedback";
 
-include './init.php';
+include "./DatabaseConnection/Connection.php";
 
 session_start();
 session_regenerate_id();
@@ -18,7 +18,7 @@ if (isset($_SESSION["AdminID"])) {
     $AdminRole = $row['AdminRole'];
 
     $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
-    include "Nav.php";
+    include './NavAdmin.php';
     if($do == 'Manage'){ 
         $sort = 'ASC';
         $sortarray = array('ASC', 'DESC');
@@ -106,6 +106,8 @@ if (isset($_SESSION["AdminID"])) {
         echo "</div>";
     }
     include "./Includes/PageContent/Footer.php";
+    include "./AdminFooter.php";
+
 }else{
     if(!isset($_SESSION["AdminID"])){
         header("Location: login.php");

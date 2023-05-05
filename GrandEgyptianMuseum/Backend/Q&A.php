@@ -3,7 +3,7 @@ ob_start();
 
 $PageTitle = "Messages";
 
-include './init.php';
+include "./DatabaseConnection/Connection.php";
 
 session_start();
 session_regenerate_id();
@@ -20,7 +20,7 @@ if (isset($_SESSION["AdminID"])) {
     if( $AdminRole == 4 || $AdminRole == 1 ){
 
         $do = isset($_GET['action']) ? $_GET['action'] : "Manage" ;
-        include './Nav.php';
+        include './NavAdmin.php';
 
         if($do == "Manage"){
             
@@ -337,7 +337,8 @@ if (isset($_SESSION["AdminID"])) {
         RedirectIndex($TheMsg);
         echo "</div>";    
     }
-    include "./Includes/PageContent/Footer.php";
+        include "./Includes/PageContent/Footer.php";
+        include "./AdminFooter.php";
 
 }else{
     if(!isset($_SESSION["AdminID"])){

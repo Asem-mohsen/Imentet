@@ -3,7 +3,7 @@ ob_start();
 
 $PageTitle = "Admins Platform";
 
-include './init.php';
+include "./DatabaseConnection/Connection.php";
 
 session_start();
 session_regenerate_id();
@@ -15,7 +15,7 @@ if (isset($_SESSION["AdminID"])) {
     $Select = mysqli_query($con, $SelectQuery);
     $row = mysqli_fetch_assoc($Select);
     if ($row['AdminRole'] == 1) {
-        include "./Nav.php";
+        include './NavAdmin.php';
 
         $do = isset($_GET['action']) ?  $_GET['action'] : "Manage";
 
@@ -921,6 +921,7 @@ if (isset($_SESSION["AdminID"])) {
                     echo "</div>";
         }
             include "./Includes/PageContent/Footer.php";
+            include "./AdminFooter.php";
     } else {
         echo "<div class='container'>";
         $TheMsg = "<div class='alert alert-danger'>" . "You Are Not Authorized To Access This Page"  . "</div>";

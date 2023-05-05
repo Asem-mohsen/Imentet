@@ -3,7 +3,7 @@ ob_start();
 
 $PageTitle = "Gift Shop";
 
-include './init.php';
+include "./DatabaseConnection/Connection.php";
 
 session_start();
 session_regenerate_id();
@@ -17,7 +17,8 @@ if (isset($_SESSION["AdminID"])) {
 
     $AdminRole = $row['AdminRole'];
     if($AdminRole != 4){
-        include "./Nav.php";
+
+        include './NavAdmin.php';
         $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
 
         if($do == "Manage"){
@@ -630,6 +631,8 @@ if (isset($_SESSION["AdminID"])) {
             echo "</div>";
         }
         include "./Includes/PageContent/Footer.php";
+        include "./AdminFooter.php";
+
 
     }else{
         echo "<div class='container'>";

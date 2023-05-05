@@ -3,7 +3,8 @@ ob_start();
 
 $PageTitle = "Users Platform ";
 
-include './init.php';
+include "./DatabaseConnection/Connection.php";
+
 
 session_start();
 session_regenerate_id();
@@ -18,7 +19,7 @@ if (isset($_SESSION["AdminID"])) {
         
         $do = isset($_GET['action']) ? $_GET['action'] : "Manage" ; 
         
-        include './Nav.php';
+        include './NavAdmin.php';
 
         if($do == "Manage"){
                 $sort = 'ASC';
@@ -2312,6 +2313,7 @@ if (isset($_SESSION["AdminID"])) {
         }
 
         include "./Includes/PageContent/Footer.php";
+        include "./AdminFooter.php";
 
 }else{
     if(!isset($_SESSION["AdminID"])){
