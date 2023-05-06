@@ -1,6 +1,6 @@
 <?php
-include "./DatabaseConnection/Connection.php";
-include "./Functions/Functions.php";
+// include "./DatabaseConnection/Connection.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -34,143 +34,193 @@ include "./Functions/Functions.php";
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="Style//framework.css">
-    <link rel="stylesheet" href="Style///main.css">
+    <link rel="stylesheet" href="Style/main.css">
     <link rel="stylesheet" href="css//style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-    <title><?php echo $PageTitle ?></title>
+    
+    <title><?php if(isset($PageTitle)){echo $PageTitle ; }else{ echo "Defult";} ?></title>
 </head>
-
-
-<body>
-    <div class="preloader">
-        <span></span>
-    </div>                      
-    <!-- <div class="page-wrapper"> -->
-        <header class="site-header site-header__header-one">
-            <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
-                <div class="container clearfix">
-                    <div class="logo-box">
-                        <a class="navbar-brand" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Dashboard.php">
-                            <img src="images/resources/imentet-gem-logo.svg" class="main-logo" alt="Awesome Image" />
-                        </a>
-                        <button class="menu-toggler" data-target=".main-navigation">
-                            <span class="fa fa-bars"></span>
-                        </button>
-                    </div>
-                    <div class="main-navigation">
-                        <ul class="navigation-box @@extra_class">
-                            <li class="current">
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Dashboard.php">Dashboard</a>
-                                <ul class="submenu">
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
-                                    <li><a href="">Pyramids</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Users.php?action=Manage">Users</a>
-                                <ul class="submenu">
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Users.php?action=Subscribers">Membership</a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Users.php?action=CheckAllMembership">Membership Plans</a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Q&A.php?action=Manage">Messages</a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Users.php?action=AddMembership">Add New Membership</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Admins.php?action=Manage">Admins</a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Admins.php?action=Status">Admin Status</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Careers.php?action=Manage">Applications</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Careers.php?action=AddCareer">Add New Career</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">What's On</a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Entertainments.php?action=Manage">Events </a>
-                                        <ul class="submenu">
-                                            <?php 
-                                                $SelectEvent = "SELECT * FROM entertainmnet ORDER BY ID DESC LIMIT 4 ";
-                                                $SpecificEvent = mysqli_query($con , $SelectEvent);
-                                                $SpecificRow = mysqli_fetch_assoc($SpecificEvent); 
-                                                foreach ($SpecificEvent as $RowEvent){ ?>
-                                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Entertainments.php?action=MoreInfo&EventID=<?php echo $RowEvent['ID'] ?>"><?php echo $RowEvent['Name'] ?> </a></li>
-                                                <?php } ?>
-                                        </ul>
-                                    </li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Feedback.php?action=Manage">Feedback</a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Entertainments.php?action=CheckAll">All Events</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Collections.php?action=Manage">Collections</a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Collections.php?action=CheckAll">All Arts</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Pricing.php?action=Manage">Pricing System</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Payments.php?action=Manage">Payments Option</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Pages</a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="">Tickets</a>
-                                        <ul class="submenu right-align">
-                                            <li>
-                                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Tickets.php?action=Visit">Visit Tickets </a>
-                                            </li>
-                                            <li>
-                                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Tickets.php?action=Entertainment">Entertainments Tickets </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/GiftShop.php?action=Manage">Shop</a>
-                                        <ul class="submenu right-align">
-                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/GiftShop.php?action=ItemsSold">Items Sold</a></li>
-                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/GiftShop.php?action=CheckAll">All Products</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Donatiton.php?action=Manage">Donations</a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Transportation.php?action=Manage">Transportation</a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Sponsorship.php?action=Manage">Sponsorships</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <?php 
-                        $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName , adminimage.Image AS Image FROM admin
+<?php 
+    // if (isset($_SESSION["AdminID"])) {
+        $AdminID = $_SESSION['AdminID'];
+        $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName , adminimage.Image AS Image FROM admin
                         LEFT JOIN adminrole ON admin.AdminRole = adminrole.ID 
                         LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
                         WHERE admin.ID = $AdminID";
-                            $Select = mysqli_query($con, $SelectQuery);
-                            $row = mysqli_fetch_assoc($Select);
-                            $AdminRole =$row['AdminRole'] ;
-                        ?>
-                    <div class="right-side-box">
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
-                            <img src="images/AdminImages/<?php echo $row['Image'] ?>" width="30px" height="30px" alt="" />
-                        </a>
+        $Select = mysqli_query($con, $SelectQuery);
+        $row = mysqli_fetch_assoc($Select);
+        $AdminRole =$row['AdminRole'] ;
+        ?>
+        
+        <body>
+            <div class="preloader">
+                <span></span>
+            </div>                      
+                <header class="site-header site-header__header-one">
+                    <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
+                        <div class="container clearfix">
+                            <div class="logo-box">
+                                <a class="navbar-brand" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Dashboard.php">
+                                    <img src="images/resources/imentet-logo.svg" class="main-logo" alt="Awesome Image" />
+                                </a>
+                                <button class="menu-toggler" data-target=".main-navigation">
+                                    <span class="fa fa-bars"></span>
+                                </button>
+                            </div>
+                            <div class="main-navigation">
+                                <ul class="navigation-box @@extra_class">
 
-                        <a href="#" class="site-header__sidemenu-nav side-menu__toggler">
-                            <span class="site-header__sidemenu-nav-line"></span>
-                            <span class="site-header__sidemenu-nav-line"></span>
-                            <span class="site-header__sidemenu-nav-line"></span>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </header>
+                                    <!-- Home Part -->
+                                    <li class="current">
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Dashboard.php">Dashboard</a>
+                                        <ul class="submenu">
+                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
+                                            <li><a href="">Pyramids</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- Users Part -->
+                                    <li>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Users.php?action=Manage">Users</a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Users.php?action=CheckAllMembership">Membership Plans</a>
+                                            </li>
+                                            <?php if($row['AdminRole'] == 1 || $row['AdminRole'] == 2){ ?>
+                                                <li>
+                                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Users.php?action=Subscribers">Membership Subscribers</a>
+                                                </li>
+                                            <?php } ?>
+                                            <?php if ($row['AdminRole'] == 4 || $row['AdminRole'] == 1) { ?>
+                                                <li>
+                                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Q&A.php?action=Manage">Messages</a>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </li>
+
+                                    <!-- Settings part -->
+                                    <?php if($row['AdminRole'] == 1 || $row['AdminRole'] == 2){ ?>
+                                        <li>
+                                            <a href="">Settings</a>
+                                            <ul class="submenu">
+                                                <?php if ($row['AdminRole'] == 1) { ?>
+                                                    <li>
+                                                        <a href="">Admin</a>
+                                                        <ul class="submenu right-align">
+                                                            <li>
+                                                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Admins.php?action=Manage">Admins</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Admins.php?action=Status">Admin Status </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                <?php } ?>
+                                                <?php if($row['AdminRole'] == 1 || $row['AdminRole'] == 2){ ?>
+                                                    <li>
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Careers.php?action=Manage">Applications</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Pricing.php?action=Manage">Pricing System</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Sponsorship.php?action=Manage">Sponsorships</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Donatiton.php?action=Manage">Donations</a>
+                                                    </li>
+                                                <?php } ?> 
+                                            </ul>
+                                        </li>
+                                    <?php } ?>
+
+                                    <!-- Events Part  -->
+                                    <li>
+                                        <a href="#">What's On</a>
+                                        <ul class="submenu">
+                                            <?php if ($row['AdminRole'] != 4) { ?>
+                                                <li>
+                                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Entertainments.php?action=Manage">Events </a>
+                                                    <ul class="submenu">
+                                                        <?php 
+                                                            $SelectEvent = "SELECT * FROM entertainmnet ORDER BY ID DESC LIMIT 4 ";
+                                                            $SpecificEvent = mysqli_query($con , $SelectEvent);
+                                                            $SpecificRow = mysqli_fetch_assoc($SpecificEvent); 
+                                                            foreach ($SpecificEvent as $RowEvent){ ?>
+                                                                <li>
+                                                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Entertainments.php?action=MoreInfo&EventID=<?php echo $RowEvent['ID'] ?>"><?php echo $RowEvent['Name'] ?> </a>
+                                                                </li>
+                                                            <?php } ?>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Collections.php?action=Manage">Collections</a>
+                                                </li>
+                                            <?php } ?>
+                                            <?php if ($row['AdminRole'] == 4 || $row['AdminRole'] == 1) { ?>
+                                                <li>
+                                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Feedback.php?action=Manage">Feedback</a>
+                                                </li>
+                                            <?php } ?> 
+                                        </ul>
+                                    </li>
+                                    <!-- GiftShop -->
+                                    <?php if ($row['AdminRole'] != 4) { ?>
+                                        <li>
+                                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/iftShop.php?action=Manage">GiftShop</a>
+                                            <ul class="submenu">
+                                                <?php if($row['AdminRole'] == 1 || $row['AdminRole'] == 2){ ?>
+                                                    <li>
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/GiftShop.php?action=ItemsSold">Items Sold</a>
+                                                    </li>
+                                                <?php } ?>
+                                                <li>
+                                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/GiftShop.php?action=CheckAll">All Products</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    <?php } ?>
+                                    
+                                    <!-- Tickets -->
+                                    <?php if ($row['AdminRole'] != 4) { ?>
+                                        <li>
+                                            <a href="#">Tickets</a>
+                                            <ul class="submenu">
+                                                <?php if ($row['AdminRole'] != 4) { ?>
+                                                    <li>
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Tickets.php?action=Visit">Visit Tickets </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Tickets.php?action=Entertainment">Entertainments Tickets </a>
+                                                    </li>
+                                                <?php } ?>
+                                                <?php if($row['AdminRole'] == 1 || $row['AdminRole'] == 2){ ?>
+                                                    <li>
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Transportation.php?action=Manage">Transportation</a>
+                                                    </li>
+                                                <?php } ?>
+                                            </ul>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+
+                            <div class="right-side-box">
+                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
+                                    <img src="images/AdminImages/<?php echo $row['Image'] ?>" width="30px" height="30px" alt="" />
+                                </a>
+
+                                <a href="#" class="site-header__sidemenu-nav side-menu__toggler">
+                                    <span class="site-header__sidemenu-nav-line"></span>
+                                    <span class="site-header__sidemenu-nav-line"></span>
+                                    <span class="site-header__sidemenu-nav-line"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+    <?php //} ?>
+
+    
+    

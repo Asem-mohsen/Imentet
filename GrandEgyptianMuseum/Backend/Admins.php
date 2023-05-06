@@ -1,12 +1,12 @@
 <?php
 ob_start();
+session_start();
+session_regenerate_id();
 
 $PageTitle = "Admins Platform";
 
 include "./DatabaseConnection/Connection.php";
-
-session_start();
-session_regenerate_id();
+include "./Functions/Functions.php";
 
 if (isset($_SESSION["AdminID"])) {
 
@@ -14,9 +14,9 @@ if (isset($_SESSION["AdminID"])) {
     $SelectQuery = "SELECT * FROM admin WHERE ID = $AdminID";
     $Select = mysqli_query($con, $SelectQuery);
     $row = mysqli_fetch_assoc($Select);
-    if ($row['AdminRole'] == 1) {
-        include './NavAdmin.php';
+    include "./NavAdmin.php";
 
+    if ($row['AdminRole'] == 1) {
         $do = isset($_GET['action']) ?  $_GET['action'] : "Manage";
 
         if ($do == "Add") {  ?>
@@ -126,7 +126,9 @@ if (isset($_SESSION["AdminID"])) {
                             $TheMsg =  "<div class='alert alert-success txt-center'> Admin Added Successfully </div>";
                             RedirectIndex($TheMsg, "Back");
                         echo "</div>";
+                        
                     }
+                    
                 }else{
                     foreach ($FormErrors as $error) {
                         echo "<div class='alert alert-danger'>" . $error . "</div>";
@@ -149,7 +151,7 @@ if (isset($_SESSION["AdminID"])) {
                     $fetchquery = mysqli_fetch_assoc($Admins);
                     ?>
                     <div class="page d-flex">
-                        <div class=" w-280 sidepar bg-white p-20 p-relative">
+                        <div class=" w-280 sidepar p-20 p-relative">
                             <h3 class="p-relative txt-center mt-0">Control</h3>
                             <form method="post">
                                 <ul>
@@ -445,7 +447,7 @@ if (isset($_SESSION["AdminID"])) {
                 $fetchquery = mysqli_fetch_assoc($Admins);
                 ?>
                     <div class="page d-flex">
-                        <div class=" w-280 sidepar bg-white p-20 p-relative">
+                        <div class=" w-280 sidepar p-20 p-relative">
                             <h3 class="p-relative txt-center mt-0">Control</h3>
                             <form method="post">
                                 <ul>
@@ -562,10 +564,12 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "</td>";
                                                             echo "<td>" . $Admin['Role']   . "</td>";
                                                             echo "<td>";
-                                                                        if($Admin['Active'] == 1){
+                                                                        if($Admin['Active'] == 1 && $Admin['Role'] != 'Master Level' ){
                                                                             echo "<a href='Admins.php?action=Deactive&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Activated ... Tab here To Deactivate It Temporarily' . "</a>";
                                                                         }elseif($Admin['Active'] == 0){
                                                                             echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Deactivated ... Tab here To Activate' . "</a>";
+                                                                        }elseif($Admin['Role'] == 'Master Level'){
+                                                                            echo "<p class='activate fs-13 c-gray'>Cannot Deactivate Your Account </p>";
                                                                         }
                                                             echo "</td>";
                                                             echo "<td>" ;
@@ -605,10 +609,12 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "</td>";
                                                         echo "<td>" . $Admin['Role']   . "</td>";
                                                         echo "<td>";
-                                                                    if($Admin['Active'] == 1){
+                                                                    if($Admin['Active'] == 1 && $Admin['Role'] != 'Master Level' ){
                                                                         echo "<a href='Admins.php?action=Deactive&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Activated ... Tab here To Deactivate It Temporarily' . "</a>";
                                                                     }elseif($Admin['Active'] == 0){
                                                                         echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Deactivated ... Tab here To Activate' . "</a>";
+                                                                    }elseif($Admin['Role'] == 'Master Level'){
+                                                                        echo "<p class='activate fs-13 c-gray'>Cannot Deactivate Your Account </p>";
                                                                     }
                                                         echo "</td>";
                                                         echo "<td>" ;
@@ -622,7 +628,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                     }
                                                         echo "</td>";
                                                     echo "</tr>";
-                                                } 
+                                                }  
                                             }
                                         }elseif(isset($_POST['Role']) && !isset($_POST['Active'])){
                                             $sql = "WHERE admin.AdminRole IN(".implode(',', $_POST['Role']).")";
@@ -648,10 +654,12 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "</td>";
                                                         echo "<td>" . $Admin['Role']   . "</td>";
                                                         echo "<td>";
-                                                                    if($Admin['Active'] == 1){
+                                                                    if($Admin['Active'] == 1 && $Admin['Role'] != 'Master Level' ){
                                                                         echo "<a href='Admins.php?action=Deactive&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Activated ... Tab here To Deactivate It Temporarily' . "</a>";
                                                                     }elseif($Admin['Active'] == 0){
                                                                         echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Deactivated ... Tab here To Activate' . "</a>";
+                                                                    }elseif($Admin['Role'] == 'Master Level'){
+                                                                        echo "<p class='activate fs-13 c-gray'>Cannot Deactivate Your Account </p>";
                                                                     }
                                                         echo "</td>";
                                                         echo "<td>" ;
@@ -665,7 +673,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                     }
                                                         echo "</td>";
                                                     echo "</tr>";
-                                                } 
+                                                }  
                                             }
                                         }else{
                                             $SelectAdmins = "SELECT admin .* , adminrole.ID AS RoleID , adminrole.Role AS Role FROM admin 
@@ -689,10 +697,12 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "</td>";
                                                         echo "<td>" . $Admin['Role']   . "</td>";
                                                         echo "<td>";
-                                                                    if($Admin['Active'] == 1){
+                                                                    if($Admin['Active'] == 1 && $Admin['Role'] != 'Master Level' ){
                                                                         echo "<a href='Admins.php?action=Deactive&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Activated ... Tab here To Deactivate It Temporarily' . "</a>";
                                                                     }elseif($Admin['Active'] == 0){
                                                                         echo "<a href='Admins.php?action=Active&ID=" . $Admin['ID'] . "' class='activate'>"   . 'Deactivated ... Tab here To Activate' . "</a>";
+                                                                    }elseif($Admin['Role'] == 'Master Level'){
+                                                                        echo "<p class='activate fs-13 c-gray'>Cannot Deactivate Your Account </p>";
                                                                     }
                                                         echo "</td>";
                                                         echo "<td>" ;
@@ -920,20 +930,23 @@ if (isset($_SESSION["AdminID"])) {
                     RedirectIndex($TheMsg);
                     echo "</div>";
         }
-            include "./Includes/PageContent/Footer.php";
-            include "./AdminFooter.php";
+
     } else {
         echo "<div class='container'>";
         $TheMsg = "<div class='alert alert-danger'>" . "You Are Not Authorized To Access This Page"  . "</div>";
         RedirectIndex($TheMsg);
         echo "</div>";
     }
+        include "./AdminFooter.php";
 } else {
     if (!isset($_SESSION["AdminID"])) {
         header("Location: login.php");
         exit();
     }
 }
+
     ob_end_flush();
 
         ?>
+
+        

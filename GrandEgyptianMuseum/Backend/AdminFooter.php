@@ -1,40 +1,17 @@
   <?php 
-  
-  $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName , adminimage.Image AS Image FROM admin
-  LEFT JOIN adminrole ON admin.AdminRole = adminrole.ID 
-  LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
-  WHERE admin.ID = $AdminID";
+  include "./DatabaseConnection/Connection.php";
+//   if (isset($_SESSION["AdminID"])) {
+    $AdminID = $_SESSION['AdminID'];
+
+    $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName , adminimage.Image AS Image FROM admin
+    LEFT JOIN adminrole ON admin.AdminRole = adminrole.ID 
+    LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
+    WHERE admin.ID = $AdminID";
     $Select = mysqli_query($con, $SelectQuery);
     $row = mysqli_fetch_assoc($Select);
     $AdminRole =$row['AdminRole'] ;
   ?>
-  <!-- Footer -->
-    <!-- <footer class="site-footer">
-        <div class="container">
-          <a class="site-footer__logo" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php"
-            ><img src="images/resources/footer-logo-imentet-gem.png" alt=""
-          /></a>
-          <form action="#" class="site-footer__form">
-            <div class="site-footer__form-icon">
-              <i class="egypt-icon-email"></i>
-            </div>
-            <input type="text" placeholder="Enter Email Address..." />
-            <button type="submit">
-              <i class="egypt-icon-right-arrow1"></i>
-            </button>
-          </form>
-          <div class="site-footer__social">
-            <a href="https://www.facebook.com/GrandEgyptianMuseum/" target="_blank"><i class="egypt-icon-logo"></i></a>
-            <a href="https://twitter.com/EgyptMuseumGem"  target="_blank"><i class="egypt-icon-twitter"></i></a>
-            <a href="https://www.instagram.com/grandegyptianmuseum/?hl=en"  target="_blank"><i class="egypt-icon-instagram"></i></a>
-          </div>
-          <p class="site-footer__copy">
-            Copyrights &copy; 2023 <a href="#">Egypt</a>, All Rights Reserved.
-          </p>
-        </div>
-    </footer> -->
 
-    </div>
 
     <!-- Side Menu -->
     <div class="side-menu__block">
@@ -143,22 +120,6 @@
         </div>
     </div> 
 
-    <!-- Search  -->
-    <div class="search-popup">
-      <div class="search-popup__overlay custom-cursor__overlay">
-        <div class="cursor"></div>
-        <div class="cursor-follower"></div>
-      </div>
-      <div class="search-popup__inner">
-        <form action="#" class="search-popup__form">
-          <input type="text" name="search" placeholder="Type here to Search...." />
-          <button type="submit">
-            <i class="egypt-icon-search"></i>
-          </button>
-        </form>
-      </div>
-    </div>
-
     <!-- Scroll to Top -->
     <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
       <i class="egypt-icon-arrow-2"></i>
@@ -180,22 +141,19 @@
     <script src="js/nouislider.js"></script>
     <script src="js/jquery.bootstrap-touchspin.min.js"></script>
     <script src="js/theme.js"></script>
+
+    <script src="./JS/jquery-3.6.1.js"></script>
+    <script src="./JS/jquery-ui.min.js"></script>
+    <script src="./JS/jquery.selectBoxIt.min.js"></script>
+    <script src="./JS/bootstrap.min.js"></script>
+    <script src="./JS//backend.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://kit.fontawesome.com/39c3d46f9d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
   </body>
-</html>       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+</html>   
+<?php // } ?>    

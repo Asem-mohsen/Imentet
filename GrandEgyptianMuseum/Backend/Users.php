@@ -4,6 +4,7 @@ ob_start();
 $PageTitle = "Users Platform ";
 
 include "./DatabaseConnection/Connection.php";
+include "./Functions/Functions.php";
 
 
 session_start();
@@ -40,7 +41,7 @@ if (isset($_SESSION["AdminID"])) {
 
                 ?>
                 <div class="page d-flex">
-                        <div class=" w-280 sidepar bg-white p-20 p-relative">
+                        <div class=" w-280 sidepar p-20 p-relative">
                             <h3 class="p-relative txt-center mt-0">Control</h3>
                             <form method="post">
                                 <ul>
@@ -234,11 +235,12 @@ if (isset($_SESSION["AdminID"])) {
                         echo "<p>Sorry, We don't have Ghosts </p>";
                     echo "</div>";
                 }else{
-                $Users = "SELECT user.* , userrole.RoleName AS UserRole, membership.Type AS MembershipType , membershippayemnts.MembershipID 
+                $Users = "SELECT user.* , userrole.RoleName AS UserRole, membership.Type AS MembershipType , membershippayemnts.MembershipID , userimages.Image AS UserImage
                             FROM user 
                             LEFT JOIN membershippayemnts ON user.ID = membershippayemnts.UserID
                             LEFT JOIN userrole ON userrole.ID = user.RoleID 
                             LEFT JOIN membership ON membership.ID = membershippayemnts.MembershipID 
+                            LEFT JOIN userimages ON user.ID = userimages.UserID
                             WHERE user.ID = $UserID LIMIT 1
                             ";
                 $Query = mysqli_query($con , $Users);
@@ -253,7 +255,7 @@ if (isset($_SESSION["AdminID"])) {
                         <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-flex flex-column align-items-center text-center p-3 ">
-                                        <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                        <img class="rounded-circle mt-5 mb-20" width="150px" src="./Images/AdminImages/<?php echo $User['UserImage'] ?>">
                                         <span class="font-weight-bold"><?php echo $FullName ?></span>
                                         <span class="text-black-50"><?php echo $User['Email'] ?></span>
                                         <span> </span>
@@ -424,7 +426,7 @@ if (isset($_SESSION["AdminID"])) {
             $row = mysqli_fetch_assoc($Query);
             ?>
             <div class="page d-flex">
-                <div class=" w-280 sidepar bg-white p-20 p-relative">
+                <div class=" w-280 sidepar p-20 p-relative">
                     <h3 class="p-relative txt-center mt-0">Control</h3>
                     <form method="post">
                         <ul>
@@ -1490,7 +1492,7 @@ if (isset($_SESSION["AdminID"])) {
                 }else{ 
             ?>
             <div class="page d-flex">
-                    <div class=" w-280 sidepar bg-white p-20 p-relative">
+                    <div class=" w-280 sidepar p-20 p-relative">
                         <h3 class="p-relative txt-center mt-0">Control</h3>
                         <form method="post">
                             <ul>
@@ -2312,8 +2314,8 @@ if (isset($_SESSION["AdminID"])) {
             echo "</div>";
         }
 
-        include "./Includes/PageContent/Footer.php";
         include "./AdminFooter.php";
+        include "./Includes/PageContent/Footer.php";
 
 }else{
     if(!isset($_SESSION["AdminID"])){

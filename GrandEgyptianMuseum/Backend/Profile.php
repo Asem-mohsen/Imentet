@@ -4,6 +4,7 @@ ob_start();
 $PageTitle = "Profile";
 
 include "./DatabaseConnection/Connection.php";
+include "./Functions/Functions.php";
 
 session_start();
 session_regenerate_id();

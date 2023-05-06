@@ -4,6 +4,7 @@ ob_start();
 $PageTitle = "Payments";
 
 include "./DatabaseConnection/Connection.php";
+include "./Functions/Functions.php";
 
 session_start();
 session_regenerate_id();
@@ -35,7 +36,7 @@ if (isset($_SESSION["AdminID"])) {
         
             ?>
             <div class="page d-flex">
-                <div class=" w-280 sidepar bg-white p-20 p-relative">
+                <div class=" w-280 sidepar p-20 p-relative">
                     <h3 class="p-relative txt-center mt-0">Control</h3>
                     <form method="post">
                         <ul>
@@ -151,8 +152,8 @@ if (isset($_SESSION["AdminID"])) {
             RedirectIndex($TheMsg);
             echo "</div>"; 
         }
-        include "./Includes/PageContent/Footer.php";
         include "./AdminFooter.php";
+        include "./Includes/PageContent/Footer.php";
 
 
     }else{

@@ -4,8 +4,9 @@ session_start();
 session_regenerate_id();
 $PageTitle = "Dashboard";
 
-// include './init.php';
 include "./DatabaseConnection/Connection.php";
+include "./Functions/Functions.php";
+
 if (isset($_SESSION["AdminID"])) {
 
     $AdminID = $_SESSION['AdminID'];
@@ -20,125 +21,7 @@ if (isset($_SESSION["AdminID"])) {
 
 <?php include './NavAdmin.php'; ?> 
     <div class="page d-flex">
-        <!-- <div class="sidepar bg-white p-20 p-relative">
-            <h3 class="p-relative txt-center mt-0">Admin Panel</h3>
-            <ul>
-                <li>
-                    <a class="active d-flex align-center fs-14 c-b p-10 rad-6" href="">
-                    <i class="fa-solid fa-chart-bar fa-fw"></i><span> Dashboard </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Project/index.php" target='_blank'>
-                        <i class="fa-solid fa-sitemap fa-fw"></i><span> Website </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Users.php?action=Manage">
-                        <i class="fa-solid fa-users fa-fw"></i><span> Users </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Users.php?action=CheckAllMembership">
-                        <i class="fa-solid fa-key fa-fw"></i><span> Membership </span>
-                    </a>
-                </li>
-                <?php if ($row['AdminRole'] == 1) { ?>
-                    <li>
-                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Admins.php?action=Manage">
-                            <i class="fa-solid fa-gear fa-fw"></i><span> Admins </span>
-                        </a>
-                    </li>
-                <?php } ?>
-                <?php if ($row['AdminRole'] == 4 || $row['AdminRole'] == 1) { ?>
-                    <li>
-                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Q&A.php?action=Manage">
-                        <i class="fa-regular fa-circle-question fa-fw"></i><span> Messages </span>
-                        </a>
-                    </li>
-                <?php } ?>
-                <?php if ($row['AdminRole'] != 4) { ?>
-                        <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=Manage">
-                                <i class="fa-solid fa-shop fa-fw"></i><span> Gift Shop </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Entertainments.php?action=Manage">
-                            <i class="fa-solid fa-calendar-days fa-fw"></i><span> Entertainments </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Tickets.php?action=Visit">
-                                <i class="fa-solid fa-ticket fa-fw"></i><span> Tickets </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Collections.php?action=Manage">
-                            <i class="fa-solid fa-layer-group fa-fw"></i><span> Arts </span>
-                            </a>
-                        </li>
-                <?php } ?>
-                <?php if($row['AdminRole'] == 1 || $row['AdminRole'] == 2){ ?>
-                        <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Pricing.php?action=Manage">
-                            <i class="fa-solid fa-money-bill-1-wave fa-fw"></i><span> Pricing</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Careers.php?action=Manage">
-                            <i class="fa-brands fa-wpforms fa-fw"></i><span> Careers </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Donatiton.php?action=Manage">
-                            <i class="fa-solid fa-hand-holding-dollar fa-fw"></i><span> Donations </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Sponsorship.php?action=Manage">
-                            <i class="fa-solid fa-rectangle-ad fa-fw"></i><span> Sponsorship </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Transportation.php?action=Manage">
-                            <i class="fa-solid fa-truck-plane fa-fw"></i><span> Transportaton </span>
-                            </a>
-                        </li>
-                <?php } ?>
-                <?php if($row['AdminRole'] == 4){ ?>
-                <li>
-                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Feedback.php?action=Manage">
-                        <i class="fa-solid fa-comment fa-fw"></i><span> Feedback </span>
-                    </a>
-                </li>
-                <?php } ?>
-            </ul>
-        </div> -->
-
-
         <div class="content-area w-full overflow-h">
-            <!-- <div class="head bg-white p-15 between-flex">
-                <div class="icon d-flex align-center">
-                    <a href="./Profile.php?action=Manage&AdminID=<?php // echo $AdminID ?>">
-                    <div class="d-flex">
-                        <img src="images/AdminImages/<?php // echo $row['Image'] ?>" alt="" />
-                        <h5 class="ml-15"><?php //echo $row['Name'] ?></h5>
-                    </div>
-                        
-                    </a>
-                </div> -->
-                <!-- <div class="icon d-flex align-center"> -->
-                    <?php // if (isset($_SESSION["AdminID"])) {
-                    //     echo "<a href='./logout.php' class='Logout'>" ;
-                    //         echo "<i class='fa-solid fa-arrow-right-from-bracket'></i>";
-                    //     echo " Logout </a>";
-                    // }
-                    ?>
-                    
-                <!-- </div>
-            </div> -->
-
             <h1 class="p-relative inDashboard">Dashboard</h1>
             <?php if (isset($_SESSION["AdminID"])) {
                         echo "<a href='./logout.php' class='Logout'>" ;
@@ -488,8 +371,6 @@ if (isset($_SESSION["AdminID"])) {
 
     <?php
         include './AdminFooter.php';
-
-    include "./Includes/PageContent/Footer.php";
 } else {
     header("Location: login.php");
     exit();

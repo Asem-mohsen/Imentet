@@ -4,7 +4,7 @@ ob_start();
 $PageTitle = "Entertainments Platform ";
 
 include "./DatabaseConnection/Connection.php";
-
+include "./Functions/Functions.php";
 session_start();
 session_regenerate_id();
 
@@ -29,7 +29,7 @@ if (isset($_SESSION["AdminID"])) {
                 ?>
 
                 <div class="page d-flex overflow-h">
-                    <div class="sidepar bg-white p-20 p-relative">
+                    <div class="sidepar p-20 p-relative">
                         <h3 class="p-relative txt-center mt-0">Control</h3>
                         <ul>
                             <li>
@@ -87,8 +87,8 @@ if (isset($_SESSION["AdminID"])) {
                                                                 echo "<p>" .$Events['Status'] .  "</p> ";
                                                             echo "</div>" ;
                                                         } ?>
-                                                        <img src="./Images/<?php echo $Events['Image'] ; ?>" class="Image" alt="">
                                                             <div class="bottomBox">
+                                                                <img src="./Images/<?php echo $Events['Image'] ; ?>" class="Image" alt="">
                                                                 <a href="./Entertainments.php?action=MoreInfo&EventID=<?php echo $Events['ID'] ; ?>"><?php  echo $Events['Name'] ; ?></a>
                                                             </div>
                                                     </div>
@@ -129,7 +129,7 @@ if (isset($_SESSION["AdminID"])) {
             
             ?>  
                     <div class="page d-flex">
-                        <div class=" w-280 sidepar bg-white p-20 p-relative">
+                        <div class=" w-280 sidepar p-20 p-relative">
                             <h3 class="p-relative txt-center mt-0">Control</h3>
                             <form method="post">
                                 <ul>
@@ -985,9 +985,9 @@ if (isset($_SESSION["AdminID"])) {
                     RedirectIndex($TheMsg);
                     echo "</div>";              
         } 
-    
-            include "./Includes/PageContent/Footer.php";
+        
             include "./AdminFooter.php";
+            include "./Includes/PageContent/Footer.php";
 
     }else{
         echo "<div class='container'>";

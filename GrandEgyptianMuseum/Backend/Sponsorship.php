@@ -4,7 +4,8 @@ ob_start();
 $PageTitle = "Sponsorships";
 
 include "./DatabaseConnection/Connection.php";
-
+include "./Functions/Functions.php";
+include "./Includes/PageContent/Header.php";
 session_start();
 session_regenerate_id();
 
@@ -38,7 +39,7 @@ if (isset($_SESSION["AdminID"])) {
                     ?>
                         
                 <div class="page d-flex">
-                    <div class=" w-280 sidepar bg-white p-20 p-relative">
+                    <div class=" w-280 sidepar p-20 p-relative">
                         <h3 class="p-relative txt-center mt-0">Control</h3>
                         <form method="post">
                             <ul>
@@ -271,19 +272,19 @@ if (isset($_SESSION["AdminID"])) {
                 }
             }else{
                 echo "<div class='container'>";
-                $TheMsg = "<div class='alert alert-danger'> No Page With This Name </div";
+                $TheMsg = "<div class='alert alert-danger'> No Page With This Name </div>";
                 RedirectIndex($TheMsg);
                 echo "</div>";
             }
         }else{
+            
             echo "<div class='container'>";
-                    $TheMsg = "<div class='alert alert-danger'> You are not authorized to access this page </div";
+                    $TheMsg = "<div class='alert alert-danger txt-center'> You are not authorized to access this page </div>";
             RedirectIndex($TheMsg);
             echo "</div>";
         }
-                        
-        include "./Includes/PageContent/Footer.php";
         include "./AdminFooter.php";
+        include "./Includes/PageContent/Footer.php";
         
 
 }else{

@@ -4,6 +4,7 @@ ob_start();
 $PageTitle = "Feedback";
 
 include "./DatabaseConnection/Connection.php";
+include "./Functions/Functions.php";
 
 session_start();
 session_regenerate_id();
@@ -35,7 +36,7 @@ if (isset($_SESSION["AdminID"])) {
         $fecthquery = mysqli_fetch_row($FeedbackQuery);
         ?>
         <div class="page d-flex overflow-h">
-            <div class="sidepar bg-white p-20 p-relative">
+            <div class="sidepar p-20 p-relative">
                 <h3 class="p-relative txt-center mt-0">Control</h3>
                 <ul>
                     <?php if($AdminRole != 4){ ?>
@@ -105,8 +106,8 @@ if (isset($_SESSION["AdminID"])) {
         RedirectIndex($TheMsg);
         echo "</div>";
     }
-    include "./Includes/PageContent/Footer.php";
     include "./AdminFooter.php";
+    include "./Includes/PageContent/Footer.php";
 
 }else{
     if(!isset($_SESSION["AdminID"])){
