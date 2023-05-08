@@ -56,8 +56,20 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
                 $InsertImgQuery = "INSERT INTO `userimages` Values( Null , '". mysqli_insert_id($con) . "' , '$Image' )";
                 $Insert = mysqli_query($con, $InsertImgQuery);
+
+                if($RunQuery && $Insert){
+                  $SelectUser = "SELECT * FROM user WHERE Email = '$Email' LIMIT 1";
+                  $Select = mysqli_query($con , $SelectUser);
+                  $count = mysqli_num_rows($Select);
+                  $UserRow = mysqli_fetch_assoc($Select);
+                    if($count > 0){
+                    $_SESSION['UserID'] = $UserRow['ID'];     //Register Sesstion ID
+                    $_SESSION['UserPassword'] = $_POST['Password'];     //Register Sesstion Password
+    
+                    header('location:http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
+                  }
+                }
                 
-                header('location:login.php');
 
               }else{
                 foreach($FormErrors as $Error)

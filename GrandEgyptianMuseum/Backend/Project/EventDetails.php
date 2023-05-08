@@ -33,7 +33,18 @@ if(isset($_POST['Book'])){
       echo "You Must Have Account to Continue";
     }
 }
+if(isset($_POST['SubmitFeedback'])){
+  $EventID = $_POST['EventID'];
+  $UserID = $_POST['UserID'];
+  $Feedback = $_POST['Feedback'];
 
+  if(!empty($Feedback)){
+    $InsertFeedback = "INSERT INTO feedback VALUES(NULL , $UserID ,$EventID , '$Feedback')";
+    $RunFeedback = mysqli_query($con , $InsertFeedback);
+  }else{
+    echo "Feedback Cannot be Empty";
+  }
+}
 
   $EventID =  filter_var($_GET['EventID'], FILTER_SANITIZE_NUMBER_INT);
 if(empty($EventID)){
@@ -55,6 +66,7 @@ if(empty($EventID)){
   $row = mysqli_fetch_assoc($Events);
 
   $PageTitle = $row['Name'] . " Event";
+  
   $StartDate = date('d M Y', strtotime($row['Date'])); 
   $EndDate = date('d M Y', strtotime($row['DateTo'])); 
   $TodaysDate = date("Y-m-d");
@@ -174,105 +186,174 @@ if(empty($EventID)){
                 <div id="contact" class="event-details__single">
                   <div class="event-details__contact">
                     <div class="row">
-                      <div class="col-lg-6">
-                        <h3 class="event-details__title">
-                          Contact Information
-                        </h3>
-                        <p class="event-details__text">
-                          If you have any question about this Event pleas contact our
-                          team.
-                        </p>
-                        <ul class="event-details__contact-list list-unstyled">
-                          <li>
-                            <span>Address:</span>
-                            <p>
-                              Alexandria Desert Rd, Haram, <br />
-                              Giza Governorate X4VF+V3F
-                            </p>
-                          </li>
-                          <li>
-                            <span>Phone:</span>
-                            <p>
-                              <a href="tel:+20-23-531-7344">+20-23-531-7344</a>
-                            </p>
-                          </li>
-                          <li>
-                            <span>Email: </span>
-                            <p>
-                              <a href="gem@example.com">gem@example.com</a>
-                            </p>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-lg-6">
-                        <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13821.875835399496!2d31.122688!3d29.994688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584534984a8ad1%3A0x45764c5bc4ec261a!2sGrand%20Egyptian%20Museum!5e0!3m2!1sen!2seg!4v1681483362521!5m2!1sen!2seg"
-                          class="google-map__home"
-                          allowfullscreen
-                        ></iframe>
+                      <div class="product-details">
+                        <div class="accrodion-grp" data-grp-name="product-details__accrodion">
+                          <div class="accrodion active">
+                            <div class="accrodion-title">
+                              <h4>Address</h4>
+                            </div>
+                            <div class="accrodion-content">
+                              <div class="inner">
+                                <div id="contact" class="event-details__single">
+                                  <div class="event-details__contact">
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <h3 class="event-details__title">
+                                          Contact Information
+                                        </h3>
+                                        <p class="event-details__text">
+                                          If you have any question about this Event pleas contact our
+                                          team.
+                                        </p>
+                                        <ul class="event-details__contact-list list-unstyled">
+                                          <li>
+                                            <span>Address:</span>
+                                            <p>
+                                              Alexandria Desert Rd, Haram,
+                                              <br />
+                                              Giza Governorate X4VF+V3F
+                                            </p>
+                                          </li>
+                                          <li>
+                                            <span>Phone:</span>
+                                            <p>
+                                              <a href="tel:+20-23-531-7344">+20-23-531-7344</a>
+                                            </p>
+                                          </li>
+                                          <li>
+                                            <span>Email: </span>
+                                            <p>
+                                              <a href="gem@example.com">gem@example.com</a>
+                                            </p>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13821.875835399496!2d31.122688!3d29.994688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584534984a8ad1%3A0x45764c5bc4ec261a!2sGrand%20Egyptian%20Museum!5e0!3m2!1sen!2seg!4v1681483362521!5m2!1sen!2seg" class="google-map__home" allowfullscreen></iframe>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <?php if($TodaysDate > $StartDateInTime || $row['Everyday'] == 'Daily'){ 
+                                    $SelectUser = "SELECT * FROM entertainmnetticket WHERE UserID = $UserID AND EventID = $EventID";
+                                    $RunQuery = mysqli_query($con , $SelectUser);
+                                    $UserPaid = mysqli_fetch_assoc($RunQuery);
+                                    $CountUserPaid = mysqli_num_rows($RunQuery);
+                                    if($CountUserPaid >= 1 ){ ?>
+                          <div class="accrodion active">
+                            <div class="accrodion-title">
+                              <h4>Feedback</h4>
+                            </div>
+                            <div class="accrodion-content" style="padding-top: 0">
+                              <div class="inner">
+                                <div class="product-details__review-form">
+                                  <h3 class="product-details__review-form__title">
+                                    Share with us your Feedback!
+                                  </h3>
+                                  <p class="product-details__review-form__text">
+                                    Your email address will not be published.
+                                  </p>
+                                  <br>
+                                  <form method="POST" class="contact-one__form">
+                                      <div class="row">
+                                          <div class="col-lg-6">
+                                              <p class="contact-one__field">
+                                                  <label>Your Name </label>
+                                                  <input type="hidden" name="UserID"  value="<?php  echo $UserID ?>" >
+                                                  <input type="hidden" name="EventID"  value="<?php  echo $EventID ?>" >
+                                                  <input type="text" name="Name"  value="<?php if(isset($FullName )){ echo $FullName ; } ?>" <?php if(isset($FullName )){ echo "disabled" ;} ?>  >
+                                              </p>
+                                          </div>
+                                          <div class="col-lg-6">
+                                              <p class="contact-one__field">
+                                                  <label>Email</label>
+                                                  <input type="email" name="Email" value="<?php if(isset($User['Email'])){ echo $User['Email']; } ?>" <?php if(isset($User['Email'])){ echo "disabled" ;} ?>>
+                                              </p>
+                                          </div>
+                                          <div class="col-lg-12">
+                                              <p class="contact-one__field">
+                                                  <label>Your Feedback</label>
+                                                  <textarea name="Feedback" required></textarea>
+                                                  <button type="submit" name="SubmitFeedback" class="thm-btn contact-one__btn"> Submit </button>
+                                              </p>
+                                          </div>
+                                      </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <?php  } 
+                          } ?>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <!-- Online Booking -->
             <div class="col-lg-4">
               <div class="event-details__form">
                 <form method="post">
                   <h3 class="event-details__form-title">Online Booking</h3>
                   <div class="row">
-                    <?php if($TodaysDate < $StartDateInTime && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
-                          <div class="col-sm-12">
-                            <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
-                            <input type="hidden" name="EventID" value="<?php echo $EventID ;  ?>" />
-                            <input type="hidden" name="Price" value="<?php echo $row['RegularPrice'] ;  ?>" />
-                            <input type="text" name="Name" placeholder="Your Name" value="<?php if(isset($FullName)){ echo $FullName ; } ?>"/>
-                          </div>
-                          <div class="col-sm-12">
-                            <input type="text" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ; } ?>"/>
-                          </div>
-                          <div class="col-sm-6">
-                            <input class="quantity-spinner" type="text" value="1" max='10' name="Quantity" />
-                          </div>
-                          <div class="col-sm-12">
-                            <?php if(isset($UserID)){ ?>
-                                <button type="submit" name="Book" class="thm-btn event-details__form-btn" >
-                                Proceed to Book
-                              </button>
+                    <?php 
+                            if( ($TodaysDate < $StartDateInTime || $row['Everyday'] == 'Daily') && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
+                              <div class="col-sm-12">
+                                <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
+                                <input type="hidden" name="EventID" value="<?php echo $EventID ;  ?>" />
+                                <input type="hidden" name="Price" value="<?php echo $row['RegularPrice'] ;  ?>" />
+                                <input type="text" name="Name" placeholder="Your Name" value="<?php if(isset($FullName)){ echo $FullName ; } ?>"/>
+                              </div>
+                              <div class="col-sm-12">
+                                <input type="text" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ; } ?>"/>
+                              </div>
+                              <div class="col-sm-6">
+                                <input class="quantity-spinner" type="text" value="1" max='10' name="Quantity" />
+                              </div>
+                              <div class="col-sm-12">
+                                <?php if(isset($UserID)){ ?>
+                                    <button type="submit" name="Book" class="thm-btn event-details__form-btn" >
+                                    Proceed to Book
+                                  </button>
+                                <?php }else{ ?>
+                                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn event-details__form-btn" >
+                                    Sign In to Continue
+                                  </a>
+                                <?php } ?>
+                              </div>
                             <?php }else{ ?>
-                              <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn event-details__form-btn" >
-                                Sign In to Continue
-                              </a>
-                            <?php } ?>
-                          </div>
-                    <?php }else{ ?>
-                        <div class="col-sm-12">
-                          <input type="text" name="Name" placeholder="Your Name"  disabled/>
-                        </div>
-                        <div class="col-sm-12">
-                          <input type="text" name="Email" placeholder="Email Address" disabled/>
-                        </div>
-                        <div class="col-sm-6">
-                          <input class="quantity-spinner" type="text" value="1" max='10' disabled/>
-                        </div>
-                        <div class="col-sm-12">
-                          <?php if($TodaysDate > $StartDateInTime){ ?>
-                              <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
-                                  Event Date has Passed
-                              </button>
-                          <?php }elseif($row['EventStatus'] == 'Cancelled'){ ?>
-                              <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
-                                  Event Cancelled
-                              </button>
-                          <?php }elseif($row['EventStatus'] == 'Postponed'){ ?>
-                            <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
-                                  Event Postponed
-                              </button>
-                          <?php } ?>
+                                <div class="col-sm-12">
+                                  <input type="text" name="Name" placeholder="Your Name"  disabled/>
+                                </div>
+                                <div class="col-sm-12">
+                                  <input type="text" name="Email" placeholder="Email Address" disabled/>
+                                </div>
+                                <div class="col-sm-6">
+                                  <input class="quantity-spinner" type="text" value="1" max='10' disabled/>
+                                </div>
+                                <div class="col-sm-12">
+                                  <?php if($TodaysDate > $StartDateInTime){ ?>
+                                      <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                          Event Date has Passed
+                                      </button>
+                                  <?php }elseif($row['EventStatus'] == 'Cancelled'){ ?>
+                                      <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                          Event Cancelled
+                                      </button>
+                                  <?php }elseif($row['EventStatus'] == 'Postponed'){ ?>
+                                    <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                          Event Postponed
+                                      </button>
+                                  <?php } ?>
 
-                        </div>
-                    <?php } ?>
+                                </div>
+                            <?php } ?>
                   </div>
                 </form>
               </div>

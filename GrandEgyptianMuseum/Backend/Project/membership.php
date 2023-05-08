@@ -108,7 +108,7 @@ if(isset($_SESSION['AdminID'])){
                                         ?>
                                     </li>
                                 </ul>
-                                <a href="#" class="pricing-one__btn thm-btn">Join</a>
+                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/MembershipDetails.php?MembershipID=<?php echo $Membership['ID'] ?>" class="pricing-one__btn thm-btn">Join</a>
                             </div>
                         </div>
                     </div>

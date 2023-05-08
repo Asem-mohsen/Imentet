@@ -60,6 +60,7 @@ if(isset($_SESSION['UserID'])){
                   echo "<div class='alert alert-success'>";
                       echo "Done";
                   echo "</div>";
+                  unset($_SESSION['cart']);
           }
       }else{
           $FormError[] = 'No Items Selected';
@@ -126,7 +127,7 @@ if(isset($_SESSION['UserID'])){
                                                   <input type="hidden" name="ItemID[]" class="ItemID" value="<?php echo $ProductID ; ?>">
                                                   <div class="column-box">
                                                       <figure class="prod-thumb">
-                                                        <a href="#">
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/ProductDetails.php?ItemID=<?php echo $value['ID'] ?>">
                                                           <img src="../Images/<?php echo $row['Image'] ?>" width="100px" height="100px" style="padding-right:20px;" alt="">
                                                         </a>
                                                       </figure>

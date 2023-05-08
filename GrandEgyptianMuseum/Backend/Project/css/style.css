@@ -2600,13 +2600,9 @@ a:focus {
   border: 2px solid #e4e4e4;
   padding-top: 30.5px;
   padding-bottom: 30.5px;
-  /* padding-left: 25px; */
+  padding-left: 28px;
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
-  height: 470px;
-}
-.collection-four__single img{
-  width: "-webkit-fill-available";
 }
 .collection-four__single:hover {
   background-color: #f2ebe8;
@@ -2717,8 +2713,8 @@ a:focus {
 @media (max-width: 1440px) {
   .collection-four__link {
     position: absolute;
-    top: -31px;
-    left: 244px;
+    top: 0;
+    left: -10px;
     margin: 0;
   }
 }
@@ -9955,7 +9951,7 @@ a:focus {
 
 /* product details */
 .product-details {
-  padding-top: 120px;padding-bottom: 120px;
+  padding-top: 20px;padding-bottom: 120px;
 }
 .product-details__image {
   position: relative;
@@ -11108,4 +11104,9 @@ content: initial !important;
   display:flex;
   justify-content: space-between;
   align-items: center;
+}
+
+#about-event .pricing-one__single {
+padding-top: 30px;
+padding-bottom: 30px;
 }

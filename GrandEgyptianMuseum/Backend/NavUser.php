@@ -134,8 +134,6 @@ include "./Functions/Functions.php";
                                 <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">The Museum</a>
                                 <ul class="submenu">
                                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">About Us </a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/team.php">Meet Our Team</a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Venues.php">Venues</a></li>
                                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/contact.php">Contact</a></li>
                                 </ul>
                             </li>
@@ -175,17 +173,14 @@ include "./Functions/Functions.php";
                                                 <?php } ?>
                                         </ul>
                                     </li>
-                                    <li><a href="exhibhition.php">Exhibition</a></li>
+                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Exhibition.php">Exhibition</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php">Collections</a>
+                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Collections.php">Collections</a>
                                 <ul class="submenu">
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php">Antiquities</a>
-                                    </li>
                                         <?php 
-                                            $SelectCollections = "SELECT * FROM collectionscategories WHERE ID != 1 LIMIT 4 ";
+                                            $SelectCollections = "SELECT * FROM collectionscategories LIMIT 5 ";
                                                                     
                                             $SpecificCategory = mysqli_query($con , $SelectCollections);
                                             $SpecificRow = mysqli_fetch_assoc($SpecificCategory); 
@@ -198,25 +193,14 @@ include "./Functions/Functions.php";
                                 <a href="#">Pages</a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="blog-masonry.html">Blog</a>
-                                        <ul class="submenu right-align">
-                                            <li><a href="blog-masonry.html">Masonry View</a></li>
-                                            <li><a href="blog-grid.html">Grid View</a></li>
-                                            <li><a href="blog-large.html">Large Image</a></li>
-                                            <li><a href="blog-details.html">Single Post</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
                                         <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1">Shop</a>
                                         <ul class="submenu right-align">
                                             <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1">Products</a></li>
                                             <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Cart.php">Shopping Cart</a></li>
-                                            <li><a href="checkhout.php">Checkout</a></li>
-                                            <li><a href="my-account.php">My Account</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php">Donation</a></li>
-                                    <li><a href="faq.php">FAQ’s</a></li>
+                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Careers.php">Careers</a></li>
                                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/membership.php">Membership</a></li>
                                 </ul>
                             </li>
@@ -225,9 +209,11 @@ include "./Functions/Functions.php";
                     <div class="right-side-box">
                         <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Cart.php" class="site-header__cart">
                             <i class="egypt-icon-supermarket"></i>
-                            <?php  if(isset($_SESSION['cart'])){ ?>
-                                <span class="count"><?php echo count($_SESSION['cart']) ?></span>
-                            <?php } ?>
+                            <?php  if(isset($_SESSION['cart'])){ 
+                                        if(count($_SESSION['cart']) > 0 ){?>
+                                            <span class="count"><?php echo count($_SESSION['cart']) ; ?> </span>
+                                        <?php }
+                                    } ?>
                         </a>
 
                         <a href="#" class="site-header__sidemenu-nav side-menu__toggler">

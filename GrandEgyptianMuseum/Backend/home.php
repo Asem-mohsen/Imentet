@@ -161,15 +161,15 @@ if(isset($_SESSION['AdminID'])){
                         <span class="exhibhition-one__image-border-4"></span>
 
                         <img src="Images/<?php echo $Exhibitions['Image'] ?>" alt="Awesome Image"/>
-                        <a href="event-details.html" class="exhibhition-one__image-link">
+                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Exhibitions['ID'] ?>" class="exhibhition-one__image-link">
                           <i class="egypt-icon-arrow-1"></i>
                         </a>
                       </div>
                     </div>
                     <div class="exhibhition-one__content">
-                      <a href="#" class="exhibhition-one__category"><?php echo $Exhibitions['CatName'] ?></a>
+                      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Exhibitions['ID'] ?>" class="exhibhition-one__category"><?php echo $Exhibitions['CatName'] ?></a>
                       <h3 class="exhibhition-one__title">
-                        <a href="event-details.html"><?php echo $Exhibitions['Name'] ?></a>
+                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Exhibitions['ID'] ?>"><?php echo $Exhibitions['Name'] ?></a>
                       </h3>
                       <div class="exhibhition-one__bottom">
                         <div class="exhibhition-one__bottom-left">
@@ -179,7 +179,7 @@ if(isset($_SESSION['AdminID'])){
                           </span>
                         </div>
                         <div class="exhibhition-one__bottom-right">
-                          <a href="EventDetails.php" class="thm-btn exhibhition-one__btn">Read More</a>
+                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Exhibitions['ID'] ?>" class="thm-btn exhibhition-one__btn">Read More</a>
                         </div>
                       </div>
                     </div>
@@ -465,7 +465,7 @@ if(isset($_SESSION['AdminID'])){
                           <?php echo $Collection['Collection'] ?>
                         </a>
                       </h3>
-                      <a href="CollectionDetails.php" class="collection-three__link">
+                      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>" class="collection-three__link">
                         <span>+</span>
                       </a>
                     </div>
@@ -475,7 +475,7 @@ if(isset($_SESSION['AdminID'])){
           </div>
 
           <div class="text-center">
-            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php" class="collection-three__more-link">
+            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Collections.php" class="collection-three__more-link">
               <span><i class="fa fa-angle-right"></i>View All Collections</span>
             </a>
           </div>

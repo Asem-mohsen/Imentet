@@ -1,15 +1,16 @@
-  <?php 
-  include "./DatabaseConnection/Connection.php";
+<?php
+//   include "./DatabaseConnection/Connection.php";
 //   if (isset($_SESSION["AdminID"])) {
-    $AdminID = $_SESSION['AdminID'];
+    // $AdminID = $_SESSION['AdminID'];
 
-    $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName , adminimage.Image AS Image FROM admin
-    LEFT JOIN adminrole ON admin.AdminRole = adminrole.ID 
-    LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
-    WHERE admin.ID = $AdminID";
-    $Select = mysqli_query($con, $SelectQuery);
-    $row = mysqli_fetch_assoc($Select);
-    $AdminRole =$row['AdminRole'] ;
+    // $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName , adminimage.Image AS Image FROM admin
+    // LEFT JOIN adminrole ON admin.AdminRole = adminrole.ID 
+    // LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
+    // WHERE admin.ID = $AdminID";
+    // $Select = mysqli_query($con, $SelectQuery);
+    // $row = mysqli_fetch_assoc($Select);
+    // $AdminRole =$row['AdminRole'] ;
+    
   ?>
 
 

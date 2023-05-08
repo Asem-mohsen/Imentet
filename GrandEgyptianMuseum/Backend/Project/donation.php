@@ -134,7 +134,7 @@ if(isset($_POST['Donate'])){
                     </div>
                     <div class="col-md-6">
                       <div class="donation-form__form-field">
-                        <input type="number" name="Phone" placeholder="Phone Number" value="<?php if(isset($User['Phone'])){ echo $User['Phone'] ;} ?>" />
+                        <input type="number" name="Phone" pattern="[0-9]" placeholder="Phone Number" value="<?php if(isset($User['Phone'])){ echo $User['Phone'] ;} ?>" />
                       </div>
                     </div>
                     <div class="col-md-6">

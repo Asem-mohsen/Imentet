@@ -197,7 +197,7 @@ if(isset($_SESSION['AdminID'])){
                       <h3 class="department-one__carrer-title">
                         Find Your Career
                       </h3>
-                      <a href="" class="department-one__carrer-link"
+                      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Careers.php" class="department-one__carrer-link"
                         >Job Oppurtunities <span>+</span></a
                       >
                     </div>
