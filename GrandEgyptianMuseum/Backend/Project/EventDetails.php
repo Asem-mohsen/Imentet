@@ -110,6 +110,11 @@ if(empty($EventID)){
                   <li class="nav-item">
                     <a href="#contact" data-target="#contact" class="nav-link">Contact</a>
                   </li>
+                  <?php if($row['CatID'] == 9 ){ ?>
+                    <li class="nav-item">
+                      <a href="#gallery" data-target="#gallery" class="nav-link" >Gallery</a>
+                    </li>
+                  <?php } ?>
                 </ul>
                 <div class="event-details__single" id="about-event">
                   <div class="event-details__event-info">
@@ -182,6 +187,28 @@ if(empty($EventID)){
                     </li>
                   </ul>
                 </div>
+
+                <!-- Gallery -->
+                <?php if($row['CatID'] == 9 ){ ?>
+                  <div id="gallery" class="event-details__single">
+                    <h3 class="event-details__title">Gallery</h3>
+                    <div class="row masonary-layout">
+                      <div class="col-md-6 masonary-item">
+                        <img class="img-fluid" src="images/event/event-d-g-1.jpg" alt="Awesome Image"/>
+                      </div>
+                      <div class="col-md-6 masonary-item">
+                        <img class="img-fluid" src="images/event/event-d-g-2.jpg" alt="Awesome Image"/>
+                      </div>
+                      <div class="col-md-6 masonary-item">
+                        <img class="img-fluid" src="images/event/event-d-g-3.jpg" alt="Awesome Image" />
+                      </div>
+                      <div class="col-md-6 masonary-item">
+                        <img class="img-fluid" src="images/event/event-d-g-4.jpg" alt="Awesome Image"/>
+                      </div>
+                    </div>
+                  </div>
+                <?php } ?>
+
                 <!-- Contact -->
                 <div id="contact" class="event-details__single">
                   <div class="event-details__contact">
@@ -237,57 +264,59 @@ if(empty($EventID)){
                               </div>
                             </div>
                           </div>
-                          <?php if($TodaysDate > $StartDateInTime || $row['Everyday'] == 'Daily'){ 
-                                    $SelectUser = "SELECT * FROM entertainmnetticket WHERE UserID = $UserID AND EventID = $EventID";
-                                    $RunQuery = mysqli_query($con , $SelectUser);
-                                    $UserPaid = mysqli_fetch_assoc($RunQuery);
-                                    $CountUserPaid = mysqli_num_rows($RunQuery);
-                                    if($CountUserPaid >= 1 ){ ?>
-                          <div class="accrodion active">
-                            <div class="accrodion-title">
-                              <h4>Feedback</h4>
-                            </div>
-                            <div class="accrodion-content" style="padding-top: 0">
-                              <div class="inner">
-                                <div class="product-details__review-form">
-                                  <h3 class="product-details__review-form__title">
-                                    Share with us your Feedback!
-                                  </h3>
-                                  <p class="product-details__review-form__text">
-                                    Your email address will not be published.
-                                  </p>
-                                  <br>
-                                  <form method="POST" class="contact-one__form">
-                                      <div class="row">
-                                          <div class="col-lg-6">
-                                              <p class="contact-one__field">
-                                                  <label>Your Name </label>
-                                                  <input type="hidden" name="UserID"  value="<?php  echo $UserID ?>" >
-                                                  <input type="hidden" name="EventID"  value="<?php  echo $EventID ?>" >
-                                                  <input type="text" name="Name"  value="<?php if(isset($FullName )){ echo $FullName ; } ?>" <?php if(isset($FullName )){ echo "disabled" ;} ?>  >
-                                              </p>
+                          <?php if(isset($_SESSION['UserID'])){
+                                    if($TodaysDate > $StartDateInTime || $row['Everyday'] == 'Daily'){ 
+                                      $SelectUser = "SELECT * FROM entertainmnetticket WHERE UserID = $UserID AND EventID = $EventID";
+                                      $RunQuery = mysqli_query($con , $SelectUser);
+                                      $UserPaid = mysqli_fetch_assoc($RunQuery);
+                                      $CountUserPaid = mysqli_num_rows($RunQuery);
+                                      if($CountUserPaid >= 1 ){ ?>
+                                        <div class="accrodion active">
+                                          <div class="accrodion-title">
+                                            <h4>Feedback</h4>
                                           </div>
-                                          <div class="col-lg-6">
-                                              <p class="contact-one__field">
-                                                  <label>Email</label>
-                                                  <input type="email" name="Email" value="<?php if(isset($User['Email'])){ echo $User['Email']; } ?>" <?php if(isset($User['Email'])){ echo "disabled" ;} ?>>
-                                              </p>
+                                          <div class="accrodion-content" style="padding-top: 0">
+                                            <div class="inner">
+                                              <div class="product-details__review-form">
+                                                <h3 class="product-details__review-form__title">
+                                                  Share with us your Feedback!
+                                                </h3>
+                                                <p class="product-details__review-form__text">
+                                                  Your email address will not be published.
+                                                </p>
+                                                <br>
+                                                <form method="POST" class="contact-one__form">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <p class="contact-one__field">
+                                                                <label>Your Name </label>
+                                                                <input type="hidden" name="UserID"  value="<?php  echo $UserID ?>" >
+                                                                <input type="hidden" name="EventID"  value="<?php  echo $EventID ?>" >
+                                                                <input type="text" name="Name"  value="<?php if(isset($FullName )){ echo $FullName ; } ?>" <?php if(isset($FullName )){ echo "disabled" ;} ?>  >
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <p class="contact-one__field">
+                                                                <label>Email</label>
+                                                                <input type="email" name="Email" value="<?php if(isset($User['Email'])){ echo $User['Email']; } ?>" <?php if(isset($User['Email'])){ echo "disabled" ;} ?>>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <p class="contact-one__field">
+                                                                <label>Your Feedback</label>
+                                                                <textarea name="Feedback" required></textarea>
+                                                                <button type="submit" name="SubmitFeedback" class="thm-btn contact-one__btn"> Submit </button>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                              </div>
+                                            </div>
                                           </div>
-                                          <div class="col-lg-12">
-                                              <p class="contact-one__field">
-                                                  <label>Your Feedback</label>
-                                                  <textarea name="Feedback" required></textarea>
-                                                  <button type="submit" name="SubmitFeedback" class="thm-btn contact-one__btn"> Submit </button>
-                                              </p>
-                                          </div>
-                                      </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <?php  } 
-                          } ?>
+                                        </div>
+                                      <?php  } 
+                                    } 
+                                  } ?>
                         </div>
                       </div>
                     </div>

@@ -6,6 +6,11 @@ session_start();
 session_regenerate_id();
 
 $PageTitle = "Exhibitions";
+
+$NumOfRecords = 9 ;
+if(isset($_GET['MoreData'])){
+  $NumOfRecords = $NumOfRecords + $_GET['MoreData'] ;
+}
 ?>
 <?php include "../NavUser.php" ; ?>
 
@@ -20,7 +25,7 @@ $PageTitle = "Exhibitions";
 
           <ul class="nav nav-tabs exhibhition-one__menu">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#current">Current</a>
+              <a class="nav-link active" data-toggle="tab" href="#current">Ongoing</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#upcoming">Upcoming</a>
@@ -44,9 +49,10 @@ $PageTitle = "Exhibitions";
                   $SelectExhibitions = "SELECT entertainmnet.* , entertainmnetcategory.Name AS CatName FROM entertainmnet 
                                         JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
                                         WHERE CatID = 9 AND Date BETWEEN '2023-04-14' AND '2023-12-01'
-                                        LIMIT 9";
+                                        LIMIT $NumOfRecords";
                   $Query = mysqli_query($con , $SelectExhibitions);
                   $ExhibitionsRow = mysqli_fetch_assoc($Query);
+                  $Count = mysqli_num_rows($Query);
                   foreach($Query as $Exhibitions){ 
                     $StartDate = $Exhibitions['Date'] ;
                     $EndDate = $Exhibitions['DateTo'] ;
@@ -99,9 +105,10 @@ $PageTitle = "Exhibitions";
                   $SelectExhibitions = "SELECT entertainmnet.* , entertainmnetcategory.Name AS CatName FROM entertainmnet 
                                         JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
                                         WHERE CatID = 9 AND Date BETWEEN '2023-12-02' AND '2025-12-30'
-                                        LIMIT 9";
+                                        LIMIT $NumOfRecords";
                   $Query = mysqli_query($con , $SelectExhibitions);
                   $ExhibitionsRow = mysqli_fetch_assoc($Query);
+                  $Count = mysqli_num_rows($Query);
                   foreach($Query as $Exhibitions){ 
                     $StartDate = $Exhibitions['Date'] ;
                     $EndDate = $Exhibitions['DateTo'] ;
@@ -153,9 +160,10 @@ $PageTitle = "Exhibitions";
                   $SelectExhibitions = "SELECT entertainmnet.* , entertainmnetcategory.Name AS CatName FROM entertainmnet 
                                         JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
                                         WHERE CatID = 9 AND Date BETWEEN '2021-12-02' AND '2023-04-30'
-                                        LIMIT 9";
+                                        LIMIT $NumOfRecords";
                   $Query = mysqli_query($con , $SelectExhibitions);
                   $ExhibitionsRow = mysqli_fetch_assoc($Query);
+                  $Count = mysqli_num_rows($Query);
                   foreach($Query as $Exhibitions){ 
                     $StartDate = $Exhibitions['Date'] ;
                     $EndDate = $Exhibitions['DateTo'] ;
@@ -202,15 +210,18 @@ $PageTitle = "Exhibitions";
             </div>
 
             <!-- Load More -->
-          <div class="text-center">
-            <a href="#" class="exhibhition-one__more-link">
-              <i class="exhibhition-one__more-link__icon">+</i>
-              <span class="text-uppercase">Load More</span>
-            </a>
-          </div>
+            <?php if($Count >= $NumOfRecords){ ?>
+              <div class="text-center">
+                <a href="?MoreData=8" class="exhibhition-one__more-link">
+                  <i class="exhibhition-one__more-link__icon">+</i>
+                  <span class="text-uppercase">Load More</span>
+                </a>
+              </div>
+            <?php } ?>
 
         </div>
-      </section>
+      </div>
+    </section>
 
 
   <?php include "../UserFooter.php"; ?>

@@ -7,7 +7,24 @@ session_start();
 session_regenerate_id();
 
 $PageTitle = "Imentet";
+if(isset($_SESSION['UserID'])){
+  $UserID = $_SESSION['UserID'];
+  $Select = "SELECT * FROM user WHERE ID = $UserID";
+  $Run = mysqli_query($con , $Select);
+  $UserRow = mysqli_fetch_assoc($Run);
 
+  $Name = $UserRow['Name'];
+  $FirstTwoLetters = $Name[0] . $Name[1] ;
+}
+if(isset($_SESSION['AdminID'])){
+  $AdminID = $_SESSION['AdminID'];
+  $Select = "SELECT * FROM admin WHERE ID = $AdminID";
+  $RunAdmin = mysqli_query($con , $Select);
+  $AdminRow = mysqli_fetch_assoc($RunAdmin);
+
+  $Name = $AdminRow['Name'];
+  $FirstTwoLettersAdmin = $Name[0] . $Name[1] ;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,8 +88,18 @@ $PageTitle = "Imentet";
                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">Our Story </a></li>
                   </ul>
                 </li>
-                <?php if(isset($_SESSION['UserID']) || isset($_SESSION['AdminID'])){ ?>
-                  
+                <?php if(isset($_SESSION['UserID'])){ ?>
+                  <li>
+                      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/profile.php" class="user-icon topbar-one__search">
+                        <?php  echo strtoupper($FirstTwoLetters) ; ?>
+                      </a>
+                  </li>
+                <?php }elseif(isset($_SESSION['AdminID'])){ ?>
+                  <li>
+                      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
+                        <?php  echo strtoupper($FirstTwoLettersAdmin) ; ?>
+                      </a>
+                  </li>
                 <?php }else{ ?>
                   <li>
                       <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/register.php" class="thm-btn topbar-one__btn">Join Us</a>

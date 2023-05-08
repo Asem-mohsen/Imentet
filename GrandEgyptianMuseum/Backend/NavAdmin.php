@@ -34,10 +34,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="Style//framework.css">
-    <link rel="stylesheet" href="Style/main.css">
     <link rel="stylesheet" href="css//style.css" />
+    <link rel="stylesheet" href="Style/main.css">
     <link rel="stylesheet" href="css/responsive.css" />
-    
+
     <title><?php if(isset($PageTitle)){echo $PageTitle ; }else{ echo "Defult";} ?></title>
 </head>
 <?php 

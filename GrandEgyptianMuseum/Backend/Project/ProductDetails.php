@@ -44,6 +44,18 @@ if(empty($ItemID)){
             $_SESSION['cart'][] = $session_array ;
         }
     }
+    if(isset($_POST['AddComment'])){
+        $Comment = $_POST['Comment'];
+        $UserID = $_POST['UserID'];
+        $ItemID = $_POST['ItemID'];
+
+        if(!empty($Comment)){
+            $InsertComment = "INSERT INTO shopcomments VALUES (NULL , $ItemID , $UserID , '$Comment')";
+            $RunComment = mysqli_query($con , $InsertComment);
+
+        }
+
+    }
     $ItemID = $_GET['ItemID'] ;
 
     $SelectProduct = "SELECT giftshop.* , giftcategory.Category AS CategoryName FROM giftshop 
@@ -145,27 +157,33 @@ if(empty($ItemID)){
                                     <div class="accrodion-content">
                                         <div class="inner">
                                             <div class="product-details__review-form">
-                                                <h3 class="product-details__review-form__title">Add Your Comments</h3>
+                                                <h3 class="product-details__review-form__title">Add Your Comment</h3>
                                                 <p class="product-details__review-form__text">Your Email address will not be published.</p>
                                                 <form method="post" class="contact-one__form">
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <p class="contact-one__field">
                                                                 <label>Your Name</label>
-                                                                <input type="text" name="Name">
+                                                                <input type="text" name="Name" placeholder="Your Full Name" value="<?php if(isset($FullName)){ echo $FullName ;} ?>" disabled />
+                                                                <input type="hidden" name="UserID" value="<?php echo $UserID ?>"/>
+                                                                <input type="hidden" name="ItemID" value="<?php echo $ItemID ?>"/>
                                                             </p>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <p class="contact-one__field">
                                                                 <label>Email</label>
-                                                                <input type="email" name="Email">
+                                                                <input type="email" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ;} ?>" disabled  />
                                                             </p>
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <p class="contact-one__field">
-                                                                <label>Your Comments</label>
+                                                                <label>Your Comment</label>
                                                                 <textarea name="Comment" required></textarea>
-                                                                <button type="submit" name="AddComment" class="thm-btn contact-one__btn"> Comment </button>
+                                                                <?php if(isset($_SESSION['UserID'])){ ?>
+                                                                    <button type="submit" name="AddComment" class="thm-btn contact-one__btn"> Comment </button>
+                                                                <?php }else{ ?>
+                                                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn contact-one__btn"> Sign In to Countine </a>
+                                                                <?php } ?>
                                                             </p>
                                                         </div>
                                                     </div>

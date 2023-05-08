@@ -87,7 +87,7 @@ if(isset($_SESSION['UserID'])){
               <div class="row">
                 <div class="col-md-4 details">
                   <div class="testimonials-one__image">
-                    <img src="../Images/AdminImages/<?php echo $row['Image'] ?>" id="Image" style="width: 100px !important" alt=""/>
+                    <img src="../Images/AdminImages/<?php echo $row['Image'] ?>" id="Image" style="width: 100px !important" height="100px" alt=""/>
                   </div>
                   <div class="testimonials-one__info">
                     <h3 class="testimonials-one__name"><?php echo $FullName ;?></h3>
@@ -125,7 +125,7 @@ if(isset($_SESSION['UserID'])){
                       </div>
                       <div class="col-md-6">
                         <div class="login-form__field">
-                          <input type="number" name="Phone" placeholder="Phone Number" value="<?php if(isset($row['Phone'])){ echo "0" . $row['Phone'] ;}  ?>"/>
+                          <input type="number" name="Phone" pattern="[0-9]" placeholder="Phone Number" value="<?php if(isset($row['Phone'])){ echo "0" . $row['Phone'] ;}  ?>"/>
                           <i class="fa fa-phone"></i>
                         </div>
                       </div>

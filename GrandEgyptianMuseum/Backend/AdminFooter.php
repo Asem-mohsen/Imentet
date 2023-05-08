@@ -1,15 +1,15 @@
 <?php
-//   include "./DatabaseConnection/Connection.php";
-//   if (isset($_SESSION["AdminID"])) {
-    // $AdminID = $_SESSION['AdminID'];
+  include "./DatabaseConnection/Connection.php";
+  if (isset($_SESSION["AdminID"])) {
+    $AdminID = $_SESSION['AdminID'];
 
-    // $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName , adminimage.Image AS Image FROM admin
-    // LEFT JOIN adminrole ON admin.AdminRole = adminrole.ID 
-    // LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
-    // WHERE admin.ID = $AdminID";
-    // $Select = mysqli_query($con, $SelectQuery);
-    // $row = mysqli_fetch_assoc($Select);
-    // $AdminRole =$row['AdminRole'] ;
+    $SelectQuery = "SELECT admin .* , adminrole.Role AS RoleName , adminimage.Image AS Image FROM admin
+    LEFT JOIN adminrole ON admin.AdminRole = adminrole.ID 
+    LEFT JOIN adminimage ON admin.ID = adminimage.AdminID
+    WHERE admin.ID = $AdminID";
+    $Select = mysqli_query($con, $SelectQuery);
+    $row = mysqli_fetch_assoc($Select);
+    $AdminRole =$row['AdminRole'] ;
     
   ?>
 
@@ -28,91 +28,91 @@
           <h3 class="side-menu__block__title txt-center">Admin Panel</h3>
             <ul class=" gap-30 bo-n navigation-box @@extra_class">
                 <li>
-                    <a class="active d-flex align-center fs-14 c-b p-10 rad-6" href="">
+                    <a class="active d-flex align-center fs-14 c-b p-10 " href="">
                     <i class="fa-solid fa-chart-bar fa-fw"></i><span> Dashboard </span>
                     </a>
                 </li>
                 <li>
-                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Project/index.php" target='_blank'>
+                    <a class="d-flex align-center fs-14 c-b p-10" href="./Project/index.php" target='_blank'>
                         <i class="fa-solid fa-sitemap fa-fw"></i><span> Website </span>
                     </a>
                 </li>
                 <li>
-                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Users.php?action=Manage">
+                    <a class="d-flex align-center fs-14 c-b p-10 " href="./Users.php?action=Manage">
                         <i class="fa-solid fa-users fa-fw"></i><span> Users </span>
                     </a>
                 </li>
                 <li>
-                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Users.php?action=CheckAllMembership">
+                    <a class="d-flex align-center fs-14 c-b p-10" href="./Users.php?action=CheckAllMembership">
                         <i class="fa-solid fa-key fa-fw"></i><span> Membership </span>
                     </a>
                 </li>
                 <?php if ($row['AdminRole'] == 1) { ?>
                     <li>
-                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Admins.php?action=Manage">
+                        <a class="d-flex align-center fs-14 c-b p-10" href="./Admins.php?action=Manage">
                             <i class="fa-solid fa-gear fa-fw"></i><span> Admins </span>
                         </a>
                     </li>
                 <?php } ?>
                 <?php if ($row['AdminRole'] == 4 || $row['AdminRole'] == 1) { ?>
                     <li>
-                        <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Q&A.php?action=Manage">
+                        <a class="d-flex align-center fs-14 c-b p-10" href="./Q&A.php?action=Manage">
                         <i class="fa-regular fa-circle-question fa-fw"></i><span> Messages </span>
                         </a>
                     </li>
                 <?php } ?>
                 <?php if ($row['AdminRole'] != 4) { ?>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./GiftShop.php?action=Manage">
+                            <a class="d-flex align-center fs-14 c-b p-10" href="./GiftShop.php?action=Manage">
                                 <i class="fa-solid fa-shop fa-fw"></i><span> Gift Shop </span>
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Entertainments.php?action=Manage">
+                            <a class="d-flex align-center fs-14 c-b p-10" href="./Entertainments.php?action=Manage">
                             <i class="fa-solid fa-calendar-days fa-fw"></i><span> Entertainments </span>
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Tickets.php?action=Visit">
+                            <a class="d-flex align-center fs-14 c-b p-10" href="./Tickets.php?action=Visit">
                                 <i class="fa-solid fa-ticket fa-fw"></i><span> Tickets </span>
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Collections.php?action=Manage">
+                            <a class="d-flex align-center fs-14 c-b p-10" href="./Collections.php?action=Manage">
                             <i class="fa-solid fa-layer-group fa-fw"></i><span> Arts </span>
                             </a>
                         </li>
                 <?php } ?>
                 <?php if($row['AdminRole'] == 1 || $row['AdminRole'] == 2){ ?>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Pricing.php?action=Manage">
+                            <a class="d-flex align-center fs-14 c-b p-10" href="./Pricing.php?action=Manage">
                             <i class="fa-solid fa-money-bill-1-wave fa-fw"></i><span> Pricing</span>
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Careers.php?action=Manage">
+                            <a class="d-flex align-center fs-14 c-b p-10" href="./Careers.php?action=Manage">
                             <i class="fa-brands fa-wpforms fa-fw"></i><span> Careers </span>
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Donatiton.php?action=Manage">
+                            <a class="d-flex align-center fs-14 c-b p-10" href="./Donatiton.php?action=Manage">
                             <i class="fa-solid fa-hand-holding-dollar fa-fw"></i><span> Donations </span>
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Sponsorship.php?action=Manage">
+                            <a class="d-flex align-center fs-14 c-b p-10 " href="./Sponsorship.php?action=Manage">
                             <i class="fa-solid fa-rectangle-ad fa-fw"></i><span> Sponsorship </span>
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Transportation.php?action=Manage">
+                            <a class="d-flex align-center fs-14 c-b p-10 " href="./Transportation.php?action=Manage">
                             <i class="fa-solid fa-truck-plane fa-fw"></i><span> Transportaton </span>
                             </a>
                         </li>
                 <?php } ?>
                 <?php if($row['AdminRole'] == 4){ ?>
                 <li>
-                    <a class="d-flex align-center fs-14 c-b p-10 rad-6" href="./Feedback.php?action=Manage">
+                    <a class="d-flex align-center fs-14 c-b p-10" href="./Feedback.php?action=Manage">
                         <i class="fa-solid fa-comment fa-fw"></i><span> Feedback </span>
                     </a>
                 </li>
@@ -157,4 +157,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
   </body>
 </html>   
-<?php // } ?>    
+<?php  } ?>    

@@ -10827,7 +10827,6 @@ input[type="file"] {
   list-style: none;
   margin-top: 40px;
   margin-bottom: 40px;
-  border: 1px solid #e0cfc7;
 }
 .side-menu__block .navigation-box ul {
   margin: 0;
@@ -10848,6 +10847,7 @@ input[type="file"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  gap : 30px ;
   color: #302e2f;
   font-size: 16px;
   position: relative;
@@ -10856,11 +10856,11 @@ input[type="file"] {
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
 }
-.side-menu__block .navigation-box li a:before {
+/* .side-menu__block .navigation-box li a:before {
   content: '\f101';
   font-family: FontAwesome;
   margin-right: 15px;
-}
+} */
 .side-menu__block .navigation-box li a .sub-nav-toggler {
   border: none;
   outline: none;

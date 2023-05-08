@@ -91,7 +91,7 @@ if (isset($_SESSION["AdminID"])) {
                     <div class="welcome bg-white rad-10 txt-c-mobile dis-block-mobile">
                         <div class="intro p-20 d-flex space-between bg-eee">
                             <div>
-                                <h2 class="m-0">Welcome</h2>
+                                <h2 class="m-0 c-black">Welcome</h2>
                                 <p class="c-gray"><?php echo $row['Name'] ?></p>
                             </div>
                             <img class="hide-mobile" src="images/welcome.png" alt="" />
@@ -119,7 +119,7 @@ if (isset($_SESSION["AdminID"])) {
                             $Total = $NumEventsTickets + $NumVisitTickets ;
                         ?>
                     <div class="tickets p-20 bg-white rad-10">
-                        <h2 class="mt-0 mb-10">Tickets Statistics</h2>
+                        <h2 class="mt-0 mb-10 c-black">Tickets Statistics</h2>
                         <p class="c-gray fs-14 mb-20 mt-0">Everything About Tickets</p>
                         <div class="d-flex gap-20 txt-center f-wrap">
                             <div class="box p-20 rad-10 fs-13 c-gray  bo">
@@ -148,12 +148,12 @@ if (isset($_SESSION["AdminID"])) {
                             $rows = mysqli_fetch_row($Select);
                     ?>
                     <div class="latest p-20 bg-white rad-10 txt-c-mobile">
-                        <h2 class="mt-0 mb-20">Latest Events</h2>
+                        <h2 class="mt-0 mb-20 c-black">Latest Events</h2>
                             <?php foreach($Select as $Event){ ?>
                         <div class="new-row d-flex align-center bo-bottom">
                             <img class="bo rad-6 mr-15" src="./Images/<?php echo $Event['Image'] ?>" alt="">
                             <div class="info">
-                                <h3 class="fs-15 mb-5"><?php echo $Event['Name'] ?></h3>
+                                <h3 class="fs-15 mb-5 c-black"><?php echo $Event['Name'] ?></h3>
                                 <p class="c-gray m-0 fs-14 "><?php echo $Event['Date'] ?></p>
                             </div>
                             <div class="fs-13">
@@ -172,7 +172,7 @@ if (isset($_SESSION["AdminID"])) {
                         $fecthquery = mysqli_fetch_assoc($FeedbackQuery);
                     ?>
                     <div class="Feedbacks p-20 bg-white rad-10">
-                        <h2 class="mt-0 mb-10">Latest Feedback</h2>
+                        <h2 class="mt-0 mb-10 c-black">Latest Feedback</h2>
                         <?php foreach($FeedbackQuery as $Feedback){ ?>
                         <div class="Feedback">
                             <div class="UserImg">

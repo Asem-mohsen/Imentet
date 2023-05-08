@@ -32,7 +32,7 @@ include "./Functions/Functions.php";
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
 
-    <title><?php echo $PageTitle ?></title>
+    <title><?php if(isset($PageTitle)){echo $PageTitle ; }else{ echo "Defult";} ?></title>
 </head>
 
 <body>
