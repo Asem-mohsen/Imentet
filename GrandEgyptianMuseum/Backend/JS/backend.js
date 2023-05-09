@@ -199,19 +199,19 @@ document.getElementById('Cancel').onclick = function(){
 
 
 // Quantity and Price In Cart
-var  GT = 0;
-var IPrice = document.getElementsByClassName('Iprice');
-var IQuantity = document.getElementsByClassName('IQuantity');
-var ITotal = document.getElementsByClassName('Itotal');
-var GrandTotal = document.getElementById('GrandTotal');
-function subTotal(){
-    GT = 0;
-    for(i=0 ; i <IPrice.length ; i++){
+// var  GT = 0;
+// var IPrice = document.getElementsByClassName('Iprice');
+// var IQuantity = document.getElementsByClassName('IQuantity');
+// var ITotal = document.getElementsByClassName('Itotal');
+// var GrandTotal = document.getElementById('GrandTotal');
+// function subTotal(){
+//     GT = 0;
+//     for(i=0 ; i <IPrice.length ; i++){
 
-        ITotal[i].innerText = (IPrice[i].value)*(IQuantity[i].value);
-        GT = GT + (IPrice[i].value)*(IQuantity[i].value);
-    }
-    GrandTotal.innerText = GT;
-}
-subTotal(); 
+//         ITotal[i].innerText = (IPrice[i].value)*(IQuantity[i].value);
+//         GT = GT + (IPrice[i].value)*(IQuantity[i].value);
+//     }
+//     GrandTotal.innerText = GT;
+// }
+// subTotal(); 
 

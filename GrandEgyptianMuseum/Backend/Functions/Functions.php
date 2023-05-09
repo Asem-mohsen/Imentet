@@ -17,7 +17,7 @@ Redirect Function [This function accept parameters]
    3/URL = the link which to redirect 
 */
 
-function RedirectIndex($TheMsg, $URL = Null, $Seconds = 3)
+function RedirectIndex($TheMsg = Null, $URL = Null, $Seconds = 3)
 {
 
     if ($URL === Null) {

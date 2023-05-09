@@ -37,55 +37,67 @@ if (isset($_SESSION["AdminID"])) {
                     $Admin = mysqli_fetch_assoc($Admins);
                     ?>
 
-
-                    <div class="container rounded bg-white mt-5 mb-5">
-                        <div class="row">
-                            <div class="col-md-3 border-right">
-                                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                                    <img class="rounded-circle mt-5" width="150px" src="./Images/AdminImages/<?php echo $Admin['Image'] ?>">
-
-                                    <span class="font-weight-bold mt-15"><?php echo $Admin['Name']?></span>
-                                    <span class="text-black-50"><?php echo $Admin['Email']?></span>
-                                    <span> </span>
+                    <section class="profile">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 details">
+                                <div class="testimonials-one__image">
+                                    <img src="./Images/AdminImages/<?php echo $Admin['Image'] ?>" id="Image" style="width: 100px !important" height="100px" alt=""/>
                                 </div>
-                            </div>
-                            <div class="col-md-5 border-right">
-                                <div class="p-3 py-5">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="text-right"><?php echo $Admin['Name']?> Profile</h4>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-12">
-                                            <label class="labels">Name</label>
-                                            <input type="text" class="form-control" placeholder="first name" disabled value="<?php echo $Admin['Name']?>">
+                                <div class="testimonials-one__info">
+                                    <h3 class="testimonials-one__name"><?php echo $Admin['Name'] ;?></h3>
+                                    <p class="testimonials-one__designation"><?php echo $Admin['Email'] ?></p>
+                                </div>
+                                </div>
+                                <div class="col-md-8 has-seperator">
+                                <h3 class="login-form__title">Profile</h3>
+                                <form action="#" method='POST' class="login-form__form" enctype="multipart/form-data">
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="text" name="Name"  value="<?php echo $Admin['Name'] ?>" disabled />
+                                        <i class="fa fa-user"></i>
                                         </div>
                                     </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-12">
-                                            <label class="labels">Phone Number</label>
-                                            <input type="number" class="form-control" placeholder="enter phone number" disabled value="<?php echo "0" . $Admin['Phone']?>">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="labels">Address</label>
-                                            <input type="text" class="form-control" placeholder="enter address line 1" disabled value="<?php echo $Admin['Address']?>">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="labels">Email</label>
-                                            <input type="text" class="form-control" placeholder="enter email id" disabled value="<?php echo $Admin['Email']?>">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="labels">Position</label>
-                                            <input type="text" class="form-control" placeholder="Position" disabled value="<?php echo $Admin['RoleName']?>">
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="email" name="Email" value="<?php echo $Admin['Email'] ?>"disabled />
+                                        <i class="fa fa-envelope-o"></i>
                                         </div>
                                     </div>
-                                    <div class="mt-5 text-center">
-                                        <a href="./Profile.php?action=Edit&AdminID=<?php echo $Admin['ID'] ?>" class="btn btn-success profile-button">Edit</a>
-                                        <a href="./Dashboard.php" class="btn btn-primary profile-button">Back</a>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                            <input type="text"  value="<?php echo $Admin['Address']?>" disabled>
+                                            <i class="fa fa-id-card-o"></i>
+                                        </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="number" name="Phone"  value="<?php echo "0" . $Admin['Phone'] ;  ?>" disabled/>
+                                        <i class="fa fa-phone"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="login-form__field" style="margin-bottom: 20px">
+                                            <input type="text" disabled value="<?php echo $Admin['RoleName']?>">
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="login-form__bottom">
+                                        <div class="gap-4">
+                                            <a href="./Dashboard.php"  class="thm-btn login-form__btn">
+                                            Cancel
+                                            </a>
+                                            <a href="./Profile.php?action=Edit&AdminID=<?php echo $Admin['ID'] ?>" class="thm-btn login-form__btn login-form__btn-two" >
+                                            Edit
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
         <?php
         }
     }elseif($do == "Edit"){
@@ -107,12 +119,12 @@ if (isset($_SESSION["AdminID"])) {
             $Admins = mysqli_query($con, $SelectAdmins);
             $Admin = mysqli_fetch_assoc($Admins);
             ?>
-            <form action="?action=Update" method="POST" enctype="multipart/form-data">
-                <div class="container rounded bg-white mt-5 mb-5">
-                        <div class="row">
-                            <div class="col-md-3 border-right">
-                                <div class="ProfileInfo d-flex flex-column align-items-center text-center p-3 py-5">
-                                    <img class="rounded-circle mt-5" width="150px" height="150px" id="image" src="./Images/AdminImages/<?php echo $Admin['Image']?>">
+                    <section class="profile">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 details">
+                                <div class="ProfileInfo">
+                                        <img class="rounded-circle mt-5" width="150px" height="150px" id="image" src="./Images/AdminImages/<?php echo $Admin['Image']?>">
                                         <div class="RightRound" id="upload">
                                             <input type="file" name="AdminImage" id="AdminImage" accept=".jpg , .png , .jpeg">
                                             <i class="fa fa-camera"></i>
@@ -124,58 +136,71 @@ if (isset($_SESSION["AdminID"])) {
                                             <input type="submit" name="" id="">
                                             <i class="fa fa-check"></i>
                                         </div>
-                                    <span class="font-weight-bold mt-40"><?php echo $Admin['Name']?></span>
-                                    <span class="text-black-50"><?php echo $Admin['Email']?></span>
-                                    <span> </span>
                                 </div>
-                            </div>
-                            <div class="col-md-5 border-right">
-                                <div class="p-3 py-5">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="text-right"><?php echo $Admin['Name']?> Profile</h4>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <input type="hidden" name="AdminID" value="<?php echo $Admin['ID'] ?>">
-                                        <input type="hidden" name="RoleID" value="<?php echo $Admin['RoleID'] ?>">
-
-                                        <div class="col-md-12">
-                                            <label class="labels">Name</label>
-                                            <input type="text" name="Name" class="form-control"  value="<?php echo $Admin['Name']?>">
+                                <div class="mt-50 testimonials-one__info ">
+                                    <h3 class="testimonials-one__name"><?php echo $Admin['Name'] ;?></h3>
+                                    <p class="testimonials-one__designation"><?php echo $Admin['Email'] ?></p>
+                                </div>
+                                </div>
+                                <div class="col-md-8 has-seperator">
+                                <h3 class="login-form__title">Edit Profile</h3>
+                                <form action="?action=Update" method="POST" class="login-form__form" enctype="multipart/form-data">
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="text" name="Name" value="<?php echo $Admin['Name']?>">
+                                        <input type="hidden" name="AdminID" value="<?php echo $AdminID?>">
+                                        <input type="hidden" name="RoleID" value="<?php echo $Admin['RoleID']?>">
+                                        <i class="fa fa-user"></i>
                                         </div>
                                     </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-12">
-                                            <label class="labels">Phone Number</label>
-                                            <input type="number" name="Phone" class="form-control" value="<?php echo "0" . $Admin['Phone']?>">
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="email" name="Email" value="<?php echo $Admin['Email'] ?>" />
+                                        <i class="fa fa-envelope-o"></i>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label class="labels">Address</label>
-                                            <input type="text" name="Address" class="form-control" value="<?php echo $Admin['Address']?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                            <input type="text" name="Address" value="<?php echo $Admin['Address']?>" >
+                                            <i class="fa fa-id-card-o"></i>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label class="labels">Email</label>
-                                            <input type="email" name="Email" class="form-control" value="<?php echo $Admin['Email']?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="number" name="Phone"  value="<?php echo "0" . $Admin['Phone'] ;  ?>"/>
+                                        <i class="fa fa-phone"></i>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label class="labels">Password</label>
-                                            <input type="password" name="Password" class="form-control" value="<?php echo $_SESSION['AdminPassword'] ; ?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="password" name="Password"  value="<?php echo  $_SESSION['AdminPassword'];  ?>"/>
+                                        <i class="fa fa-lock"></i>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label class="labels">Position</label>
-                                            <input type="text" name="Position" class="form-control" disabled value="<?php echo $Admin['RoleName']?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field" style="margin-bottom: 20px">
+                                            <input type="text" disabled value="<?php echo $Admin['RoleName']?>">
                                             <p class="fs-13 c-gray ml-1">You Cannot Edit Your Position</p>
                                         </div>
                                     </div>
-
-                                    <div class="mt-5 text-center">
-                                        <button class="btn btn-success profile-button" type="submit">Update</button>
-                                        <a href="./Profile.php?action=Manage&AdminID=<?php echo $Admin['ID'] ?>" class="btn btn-danger profile-button" type="button">Cancel</a>
                                     </div>
+                                    <div class="login-form__bottom">
+                                        <div class="gap-4">
+                                            <a href="./Profile.php?action=Manage&AdminID=<?php echo $Admin['ID'] ?>"  class="thm-btn login-form__btn">
+                                            Cancel
+                                            </a>
+                                            <button type="submit" class="thm-btn login-form__btn login-form__btn-two" >
+                                            Update
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
-            </form>
+                    </section>
+                
             <?php
 
         }
@@ -223,12 +248,12 @@ if (isset($_SESSION["AdminID"])) {
 
                         $UpdateImgQuery = "UPDATE adminimage SET Image = '$AdminImage' WHERE AdminID = $AdminID";
                         $UpdateImg = mysqli_query($con, $UpdateImgQuery);  
-                        header("Location: ./Profile.php?action=Manage");
+                        header("Location: ./Profile.php?action=Manage&AdminID=$AdminID");
                     }else{
                         
                         $UpdateQuery = "UPDATE admin SET Name = '$Name' , Phone = $Phone , Address = '$Address' , Email = '$Email' , Password = '$hashedPassword' , AdminRole = '$Role'  WHERE ID = $AdminID ";
                         $Update = mysqli_query($con, $UpdateQuery);
-                        header("Location: ./Profile.php?action=Manage");
+                        header("Location: ./Profile.php?action=Manage&AdminID=$AdminID");
                     }
 
                 }else{
@@ -242,8 +267,8 @@ if (isset($_SESSION["AdminID"])) {
             } else {
 
                 echo "<div class='container'>";
-                $TheMsg ="<div class='alert alert-danger'>" . "Unuthorized access"  . "</div>";
-                RedirectIndex($TheMsg, "Back");
+                echo "<div class='alert alert-danger'>" . "Unuthorized access"  . "</div>";
+                RedirectIndex("Back" , 1);
                 echo "</div>";
             } 
     }else{
@@ -253,7 +278,6 @@ if (isset($_SESSION["AdminID"])) {
         echo "</div>";
     }
 
-    include "./Includes/PageContent/Footer.php";
     include "./AdminFooter.php";
 
 

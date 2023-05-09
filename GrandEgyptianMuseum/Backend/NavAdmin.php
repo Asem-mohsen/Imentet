@@ -33,9 +33,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="Style//framework.css">
     <link rel="stylesheet" href="css//style.css" />
-    <link rel="stylesheet" href="Style///main.css">
+    <link rel="stylesheet" href="Style///main.css?v=1">
+    <link rel="stylesheet" href="Style//framework.css?v=1">
     <link rel="stylesheet" href="css/responsive.css" />
 
     <title><?php if(isset($PageTitle)){echo $PageTitle ; }else{ echo "Defult";} ?></title>

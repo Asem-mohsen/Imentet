@@ -257,30 +257,42 @@ if (isset($_SESSION["AdminID"])) {
                         ?>
                     <div class="container rounded bg-white mb-5">
                         <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex flex-column align-items-center text-center p-3 ">
-                                        <img class="rounded-circle mt-5 mb-20" width="150px" src="./Images/AdminImages/<?php echo $User['UserImage'] ?>">
-                                        <span class="font-weight-bold"><?php echo $FullName ?></span>
-                                        <span class="text-black-50"><?php echo $User['Email'] ?></span>
-                                        <span> </span>
-                                    </div>
+                            <div class="col-md-12">
+                                <div class="d-flex flex-column align-items-center text-center p-3 ">
+                                    <img class="rounded-circle mt-5 mb-20" width="150px" src="./Images/AdminImages/<?php echo $User['UserImage'] ?>">
+                                    <span class="font-weight-bold c-black"><?php echo $FullName ?></span>
+                                    <span class="text-black-50"><?php echo $User['Email'] ?></span>
+                                    <span> </span>
                                 </div>
-                        </div>
-                        <div class="info">
-                            <div class="SomeInfo">
-                                <?php if(isset($User['Phone'])){ ?>
-                                    <button><?php echo "0" . $User['Phone'] ?></button>
-                                <?php } ?>
-                                <?php if(isset($User['UserRole'])){ ?>
-                                    <button><?php echo $User['UserRole'] ?></button>
-                                <?php } ?>
                             </div>
-                            <?php if($User['MembershipType'] != NULL){ ?>
-                                        <div class="SomeInfo">
-                                            <button><?php echo "Membership => " . $User['MembershipType'] ?></button>
-                                        </div>
-                            <?php } ?>
                         </div>
+                        <section class="profile" style="padding-top: 50px;">
+                            <div class="container">
+                                <div class="row" style="justify-content: center;">
+                                    <form method='POST' class="login-form__form" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="login-form__field">
+                                                <input type="number" value="<?php if(isset($User['Phone'])){echo "0" . $User['Phone'] ; }else{ echo "No Updates Yet" ; }  ?>" disabled/>
+                                                <i class="fa fa-phone"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="login-form__field">
+                                                <input type="text"  value="<?php if(isset($User['MembershipType'])){echo $User['MembershipType'] . " Membership"; }else{ echo "Doesn't Enrolled in a Membership yet" ;}  ?>" disabled/>
+                                                <i class="fa fa-id-card-o"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="login-form__field">
+                                                <input type="text" value="<?php if(isset($User['UserRole'])){echo $User['UserRole'] ; }else{ echo "Not Selected" ;}  ?>" disabled/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
                     <?php } 
                         $Feedbacks = "SELECT feedback .* , entertainmnet.Name AS EventName FROM feedback
                                     LEFT JOIN entertainmnet ON feedback.EntertainmnetID = entertainmnet.ID  WHERE feedback.UserID = $UserID LIMIT 1";

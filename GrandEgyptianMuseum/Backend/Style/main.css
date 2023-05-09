@@ -39,19 +39,19 @@ ul {
 
 ::-webkit-scrollbar {
     width: 10px
-}
-
-::-webkit-scrollbar-track {
+    }
+  
+  ::-webkit-scrollbar-track {
     background-color: white;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #343a40;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #343a40;
-}
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #302e2f;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #d99578;
+  }
 
 /* Start SidePar */
 .sidepar {
@@ -1769,10 +1769,15 @@ img.TableImage{
 }
 
 /* Profile */
+.ProfileInfo {
+    display: flex;
+    justify-content: center;
+}
+
 .ProfileInfo .RightRound{
     position: absolute;
-    bottom: 485px;
-    right: 78px;
+    bottom: 198px;
+    right: 133px;
     width: 32px;
     height: 32px;
     line-height: 33px;
@@ -1780,12 +1785,12 @@ img.TableImage{
     border-radius: 50%;
     cursor: pointer;
     overflow: hidden;
-    background: #00B4FF;
+    background: #d99578;
 }
 .ProfileInfo .LeftRound{
     position: absolute;
-    bottom: 485px;
-    left: 78px;
+    bottom: 198px;
+    left: 133px;
     width: 32px;
     height: 32px;
     line-height: 33px;

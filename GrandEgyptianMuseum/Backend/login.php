@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <link rel="stylesheet" href="css/nouislider.pips.css" />
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.css?v=1" />
     <link rel="stylesheet" href="css/responsive.css" />
 
     <title><?php echo $PageTitle ?></title>
