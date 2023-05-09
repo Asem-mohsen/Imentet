@@ -96,7 +96,7 @@ if(isset($_POST['Search'])){
 
       <section class="inner-banner" style="background-image: url(images/background/inner-banner-bg-1-2.jpg)">
         <div class="container">
-          <h2 class="inner-banner__title">Grand Egyptian Museum Official Shop</h2>
+          <h2 class="inner-banner__title">Official Shop</h2>
           <ul class="list-unstyled thm-breadcrumb">
             <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a></li>
             <li><a href="">Pages</a></li>

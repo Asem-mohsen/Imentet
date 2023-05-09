@@ -416,7 +416,6 @@ if (isset($_SESSION["AdminID"])) {
             echo "</div>";       
         }
         include "./AdminFooter.php";
-        include "./Includes/PageContent/Footer.php";
 
     }else{
         echo "<div class='container'>";

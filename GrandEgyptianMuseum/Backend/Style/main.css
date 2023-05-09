@@ -1730,6 +1730,8 @@ img.TableImage{
 .price-card h2 {
     font-size: 26px;
     font-weight: 600;
+    color: black;
+
 }
 .price-card .btn {
     font-size: 11px;
@@ -1758,6 +1760,7 @@ img.TableImage{
 .pricing-offers li {
     padding: 0 0 16px;
     line-height: 18px;
+    color: black;
 }
 .btn.btn-mid {
     height: 40px;
@@ -1768,7 +1771,7 @@ img.TableImage{
 /* Profile */
 .ProfileInfo .RightRound{
     position: absolute;
-    bottom: 448px;
+    bottom: 485px;
     right: 78px;
     width: 32px;
     height: 32px;
@@ -1781,7 +1784,7 @@ img.TableImage{
 }
 .ProfileInfo .LeftRound{
     position: absolute;
-    bottom: 448px;
+    bottom: 485px;
     left: 78px;
     width: 32px;
     height: 32px;

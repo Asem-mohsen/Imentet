@@ -128,8 +128,8 @@ if(isset($_GET['MoreData'])){
                                           $Count = mysqli_num_rows($RunQuery);
                                           foreach($RunQuery as $Collection){ ?>
                                             <div class="col-lg-3 col-md-6 col-sm-6">
-                                              <div class="collection-four__single" style="margin-top: 20px ;">
-                                              <img src="../Images/<?php echo $Collection['Image'] ?>" width="300px" height="300px" alt="Awesome Image" />
+                                              <div class="collection-four__single">
+                                              <img src="../Images/<?php echo $Collection['Image'] ?>" width="200px" height="200px" alt="Awesome Image" />
                                                 <div class="collection-four__content">
                                                   <a href="collection-details.html" class="collection-four__link" >+</a>
                                                   <p class="collection-four__cat"><?php echo $Collection['PlaceName'] ?></p>

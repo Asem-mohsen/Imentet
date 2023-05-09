@@ -63,7 +63,7 @@ if (isset($_SESSION["AdminID"])) {
                                     <div class="row mt-3">
                                         <div class="col-md-12">
                                             <label class="labels">Phone Number</label>
-                                            <input type="number" class="form-control" placeholder="enter phone number" disabled value="<?php echo $Admin['Phone']?>">
+                                            <input type="number" class="form-control" placeholder="enter phone number" disabled value="<?php echo "0" . $Admin['Phone']?>">
                                         </div>
                                         <div class="col-md-12">
                                             <label class="labels">Address</label>
@@ -146,7 +146,7 @@ if (isset($_SESSION["AdminID"])) {
                                     <div class="row mt-3">
                                         <div class="col-md-12">
                                             <label class="labels">Phone Number</label>
-                                            <input type="number" name="Phone" class="form-control" value="<?php echo $Admin['Phone']?>">
+                                            <input type="number" name="Phone" class="form-control" value="<?php echo "0" . $Admin['Phone']?>">
                                         </div>
                                         <div class="col-md-12">
                                             <label class="labels">Address</label>

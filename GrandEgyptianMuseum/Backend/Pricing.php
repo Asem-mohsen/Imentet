@@ -69,8 +69,8 @@ if (isset($_SESSION["AdminID"])) {
                                         <p class='mt-20 ml-20 cursor-d fw-bold'>By Place </p>
                                     </li>
                                         <?php
-                                            $PlaceSelect = "SELECT DISTINCT place.Name AS PlaceName , visitticket.PlaceID AS PlaceID FROM 
-                                                            `visitticket` JOIN place ON place.ID = visitticket.PlaceID  ";
+                                            $PlaceSelect = "SELECT DISTINCT place.Name AS PlaceName , visitpricing.PlaceID AS PlaceID FROM 
+                                                            `visitpricing` JOIN place ON place.ID = visitpricing.PlaceID";
                                             $Run = mysqli_query($con , $PlaceSelect);
                                             $row = mysqli_fetch_assoc($Run);
 
@@ -220,12 +220,13 @@ if (isset($_SESSION["AdminID"])) {
                                                                 </li>
                                                             </ul>
                                                             <div class="d-flex space-between">
-                                                            <a href="./Pricing.php?action=Edit&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-success btn-mid">Edit</a>
-                                                            <?php if($AdminRole == 1){  ?>
-                                                                <a href="./Pricing.php?action=Delete&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-danger btn-mid">Remove</a>
-                                                            <?php }else{ ?>
-                                                                <button class="btn btn-danger btn-mid" disabled>Remove</button>
-                                                            <?php } ?>
+                                                                <a href="./Pricing.php?action=Edit&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-success btn-mid">Edit</a>
+                                                                <?php if($AdminRole == 1){  ?>
+                                                                    <a href="./Pricing.php?action=Delete&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-danger btn-mid">Remove</a>
+                                                                <?php }else{ ?>
+                                                                    <button class="btn btn-danger btn-mid" disabled>Remove</button>
+                                                                <?php } ?>
+                                                            </div>
                                                         </div>
                                                     </div>
                                             <?php }  
@@ -562,7 +563,6 @@ if (isset($_SESSION["AdminID"])) {
         } 
 
             include "./AdminFooter.php";
-            include "./Includes/PageContent/Footer.php";
 
 
     }else{

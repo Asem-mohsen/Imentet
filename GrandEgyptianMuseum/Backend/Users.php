@@ -133,10 +133,10 @@ if (isset($_SESSION["AdminID"])) {
                                                     $TypeChecked = $_POST['Type'];
                                                     foreach($TypeChecked as $rowTypes){
                                                         $UserInfo = "SELECT user.* , userrole.RoleName AS UserRole, membership.Type AS MembershipType , membershippayemnts.MembershipID FROM user 
-                                                        LEFT JOIN userrole ON userrole.ID = user.RoleID 
-                                                        LEFT JOIN membershippayemnts ON user.ID = membershippayemnts.UserID
-                                                        LEFT JOIN membership ON membership.ID = membershippayemnts.MembershipID
-                                                        WHERE membership.ID IN($rowTypes) ";
+                                                                        LEFT JOIN userrole ON userrole.ID = user.RoleID 
+                                                                        LEFT JOIN membershippayemnts ON user.ID = membershippayemnts.UserID
+                                                                        LEFT JOIN membership ON membership.ID = membershippayemnts.MembershipID
+                                                                        WHERE membership.ID IN($rowTypes) ";
                                                         $Info = mysqli_query($con , $UserInfo);
                                                         $fetchquery = mysqli_fetch_row($Info);
                                                         $count =mysqli_num_rows($Info);
@@ -157,13 +157,15 @@ if (isset($_SESSION["AdminID"])) {
                                                                                 }else{
                                                                                     echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                                 }
-                                                                    echo "</td>";                                                        echo "<td>";
+                                                                    echo "</td>";                                                 
+                                                                    echo "<td>";
                                                                                 if(isset($User['Phone'])){
-                                                                                    echo $User['Phone'] ;
+                                                                                    echo "0" . $User['Phone'] ;
                                                                                 }else{
                                                                                     echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                                 }
-                                                                    echo "</td>";                                                        echo "<td>";
+                                                                    echo "</td>";                                                       
+                                                                    echo "<td>";
                                                                                 if(isset($User['UserRole'])){
                                                                                     echo $User['UserRole'] ;
                                                                                 }else{
@@ -195,13 +197,15 @@ if (isset($_SESSION["AdminID"])) {
                                                                         }else{
                                                                             echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                         }
-                                                            echo "</td>";                                                        echo "<td>";
+                                                            echo "</td>";                                                        
+                                                            echo "<td>";
                                                                         if(isset($User['Phone'])){
-                                                                            echo $User['Phone'] ;
+                                                                            echo "0" . $User['Phone'] ;
                                                                         }else{
                                                                             echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                         }
-                                                            echo "</td>";                                                        echo "<td>";
+                                                            echo "</td>";                                                        
+                                                            echo "<td>";
                                                                         if(isset($User['UserRole'])){
                                                                             echo $User['UserRole'] ;
                                                                         }else{
@@ -264,9 +268,12 @@ if (isset($_SESSION["AdminID"])) {
                         </div>
                         <div class="info">
                             <div class="SomeInfo">
-                                <button><?php echo $User['Nationality'] ?></button>
-                                <button><?php echo "0" . $User['Phone'] ?></button>
-                                <button><?php echo $User['UserRole'] ?></button>
+                                <?php if(isset($User['Phone'])){ ?>
+                                    <button><?php echo "0" . $User['Phone'] ?></button>
+                                <?php } ?>
+                                <?php if(isset($User['UserRole'])){ ?>
+                                    <button><?php echo $User['UserRole'] ?></button>
+                                <?php } ?>
                             </div>
                             <?php if($User['MembershipType'] != NULL){ ?>
                                         <div class="SomeInfo">

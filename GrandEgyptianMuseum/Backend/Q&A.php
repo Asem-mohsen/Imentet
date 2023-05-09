@@ -338,7 +338,6 @@ if (isset($_SESSION["AdminID"])) {
         RedirectIndex($TheMsg);
         echo "</div>";    
     }
-        include "./Includes/PageContent/Footer.php";
         include "./AdminFooter.php";
 
 }else{

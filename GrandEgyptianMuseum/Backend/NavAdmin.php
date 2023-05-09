@@ -35,7 +35,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="Style//framework.css">
     <link rel="stylesheet" href="css//style.css" />
-    <link rel="stylesheet" href="Style/main.css">
+    <link rel="stylesheet" href="Style///main.css">
     <link rel="stylesheet" href="css/responsive.css" />
 
     <title><?php if(isset($PageTitle)){echo $PageTitle ; }else{ echo "Defult";} ?></title>
@@ -106,7 +106,7 @@
                                             <ul class="submenu">
                                                 <?php if ($row['AdminRole'] == 1) { ?>
                                                     <li>
-                                                        <a href="">Admin</a>
+                                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Admins.php?action=Manage">Admin</a>
                                                         <ul class="submenu right-align">
                                                             <li>
                                                                 <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Admins.php?action=Manage">Admins</a>
@@ -168,7 +168,7 @@
                                     <!-- GiftShop -->
                                     <?php if ($row['AdminRole'] != 4) { ?>
                                         <li>
-                                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/iftShop.php?action=Manage">GiftShop</a>
+                                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/GiftShop.php?action=Manage">GiftShop</a>
                                             <ul class="submenu">
                                                 <?php if($row['AdminRole'] == 1 || $row['AdminRole'] == 2){ ?>
                                                     <li>

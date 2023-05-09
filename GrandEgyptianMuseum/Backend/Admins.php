@@ -30,7 +30,7 @@ if (isset($_SESSION["AdminID"])) {
                     </div>
                     <div class="form-group insertInput">
                         <div class="m-auto">
-                            <input type="number" name="Phone" placeholder="Phone" class="form-control" autocomplete="off" required="required" />
+                            <input type="number" name="Phone" pattern="[0-9]" placeholder="Phone" class="form-control" autocomplete="off" required="required" />
                         </div>
                     </div>
                     <div class="form-group insertInput">
@@ -269,7 +269,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                         echo $Admin['Name'];
                                                                     } 
                                                             echo "</td>";
-                                                            echo "<td>" . $Admin['Phone']  . "</td>";
+                                                            echo "<td>" ."0" . $Admin['Phone']  . "</td>";
                                                             echo "<td>" . $Admin['Address'] . "</td>";
                                                             echo "<td>" . $Admin['Role']   . "</td>";
                                                             echo "<td>";
@@ -313,7 +313,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo $Admin['Name'];
                                                                 } 
                                                         echo "</td>";
-                                                        echo "<td>" . $Admin['Phone']  . "</td>";
+                                                        echo "<td>" ."0" . $Admin['Phone']  . "</td>";
                                                         echo "<td>" . $Admin['Address'] . "</td>";
                                                         echo "<td>" . $Admin['Role']   . "</td>";
                                                         echo "<td>";
@@ -357,7 +357,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo $Admin['Name'];
                                                                 } 
                                                         echo "</td>";
-                                                        echo "<td>" . $Admin['Phone']  . "</td>";
+                                                        echo "<td>" ."0" . $Admin['Phone']  . "</td>";
                                                         echo "<td>" . $Admin['Address'] . "</td>";
                                                         echo "<td>" . $Admin['Role']   . "</td>";
                                                         echo "<td>";
@@ -399,7 +399,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo $Admin['Name'];
                                                                 } 
                                                         echo "</td>";
-                                                        echo "<td>" . $Admin['Phone']  . "</td>";
+                                                        echo "<td>" ."0" . $Admin['Phone']  . "</td>";
                                                         echo "<td>" . $Admin['Address'] . "</td>";
                                                         echo "<td>" . $Admin['Role']   . "</td>";
                                                         echo "<td>";
@@ -751,7 +751,7 @@ if (isset($_SESSION["AdminID"])) {
                         </div>
                         <div class="form-group insertInput">
                             <div class="m-auto">
-                                <input type="number" name="Phone" placeholder="Phone" class="form-control" value="<?php echo $row['Phone']; ?>" required="required" />
+                                <input type="number" name="Phone" pattern="[0-9]*" placeholder="Phone" class="form-control" value="<?php echo "0". $row['Phone']; ?>" required="required" />
                             </div>
                         </div>
                         <div class="form-group insertInput">
@@ -761,7 +761,7 @@ if (isset($_SESSION["AdminID"])) {
                         </div>
                         <div class="form-group insertInput">
                             <div class="m-auto">
-                                <input type="email" name="Email" placeholder="Email" disabled class="form-control" value="<?php echo $row['Email']; ?>"  />
+                                <input type="email" name="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" disabled class="form-control" value="<?php echo $row['Email']; ?>"  />
                             </div>
                         </div>
                         <div class="form-group insertInput">

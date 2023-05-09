@@ -2594,6 +2594,7 @@ a:focus {
   }
 }
 .collection-four__single {
+  height: 328px;
   margin-bottom: 48px;
   position: relative;
   border-radius: 4px;
@@ -2666,6 +2667,9 @@ a:focus {
   color: inherit;
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
+  text-align: right;
+    display: block;
+    width: 190px;
 }
 .collection-four__title a:hover {
   color: #d99578;
