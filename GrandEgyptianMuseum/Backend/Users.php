@@ -121,7 +121,7 @@ if (isset($_SESSION["AdminID"])) {
                                             <tr>
                                                 <td>ID</td>
                                                 <td>Name</td>
-                                                <td>Age</td>
+                                                <td>Date Of Birth</td>
                                                 <td>Phone</td>
                                                 <td>Role</td>
                                                 <td>Membership</td>
@@ -150,10 +150,10 @@ if (isset($_SESSION["AdminID"])) {
                                                                 }
                                                                 echo "<tr id='TableData'>";
                                                                     echo "<td>" . $User['ID']     . "</td>";
-                                                                    echo "<td>" . $FullName   . "</td>";
+                                                                    echo "<td>" . ucfirst($FullName)   . "</td>";
                                                                     echo "<td>";
-                                                                                if(isset($User['Age'])){
-                                                                                    echo $User['Age'] ;
+                                                                                if(isset($User['DateOfBirth'])){
+                                                                                    echo $User['DateOfBirth'] ;
                                                                                 }else{
                                                                                     echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                                 }
@@ -190,10 +190,10 @@ if (isset($_SESSION["AdminID"])) {
                                                         }
                                                         echo "<tr id='TableData'>";
                                                             echo "<td>" . $User['ID']     . "</td>";
-                                                            echo "<td>" . $FullName   . "</td>";
+                                                            echo "<td>" .  ucfirst($FullName)   . "</td>";
                                                             echo "<td>";
-                                                                        if(isset($User['Age'])){
-                                                                            echo $User['Age'] ;
+                                                                        if(isset($User['DateOfBirth'])){
+                                                                            echo date("d M Y"  , strtotime($User['DateOfBirth'])) ;
                                                                         }else{
                                                                             echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                         }
@@ -219,7 +219,6 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "</td>";
                                                         echo "</tr>";
                                                     } 
-
                                                 }
                                             ?>
                                         </table>
@@ -260,7 +259,7 @@ if (isset($_SESSION["AdminID"])) {
                             <div class="col-md-12">
                                 <div class="d-flex flex-column align-items-center text-center p-3 ">
                                     <img class="rounded-circle mt-5 mb-20" width="150px" src="./Images/AdminImages/<?php echo $User['UserImage'] ?>">
-                                    <span class="font-weight-bold c-black"><?php echo $FullName ?></span>
+                                    <span class="font-weight-bold c-black"><?php echo ucfirst($FullName) ?></span>
                                     <span class="text-black-50"><?php echo $User['Email'] ?></span>
                                     <span> </span>
                                 </div>
@@ -273,7 +272,7 @@ if (isset($_SESSION["AdminID"])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="login-form__field">
-                                                <input type="number" value="<?php if(isset($User['Phone'])){echo "0" . $User['Phone'] ; }else{ echo "No Updates Yet" ; }  ?>" disabled/>
+                                                <input type="text" value="<?php if(isset($User['Phone'])){echo "0" . $User['Phone'] ; }else{ echo "No Updates Yet" ; }  ?>" disabled/>
                                                 <i class="fa fa-phone"></i>
                                                 </div>
                                             </div>
@@ -293,29 +292,49 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                             </div>
                         </section>
-                    <?php } 
+                <?php } 
                         $Feedbacks = "SELECT feedback .* , entertainmnet.Name AS EventName FROM feedback
-                                    LEFT JOIN entertainmnet ON feedback.EntertainmnetID = entertainmnet.ID  WHERE feedback.UserID = $UserID LIMIT 1";
+                                        LEFT JOIN entertainmnet ON feedback.EntertainmnetID = entertainmnet.ID 
+                                        WHERE feedback.UserID = $UserID 
+                                        ORDER BY ID DESC LIMIT 2";
                         $Query = mysqli_query($con , $Feedbacks);
                         $Feedback = mysqli_fetch_assoc($Query);
                         $count = mysqli_num_rows($Query);
                     ?>
 
                         <div class="UserInteractions">
-                            <h3><?php echo $Userrow['Name'] ?> Interactions </h3>
+                            <h3><?php echo ucfirst($Userrow['Name']) ?> Interactions </h3>
                             <div class="ShowFeedback">
                                 <h4 class="PanalHeading">Feedback</h4>
-                                <div class="Feedback">
-                                    <?php if($count > 0){
-                                        foreach($Query as $Feedback){
-                                        echo "<a href='./Entertainments.php?action=MoreInfo&EventID=".$Feedback['EntertainmnetID']."'>" . $Feedback['EventName'] . " Event</a>";
-                                            echo"<span class='rec'> </span>";
-                                        echo "<p>" . $Feedback['Description'] . "</p>";
-                                    } }else{
-                                        echo "<p class='NoData'>" .$Userrow['Name'].  " Didn't Give a Feedback Yet </p>";
-                                    } ?>
-                                </div>
+                                <?php if($count > 0){ ?>
+                                    <div class="Feedback">
+                                        <div class="product-details__review">
+                                            <?php foreach($Query as $Feedback){ ?>
+                                                <div class="product-details__review-single">
+                                                    <div class="product-details__review-left">
+                                                        <img src="./Images/<?php echo $Userrow['UserImage'] ?>" width="70px" height="70px" alt="Awesome Image" />
+                                                    </div>
+                                                    <div class="product-details__review-right">
+                                                        <div class="product-details__review-top">
+                                                            <div class="product-details__review-top-left">
+                                                                <h3 class="product-details__review-title"><?php echo ucfirst($Userrow['Name']) ?></h3>
+                                                                <span class="product-details__review-sep">–</span>
+                                                                <span class="product-details__review-date"><?php echo "<a href='./Entertainments.php?action=MoreInfo&EventID=".$Feedback['EntertainmnetID']."'>" . $Feedback['EventName'] . " Event</a>" ?></span>
+                                                            </div>
+                                                        </div>
+                                                        <p class="product-details__review-text"><?php echo $Feedback['Description'] ?></p>
+                                                    </div>
+                                                </div>
+                                            <?php  } ?>
+                                        </div>
+                                    </div>
+                                <?php }else{
+                                    echo "<div style='background-color: #fafafa; padding: 25px;'>";                                    
+                                        echo "<p class='NoData'>" . ucfirst($Userrow['Name']).  " Didn't Give a Feedback Yet </p>";
+                                    echo "</div>";
+                                } ?>
                             </div>
+
                                 <?php  $TicketQuery = "SELECT visitticket . *  , place.Name AS PlaceName  FROM visitticket
                                                         JOIN place ON visitticket.PlaceID = place.ID
                                                         WHERE UserID = $UserID LIMIT 5
@@ -326,7 +345,7 @@ if (isset($_SESSION["AdminID"])) {
 
                                 ?>
 
-                            <h4 class="PanalHeading">Tickets Booked</h4>
+                            <h4 class="PanalHeading txt-center">Tickets Booked</h4>
 
                             <div class="ShowTickets">
                                 <div class="ShowVisit">
@@ -346,7 +365,7 @@ if (isset($_SESSION["AdminID"])) {
                                             <td><?php echo $VisitTicket['Date']  ?></td>
                                             <td><?php echo $VisitTicket['PlaceName']  ?></td>
                                             <?php } }else{
-                                                echo "<td class='NoData' colspan='3'> No Bookings for " .$Userrow['Name'] . "</td>";
+                                                echo "<td class='NoData' colspan='3'> No Bookings for " . ucfirst($Userrow['Name']). "</td>";
                                             } ?>
 
                                             </tr>
@@ -381,7 +400,7 @@ if (isset($_SESSION["AdminID"])) {
                                             <td><?php echo $Ticket['EventName']  ?></td>
                                             </tr>
                                     <?php  } }else{
-                                                echo "<td class='NoData' colspan='3'> No Bookings for " .$Userrow['Name'] . "</td>";
+                                                echo "<td class='NoData' colspan='3'> No Bookings for " . ucfirst($Userrow['Name']) . "</td>";
                                             } ?>
                                     </tbody>
                                     </table>
@@ -398,7 +417,7 @@ if (isset($_SESSION["AdminID"])) {
                                         $count = mysqli_num_rows($Query);
 
                                 ?>
-                            <h4 class="PanalHeading">Gift Shop</h4>
+                            <h4 class="PanalHeading txt-center">Gift Shop</h4>
                             <div class="ShowGifts">
                             <div class="Items">
                                 <?php if($count > 0 ){
@@ -411,7 +430,7 @@ if (isset($_SESSION["AdminID"])) {
                                             </div>
                                         </div>
                                         <?php } }else{
-                                                echo "<p class='NoData'>" .$Userrow['Name'] . " Didn't purchase any Items </p>";
+                                                echo "<p class='NoData'>" . ucfirst($Userrow['Name']) . " Didn't purchase any Items </p>";
                                             }  ?>
                                     </div>
                             </div>
@@ -2334,7 +2353,6 @@ if (isset($_SESSION["AdminID"])) {
         }
 
         include "./AdminFooter.php";
-        include "./Includes/PageContent/Footer.php";
 
 }else{
     if(!isset($_SESSION["AdminID"])){

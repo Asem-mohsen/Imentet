@@ -53,46 +53,46 @@ if (isset($_SESSION["AdminID"])) {
                                 <h3 class="login-form__title">Profile</h3>
                                 <form action="#" method='POST' class="login-form__form" enctype="multipart/form-data">
                                     <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="login-form__field">
-                                        <input type="text" name="Name"  value="<?php echo $Admin['Name'] ?>" disabled />
-                                        <i class="fa fa-user"></i>
+                                        <div class="col-md-6">
+                                            <div class="login-form__field">
+                                            <input type="text" name="Name"  value="<?php echo $Admin['Name'] ?>" disabled />
+                                            <i class="fa fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="login-form__field">
+                                            <input type="email" name="Email" value="<?php echo $Admin['Email'] ?>"disabled />
+                                            <i class="fa fa-envelope-o"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="login-form__field">
+                                                <input type="text"  value="<?php echo $Admin['Address']?>" disabled>
+                                                <i class="fa fa-id-card-o"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="login-form__field">
+                                            <input type="number" name="Phone"  value="<?php echo "0" . $Admin['Phone'] ;  ?>" disabled/>
+                                            <i class="fa fa-phone"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="login-form__field" style="margin-bottom: 20px">
+                                                <input type="text" disabled value="<?php echo $Admin['RoleName']?>">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="login-form__field">
-                                        <input type="email" name="Email" value="<?php echo $Admin['Email'] ?>"disabled />
-                                        <i class="fa fa-envelope-o"></i>
+                                        <div class="login-form__bottom">
+                                            <div class="gap-4">
+                                                <a href="./Dashboard.php"  class="thm-btn login-form__btn">
+                                                Cancel
+                                                </a>
+                                                <a href="./Profile.php?action=Edit&AdminID=<?php echo $Admin['ID'] ?>" class="thm-btn login-form__btn login-form__btn-two" >
+                                                Edit
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="login-form__field">
-                                            <input type="text"  value="<?php echo $Admin['Address']?>" disabled>
-                                            <i class="fa fa-id-card-o"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="login-form__field">
-                                        <input type="number" name="Phone"  value="<?php echo "0" . $Admin['Phone'] ;  ?>" disabled/>
-                                        <i class="fa fa-phone"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="login-form__field" style="margin-bottom: 20px">
-                                            <input type="text" disabled value="<?php echo $Admin['RoleName']?>">
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <div class="login-form__bottom">
-                                        <div class="gap-4">
-                                            <a href="./Dashboard.php"  class="thm-btn login-form__btn">
-                                            Cancel
-                                            </a>
-                                            <a href="./Profile.php?action=Edit&AdminID=<?php echo $Admin['ID'] ?>" class="thm-btn login-form__btn login-form__btn-two" >
-                                            Edit
-                                            </a>
-                                        </div>
-                                    </div>
                                 </form>
                                 </div>
                             </div>

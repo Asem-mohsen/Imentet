@@ -741,61 +741,71 @@ if (isset($_SESSION["AdminID"])) {
             ?>
 
                 <h1 class="PageName">Edit Admin</h1>
-                <div class="container">
-                    <form class="form-horizontal" action="?action=Update" method="POST">
-                        <input type="hidden" name="AdminID" value="<?php echo $AdminID; ?>">
-                        <div class="form-group insertInput">
-                            <div class="m-auto">
-                                <input type="text" name="Name" placeholder="Admin Name" class="form-control" autocomplete="off" value="<?php echo $row['Name']; ?>" required="required" />
-                            </div>
+                <section class="profile" style="padding-top: 0px;">
+                    <div class="container">
+                        <div class="row">
+                            <form class="login-form__form" action="?action=Update" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="hidden" name="AdminID" value="<?php echo $AdminID; ?>">
+                                        <input type="text" name="Name" placeholder="Admin Name"  autocomplete="off" value="<?php echo $row['Name']; ?>" />
+                                        <i class="fa fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="number"name="Phone" pattern="[0-9]*" placeholder="Phone" value="<?php echo "0". $row['Phone']; ?>" />
+                                        <i class="fa fa-phone"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="email" name="Email" value="<?php echo $row['Email'] ?>" placeholder="Email" disabled  />
+                                        <i class="fa fa-envelope-o"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input  type="text" name="Address" placeholder="Address"  value="<?php echo $row['Address']; ?>"/>
+                                        <i class="fa fa-id-card-o"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                        <input type="password" name="Password" placeholder="Password"  value="<?php echo $row['Password']; ?>"  disabled />
+                                        <i class="fa fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="login-form__field">
+                                            <select name="Role" class="custom-select" style='height:62px; '>
+                                                <option value="<?php echo $row['RoleID'] ?>"><?php echo $row['RoleName'] ?> </option>
+                                                <?php
+                                                    $SelectRole = "SELECT * FROM adminrole";
+                                                    $Roles = mysqli_query($con, $SelectRole);
+                                                    $fetchquery = mysqli_fetch_assoc($Roles);
+                                                foreach ($Roles as $Role) { ?>
+                                                    <option value="<?php echo $Role['ID'] ?>"> <?php echo $Role['Role'] ?> </option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="login-form__bottom">
+                                    <div class="gap-4">
+                                        <a href="./Admins.php?action=Manage"  class="thm-btn login-form__btn">
+                                        Cancel
+                                        </a>
+                                        <button type="submit" value="Update" class="thm-btn login-form__btn login-form__btn-two" >
+                                        Update
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group insertInput">
-                            <div class="m-auto">
-                                <input type="number" name="Phone" pattern="[0-9]*" placeholder="Phone" class="form-control" value="<?php echo "0". $row['Phone']; ?>" required="required" />
-                            </div>
-                        </div>
-                        <div class="form-group insertInput">
-                            <div class="m-auto">
-                                <input type="text" name="Address" placeholder="Address" class="form-control" value="<?php echo $row['Address']; ?>" required="required" />
-                            </div>
-                        </div>
-                        <div class="form-group insertInput">
-                            <div class="m-auto">
-                                <input type="email" name="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" disabled class="form-control" value="<?php echo $row['Email']; ?>"  />
-                            </div>
-                        </div>
-                        <div class="form-group insertInput">
-                            <div class="mt-20">
-                                <input type="password" name="Password" placeholder="Password" class="form-control" value="<?php echo $row['Password']; ?>"  disabled />
-                            </div>
-                        </div>
-                        <div class="form-group insertInput">
-                            <div class="mt-20">
-                                <select name="Role" class="custom-select">
-                                    <option value="<?php echo $row['RoleID'] ?>"><?php echo $row['RoleName'] ?> </option>
-                                    <?php
-                                    $SelectRole = "SELECT * FROM adminrole";
-                                    $Roles = mysqli_query($con, $SelectRole);
-                                    $fetchquery = mysqli_fetch_assoc($Roles);
-
-                                    foreach ($Roles as $Role) {
-                                        echo "<option value='" . $Role['ID'] . "' >" . $Role['Role'] . " </option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="InsertButton">
-                                <input type="submit" value="Update" class="btn btn-success w-10" />
-                                <a href="./Admins.php?action=Manage" class="btn btn-danger btn-md w-10"> Cancel </a>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-
-
+                    </div>
+                </section>
             <?php } else {
                 echo "<div class='container'>";
                 $TheMsg = "<div class='alert alert-danger'>" . "Admin is not Exist" . "</div>";

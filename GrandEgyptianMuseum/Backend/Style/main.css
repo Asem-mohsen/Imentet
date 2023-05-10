@@ -281,14 +281,13 @@ img.EventImage{
     justify-content: space-around;
     cursor: default;
 }
-.info .Status{
+.Status{
     display: flex;
-    justify-content: space-around;
-    cursor: default;
-    padding-top: 20px;
-    font-size: 22px;
-    color: #c70000;
-    flex-wrap: wrap;
+    justify-content: center;
+    color: red;
+    font-size: 25px;
+    margin-top: 20px;
+
 }
 .EventPage .info .LastInfo {
     display: flex;
@@ -449,10 +448,9 @@ div.SignInButton{
 a.navbar-dark .navbar-brand{
     font-size: 30px;
 } 
-
 h1.PageName{
     text-align: center;
-    font-family: serif;
+    /* font-family: serif; */
     font-size: 60px;
     margin-top: 30px;
     cursor: default;
@@ -555,22 +553,26 @@ div.info .SomeInfo button:hover{
     }
 
 div.UserInteractions h3{
-    margin-top: 68px;
+    /* margin-top: 68px; */
     text-align: center;
-    font-size: 40px;
+    /* font-size: 40px; */
     cursor: default;
     color: black;
 
 }
 h4.PanalHeading{
     margin-left: 25px;
-    font-size: 30px;
+    font-size: 26px;
     cursor: default;
     color: black;
 }
 div.UserInteractions .ShowFeedback{
-    margin-top: 50px;
-    margin-bottom: 50px;
+    display: block;
+    justify-content: center;
+    width: 70%;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 65px;
 }
 div.UserInteractions .ShowFeedback p{
     font-size: 20px;
@@ -589,8 +591,8 @@ div.UserInteractions .ShowFeedback span.rec{
     height: 11px;
 }
 div.UserInteractions .Feedback{
-    display: flex;
-    justify-content: flex-start;
+    /* display: flex; */
+    /* justify-content: flex-start; */
     gap: 47px;
     padding: 26px;
     background-color: #f0f0f0;
@@ -603,7 +605,7 @@ div.UserInteractions p.NoData{
 }
 div.ShowTickets{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 30px;
     margin-bottom: 50px;
 }
@@ -800,11 +802,13 @@ div.EventsPage div.Category .swiper-horizontal>.swiper-pagination-bullets, div.E
     justify-content: space-between;}
 .FeedbacksEnter h2{
     font-family: none;
-    margin-left: 34px;
+    text-align: center;
+    color: black;
 }
 .FeedbacksEnter .Feedback{
     width: 50%;
     margin-top: 20px;
+    margin-left: 98px;
 }
 .FeedbacksEnter .Feedback .UserImg{
     display: flex;

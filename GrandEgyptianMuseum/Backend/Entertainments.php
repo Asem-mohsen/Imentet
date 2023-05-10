@@ -586,7 +586,7 @@ if (isset($_SESSION["AdminID"])) {
                 echo "</div>";
             }else{
 
-            $SelectEvent = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName, sponsorship.Name AS SponsorshipName , feedback.Description AS Feedback, user.Name AS UserName ,user.ID AS UserID
+            $SelectEvent = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName, sponsorship.Name AS SponsorshipName , user.Name AS UserName ,user.ID AS UserID
                                 ,eventstatus.Status AS EventStatus ,eventstatus.Reason AS EventReason 
                                 FROM entertainmnet 
                             JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
@@ -598,102 +598,146 @@ if (isset($_SESSION["AdminID"])) {
                             JOIN sponsorship ON eventsponsor.ContractID = sponsorship.ContractID
                             WHERE entertainmnet.ID = $EventID LIMIT 1 ";
             $Events = mysqli_query($con , $SelectEvent);
-            $fetchquery = mysqli_fetch_assoc($Events);
-                
+            $Event = mysqli_fetch_assoc($Events);
+            $StartDate = date('d M Y', strtotime($Event['Date'])); 
+
+            $SelectFeedback = "SELECT feedback.* , userimages.Image AS UserImage , user.Name AS UserName
+                                    FROM feedback
+                                    LEFT JOIN user ON feedback.UserID = user.ID
+                                    lEFT JOIN userimages ON user.ID = userimages.UserID
+                                    WHERE EntertainmnetID = $EventID LIMIT 4 ";
+            $FeedbackRun = mysqli_query($con , $SelectFeedback);
+            $Feedbacks = mysqli_fetch_assoc($FeedbackRun);
+            $CountFeedback = mysqli_num_rows($FeedbackRun);
+
+            
+            
+            $TodaysDate = date("Y-m-d");
+
             $SelectCount = "SELECT COUNT(UserID) AS NumberOfPeople FROM entertainmnetticket WHERE EventID = $EventID";
             $SelectNumbers = mysqli_query($con , $SelectCount);
             $Numbers = mysqli_fetch_array($SelectNumbers);
 
             $now = date("Y-m-d");
-                if(isset($fetchquery['ID'])){
+                if(isset($Event['ID'])){
             ?>
-
-            <div class="EventPage">
-                <?php
-                foreach($Events as $Event){
-                ?>
-                    <div class="top">
-                            <img src="./Images/<?php echo $Event['Image'] ?>" class="EventImage" alt="">
-                    </div>
-                    <h1> <?php echo $Event['Name'] ?> </h1>
-                        <div class="info">
-                            <h3><?php echo $Event['CatName'] ?></h3>
-                            <div class="MoreInfo">
-                                <p><i class="fa fa-map-marker" aria-hidden="true"></i><?php echo "  ". $Event['PlaceName'] ?></p>
-                                <p><i class="fa-solid fa-hashtag" aria-hidden="true"></i><?php echo "  ". $Numbers['NumberOfPeople'] . " Attending"?></p>
-                            </div>
-                            <div class="Dates">
-                                <?php
-                                    if($Event['Everyday']){
-                                            echo "<p><i class='fa fa-calendar' aria-hidden='true'></i>" . " Happens " . $Event['Everyday'] . "</p>";
-                                        }else{
-                                            echo "<p><i class='fa fa-calendar' aria-hidden='true'></i>" . ' On '. $Event['Date'] . "</p>";
-
-                                        }
-                                    if(($Event['DateTo'] == Null) || ($Event['DateTo'] == '0000-00-00')){
-                                        }else{
-                                            echo "<p><i class='fa fa-calendar' aria-hidden='true'></i>" . ' To '. $Event['DateTo'] . "</p>";
-                                        } 
-                                ?>
-                            </div>
-                            <div class="LastInfo">
-                                <p>Regular Price : <?php echo $Event['RegularPrice'] ?> LE</p>
-                                <?php if(($Event['VipPrice'] == 0 ) || ($Event['VipPrice'] == NULL)){ ?>
-                                <?php }else{ ?>
-                                    <p>Vip Price: <?php echo $Event['VipPrice'] ?> LE</p>   
-                                <?php } ?>
-                            </div>
-                            
-                            <?php if($Event['EventStatus']){ ?>
-                                <div class='Status'>
-                                    <p>This Event is <?php echo $Event['EventStatus'] ?> due to <?php echo $Event['EventReason'] ?></p>
+            <h1 class="c-black txt-center mt-70"> <?php echo $Event['Name'] ?> </h1>
+            <section class="pt-40 event-details">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="event-details__content">
+                                <div class="event-details__single" id="about-event">
+                                    <div class="event-details__event-info m-0">
+                                        <div class="row">
+                                            <div class="col-lg-6 d-flex">
+                                                <div class="my-auto">
+                                                    <ul class="list-unstyled event-details__event-info__list">
+                                                        <li>
+                                                        <span class="mt-20">Date & Time</span>
+                                                        <p>
+                                                            <i class="fa fa-clock-o"></i>
+                                                            <?php echo $StartDate ; 
+                                                                    if($Event['DateTo'] != Null && $Event['DateTo'] != '0000-00-00' && $Event['Everyday'] != "Daily" && !empty($Event['DateTo']) ){
+                                                                        $EndDate = date('d M Y', strtotime($Event['DateTo']));
+                                                                        echo " - " . $EndDate; 
+                                                                        ; 
+                                                                    }elseif($Event['Everyday'] == "Daily"){
+                                                                        echo " - This Event Happens " . $Event['Everyday'] ;
+                                                                    } ?> 
+                                                        </p>
+                                                        </li>
+                                                        <li>
+                                                        <span>Location</span>
+                                                        <p>
+                                                            <i class="fa fa-location-arrow"></i>
+                                                            <?php echo $Event['PlaceName'] ?>
+                                                        </p>
+                                                        </li>
+                                                        <li>
+                                                        <span>Organizer</span>
+                                                        <p>
+                                                            <i class="fa fa-user"></i>
+                                                            <?php echo $Event['SponsorshipName'] ?>
+                                                        </p>
+                                                        </li>
+                                                        <li>
+                                                            <span>Ticket Cost</span>
+                                                            <p>
+                                                                <i class="fa fa-money"></i>
+                                                                Reg - <?php echo $Event['RegularPrice'] ;?>
+                                                                
+                                                                <?php if(isset($Event['VipPrice']) && $Event['VipPrice'] != 0){ echo "/ VIP - " . $Event['VipPrice'] ; }  ?>
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <span>Category</span>
+                                                            <p class="mt-20">
+                                                                <i class="fa fa-card"></i>
+                                                                <?php echo $Event['CatName'] ?>
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 clearfix">
+                                                <img src="./images/<?php echo $Event['Image'] ?>" width="400px" height='400px'  class="float-right" alt="Awesome Image" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <?php if($Event['EventStatus']){ ?>
+                                            <div class='Status'>
+                                                <p>This Event is <?php echo $Event['EventStatus'] ?> due to <?php echo $Event['EventReason'] ?></p>
+                                            </div>
+                                        <?php } ?>
                                 </div>
-                            <?php } ?>
-                            <p class="sponsor"> This Event Is Sponsored By <?php echo $Event['SponsorshipName'] ?></p>
+                            </div>
                         </div>
-                        
-                    <div class='FeedbacksEnter'>
-                        <div class="Feedback">
-                            <h2 class="mt-0 mb-10">Latest Feedback</h2>
-                            <?php if($Event['Feedback'] == NULL ){
-                                echo "<div class='NoFeedback'>";
-                                    echo "<p> No Feedback Yet </p> " ;
-                                echo "</div>";
-                            }else{ ?>
-
-                            
+                        <div class="col-lg-4">
+                            <div class="event-details__form">
+                                <h3 class="event-details__form-title">Control</h3>
+                                <div class="row">
+                                    <div class="col-sm-12 d-grid gap-20">
+                                        <?php if($AdminRole == 1 || $AdminRole == 2){ 
+                                            if($Event['Date'] < $now && !($Event['Everyday'] == 'Daily')){ 
+                                                echo "<button class='btn btn-success' disabled> Past </button>";
+                                            }elseif($Event['EventStatus'] == "Cancelled"){
+                                                echo "<button class='thm-btn event-details__form-btn btn-danger' disabled> This Event is Cancelled </button>";
+                                            }else{ ?>
+                                                <a href="./Entertainments.php?action=Edit&EventID=<?php echo $Event['ID'] ?>" class='thm-btn event-details__form-btn'> Edit</a>
+                                            <?php }  
+                                        }
+                                        if($AdminRole == 1){ ?>
+                                            <a href="./Entertainments.php?action=Delete&EventID=<?php echo $Event['ID'] ?>" class='thm-btn event-details__form-btn  btn-danger'>Delete</a>
+                                        <?php } ?>
+                                        <a href="./Entertainments.php?action=Manage" class='thm-btn event-details__form-btn' >Back</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='FeedbacksEnter'>
+                    <div class="Feedback">
+                        <h2 class="mt-0 mb-10">Latest Feedback</h2>
+                        <?php if($CountFeedback > 0 ){
+                            foreach ($FeedbackRun as $Feedback){ ?>
                                 <div class="UserImg">
-                                    <img class="avatar" src="images/avatar.png" alt="" />
-                                    <a href="./Users.php?action=MoreInfo&UserID=<?php echo $Event['UserID'] ?>" class="c-gray" ><?php echo $Event['UserName'] ?></a>
+                                    <img class="avatar" src="images/<?php echo $Feedback['UserImage'] ?>" alt="" />
+                                    <a href="./Users.php?action=MoreInfo&UserID=<?php echo $Feedback['UserID'] ?>" class="c-gray" ><?php echo $Feedback['UserName'] ?></a>
                                 </div>
                                 <div class="details">
-                                    <input type="text" disabled name="Feedback" value="<?php echo $Event['Feedback'] ?>">
+                                    <input type="text" disabled name="Feedback" value="<?php echo $Feedback['Description'] ?>">
                                 </div>
-                                <?php } ?>
-                        </div>
-                        <div class="EnterSpecialButtons">
-                            <h2 class='ControlEnter'>Controls</h2>
-                            <?php if($AdminRole == 1 || $AdminRole == 2){ 
-                                        if($Event['Date'] < $now && !($Event['Everyday'] == 'Daily')){ 
-                                            echo "<button class='btn btn-success' disabled> Past </button>";
-                                        }elseif($Event['EventStatus'] == "Cancelled"){
-                                            echo "<button class='btn btn-danger' disabled> Cancelled </button>";
-                                        }else{ ?>
-                                <a href="./Entertainments.php?action=Edit&EventID=<?php echo $Event['ID'] ?>" class="btn btn-success"> Edit</a>
-                            <?php }  
-                            }
-                            if($AdminRole == 1){ ?>
-                                <a href="./Entertainments.php?action=Delete&EventID=<?php echo $Event['ID'] ?>" class="btn btn-danger">Delete</a>
-                            <?php } ?>
-                            <a href="./Entertainments.php?action=Manage" class="btn btn-primary">Back</a>
-
-                        </div>
+                            <?php } 
+                        }else{ 
+                            echo "<div class='NoFeedback'>";
+                                echo "<p> No Feedback Yet </p> " ;
+                            echo "</div>";
+                        } ?>
                     </div>
-                    
-                
-                <?php } ?>
-
-            </div>
+                </div>
+            </section>
             <?php 
                 }else{
                     echo "<div class='NoData'>";
