@@ -18,8 +18,9 @@ if (isset($_SESSION["AdminID"])) {
 
     $AdminRole = $row['AdminRole'];
 
-    $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
     include './NavAdmin.php';
+
+    $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
     if($do == 'Manage'){ 
         $sort = 'ASC';
         $sortarray = array('ASC', 'DESC');
@@ -102,12 +103,11 @@ if (isset($_SESSION["AdminID"])) {
         <?php
     }else{
         echo "<div class='container'>";
-        $TheMsg = "<div class='alert alert-danger'> You are not authorized to access this page </div";
+        $TheMsg = "<div class='alert alert-danger txt-center'> You are not authorized to access this page </div";
         RedirectIndex($TheMsg);
         echo "</div>";
     }
     include "./AdminFooter.php";
-    include "./Includes/PageContent/Footer.php";
 
 }else{
     if(!isset($_SESSION["AdminID"])){

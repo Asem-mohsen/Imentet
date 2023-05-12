@@ -83,11 +83,11 @@ if(isset($_SESSION['AdminID'])){
                             <div class="pricing-one__bottom">
                                 <ul class="list-unstyled cta-one_list" style='line-height: 33px;'>
                                     <p class="pricing-one__text">Benefits</p> </br>
-                                    <li>
+                                    <li class="MembershipLi">
                                         <i class="egypt-icon-check"></i>
                                             Free entry for <?php echo $Membership['Entry'] ?> times
                                     </li>
-                                    <li>
+                                    <li class="MembershipLi">
                                         <i class="egypt-icon-check"></i>
                                         <?php
                                             if($Membership['AccessKidsArea'] == 1 ){ 
@@ -97,7 +97,7 @@ if(isset($_SESSION['AdminID'])){
                                             }
                                         ?>
                                     </li>
-                                    <li>
+                                    <li class="MembershipLi">
                                         <i class="egypt-icon-check"></i>
                                         <?php
                                             if($Membership['VouchersMuseum'] == 1){ 

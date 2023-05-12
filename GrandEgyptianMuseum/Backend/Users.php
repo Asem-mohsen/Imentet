@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-$PageTitle = "Users Platform ";
+$PageTitle = "Users";
 
 include "./DatabaseConnection/Connection.php";
 include "./Functions/Functions.php";
@@ -110,78 +110,38 @@ if (isset($_SESSION["AdminID"])) {
                                 </ul>
                             </form>
                         </div>
-                                <div class="container mb-20">
-                                    <h1 class="PageName"> Users </h1>
-                                    <div class="input-group md-form form-sm form-2 pl-0 mb-20">
-                                        <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search something here..." id="myInput" onkeyup="myFunction()" aria-label="Search">
-                                        <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="main-table table table-bordered table-hover table-light" id="myTable">
-                                            <tr>
-                                                <td>ID</td>
-                                                <td>Name</td>
-                                                <td>Date Of Birth</td>
-                                                <td>Phone</td>
-                                                <td>Role</td>
-                                                <td>Membership</td>
-                                                <td>Action</td>
-                                            </tr>
-                                            <?php
-                                                if(isset($_POST['Type'])){
-                                                    $TypeChecked = [];
-                                                    $TypeChecked = $_POST['Type'];
-                                                    foreach($TypeChecked as $rowTypes){
-                                                        $UserInfo = "SELECT user.* , userrole.RoleName AS UserRole, membership.Type AS MembershipType , membershippayemnts.MembershipID FROM user 
-                                                                        LEFT JOIN userrole ON userrole.ID = user.RoleID 
-                                                                        LEFT JOIN membershippayemnts ON user.ID = membershippayemnts.UserID
-                                                                        LEFT JOIN membership ON membership.ID = membershippayemnts.MembershipID
-                                                                        WHERE membership.ID IN($rowTypes) ";
-                                                        $Info = mysqli_query($con , $UserInfo);
-                                                        $fetchquery = mysqli_fetch_row($Info);
-                                                        $count =mysqli_num_rows($Info);
-                                                        if($count > 0 ){
+                        <div class="container mb-20">
+                            <h1 class="PageName"> Users </h1>
+                            <div class="input-group md-form form-sm form-2 pl-0 mb-20">
+                                <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search something here..." id="myInput" onkeyup="myFunction()" aria-label="Search">
+                                <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="main-table table table-bordered table-hover table-light" id="myTable">
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>Name</td>
+                                        <td>Date Of Birth</td>
+                                        <td>Phone</td>
+                                        <td>Role</td>
+                                        <td>Membership</td>
+                                        <td>Action</td>
+                                    </tr>
+                                    <?php
+                                        if(isset($_POST['Type'])){
+                                            $TypeChecked = [];
+                                            $TypeChecked = $_POST['Type'];
+                                            foreach($TypeChecked as $rowTypes){
+                                                $UserInfo = "SELECT user.* , userrole.RoleName AS UserRole, membership.Type AS MembershipType , membershippayemnts.MembershipID FROM user 
+                                                                LEFT JOIN userrole ON userrole.ID = user.RoleID 
+                                                                LEFT JOIN membershippayemnts ON user.ID = membershippayemnts.UserID
+                                                                LEFT JOIN membership ON membership.ID = membershippayemnts.MembershipID
+                                                                WHERE membership.ID IN($rowTypes) ";
+                                                $Info = mysqli_query($con , $UserInfo);
+                                                $fetchquery = mysqli_fetch_row($Info);
+                                                $count =mysqli_num_rows($Info);
+                                                if($count > 0 ){
 
-                                                            foreach ($Info as $User) {
-                                                                $FullName =  $User['Name'] . ' ' .  $User['LastName'] ;
-                                                                if($User['MembershipType'] == NULL){
-        
-                                                                    $User['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
-                                                                }
-                                                                echo "<tr id='TableData'>";
-                                                                    echo "<td>" . $User['ID']     . "</td>";
-                                                                    echo "<td>" . ucfirst($FullName)   . "</td>";
-                                                                    echo "<td>";
-                                                                                if(isset($User['DateOfBirth'])){
-                                                                                    echo $User['DateOfBirth'] ;
-                                                                                }else{
-                                                                                    echo "<p class='fs-13 c-gray'> No Information Yet </p>";
-                                                                                }
-                                                                    echo "</td>";                                                 
-                                                                    echo "<td>";
-                                                                                if(isset($User['Phone'])){
-                                                                                    echo "0" . $User['Phone'] ;
-                                                                                }else{
-                                                                                    echo "<p class='fs-13 c-gray'> No Information Yet </p>";
-                                                                                }
-                                                                    echo "</td>";                                                       
-                                                                    echo "<td>";
-                                                                                if(isset($User['UserRole'])){
-                                                                                    echo $User['UserRole'] ;
-                                                                                }else{
-                                                                                    echo "<p class='fs-13 c-gray'> No Information Yet </p>";
-                                                                                }
-                                                                    echo "</td>";
-                                                                    echo "<td>" . $User['MembershipType'] . "</td>";
-                                                                                                                            
-                                                                    echo "<td>";
-                                                                        echo "<a href='./Users.php?action=MoreInfo&UserID=" . $User['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
-                                                                    echo "</td>";
-                                                                echo "</tr>";
-                                                            } 
-                                                        }
-                                                    }
-                                                }else{
                                                     foreach ($Info as $User) {
                                                         $FullName =  $User['Name'] . ' ' .  $User['LastName'] ;
                                                         if($User['MembershipType'] == NULL){
@@ -190,21 +150,21 @@ if (isset($_SESSION["AdminID"])) {
                                                         }
                                                         echo "<tr id='TableData'>";
                                                             echo "<td>" . $User['ID']     . "</td>";
-                                                            echo "<td>" .  ucfirst($FullName)   . "</td>";
+                                                            echo "<td>" . ucfirst($FullName)   . "</td>";
                                                             echo "<td>";
                                                                         if(isset($User['DateOfBirth'])){
                                                                             echo date("d M Y"  , strtotime($User['DateOfBirth'])) ;
                                                                         }else{
                                                                             echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                         }
-                                                            echo "</td>";                                                        
+                                                            echo "</td>";                                                 
                                                             echo "<td>";
                                                                         if(isset($User['Phone'])){
                                                                             echo "0" . $User['Phone'] ;
                                                                         }else{
                                                                             echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                         }
-                                                            echo "</td>";                                                        
+                                                            echo "</td>";                                                       
                                                             echo "<td>";
                                                                         if(isset($User['UserRole'])){
                                                                             echo $User['UserRole'] ;
@@ -220,10 +180,50 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "</tr>";
                                                     } 
                                                 }
-                                            ?>
-                                        </table>
-                                    </div>
-                                </div>
+                                            }
+                                        }else{
+                                            foreach ($Info as $User) {
+                                                $FullName =  $User['Name'] . ' ' .  $User['LastName'] ;
+                                                if($User['MembershipType'] == NULL){
+
+                                                    $User['MembershipType'] = "<p class='fs-13 c-gray'> Does not have a membership </p>";
+                                                }
+                                                echo "<tr id='TableData'>";
+                                                    echo "<td>" . $User['ID']     . "</td>";
+                                                    echo "<td>" .  ucfirst($FullName)   . "</td>";
+                                                    echo "<td>";
+                                                                if(isset($User['DateOfBirth'])){
+                                                                    echo date("d M Y"  , strtotime($User['DateOfBirth'])) ;
+                                                                }else{
+                                                                    echo "<p class='fs-13 c-gray'> No Information Yet </p>";
+                                                                }
+                                                    echo "</td>";                                                        
+                                                    echo "<td>";
+                                                                if(isset($User['Phone'])){
+                                                                    echo "0" . $User['Phone'] ;
+                                                                }else{
+                                                                    echo "<p class='fs-13 c-gray'> No Information Yet </p>";
+                                                                }
+                                                    echo "</td>";                                                        
+                                                    echo "<td>";
+                                                                if(isset($User['UserRole'])){
+                                                                    echo $User['UserRole'] ;
+                                                                }else{
+                                                                    echo "<p class='fs-13 c-gray'> No Information Yet </p>";
+                                                                }
+                                                    echo "</td>";
+                                                    echo "<td>" . $User['MembershipType'] . "</td>";
+                                                                                                            
+                                                    echo "<td>";
+                                                        echo "<a href='./Users.php?action=MoreInfo&UserID=" . $User['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
+                                                    echo "</td>";
+                                                echo "</tr>";
+                                            } 
+                                        }
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
                                 
             <?php }else{
                 echo "<div class='NoData'>";
@@ -1730,7 +1730,6 @@ if (isset($_SESSION["AdminID"])) {
                                 RedirectIndex($TheMsg, "Back");
                                 echo "</div>";
                     }else{
-                        //LOOP into error array and print the error
                         foreach ($FormErrors as $error) {
                             $TheMsg = "<div class='alert alert-danger txt-center'>" . $error . "</div>";
                         }
@@ -2360,8 +2359,6 @@ if (isset($_SESSION["AdminID"])) {
         exit();
     }
 }
-
-
 
 
 ob_end_flush();

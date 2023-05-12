@@ -23,12 +23,6 @@ if (isset($_SESSION["AdminID"])) {
     <div class="page d-flex">
         <div class="content-area w-full overflow-h">
             <h1 class="p-relative inDashboard">Dashboard</h1>
-            <?php if (isset($_SESSION["AdminID"])) {
-                        echo "<a href='./logout.php' class='Logout'>" ;
-                            echo "<i class='fa-solid fa-arrow-right-from-bracket'></i>";
-                        echo " Logout </a>";
-                    }
-                    ?>
             
                     <?php 
                         $CountUsers = "SELECT * FROM user" ;

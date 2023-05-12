@@ -193,9 +193,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         <input type="email" name="Email" placeholder="Email Address" required />
                           <i class="fa fa-envelope-o"></i>
                       </div>
-                      <div class="login-form__field">
+                      <div class="login-form__field password-input">
                         <input type="password" name="Password" placeholder="Enter Password" required/>
-                        <i class="fa fa-lock"></i>
+                        <i class="fa fa-eye toggler"></i>
                       </div>
                       <button type="submit" name='submit' class="thm-btn contact-one__btn">
                         Create Account
@@ -277,21 +277,21 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       <i class="egypt-icon-arrow-2"></i>
     </a>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
-    <script src="js/bootstrap-select.min.js"></script>
-    <script src="js/isotope.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/TweenMax.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/nouislider.js"></script>
-    <script src="js/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="JS/jquery.min.js"></script>
+    <script src="JS/bootstrap.bundle.min.js"></script>
+    <script src="JS/bootstrap-datepicker.min.js"></script>
+    <script src="JS/bootstrap-select.min.js"></script>
+    <script src="JS/isotope.js"></script>
+    <script src="JS/jquery.counterup.min.js"></script>
+    <script src="JS/jquery.magnific-popup.min.js"></script>
+    <script src="JS/jquery.validate.min.js"></script>
+    <script src="JS/owl.carousel.min.js"></script>
+    <script src="JS/TweenMax.min.js"></script>
+    <script src="JS/waypoints.min.js"></script>
+    <script src="JS/wow.min.js"></script>
+    <script src="JS/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="JS/nouislider.js"></script>
+    <script src="JS/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="JS/theme.js"></script>
   </body>
 </html>

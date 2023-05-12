@@ -141,7 +141,7 @@
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/nouislider.js"></script>
     <script src="js/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="JS/theme.js"></script>
 
     <script src="./JS/jquery-3.6.1.js"></script>
     <script src="./JS/jquery-ui.min.js"></script>

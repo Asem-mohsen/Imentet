@@ -17,6 +17,23 @@
         });
     }
 
+    if ($('.password-input').length){
+
+        $('.password-input').children('.toggler').on('click', function (){
+            const passwordInput =  $('.password-input').children('input');
+            if(passwordInput.prop('type') == 'password') {
+
+                $('.password-input').children('input').prop('type', 'text');
+                $('.toggler').removeClass('fa-eye').addClass('fa-eye-slash');
+            } else {
+                $('.password-input').children('input').prop('type', 'password');
+                $('.toggler').removeClass('fa-eye-slash').addClass('fa-eye');
+
+
+            }
+        });
+    }
+
     if ($('.plan-visit__tab-links').length) {
         var planVisitLink = $('.plan-visit__tab-links').find('.nav-link');
         planVisitLink.on('click', function(e) {

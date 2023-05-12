@@ -146,9 +146,9 @@ if(isset($_SESSION['UserID'])){
                         </div>
                       </div>
                     </div>
-                    <div class="login-form__field">
+                    <div class="login-form__field password-input">
                       <input type="password" name="Password" value="<?php echo $UserPassword ?>" placeholder="Enter Password" />
-                      <i class="fa fa-lock"></i>
+                      <i class="fa fa-eye toggler"></i>
                     </div>
                     <div class="login-form__field">
                       <input type="file" name="Image" placeholder="Profile Picture" id="UserImage" accept=".jpg , .png , .jpeg" />

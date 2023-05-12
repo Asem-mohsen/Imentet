@@ -38,7 +38,7 @@ function RedirectIndex($TheMsg = Null, $URL = Null, $Seconds = 3)
         </div>";
 
     header("refresh:$Seconds;url=$URL");
-    exit();
+    // exit();
 }
 
 /*

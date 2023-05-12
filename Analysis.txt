@@ -48,7 +48,7 @@ Stratigc Level => The Admins here are responsible for
                 8- Access to Donation
                 9- Edit and remove from Collections
                 10- Access to sponsorship
-                11 - Edit on Transportations
+                11- Edit on Transportations
 
 Operations Level => The Admins here are responsible for
                 1- Add Entertainments 

@@ -29,7 +29,7 @@ include "./Functions/Functions.php";
     <link rel="stylesheet" href="css/nouislider.pips.css" />
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" href="css/style.css?v=1" />
+    <link rel="stylesheet" href="css/style.css?v=4" />
     <link rel="stylesheet" href="css/responsive.css" />
 
     <title><?php if(isset($PageTitle)){echo $PageTitle ; }else{ echo "Defult";} ?></title>
@@ -48,7 +48,7 @@ include "./Functions/Functions.php";
                             <i class="egypt-icon-clock"></i> Plan Your Visit Today :
                             <span class="topbar-one__time-wrap">
                                 <span class="topbar-one__time">
-                                    9 <span class="topbar-one__minute">00</span>
+                                    <?php echo date('h'  , strtotime('+1 hour')) ?> <span class="topbar-one__minute"><?php echo date('i') ?></span>
                                 </span>
 
                                 <span class="topbar-one__sep"></span>
@@ -60,12 +60,6 @@ include "./Functions/Functions.php";
                             <i class="egypt-icon-maps-and-location"></i>
                             Get Direction
                         </a>
-                        <?php if (isset($_SESSION["UserID"]) || isset($_SESSION['AdminID'])) {
-                            echo "<a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php' class='Logout'>";
-                            echo "<i class='fa-solid fa-arrow-right-from-bracket'></i>";
-                            echo " Logout </a>";
-                        }
-                        ?>
                     </div>
                     <ul class="topbar-one__right list-unstyled">
                         <li>
@@ -88,19 +82,31 @@ include "./Functions/Functions.php";
                             </select>
                         </li>
                         <?php if (isset($_SESSION["UserID"])){ ?>
-                            <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/profile.php" class="user-icon topbar-one__search">
-                                    <i class="fa fa-user"></i>
-                                </a>
-                            </li>
+                            <span class="top-wrapper">
+                                <li>
+                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/profile.php" class="user-icon topbar-one__search">
+                                        <i class="fa fa-user"></i>
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/profile.php">Edit Profile </a></li>
+                                        <li><a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php'>Log out</a></li>
+                                    </ul>
+                                </li>
+                            </span>
                         <?php }elseif(isset($_SESSION["AdminID"])){
                             $AdminID = $_SESSION["AdminID"] ;
                             ?>
-                            <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
-                                    <i class="fa fa-user"></i>
-                                </a>
-                            </li>
+                            <span class="top-wrapper">
+                                <li>
+                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
+                                        <i class="fa fa-user"></i>
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="hhttp://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">Edit Profile </a></li>
+                                        <li><a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php'>Log out</a></li>
+                                    </ul>
+                                </li>
+                            </span>
                         <?php }  ?>
                         <li>
                             <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php" class="thm-btn topbar-one__btn">Tickets</a>
@@ -207,10 +213,17 @@ include "./Functions/Functions.php";
                         </ul>
                     </div>
                     <div class="right-side-box">
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Cart.php" class="site-header__cart">
-                            <i class="egypt-icon-supermarket"></i>
-                            <?php  if(isset($_SESSION['cart'])){ 
-                                        if(count($_SESSION['cart']) > 0 ){?>
+                    <?php  if(isset($_SESSION['cart'])){ 
+                                if(count($_SESSION['cart']) > 0 ){?>
+                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Cart.php" class="site-header__cart">
+                                        <i class="egypt-icon-supermarket"></i>
+                                <?php }
+                            }else{ ?>
+                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1" class="site-header__cart">
+                                        <i class="egypt-icon-supermarket"></i>
+                            <?php }
+                            if(isset($_SESSION['cart'])){ 
+                                        if(count($_SESSION['cart']) > 0 ){ ?>
                                             <span class="count"><?php echo count($_SESSION['cart']) ; ?> </span>
                                         <?php }
                                     } ?>

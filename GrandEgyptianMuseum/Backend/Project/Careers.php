@@ -19,16 +19,7 @@ if(isset($_SESSION['UserID'])){
   $ApplicationRow = mysqli_fetch_assoc($Select);
 
 
-      // Appointment and  Status show
-    if($ApplicationRow['Approved'] == 1){
-        echo "You are Accepted";
-    }elseif($ApplicationRow['Approved'] == 0 && $ApplicationRow['UserID'] != NULL){
-        echo "Rejected Work on Yourself and try to submit again after 6 months";
-    }elseif($ApplicationRow['Approved'] == 2 && $ApplicationRow['Date'] ){
-        echo "Your Interview is determined on " . $ApplicationRow['Date'] ;
-    }elseif($ApplicationRow['Date'] == NULL && $ApplicationRow['ID'] != NULL){
-        echo "Wait for your interview soon";
-    }
+
 
   $FormError = array();
 
@@ -58,7 +49,18 @@ if(isset($_SESSION['UserID'])){
             echo "</div>" ;
         }
     }
+            // Appointment and  Status show
+            if($ApplicationRow['Approved'] == 1){
+              echo "You are Accepted";
+          }elseif($ApplicationRow['Approved'] == 0 && $ApplicationRow['UserID'] != NULL){
+              echo "Rejected Work on Yourself and try to submit again after 6 months";
+          }elseif($ApplicationRow['Approved'] == 2 && $ApplicationRow['Date'] ){
+              echo "Your Interview is determined on " . $ApplicationRow['Date'] ;
+          }elseif($ApplicationRow['Date'] == NULL && $ApplicationRow['ID'] != NULL){
+              echo "Wait for your interview soon";
+          }
   }
+
 }
 ?>
       <?php include "../NavUser.php" ; ?>
@@ -91,36 +93,37 @@ if(isset($_SESSION['UserID'])){
                 </div>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-md-6">
               <form action="#" method="POST" class="contact-one__form">
                 <div class="row">
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
                     <p class="contact-one__field">
                     <input type="hidden" name="UserID" value="<?php echo $UserID ?>">
                         <label>First Name:</label>
                         <input type="text" name="FirstName"  value="<?php if(isset($row['Name'])){ echo $row['Name']; } ?>" <?php if(isset($row['Name'])){ echo "disabled" ;} ?>  >
                     </p>
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
                       <p class="contact-one__field">
                           <label>Last Name:</label>
                           <input type="text" name="LastName"  value="<?php if(isset($row['LastName'])){ echo $row['LastName']; } ?>" <?php if(isset($row['LastName'])){ echo "disabled" ;} ?> >
                       </p>
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-md-12">
                       <p class="contact-one__field">
                           <label>Email:</label>
                           <input type="email" name="Email" value="<?php if(isset($row['Email'])){ echo $row['Email']; } ?>" <?php if(isset($row['Email'])){ echo "disabled" ;} ?> required>
                       </p>
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
                       <p class="contact-one__field">
                           <label>Phone:</label>
                           <input type="number" name="Phone" pattern="[0-9]" value="<?php if(isset($row['Phone'])){ echo $row['Phone']; } ?>" <?php if(isset($row['Phone'])){ echo "disabled" ;} ?> required>
                       </p>
                   </div>
-                  <div class="col-lg-12">
+                  <div class="col-md-6">
                       <div class="donation-form__form-field">
+                      <label>Career:</label>
                         <select class="selectpicker" name="Career" required>
                           <option value="0">Select a Career</option>
                           <?php
@@ -133,7 +136,8 @@ if(isset($_SESSION['UserID'])){
                         </select>
                       </div>
                     </div>
-                  <div class="col-lg-12">
+                  </div>
+                  <div class="col-md-12">
                     <p class="contact-one__field">
                       <label>What Makes You the Ideal Candidate for this Position :</label>
                       <textarea name="Question" required></textarea>
@@ -142,7 +146,6 @@ if(isset($_SESSION['UserID'])){
                       </button>
                     </p>
                   </div>
-                </div>
               </form>
             </div>
           </div>

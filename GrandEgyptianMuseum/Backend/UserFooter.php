@@ -19,7 +19,7 @@
             <a href="https://www.instagram.com/grandegyptianmuseum/?hl=en"  target="_blank"><i class="egypt-icon-instagram"></i></a>
           </div>
           <p class="site-footer__copy">
-            Copyrights &copy; 2023 <a href="#">Egypt</a>, All Rights Reserved.
+            Copyrights &copy; <?php echo date('Y') ?> <a href="#">Egypt</a>, All Rights Reserved.
           </p>
         </div>
     </footer>
@@ -69,7 +69,7 @@
         </div>
         <p class="side-menu__block__text site-footer__copy-text">
           <a href="#">Egypt</a>
-          <i class="fa fa-copyright"></i> 2023 All Right
+          <i class="fa fa-copyright"></i> <?php echo date('Y') ?> All Right
           Reserved
         </p>
       </div>
@@ -111,6 +111,6 @@
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/nouislider.js"></script>
     <script src="js/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="JS/theme.js"></script>
   </body>
 </html>

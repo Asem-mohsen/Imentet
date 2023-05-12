@@ -366,7 +366,7 @@ if(isset($_SESSION['AdminID'])){
                           </div>
                           <div class="event-two__image-inner">
                             <div class="event-two__price">
-                              <span><?php echo $PastEvents['RegularPrice'] ?></span>
+                              <span><?php echo $PastEvents['RegularPrice'] ."$" ?></span>
                             </div>
                             <img src="./Images/<?php echo $PastEvents['Image'] ?>" width="200px" height="200px" alt="Awesome Image" />
                           </div>

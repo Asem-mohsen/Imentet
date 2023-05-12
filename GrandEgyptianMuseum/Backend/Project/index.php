@@ -14,7 +14,6 @@ if(isset($_SESSION['UserID'])){
   $UserRow = mysqli_fetch_assoc($Run);
 
   $Name = $UserRow['Name'];
-  $FirstTwoLetters = $Name[0] . $Name[1] ;
 }
 if(isset($_SESSION['AdminID'])){
   $AdminID = $_SESSION['AdminID'];
@@ -23,7 +22,7 @@ if(isset($_SESSION['AdminID'])){
   $AdminRow = mysqli_fetch_assoc($RunAdmin);
 
   $Name = $AdminRow['Name'];
-  $FirstTwoLettersAdmin = $Name[0] . $Name[1] ;
+  
 }
 ?>
 <!DOCTYPE html>
@@ -89,17 +88,19 @@ if(isset($_SESSION['AdminID'])){
                   </ul>
                 </li>
                 <?php if(isset($_SESSION['UserID'])){ ?>
-                  <li>
-                      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/profile.php" class="user-icon topbar-one__search">
-                        <?php  echo strtoupper($FirstTwoLetters) ; ?>
-                      </a>
-                  </li>
+                <li>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/profile.php" class="thm-btn topbar-one__btn">
+                    <i class="fa fa-user" style="margin-left: 0; margin-right: 8px" ></i>
+                      <?php  echo "Hi, " . strtoupper($UserRow['Name']) ; ?>
+                  </a>
+                </li>
                 <?php }elseif(isset($_SESSION['AdminID'])){ ?>
                   <li>
-                      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
-                        <?php  echo strtoupper($FirstTwoLettersAdmin) ; ?>
-                      </a>
-                  </li>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="thm-btn topbar-one__btn">
+                    <i class="fa fa-user" style="margin-left: 0; margin-right: 8px" ></i>
+                      <?php  echo "Hi, " . $AdminRow['Name'] ; ?>
+                  </a>
+                </li>
                 <?php }else{ ?>
                   <li>
                       <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/register.php" class="thm-btn topbar-one__btn">Join Us</a>

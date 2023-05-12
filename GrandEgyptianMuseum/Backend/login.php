@@ -167,9 +167,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                       <i class="fa fa-user"></i>
                     </div>
 
-                    <div class="login-form__field">
+                    <div class="login-form__field password-input">
                       <input type="password" name="Password" placeholder="Enter Password" required />
-                      <i class="fa fa-lock"></i>
+                      <i class="fa fa-eye toggler"></i>
                     </div>
                     <p>
                       <a href="#">Forgot Password?</a>
@@ -272,6 +272,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/nouislider.js"></script>
     <script src="js/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="JS/theme.js"></script>
   </body>
 </html>

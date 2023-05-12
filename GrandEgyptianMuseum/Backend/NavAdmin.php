@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="css//style.css" />
+    <link rel="stylesheet" href="css///style.css" />
     <link rel="stylesheet" href="Style//main.css?v=1">
     <link rel="stylesheet" href="Style///framework.css">
     <link rel="stylesheet" href="css/responsive.css" />
@@ -207,10 +207,19 @@
                             </div>
 
                             <div class="right-side-box">
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
-                                    <img src="images/AdminImages/<?php echo $row['Image'] ?>" width="30px" height="30px" alt="" />
-                                </a>
-
+                                <ul class="topbar-one__right list-unstyled">
+                                    <span class="top-wrapper">
+                                        <li>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
+                                            <img src="images/AdminImages/<?php echo $row['Image'] ?>" width="30px" height="30px" alt="" />
+                                        </a>
+                                        <ul class="submenu">
+                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">Edit Profile </a></li>
+                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php">Log out</a></li>
+                                        </ul>
+                                        </li>
+                                    </span>
+                                </ul>
                                 <a href="#" class="site-header__sidemenu-nav side-menu__toggler">
                                     <span class="site-header__sidemenu-nav-line"></span>
                                     <span class="site-header__sidemenu-nav-line"></span>
