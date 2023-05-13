@@ -23,16 +23,18 @@ if(isset($_POST['Book'])){
       $Email = $_POST['Email'];
       $Quantity = $_POST['Quantity'];
       $UserID = $_POST['UserID'];
-      $PaymentID = 1 ;
       
       $Total = $Price * $Quantity ;
-      $InsertEventTicket = "INSERT INTO entertainmnetticket VALUES(NULL , $EventID ,$UserID , $Total , $PaymentID , $Quantity)";
+      $InsertEventTicket = "INSERT INTO eventticketcart VALUES(NULL , $EventID ,$UserID , $Total , $Quantity)";
       $InsertRun = mysqli_query($con , $InsertEventTicket);
-
+      
+      header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?EventTicket");
+      exit();
     }else{
       echo "You Must Have Account to Continue";
     }
 }
+
 if(isset($_POST['SubmitFeedback'])){
   $EventID = $_POST['EventID'];
   $UserID = $_POST['UserID'];
@@ -350,6 +352,10 @@ if(empty($EventID)){
                                     <button type="submit" name="Book" class="thm-btn event-details__form-btn" >
                                     Proceed to Book
                                   </button>
+                                <?php }elseif(isset($_SESSION['AdminID'])){?>
+                                  <button class="thm-btn event-details__form-btn" disabled>
+                                    Not Authorized 
+                                </button>
                                 <?php }else{ ?>
                                   <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn event-details__form-btn" >
                                     Sign In to Continue
@@ -417,7 +423,7 @@ if(empty($EventID)){
               </div>
             <?php }else{ ?>
               <div class="col-lg-6">
-                <a href="./events.php?Page1" class="event-details__pagination__left">
+                <a href="./events.php?Page=1" class="event-details__pagination__left">
                   <div class="event-details__pagination-icon">
                     <i class="fa fa-angle-left"></i>
                   </div>
@@ -449,7 +455,6 @@ if(empty($EventID)){
             </div>
             <?php } ?>
             <div>
-
             </div>
           </div>
         </div>

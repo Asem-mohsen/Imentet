@@ -33,8 +33,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="css///style.css" />
-    <link rel="stylesheet" href="Style//main.css?v=1">
+    <link rel="stylesheet" href="css/style.css?v=5" />
+    <link rel="stylesheet" href="Style/main.css">
     <link rel="stylesheet" href="Style///framework.css">
     <link rel="stylesheet" href="css/responsive.css" />
 
@@ -214,7 +214,7 @@
                                             <img src="images/AdminImages/<?php echo $row['Image'] ?>" width="30px" height="30px" alt="" />
                                         </a>
                                         <ul class="submenu">
-                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">Edit Profile </a></li>
+                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Edit&AdminID=<?php echo $AdminID ?>">Edit Profile </a></li>
                                             <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php">Log out</a></li>
                                         </ul>
                                         </li>

@@ -19,7 +19,6 @@ if (isset($_SESSION["AdminID"])) {
 
             if ($row['AdminRole'] == 1 || $row['AdminRole'] == 2 ) {
                 
-                include "./NavAdmin.php";
                 $do = isset($_GET['action']) ?  $_GET['action'] : "Manage" ;
             
                 if($do == 'Manage'){ 

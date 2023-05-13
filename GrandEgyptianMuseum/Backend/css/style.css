@@ -39,6 +39,7 @@
 /*
 * 1. common styles
 */
+
 ::-webkit-scrollbar {
   width: 10px
 }
@@ -95,7 +96,7 @@ a:focus {
 
 @media (min-width: 1200px) {
   .container {
-    /* max-width: 1200px; */
+    max-width: 1175px;
   }
 }
 .block-title {
@@ -6131,8 +6132,8 @@ a:focus {
   border: none !important;
   background-color: transparent;
   padding: 19.5px 0;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 @media (max-width: 991px) {
   .event-details .nav-tabs .nav-link {
@@ -7355,7 +7356,7 @@ a:focus {
   position: absolute;
   left: 100%;
   bottom: 10px;
-  width: 32px;
+  width: 44px;
   height: 32px;
   border-bottom: 1px solid #3f3e3f;
   border-right: 1px solid #3f3e3f;
@@ -7365,7 +7366,7 @@ a:focus {
   position: absolute;
   left: calc(100% - 67px);
   top: 2px;
-  width: 98px;
+  width: 110px;
   height: 1px;
   background-color: #3f3e3f;
 }
@@ -7571,8 +7572,6 @@ a:focus {
   background-color: #fff;
   border: 1px solid #e4e4e4;
   color: #302e2f;
-  margin-right: -10px;
-
 }
 .exhibhition-one__page .exhibhition-one__btn:hover {
   background-color: #d99578;
@@ -7661,7 +7660,7 @@ a:focus {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-image: url(../images/Background/inner-banner-bg-1-1.jpg);
+  background-image: url(../images/background/inner-banner-bg-1-1.jpg);
 }
 .inner-banner__title {
   margin: 0;
@@ -8482,7 +8481,8 @@ a:focus {
 .donation-form .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
   width: 100%;
 }
-.donation-form .bootstrap-select > .dropdown-toggle {
+.donation-form .bootstrap-select > .dropdown-toggle,
+.subject-picker .bootstrap-select>.dropdown-toggle {
   outline: none;
   border-style: solid;
   border-width: 1px;
@@ -8499,8 +8499,9 @@ a:focus {
   font-size: 16px;
   color: #777777;
 }
-.donation-form .dropdown-toggle::after {
-  border: 0;
+.donation-form .dropdown-toggle::after
+,
+.subject-picker .dropdown-toggle::after {  border: 0;
   width: auto;
   content: '\f107';
   font-family: FontAwesome;
@@ -8508,7 +8509,8 @@ a:focus {
   font-size: 18px;
   margin-right: 30px;
 }
-.donation-form .dropup .dropdown-toggle::after {
+.donation-form .dropup .dropdown-toggle::after ,
+.subject-picker .dropup .dropdown-toggle::after {
   content: '\f106';
 }
 
@@ -10874,7 +10876,7 @@ input[type="file"] {
   list-style: none;
   margin-top: 40px;
   margin-bottom: 40px;
-  border: 1px solid #e0cfc7;
+  /* border: 1px solid #e0cfc7; */
 }
 .side-menu__block .navigation-box ul {
   margin: 0;
@@ -10892,6 +10894,7 @@ input[type="file"] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 20px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -10903,11 +10906,11 @@ input[type="file"] {
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
 }
-.side-menu__block .navigation-box li a:before {
+/* .side-menu__block .navigation-box li a:before {
   content: '\f101';
   font-family: FontAwesome;
   margin-right: 15px;
-}
+} */
 .side-menu__block .navigation-box li a .sub-nav-toggler {
   border: none;
   outline: none;
@@ -11156,4 +11159,20 @@ content: initial !important;
 #about-event .pricing-one__single {
 padding-top: 30px;
 padding-bottom: 30px;
+}
+
+.subject-picker {
+display: flex;
+flex-direction: column;
+width: 100%;
+margin-bottom: 20px;
+}
+
+.subject-picker .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn)
+{
+width: 100%;
+}
+
+.subject-picker .bootstrap-select .dropdown-toggle .filter-option {
+  padding-left: 15px !important;
 }

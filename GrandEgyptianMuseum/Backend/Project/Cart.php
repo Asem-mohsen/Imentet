@@ -14,6 +14,7 @@ if(isset($_GET['Do']) == 'Remove'){
       }
   }
 }
+
 if(isset($_POST['Back'])){
   header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1');
 }
@@ -29,7 +30,7 @@ if(isset($_SESSION['UserID'])){
               $UserID = $_POST['UserID'];
               $ProductID = $_POST['ItemID'][$i];
               $Quantity = $_POST['Quantity'][$i];
-              $Payment = 1;
+              // $Payment = 1;
               $Price = $_POST['Price'][$i];
 
               $TotalValue[$i] = 0 ;
@@ -47,31 +48,29 @@ if(isset($_SESSION['UserID'])){
 
               if(empty($FormError)){
 
-                  $InsertGifts = "INSERT INTO useritems VALUES(NULL , $UserID , $ProductID , $Quantity , $Payment , $Total)";
+                  $InsertGifts = "INSERT INTO itemscart VALUES(NULL , $UserID , $ProductID , $Quantity , $Total)";
                   $InsertQuery = mysqli_query($con , $InsertGifts);
                   
-                  $UpdateGifts = "UPDATE giftshop SET Quantity = Quantity-$Quantity WHERE ID = $ProductID";
-                  $UpdateQuery = mysqli_query($con , $UpdateGifts);
-                  
+                  // $UpdateGifts = "UPDATE giftshop SET Quantity = Quantity-$Quantity WHERE ID = $ProductID";
+                  // $UpdateQuery = mysqli_query($con , $UpdateGifts);
               }
               
           }
-          if(isset($InsertQuery) && isset($UpdateQuery)){
-                  echo "<div class='alert alert-success'>";
-                      echo "Done";
-                  echo "</div>";
-                  unset($_SESSION['cart']);
+          if(isset($InsertQuery)){
+            header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?OnlineShop');
+            exit();
           }
       }else{
           $FormError[] = 'No Items Selected';
       }
-      
+
       foreach($FormError as $Error){
           echo "<div class='alert alert-danger' >";
               echo $Error ;
           echo "</div>";
       }
   }
+
 }else{
   echo "You are not a user";
 }

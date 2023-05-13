@@ -122,21 +122,22 @@ if(isset($_SESSION['UserID'])){
                       </p>
                   </div>
                   <div class="col-md-6">
-                      <div class="donation-form__form-field">
+                    <p class="subject-picker contact-one__field">
                       <label>Career:</label>
-                        <select class="selectpicker" name="Career" required>
-                          <option value="0">Select a Career</option>
-                          <?php
+                      <select class="selectpicker" name="Career" required>
+                        <option value="0" selected>Select a Career</option>
+                        <?php
                            $SelectCareer = "SELECT * FROM careers WHERE PlaceID = 2";
                             $RunQuery = mysqli_query($con , $SelectCareer);
                             $row = mysqli_fetch_assoc($RunQuery);
                             foreach($RunQuery as $Career){ ?>
                                 <option value="<?php echo $Career['ID'] ?>"><?php echo $Career['Careers'] ?></option>
                             <?php } ?>
-                        </select>
-                      </div>
-                    </div>
+                      </select>
+                    </p>
+                    <!-- /.contact-one__field -->
                   </div>
+
                   <div class="col-md-12">
                     <p class="contact-one__field">
                       <label>What Makes You the Ideal Candidate for this Position :</label>

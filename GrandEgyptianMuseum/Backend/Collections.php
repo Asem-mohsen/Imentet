@@ -99,7 +99,7 @@ if (isset($_SESSION["AdminID"])) {
                                     <div class="mb-20">
                                         <textarea name="Description" placeholder="Description" class="form-control" rows="3"></textarea>
                                     </div>
-                                </div>
+                                </div>  
                                 <div class="form-group insertInput mb-0">
                                     <div class="mb-20">
                                         <select name="Category" class="custom-select" >
@@ -130,6 +130,26 @@ if (isset($_SESSION["AdminID"])) {
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group CheckBoxesPanel">
+                                    <div class='CheckBoxDiv'>
+                                        <div>
+                                            <span> Show On Pyrmaids Home </span>
+                                        </div>
+                                        <label>
+                                            <input type="checkbox" name="ShowOnPyramids" class="toggle-checkbox" value="1" />
+                                            <div class="toggle-switch"></div>
+                                        </label>
+                                    </div>
+                                    <div class='CheckBoxDiv'>
+                                        <div>
+                                            <span> Show On Museum Home </span>
+                                        </div>
+                                        <label>
+                                            <input type="checkbox" name="ShowOnMuseum" class="toggle-checkbox" value="1" />
+                                            <div class="toggle-switch"></div>
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="InsertButton">
                                         <input type="submit" value="Add" class="btn btn-primary btn-md w-10" />
@@ -151,6 +171,16 @@ if (isset($_SESSION["AdminID"])) {
                     $image        = $_FILES['Image']['name'];
                     $folder       = "Images\Uploads\\".$image;
 
+                    if(!isset($_POST['ShowOnPyramids'])){
+                        $ShowOnPyramids = NULL ;
+                    }else{
+                        $ShowOnPyramids = $_POST['ShowOnPyramids'];
+                    }
+                    if(!isset($_POST['ShowOnMuseum'])){
+                        $ShowOnMuseum = NULL ;
+                    }else{
+                        $ShowOnMuseum = $_POST['ShowOnMuseum'];
+                    }
 
                     if (isset($image)) {
                         $imageName = $_FILES['Image']['name'];
@@ -180,7 +210,7 @@ if (isset($_SESSION["AdminID"])) {
 
                     if (empty($FormErrors)) {
 
-                        $InsertQuery = "INSERT INTO `collections` Values( Null , '$Collection' , '$image' , '$Description' , $PlaceID , $CategoryID)";
+                        $InsertQuery = "INSERT INTO `collections` Values( Null , '$Collection' , '$image' , '$Description' , $PlaceID , $CategoryID , '$ShowOnPyramids' , '$ShowOnMuseum')";
                         $Insert = mysqli_query($con, $InsertQuery);
                         echo "<div class='container'>";
                         $TheMsg = "<div class='alert alert-success txt-center'> Collection Added Successfully </div>";
@@ -265,6 +295,26 @@ if (isset($_SESSION["AdminID"])) {
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group CheckBoxesPanel">
+                                        <div class='CheckBoxDiv'>
+                                            <div>
+                                                <span> Show On Pyrmaids Home </span>
+                                            </div>
+                                            <label>
+                                                <input type="checkbox" name="ShowOnPyramids" class="toggle-checkbox" value="1" <?php if(isset($row['ShowOnPyramidsHome']) && $row['ShowOnPyramidsHome'] != 0 ){echo "Checked";} ?> />
+                                                <div class="toggle-switch"></div>
+                                            </label>
+                                        </div>
+                                        <div class='CheckBoxDiv'>
+                                            <div>
+                                                <span> Show On Museum Home </span>
+                                            </div>
+                                            <label>
+                                                <input type="checkbox" name="ShowOnMuseum" class="toggle-checkbox" value="1" <?php if(isset($row['ShowOnMuseumHome']) && $row['ShowOnMuseumHome'] != 0 ){echo "Checked";} ?>/>
+                                                <div class="toggle-switch"></div>
+                                            </label>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <div class="InsertButton">
                                             <input type="submit" value="Update" class="btn btn-success btn-md" />
@@ -294,7 +344,16 @@ if (isset($_SESSION["AdminID"])) {
 
                         $image        = $_FILES['Image']['name'];
                         $folder       = "Images\Uploads\\".$image;
-
+                        if(!isset($_POST['ShowOnPyramids'])){
+                            $ShowOnPyramids = NULL ;
+                        }else{
+                            $ShowOnPyramids = $_POST['ShowOnPyramids'];
+                        }
+                        if(!isset($_POST['ShowOnMuseum'])){
+                            $ShowOnMuseum = NULL ;
+                        }else{
+                            $ShowOnMuseum = $_POST['ShowOnMuseum'];
+                        }
 
                         if (isset($image)) {
                             $imageName = $_FILES['Image']['name'];
@@ -320,7 +379,7 @@ if (isset($_SESSION["AdminID"])) {
 
                         if (empty($FormErrors)) {
 
-                            $UpdateQuery = "UPDATE `collections` SET Collection = '$Collection' , Image = '$image' , Description = '$Description' , PlaceID = $PlaceID , CatID = $CategoryID WHERE ID = $CollectionID ";
+                            $UpdateQuery = "UPDATE `collections` SET Collection = '$Collection' , Image = '$image' , Description = '$Description' , PlaceID = $PlaceID , CatID = $CategoryID , ShowOnPyramidsHome = '$ShowOnPyramids' , ShowOnMuseumHome = '$ShowOnMuseum' WHERE ID = $CollectionID ";
                             $Update = mysqli_query($con, $UpdateQuery);
                             echo "<div class='container'>";
                             $TheMsg = "<div class='alert alert-success txt-center'> Collection Updated Successfully </div>";

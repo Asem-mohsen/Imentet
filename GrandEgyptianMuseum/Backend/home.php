@@ -452,7 +452,7 @@ if(isset($_SESSION['AdminID'])){
           </div>
           <div class="row masonary-layout">
             <?php 
-              $SelectCollections = "SELECT * FROM `collections` WHERE PlaceID = 2 LIMIT 7";
+              $SelectCollections = "SELECT * FROM `collections` WHERE PlaceID = 2 AND ShowOnMuseumHome = 1 LIMIT 8";
               $RunQuery = mysqli_query($con , $SelectCollections);
               $CollectionRow = mysqli_fetch_assoc($RunQuery);
               foreach($RunQuery as $Collection){ ?>

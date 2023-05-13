@@ -18,54 +18,54 @@ if(isset($_SESSION['UserID'])){
 }
 
 
-if(isset($_POST['Pay'])){
-  if(isset($UserID)){
-    $SelectCart = "SELECT * FROM visitticketNotPaid WHERE UserID = $UserID";
-    $RunQuery = mysqli_query($con , $SelectCart);
-    $VisitCart = mysqli_fetch_assoc($RunQuery);
-    $Count = mysqli_num_rows($RunQuery);
-    if($Count > 0){
-      if($VisitCart['Quantity'] == 0 && $VisitCart['Total'] == 0){
-        $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
-        $RunQuery = mysqli_query($con , $EmptyCartQuery);
+// if(isset($_POST['Pay'])){
+//   if(isset($UserID)){
+//     $SelectCart = "SELECT * FROM visitticketNotPaid WHERE UserID = $UserID";
+//     $RunQuery = mysqli_query($con , $SelectCart);
+//     $VisitCart = mysqli_fetch_assoc($RunQuery);
+//     $Count = mysqli_num_rows($RunQuery);
+//     if($Count > 0){
+//       if($VisitCart['Quantity'] == 0 && $VisitCart['Total'] == 0){
+//         $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
+//         $RunQuery = mysqli_query($con , $EmptyCartQuery);
 
-        echo "You Must Book First";
-      }else{
-        $UserID = $_POST['UserID'];
+//         echo "You Must Book First";
+//       }else{
+//         $UserID = $_POST['UserID'];
 
-        for($i = 0 ; $i < count($_POST['Quantity']) ; $i++){
-          $UserID = $_POST['UserID'];
-          $Quantity = $_POST['Quantity'][$i];
-          $Payment = 1;
-          $PlaceID = 2 ;
-          $Price = $_POST['Price'][$i];
+//         for($i = 0 ; $i < count($_POST['Quantity']) ; $i++){
+//           $UserID = $_POST['UserID'];
+//           $Quantity = $_POST['Quantity'][$i];
+//           $Payment = 1;
+//           $PlaceID = 2 ;
+//           $Price = $_POST['Price'][$i];
   
-          $rawdate      = htmlentities($_POST['Date']);
-          $Date         = date('Y-m-d', strtotime($rawdate));
+//           $rawdate      = htmlentities($_POST['Date']);
+//           $Date         = date('Y-m-d', strtotime($rawdate));
   
-          $TotalValue[$i] = 0 ;
-          $TotalValue[$i] += $Price *  $Quantity; 
+//           $TotalValue[$i] = 0 ;
+//           $TotalValue[$i] += $Price *  $Quantity; 
   
-          $TotalFinalValue = array_sum($TotalValue);
+//           $TotalFinalValue = array_sum($TotalValue);
   
-        }
+//         }
   
-        $TotalQuantity = array_sum($_POST['Quantity']);
-        $InsertQuery = "INSERT INTO visitticket VALUES(NULL , $UserID , $PlaceID , '$Date' , $Payment , $TotalQuantity , $TotalFinalValue)";
-        $RunQuery = mysqli_query($con , $InsertQuery);
+//         $TotalQuantity = array_sum($_POST['Quantity']);
+//         $InsertQuery = "INSERT INTO visitticket VALUES(NULL , $UserID , $PlaceID , '$Date' , $Payment , $TotalQuantity , $TotalFinalValue)";
+//         $RunQuery = mysqli_query($con , $InsertQuery);
   
-        $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
-        $RunQuery = mysqli_query($con , $EmptyCartQuery);
+//         $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
+//         $RunQuery = mysqli_query($con , $EmptyCartQuery);
   
-        header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php");
-      }
-    }else{
-      echo "You Must Book Ticket First in order to pay";
-    }
-  }else{
-    echo "You Must Sign In to Continue " ;
-  }
-}
+//         header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php");
+//       }
+//     }else{
+//       echo "You Must Book Ticket First in order to pay";
+//     }
+//   }else{
+//     echo "You Must Sign In to Continue " ;
+//   }
+// }
 
 if(isset($_POST['Confirm'])){
   if(isset($UserID)){
@@ -345,7 +345,7 @@ if(isset($_POST['Confirm'])){
               <!-- Payment -->
             <?php if(isset($_SESSION['UserID'])){ ?>
               <div class="tab-pane animated fadeInUp" id="payment">
-                <form method="POST" class="donation-form__form">
+                <form method="POST" action="./Payment.php?VisitTickets" class="donation-form__form">
                   <div class="row">
                     <div class="col-md-12">
                       <h3>Payment Summary</h3>
@@ -413,9 +413,15 @@ if(isset($_POST['Confirm'])){
                           </tbody>
                         </table>
                         <div class="cart-total custom-cart-total">
-                          <button type="submit" name="Pay" class="thm-btn cart-update__btn cart-update__btn-three">
-                            Pay Now
-                          </button>
+                          <?php if($Count > 0){ ?>
+                            <button type="submit" class="thm-btn cart-update__btn cart-update__btn-three">
+                              Pay Now
+                            </button>
+                            <?php }else{?>
+                              <a href="./VisitTickets.php" class="thm-btn cart-update__btn cart-update__btn-three">
+                                Select Tickets
+                              </a>
+                            <?php } ?>
                         </div>
                       </div>
                     </div>

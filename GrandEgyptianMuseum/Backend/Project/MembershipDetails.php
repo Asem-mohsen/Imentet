@@ -5,8 +5,6 @@ ob_start();
 session_start();
 session_regenerate_id();
 
-
-
 if(isset($_SESSION['UserID'])){
   $UserID = $_SESSION['UserID'];
   $SelectUser = "SELECT * FROM user WHERE ID = $UserID LIMIT 1";
@@ -15,36 +13,7 @@ if(isset($_SESSION['UserID'])){
 
   $FullName = $User['Name'] . " " . $User['LastName']; 
 }
-if(isset($_POST['JoinUs'])){
 
-  $SelectUsers = "SELECT membershippayemnts .* , COUNT(UserID) AS CountedUsers FROM `membershippayemnts`  WHERE UserID = $UserID";
-  $Query = mysqli_query($con , $SelectUsers);
-  $CountedRow = mysqli_fetch_assoc($Query);
-
-  $date = date('y-m-d');
-  $EndDate = date('Y-m-d', strtotime($date. ' +1 month'));
-  
-  if($CountedRow['CountedUsers'] < 1){
-      $UserID = $_POST['UserID'];
-      $MembershipID = $_POST['MembershipID']; 
-      $PaymentID = 1;
-      $Cost = $_POST['Cost'];
-
-      
-
-      $InsertDonate = "INSERT INTO `membershippayemnts`  VALUES( NULL , $UserID , $MembershipID , $Cost , $PaymentID , now() , '$EndDate' ) ";
-      $InsertQuery = mysqli_query($con , $InsertDonate);
-      if($InsertQuery){
-          echo "<div class='alert alert-success'>";
-              echo "You are joined ";
-          echo "</div>";
-      }else{
-          echo "not yet";
-      }
-  }else{
-      echo "Already Enrolled Your membership will ends in " . $EndDate;
-  }
-}
 
   $MembershipID = $_GET['MembershipID'];
   $SelectMembership = "SELECT membership.* ,  membershipperiod.Period AS PeriodTime  FROM membership
@@ -193,9 +162,13 @@ if(isset($_POST['JoinUs'])){
                     </div>
                     <div class="col-sm-12">
                       <?php if(isset($UserID)){ ?>
-                          <button type="submit" name="JoinUs" class="thm-btn event-details__form-btn" >
+                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?MembershipPayment=<?php echo $MembershipID ?>" class="thm-btn event-details__form-btn" >
                           Proceed to Book
-                        </button>
+                          </a>
+                      <?php }elseif(isset($_SESSION['AdminID'])){?>
+                            <button class="thm-btn event-details__form-btn" disabled>
+                              Not Authorized 
+                          </button>
                       <?php }else{ ?>
                         <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn event-details__form-btn" >
                           Sign In to Continue

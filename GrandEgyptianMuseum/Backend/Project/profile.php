@@ -29,8 +29,10 @@ if(isset($_SESSION['UserID'])){
     $LastName  = $_POST['LastName'];
     $Email     = $_POST['Email'];
     $Phone     = $_POST['Phone'];
-    $Age       = $_POST['Age'];
+    $rawdate      = htmlentities($_POST['DOB']);
+    $Date         = date('Y-m-d', strtotime($rawdate));
     $RoleID    = $_POST['Role'];
+    
     $Password  = $_POST['Password'];
       $hashedPassword = password_hash($Password , PASSWORD_DEFAULT);
 
@@ -48,22 +50,23 @@ if(isset($_SESSION['UserID'])){
     if ($RoleID == 0) {
         $FormErrors[] = "You Must Select a Correct Role";
     }
-
+    if (empty($Phone)) {
+      $Phone = NULL;
+    }
     if(empty($FormErrors)) {
       if (isset($_FILES['Image']['name'])){
           $UserID    = $_POST['UserID'];
           $Image     = $_FILES['Image']['name'];
           $imageTmp  = $_FILES['Image']['tmp_name'];
           $folder    = "Images\Uploads\\".$Image;
-          move_uploaded_file($imageTmp,$folder);
 
-          $UpdateInfo = "UPDATE user SET Name = '$FirstName' , LastName = '$LastName' , Email = '$Email' , Phone = $Phone , Age = $Age , Password = '$hashedPassword' , RoleID = $RoleID
+          $UpdateInfo = "UPDATE user SET Name = '$FirstName' , LastName = '$LastName' , DateOfBirth = '$Date' , Phone = '$Phone' , Email = '$Email' , Password = '$hashedPassword' , RoleID = $RoleID
                           WHERE ID = $UserID ";
           $RunQuery = mysqli_query($con , $UpdateInfo);
 
           $UpdateImage = "UPDATE userimages SET Image = '$Image' WHERE UserID = $UserID ";
           $RunImgQuery = mysqli_query($con , $UpdateImage);
-
+          move_uploaded_file($imageTmp,$folder);
           header('Location: ./profile.php ');
       }
     }else{
@@ -119,13 +122,13 @@ if(isset($_SESSION['UserID'])){
                       </div>
                       <div class="col-md-6">
                         <div class="login-form__field">
-                          <input type="number" name="Age" placeholder="Age" value="<?php if(isset($row['Age'])){ echo $row['Age'] ;} ?>" />
+                          <input type="text" name="DOB" placeholder="Date Of Birth" class="datepicker normal-datepicker"  value="<?php if(isset($row['DateOfBirth'])){echo $row['DateOfBirth'] ;} ?>" />
                           <i class="fa fa-id-card-o"></i>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="login-form__field">
-                          <input type="number" name="Phone" pattern="[0-9]" placeholder="Phone Number" value="<?php if(isset($row['Phone'])){ echo "0" . $row['Phone'] ;}  ?>"/>
+                          <input type="number" name="Phone" pattern="[0-9]*" placeholder="Phone Number" value="<?php if(isset($row['Phone']) && $row['Phone'] != 0  ){ echo "0" . $row['Phone'] ;}  ?>"/>
                           <i class="fa fa-phone"></i>
                         </div>
                       </div>

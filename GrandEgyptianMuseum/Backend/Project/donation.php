@@ -14,33 +14,7 @@ if(isset($_SESSION['UserID'])){
 
   $FullName = $User['Name'] . " " . $User['LastName']; 
 }
-if(isset($_POST['Donate'])){
 
-  if(isset($_SESSION['UserID'])){
-  $Email  = $_POST['Email'];
-  $UserID = $_POST['UserID'];
-  $Phone  = $_POST['Phone'];
-  $Name   = $_POST['Name'];
-  $PlaceID   = $_POST['Place'];
-  $Amount = $_POST['Amount'];
-  $PaymentID = 1;
-
-    $InsertDonate = "INSERT INTO donations (UserID , PlaceID , Amount , PaymentID) VALUES($UserID, $PlaceID , $Amount , $PaymentID )";
-    $InsertQuery = mysqli_query($con , $InsertDonate);
-  }else{
-
-    $Email  = $_POST['Email'];
-    $Phone  = $_POST['Phone'];
-    $Name   = $_POST['Name'];
-    $PlaceID   = $_POST['Place'];
-    $Amount = $_POST['Amount'];
-    $PaymentID = 1;
-
-    $InsertDonate = "INSERT INTO donations (Name , Email , PlaceID , Amount , PaymentID) VALUES('$Name', '$Email' , $PlaceID , $Amount , $PaymentID )";
-    $InsertQuery = mysqli_query($con , $InsertDonate);
-  }
-
-}
 ?>
 
 
@@ -119,12 +93,12 @@ if(isset($_POST['Donate'])){
             </ul>
             <div class="tab-content">
               <div class="tab-pane show active animated fadeInUp" id="money">
-                <form  method='POST' class="donation-form__form">
+                <form  method='POST' action="./Payment.php?Donations" class="donation-form__form">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="donation-form__form-field">
                         <input type="text" name="Name" placeholder="Your Full Name*" value="<?php if(isset($FullName)){ echo $FullName ;} ?>" required/>
-                        <input type="hidden" name="UserID" placeholder="Your Full Name*" value="<?php echo $UserID ?>"/>
+                        <input type="hidden" name="UserID" placeholder="Your Full Name*" value="<?php if(isset($_SESSION['UserID'])){ echo $UserID ; } ?>"/>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -145,7 +119,7 @@ if(isset($_POST['Donate'])){
                     <div class="col-md-6">
                       <div class="donation-form__form-field">
                         <select class="selectpicker" name="Place">
-                          <option>Donation For</option>
+                          <option value="0">Donation For</option>
                           <?php
                            $SelectPlace = "SELECT * FROM place";
                             $RunQuery = mysqli_query($con , $SelectPlace);
