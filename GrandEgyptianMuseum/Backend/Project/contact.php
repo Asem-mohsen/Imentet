@@ -15,26 +15,37 @@ if(isset($_SESSION['UserID'])){
 }
 if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
     $UsersQuestion = $_POST['UsersQuestion'];
+    $Email = $_POST['Email'];
+    $FormErrors = array();
 
-    if(empty($Email)){
-        $Email = $row['Email'];
-
-    }else{
-        $Email = $_POST['Email'];
-
+    if(empty($_POST['Email']) || !isset($_POST['Email'])){
+        $FormErrors[] = "Email Is Required";
     }
-    $InsertMessage = "INSERT INTO `q&a` (Email , UsersQuestion) VALUES( '$Email' ,'$UsersQuestion') ";
-    $InsertQuery = mysqli_query($con , $InsertMessage);
 
-    if($InsertQuery){
-        echo "<div class='alert alert-success'>";
-            echo "Inserted Successfuly";
-        echo "</div>";
+    if(empty($UsersQuestion)){
+        $FormErrors[] = "Message is Required ";
     }
+    if(empty($_POST['FirstName'])){
+        $FormErrors[] = "Name is Required ";
+    }elseif(isset($_SESSION['UserID'])){
+        $Name = $row['Name'];
+    }
+    if(empty($_POST['Phone']) || $_POST['Phone'] == 0 || !isset($_POST['Phone']) ){
+        $FormErrors[] = "Phone is Required ";
+    }
+
+    if(empty($FormErrors)){
+        $InsertMessage = "INSERT INTO `q&a` (Email , UsersQuestion) VALUES( '$Email' ,'$UsersQuestion') ";
+        $InsertQuery = mysqli_query($con , $InsertMessage);
+
+        if($InsertQuery){
+            $MsgSuccess =  "<div class='alert alert-success text-center'> We'll Response as soon as possible </div> ";
+        }
+    }
+
+
 }elseif(isset($_POST['Send']) && isset($_SESSION['AdminID'])){
-    echo "<div class='alert alert-danger'>";
-        echo "You are Admin Why do you Need That !!";
-    echo "</div>";
+    $ErrorMsgOfAdmin =  "<div class='alert alert-danger txt-center'> You are Admin Why do you Need That !! </div>" ;
 }
 
 ?>
@@ -52,6 +63,21 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
             </div>
         </section>
 
+        <!-- Showing Errors -->
+        <?php 
+
+            if(isset($ErrorMsgOfAdmin)){ echo $ErrorMsgOfAdmin ; }
+            if(isset($MsgSuccess)){ echo $MsgSuccess ; }
+
+            if(isset($FormErrors)){
+                foreach($FormErrors as $Error){
+                    echo "<div class='alert alert-danger text-center'>";
+                        echo $Error;
+                    echo "</div>";
+                }
+            }
+            
+        ?>
         <section class="contact-one">
             <div class="container">
                 <div class="row">
@@ -64,9 +90,9 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
                                 <div class="row no-gutters">
                                     <div class="col-lg-6">
                                         <h3 class="contact-one__title">Egypt</h3>
-                                        <p class="contact-one__text">Alexandria Desert Rd, Haram, Giza Governorate X4VF+V3F</p><!-- /.contact-one__text -->
-                                        <p class="contact-one__text"><a href="tel:321-888-789-0123">TEL: +20-23-531-7344</a></p><!-- /.contact-one__text -->
-                                        <p class="contact-one__text"><a href="mailto:egyptmuseum@example.com">E-mail: gem@example.com</a></p><!-- /.contact-one__text -->
+                                        <p class="contact-one__text">Alexandria Desert Rd, Haram, Giza Governorate X4VF+V3F</p>
+                                        <p class="contact-one__text"><a href="tel:321-888-789-0123">TEL: +20-23-531-7344</a></p>
+                                        <p class="contact-one__text"><a href="mailto:egyptmuseum@example.com">E-mail: gem@example.com</a></p>
                                     </div>
                                     <div class="col-lg-6">
                                         <ul class="contact-one__list list-unstyled">
@@ -85,7 +111,11 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
                             <div class="row">
                                 <div class="col-lg-6">
                                     <p class="contact-one__field">
-                                    <input type="hidden" name="UserID" value="<?php echo $User['ID'] ?>">
+                                        <input type="hidden" name="UserID" value="<?php if(isset($_SESSION['UserID'])){ echo $User['ID'] ; } ?>">
+                                        <input type="hidden" name="FirstName" value="<?php if(isset($_SESSION['UserID'])){ echo $row['Name'] ; } ?>">
+                                        <input type="hidden" name="Email" value="<?php if(isset($_SESSION['UserID'])){ echo $row['Email'] ; } ?>">
+                                        <input type="hidden" name="Phone" value="<?php if(isset($_SESSION['UserID']) && isset($row['Phone']) && $row['Phone'] != 0 ){ echo $row['Phone'] ; } ?>">
+
                                         <label>First Name:</label>
                                         <input type="text" name="FirstName"  value="<?php if(isset($row['Name'])){ echo $row['Name']; } ?>" <?php if(isset($row['Name'])){ echo "disabled" ;} ?>  >
                                     </p>
@@ -105,7 +135,7 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
                                 <div class="col-lg-6">
                                     <p class="contact-one__field">
                                         <label>Phone:</label>
-                                        <input type="text" name="phone" pattern="[0-9]" value="<?php if(isset($row['Phone'])){ echo $row['Phone']; } ?>" <?php if(isset($row['Phone'])){ echo "disabled" ;} ?> >
+                                        <input type="number" name="Phone" pattern="[0-9]*" value="<?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo $row['Phone']; } ?>" <?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo "disabled" ;} ?> >
                                     </p>
                                 </div>
                                 <div class="col-lg-12">

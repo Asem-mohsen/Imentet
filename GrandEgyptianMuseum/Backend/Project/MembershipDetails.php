@@ -5,17 +5,12 @@ ob_start();
 session_start();
 session_regenerate_id();
 
-if(isset($_SESSION['UserID'])){
-  $UserID = $_SESSION['UserID'];
-  $SelectUser = "SELECT * FROM user WHERE ID = $UserID LIMIT 1";
-  $RunQuery = mysqli_query($con , $SelectUser);
-  $User = mysqli_fetch_assoc($RunQuery);
 
-  $FullName = $User['Name'] . " " . $User['LastName']; 
-}
+$MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
+  if(empty($MembershipID)){
+    header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php");
+  }
 
-
-  $MembershipID = $_GET['MembershipID'];
   $SelectMembership = "SELECT membership.* ,  membershipperiod.Period AS PeriodTime  FROM membership
   JOIN membershipperiod ON membership.PeriodID = membershipperiod.ID 
   WHERE membership.ID != 12 AND membership.ID != 13 AND membership.ID = $MembershipID";
@@ -24,10 +19,32 @@ if(isset($_SESSION['UserID'])){
 
   $PageTitle = $MembershipRow['Type'];
 
-  $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
-  if(empty($MembershipID)){
-      header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php");
+
+  if($MembershipID != $MembershipRow['ID']){
+    header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/membership.php");
   }else{
+    if(isset($_SESSION['UserID'])){
+      $UserID = $_SESSION['UserID'];
+      $SelectUser = "SELECT * FROM user WHERE ID = $UserID LIMIT 1";
+      $RunQuery = mysqli_query($con , $SelectUser);
+      $User = mysqli_fetch_assoc($RunQuery);
+    
+      $FullName = $User['Name'] . " " . $User['LastName']; 
+    
+      $SelectEnrolled = "SELECT membershippayemnts.* , membership.Type AS Type FROM `membershippayemnts`
+                        JOIN membership ON membershippayemnts.MembershipID = membership.ID
+                        WHERE UserID = $UserID LIMIT 1 ";
+      $EnrolledRun = mysqli_query($con , $SelectEnrolled);
+      $Enrolled = mysqli_fetch_assoc($EnrolledRun);
+      $Count = mysqli_num_rows($EnrolledRun);
+    
+      // Deleting Membership when It ends 
+      $TodaysDate = date('Y-m-d');
+      if(isset($Enrolled['EndsIn']) < $TodaysDate){
+        $DeleteMembership = "DELETE FROM membershippayemnts WHERE UserID = $UserID ";
+        $DeleteRun = mysqli_query($con, $DeleteMembership);
+      }
+    }
     ?>
     <?php include "../NavUser.php" ; ?>
 
@@ -150,32 +167,57 @@ if(isset($_SESSION['UserID'])){
               <div class="event-details__form">
                 <h3 class="event-details__form-title">Membership Payement</h3>
                 <form method="post">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
-                      <input type="hidden" name="MembershipID" value="<?php echo $MembershipID ;  ?>" />
-                      <input type="hidden" name="Cost" value="<?php echo $MembershipRow['Price'] ;  ?>" />
-                      <input type="text" name="Name" placeholder="Your Name" value="<?php if(isset($FullName)){ echo $FullName ; } ?>"/>
-                    </div>
-                    <div class="col-sm-12">
-                      <input type="text" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ; } ?>"/>
-                    </div>
-                    <div class="col-sm-12">
-                      <?php if(isset($UserID)){ ?>
-                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?MembershipPayment=<?php echo $MembershipID ?>" class="thm-btn event-details__form-btn" >
-                          Proceed to Book
-                          </a>
-                      <?php }elseif(isset($_SESSION['AdminID'])){?>
+                  <?php 
+                    // if(isset($_SESSION['UserID'])){
+                    //   $UserID = $_SESSION['UserID'];
+                    
+                      if(isset($Count) > 0 && isset($Enrolled['UserID'])){ ?>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <p>You Already Enrolled In <?php echo $Enrolled['Type'] ?> Membership</p>
+                          </div>
+                          <div class="col-sm-6">
+                            <label for="">Started At</label>
+                            <input type="text" value="<?php echo date('d M - Y' , strtotime($Enrolled['Date'])) ; ?>" disabled/>
+                          </div>
+                          <div class="col-sm-6">
+                            <label for="">Ends At</label>
+                            <input type="text" value="<?php echo date('d M - Y' , strtotime($Enrolled['EndsIn'])) ; ?>" disabled/>
+                          </div>
+                          <div class="col-sm-12">
                             <button class="thm-btn event-details__form-btn" disabled>
-                              Not Authorized 
-                          </button>
-                      <?php }else{ ?>
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn event-details__form-btn" >
-                          Sign In to Continue
-                        </a>
-                      <?php } ?>
-                    </div>
-                  </div>
+                              You can Renew it Soon
+                            </button>
+                          </div>
+                        </div>
+                    <?php }else{ ?>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
+                          <input type="hidden" name="MembershipID" value="<?php echo $MembershipID ;  ?>" />
+                          <input type="hidden" name="Cost" value="<?php echo $MembershipRow['Price'] ;  ?>" />
+                          <input type="text" name="Name" placeholder="Your Name" value="<?php if(isset($FullName)){ echo $FullName ; } ?>"/>
+                        </div>
+                        <div class="col-sm-12">
+                          <input type="text" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ; } ?>"/>
+                        </div>
+                        <div class="col-sm-12">
+                          <?php if(isset($UserID)){ ?>
+                              <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?MembershipPayment=<?php echo $MembershipID ?>" class="thm-btn event-details__form-btn" >
+                              Proceed to Book
+                              </a>
+                          <?php }elseif(isset($_SESSION['AdminID'])){?>
+                                <button class="thm-btn event-details__form-btn" disabled>
+                                  Not Authorized 
+                              </button>
+                          <?php }else{ ?>
+                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn event-details__form-btn" >
+                              Sign In to Continue
+                            </a>
+                          <?php } ?>
+                        </div>
+                      </div>
+                  <?php } ?>
                 </form>
               </div>
             </div>

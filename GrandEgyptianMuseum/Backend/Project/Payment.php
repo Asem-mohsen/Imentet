@@ -61,18 +61,8 @@ $PageTitle = "Payment";
                 $InsertMembership = "INSERT INTO `membershippayemnts`  VALUES( NULL , $UserID , $MembershipID , $Cost , $PaymentID , now() , '$EndDate' ) ";
                 $InsertQuery = mysqli_query($con , $InsertMembership);
                 if($InsertQuery){
-                  echo "<div class='alert alert-success'>";
-                      echo "You are joined ";
-                  echo "</div>";
-                }else{
-                    echo "not yet";
+                  header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/MembershipDetails.php?MembershipID=" . $MembershipID . "");
                 }
-            }else{
-              foreach($FormErrors as $Error){
-                echo "<div class='alert alert-danger'>";
-                  echo $Error ; 
-                echo "</div>";
-              }
             }
             
           }
@@ -82,8 +72,6 @@ $PageTitle = "Payment";
             exit();
           }
 
-        }else{
-          echo "Already Enrolled Your membership will ends in " . $EndDate;
         }
     }
   }
@@ -154,12 +142,6 @@ $PageTitle = "Payment";
               $InsertQuery = mysqli_query($con , $InsertDonate);
 
             }
-          }else{
-            foreach($FormErrors as $Error){
-              echo "<div class='alert alert-danger'>";
-                echo $Error ; 
-              echo "</div>";
-            }
           }
         }
         if(isset($_POST['Cancel'])){
@@ -168,7 +150,7 @@ $PageTitle = "Payment";
           exit();
         }
     }else{
-      echo "Missing Information Get back anf fill the form";
+      $MissingInfoDonations =  "<div class='alert alert-danger text-center'> Missing Information Get back anf fill the form </div>";
     }
   }
 
@@ -223,20 +205,10 @@ $PageTitle = "Payment";
               header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php#payment");
 
             }else{
-            echo "<div class='alert alert-danger'>";
-              echo "You Must Book Ticket First in order to pay";
-            echo "</div>";
+              $BookTicketFirst = "<div class='alert alert-danger text-center'> You Must Book Ticket First in order to pay </div>";
           }
         }else{
-          echo "<div class='alert alert-danger'>";
-            echo "You Must Sign In to Continue " ;
-          echo "</div>";
-        }
-      }else{
-        foreach($FormErrors as $Error){
-          echo "<div class='alert alert-danger'>";
-            echo $Error ; 
-          echo "</div>";
+          $SignInFirst = "<div class='alert alert-danger text-center'> You Must Sign In to Continue</div>";
         }
       }
     }
@@ -306,12 +278,6 @@ $PageTitle = "Payment";
           }else{
               $FormError[] = 'No Items Selected';
           }
-        }else{
-          foreach($FormErrors as $Error){
-            echo "<div class='alert alert-danger' >";
-                echo $Error ;
-            echo "</div>";
-          }
         }
 
       }
@@ -380,12 +346,6 @@ $PageTitle = "Payment";
           }else{
               $FormError[] = 'No Tickets Booked';
           }
-        }else{
-          foreach($FormErrors as $Error){
-            echo "<div class='alert alert-danger' >";
-                echo $Error ;
-            echo "</div>";
-          }
         }
 
       }
@@ -407,6 +367,21 @@ $PageTitle = "Payment";
 
 
       <div class="payment">
+        
+          <!-- Display Errors -->
+          <?php
+              if(isset($FormErrors)){
+                foreach($FormErrors as $Error){
+                  echo "<div class='alert alert-danger text-center' >";
+                      echo $Error ;
+                  echo "</div>";
+                }
+              }
+              if(isset($BookTicketFirst)){ echo $BookTicketFirst ;}
+              if(isset($SignInFirst)){ echo $SignInFirst ;}
+              if(isset($MissingInfoDonations)){ echo $MissingInfoDonations ;}
+          ?>
+
         <div class="container">
 
           <!-- Card -->
@@ -497,7 +472,7 @@ $PageTitle = "Payment";
               </div>
               <div class="inputBox">
                 <span>cvv</span>
-                <input type="text" name="CCV" maxlength="3" class="cvv-input" />
+                <input type="number" name="CCV" maxlength="3" class="cvv-input" />
               </div>
             </div>
             <input type="submit" name="Pay" value="Pay" class="submit-btn" />
@@ -506,7 +481,6 @@ $PageTitle = "Payment";
         </div>
       </div>
 
-      <!-- /.blog-two -->
     <?php include "../UserFooter.php" ?>
 
     <script>

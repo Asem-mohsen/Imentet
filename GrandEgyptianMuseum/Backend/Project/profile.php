@@ -53,6 +53,10 @@ if(isset($_SESSION['UserID'])){
     if (empty($Phone)) {
       $Phone = NULL;
     }
+    if(empty($_FILES['Image']['name'])){
+      $FormErrors[] = "You Must Select an Image";
+    }
+
     if(empty($FormErrors)) {
       if (isset($_FILES['Image']['name'])){
           $UserID    = $_POST['UserID'];
@@ -69,10 +73,6 @@ if(isset($_SESSION['UserID'])){
           move_uploaded_file($imageTmp,$folder);
           header('Location: ./profile.php ');
       }
-    }else{
-        foreach ($FormErrors as $error) {
-          echo "<div class='alert alert-danger'>" . $error . "</div>";
-        }
     }
 
   }
@@ -85,6 +85,14 @@ if(isset($_SESSION['UserID'])){
             </div>
           </section>
 
+          <!-- Display Errors -->
+          <?php
+              if(isset($FormErrors)){
+                foreach ($FormErrors as $error) {
+                  echo "<div class='alert alert-danger text-center'>" . $error . "</div>";
+                }
+              }
+          ?>
           <section class="profile">
             <div class="container">
               <div class="row">

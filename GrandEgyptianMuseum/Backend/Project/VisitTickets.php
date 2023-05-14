@@ -18,55 +18,6 @@ if(isset($_SESSION['UserID'])){
 }
 
 
-// if(isset($_POST['Pay'])){
-//   if(isset($UserID)){
-//     $SelectCart = "SELECT * FROM visitticketNotPaid WHERE UserID = $UserID";
-//     $RunQuery = mysqli_query($con , $SelectCart);
-//     $VisitCart = mysqli_fetch_assoc($RunQuery);
-//     $Count = mysqli_num_rows($RunQuery);
-//     if($Count > 0){
-//       if($VisitCart['Quantity'] == 0 && $VisitCart['Total'] == 0){
-//         $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
-//         $RunQuery = mysqli_query($con , $EmptyCartQuery);
-
-//         echo "You Must Book First";
-//       }else{
-//         $UserID = $_POST['UserID'];
-
-//         for($i = 0 ; $i < count($_POST['Quantity']) ; $i++){
-//           $UserID = $_POST['UserID'];
-//           $Quantity = $_POST['Quantity'][$i];
-//           $Payment = 1;
-//           $PlaceID = 2 ;
-//           $Price = $_POST['Price'][$i];
-  
-//           $rawdate      = htmlentities($_POST['Date']);
-//           $Date         = date('Y-m-d', strtotime($rawdate));
-  
-//           $TotalValue[$i] = 0 ;
-//           $TotalValue[$i] += $Price *  $Quantity; 
-  
-//           $TotalFinalValue = array_sum($TotalValue);
-  
-//         }
-  
-//         $TotalQuantity = array_sum($_POST['Quantity']);
-//         $InsertQuery = "INSERT INTO visitticket VALUES(NULL , $UserID , $PlaceID , '$Date' , $Payment , $TotalQuantity , $TotalFinalValue)";
-//         $RunQuery = mysqli_query($con , $InsertQuery);
-  
-//         $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
-//         $RunQuery = mysqli_query($con , $EmptyCartQuery);
-  
-//         header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php");
-//       }
-//     }else{
-//       echo "You Must Book Ticket First in order to pay";
-//     }
-//   }else{
-//     echo "You Must Sign In to Continue " ;
-//   }
-// }
-
 if(isset($_POST['Confirm'])){
   if(isset($UserID)){
     $UserID = $_POST['UserID'];
@@ -91,8 +42,6 @@ if(isset($_POST['Confirm'])){
 
     }
 
-  }else{
-    echo "You Must Sign In to Continue " ;
   }
 
 }
@@ -318,7 +267,7 @@ if(isset($_POST['Confirm'])){
                       </div>
                       <div class="col-md-12">
                         <div class="donation-form__form-field">
-                          <input type="number" name="Phone" placeholder="Your Phone Number" value="<?php if(isset($User['Phone'])){ echo $User['Phone'] ;}?>" <?php if(isset($User['Phone']) != NULL){ echo "disabled" ;}?> />
+                          <input type="number" name="Phone" placeholder="Your Phone Number" value="<?php if(isset($User['Phone']) && $User['Phone'] != 0){ echo $User['Phone'] ;}?>" <?php if(isset($User['Phone'])  && $User['Phone'] != NULL  && $User['Phone'] != 0 ){ echo "disabled" ;}?> />
                         </div>
                       </div>
                       <?php if(isset($_SESSION['UserID'])){ ?>
@@ -362,7 +311,7 @@ if(isset($_POST['Confirm'])){
                             <tr>
                             <input type="hidden" name="UserID" value="<?php if(isset($_SESSION['UserID'])){ echo $UserID ;}?>">
                               <td><?php if(isset($_SESSION['UserID'])){ echo $FullName ;}?></td>
-                              <td><?php if(isset($User['Phone']) != NULL){ echo $User['Phone'] ;}else{echo "You Need to Add Your Number" ;}?></td>
+                              <td><?php if(isset($User['Phone']) && $User['Phone'] != 0){ echo $User['Phone'] ;}else{echo "You Need to Add Your Number" ;}?></td>
                               <td><?php if(isset($_SESSION['UserID'])){ echo $User['Email'] ;}?></td>
                             </tr>
                           </tbody>

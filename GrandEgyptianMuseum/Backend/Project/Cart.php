@@ -64,15 +64,8 @@ if(isset($_SESSION['UserID'])){
           $FormError[] = 'No Items Selected';
       }
 
-      foreach($FormError as $Error){
-          echo "<div class='alert alert-danger' >";
-              echo $Error ;
-          echo "</div>";
-      }
   }
 
-}else{
-  echo "You are not a user";
 }
 ?>
 
@@ -87,6 +80,17 @@ if(isset($_SESSION['UserID'])){
             </ul>
         </div>
 
+        <!-- Error Display -->
+        <?php
+            if(isset($FormError)){
+              foreach($FormError as $Error){
+                echo "<div class='alert alert-danger text-center' >";
+                    echo $Error ;
+                echo "</div>";
+              }
+            }
+
+        ?>
         <!-- Cart Details -->
         <section class="cart-page">
             <div class="container">
@@ -164,7 +168,13 @@ if(isset($_SESSION['UserID'])){
                           <form action="" method="post">
                             <div class="cart-update__button-box">
                                 <button type="submit" name='Back' class="thm-btn cart-update__btn cart-update__btn-two">Update Cart </button>
-                                <button type="submit" name='Buy' class="thm-btn cart-update__btn cart-update__btn-three">Checkout <span>+</span></button>
+                              <?php if(isset($_SESSION['UserID'])){ ?>
+                                  <button type="submit" name='Buy' class="thm-btn cart-update__btn cart-update__btn-three">Checkout <span>+</span></button>
+                              <?php }elseif(isset($_SESSION['AdminID'])){ ?>
+                                  <button disabled class="thm-btn cart-update__btn cart-update__btn-three">Not Authorized</button>
+                              <?php }else{ ?>
+                                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn cart-update__btn cart-update__btn-three">Sign In to Continue</a>
+                              <?php  } ?>
                             </div>
                           </form>
                         </div>

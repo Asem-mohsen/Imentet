@@ -332,64 +332,64 @@ if(empty($EventID)){
               <div class="event-details__form">
                 <form method="post">
                   <h3 class="event-details__form-title">Online Booking</h3>
-                  <div class="row">
-                    <?php 
-                            if( ($TodaysDate < $StartDateInTime || $row['Everyday'] == 'Daily') && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
-                              <div class="col-sm-12">
-                                <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
-                                <input type="hidden" name="EventID" value="<?php echo $EventID ;  ?>" />
-                                <input type="hidden" name="Price" value="<?php echo $row['RegularPrice'] ;  ?>" />
-                                <input type="text" name="Name" placeholder="Your Name" value="<?php if(isset($FullName)){ echo $FullName ; } ?>"/>
-                              </div>
-                              <div class="col-sm-12">
-                                <input type="text" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ; } ?>"/>
-                              </div>
-                              <div class="col-sm-6">
-                                <input class="quantity-spinner" type="text" value="1" max='10' name="Quantity" />
-                              </div>
-                              <div class="col-sm-12">
-                                <?php if(isset($UserID)){ ?>
-                                    <button type="submit" name="Book" class="thm-btn event-details__form-btn" >
-                                    Proceed to Book
-                                  </button>
-                                <?php }elseif(isset($_SESSION['AdminID'])){?>
-                                  <button class="thm-btn event-details__form-btn" disabled>
-                                    Not Authorized 
-                                </button>
-                                <?php }else{ ?>
-                                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn event-details__form-btn" >
-                                    Sign In to Continue
-                                  </a>
-                                <?php } ?>
-                              </div>
-                            <?php }else{ ?>
+                    <div class="row">
+                      <?php 
+                              if( ($TodaysDate < $StartDateInTime || $row['Everyday'] == 'Daily') && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
                                 <div class="col-sm-12">
-                                  <input type="text" name="Name" placeholder="Your Name"  disabled/>
+                                  <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
+                                  <input type="hidden" name="EventID" value="<?php echo $EventID ;  ?>" />
+                                  <input type="hidden" name="Price" value="<?php echo $row['RegularPrice'] ;  ?>" />
+                                  <input type="text" name="Name" placeholder="Your Name" value="<?php if(isset($FullName)){ echo $FullName ; } ?>"/>
                                 </div>
                                 <div class="col-sm-12">
-                                  <input type="text" name="Email" placeholder="Email Address" disabled/>
+                                  <input type="text" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ; } ?>"/>
                                 </div>
                                 <div class="col-sm-6">
-                                  <input class="quantity-spinner" type="text" value="1" max='10' disabled/>
+                                  <input class="quantity-spinner" type="text" value="1" max='10' name="Quantity" />
                                 </div>
                                 <div class="col-sm-12">
-                                  <?php if($TodaysDate > $StartDateInTime){ ?>
-                                      <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
-                                          Event Date has Passed
-                                      </button>
-                                  <?php }elseif($row['EventStatus'] == 'Cancelled'){ ?>
-                                      <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
-                                          Event Cancelled
-                                      </button>
-                                  <?php }elseif($row['EventStatus'] == 'Postponed'){ ?>
-                                    <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
-                                          Event Postponed
-                                      </button>
+                                  <?php if(isset($UserID)){ ?>
+                                      <button type="submit" name="Book" class="thm-btn event-details__form-btn" >
+                                      Proceed to Book
+                                    </button>
+                                  <?php }elseif(isset($_SESSION['AdminID'])){?>
+                                    <button class="thm-btn event-details__form-btn" disabled>
+                                      Not Authorized 
+                                  </button>
+                                  <?php }else{ ?>
+                                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn event-details__form-btn" >
+                                      Sign In to Continue
+                                    </a>
                                   <?php } ?>
-
                                 </div>
-                            <?php } ?>
-                  </div>
+                              <?php }else{ ?>
+                                  <div class="col-sm-12">
+                                    <input type="text" name="Name" placeholder="Your Name"  disabled/>
+                                  </div>
+                                  <div class="col-sm-12">
+                                    <input type="text" name="Email" placeholder="Email Address" disabled/>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <input class="quantity-spinner" type="text" value="1" max='10' disabled/>
+                                  </div>
+                                  <div class="col-sm-12">
+                                    <?php if($TodaysDate > $StartDateInTime){ ?>
+                                        <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                            Event Date has Passed
+                                        </button>
+                                    <?php }elseif($row['EventStatus'] == 'Cancelled'){ ?>
+                                        <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                            Event Cancelled
+                                        </button>
+                                    <?php }elseif($row['EventStatus'] == 'Postponed'){ ?>
+                                      <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                            Event Postponed
+                                        </button>
+                                    <?php } ?>
+
+                                  </div>
+                              <?php } ?>
+                    </div>
                 </form>
               </div>
             </div>

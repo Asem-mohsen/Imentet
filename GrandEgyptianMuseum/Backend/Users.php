@@ -159,9 +159,9 @@ if (isset($_SESSION["AdminID"])) {
                                                                         }
                                                             echo "</td>";                                                 
                                                             echo "<td>";
-                                                                        if(isset($User['Phone'])){
+                                                                        if(isset($User['Phone']) && $User['Phone'] != 0 ) {
                                                                             echo "0" . $User['Phone'] ;
-                                                                        }else{
+                                                                        }elseif($User['Phone'] == 0 || $User['Phone'] == NULL ){
                                                                             echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                         }
                                                             echo "</td>";                                                       
@@ -199,9 +199,9 @@ if (isset($_SESSION["AdminID"])) {
                                                                 }
                                                     echo "</td>";                                                        
                                                     echo "<td>";
-                                                                if(isset($User['Phone'])){
+                                                                if(isset($User['Phone']) && $User['Phone'] != 0 ) {
                                                                     echo "0" . $User['Phone'] ;
-                                                                }else{
+                                                                }elseif($User['Phone'] == 0 || $User['Phone'] == NULL ){
                                                                     echo "<p class='fs-13 c-gray'> No Information Yet </p>";
                                                                 }
                                                     echo "</td>";                                                        
@@ -272,7 +272,7 @@ if (isset($_SESSION["AdminID"])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="login-form__field">
-                                                <input type="text" value="<?php if(isset($User['Phone'])){echo "0" . $User['Phone'] ; }else{ echo "No Updates Yet" ; }  ?>" disabled/>
+                                                <input type="text" value="<?php if(isset($User['Phone']) && $User['Phone'] != 0 ){echo "0" . $User['Phone'] ; }elseif($User['Phone'] == 0 || $User['Phone'] == NULL ){ echo "No Updates Yet" ; }  ?>" disabled/>
                                                 <i class="fa fa-phone"></i>
                                                 </div>
                                             </div>

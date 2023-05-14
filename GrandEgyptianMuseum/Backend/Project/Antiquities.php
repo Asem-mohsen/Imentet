@@ -9,6 +9,12 @@ session_regenerate_id();
 if(isset($_GET['CatID'])){
   $CategoryID = $_GET['CatID'];
 }
+$CategoryID =  filter_var($_GET['CatID'], FILTER_SANITIZE_NUMBER_INT);
+
+if(empty($CategoryID)){
+  header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php");
+}
+
 $SelectCollections = "SELECT collections .* , collectionscategories.Category AS Category FROM collections
                       JOIN collectionscategories ON collections.CatID = collectionscategories.ID
                       WHERE CatID = $CategoryID ";
@@ -19,6 +25,9 @@ $PageTitle = $CollectionRow['Category'];
 $NumOfRecords = 8 ;
 if(isset($_GET['MoreData'])){
   $NumOfRecords = $NumOfRecords + $_GET['MoreData'] ;
+}
+if($CategoryID != $CollectionRow['CatID']){
+  header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php");
 }
 ?>
 
