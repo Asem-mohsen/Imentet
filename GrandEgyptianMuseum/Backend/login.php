@@ -22,9 +22,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         if(isset($AdminRow['IsAdmin']) == 1 ){
                 if($count > 0){
                     if($AdminRow['Active'] == 0){
-                        echo "<div class='container'>";
-                            echo "<div class='alert alert-danger'> Your Account Is Deactiveted </div>";
-                        echo "</div>";
+
+                        $AccountDiactivatedMsg =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Your Account Is Deactiveted </div>";
+
                     }elseif(password_verify( $Password, $AdminRow['Password'])) {
                         $_SESSION['AdminID'] = $AdminRow['ID'];              //Register Sesstion ID
                         $_SESSION['AdminPassword'] = $_POST['Password'];     //Register Sesstion Password
@@ -32,9 +32,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         exit();
                     
                     }else{
-                            echo "<div class='container'>";
-                                echo "<div class='alert alert-danger'> Password or Email is Not Correct </div>";
-                            echo "</div>";
+                      $AdminIncorrectMsg =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Email Or Password is Not Correct </div>";
+
                     }
                     
                 }
@@ -52,9 +51,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
                         exit();
                   }else{
-                    echo "<div class='container'>";
-                        echo "<div class='alert alert-danger'> Password or Email is Not Correct </div>";
-                    echo "</div>";
+                    $UserIncorrectMsg =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Email Or Password is Not Correct </div>";
+
                   }
                 }
         }
@@ -148,7 +146,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <h1>We are glad to see you again! <br /></h1>
                 <p>Sign In with your details to get started</p>
                 <p>
-                  
+                  <!-- Error Display -->
+                  <?php
+                    if(isset($AdminIncorrectMsg)){ echo $AdminIncorrectMsg ; }
+                    if(isset($AccountDiactivatedMsg)){ echo $AccountDiactivatedMsg ; }
+                    if(isset($UserIncorrectMsg)){ echo $UserIncorrectMsg ; }
+                  ?>
                 </p>
               </div>
               <div class="col-md-5 offset-md-1 box">
