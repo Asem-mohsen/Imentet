@@ -67,6 +67,7 @@ if(isset($_SESSION['UserID'])){
   }
 
 }
+
 ?>
 
 
@@ -116,7 +117,12 @@ if(isset($_SESSION['UserID'])){
                                   </tr>
                               </thead>
                               <tbody>
-                              <?php 
+                                  <?php 
+                                    if(isset($_GET['PaymentSucceeded'])){
+                                      echo "<div class='alert alert-success text-center'> Purchase Completed Successfully </div>";
+                                    }
+                                  ?>
+                                  <?php 
                                     if(!empty($_SESSION['cart'])){
                                         foreach($_SESSION['cart'] as $value){ 
                                               $ProductID = $value['ID'];
@@ -125,6 +131,7 @@ if(isset($_SESSION['UserID'])){
                                               $row = mysqli_fetch_assoc($Query);
                                           ?>
                                           <tr>
+
                                               <td class="prod-column">
                                                   <input type="hidden" name="UserID" value="<?php if(isset($UserID)){echo $UserID ;} ; ?>">
                                                   <input type="hidden" name="ItemID[]" class="ItemID" value="<?php echo $ProductID ; ?>">
@@ -151,10 +158,8 @@ if(isset($_SESSION['UserID'])){
                                                 </a>
                                               </td>
                                           </tr>
-                                        <?php } 
-                                        } ?>
-                                  
-
+                                      <?php } 
+                                    } ?>
                               </tbody>
                           </table>
                       </div>

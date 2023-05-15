@@ -36,6 +36,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
                     }
                     
+                }else{
+                  $DoesNotExist =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Account does not Exist, Join Us </div>";
                 }
         }elseif(isset($AdminRow['IsAdmin']) != 1 ){
                 $SelectUser = "SELECT * FROM user WHERE Email = '$Email' LIMIT 1";
@@ -54,6 +56,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     $UserIncorrectMsg =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Email Or Password is Not Correct </div>";
 
                   }
+                }else{
+                  $DoesNotExist =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Account does not Exist, Join Us </div>";
                 }
         }
 }
@@ -151,6 +155,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     if(isset($AdminIncorrectMsg)){ echo $AdminIncorrectMsg ; }
                     if(isset($AccountDiactivatedMsg)){ echo $AccountDiactivatedMsg ; }
                     if(isset($UserIncorrectMsg)){ echo $UserIncorrectMsg ; }
+                    if(isset($DoesNotExist)){ echo $DoesNotExist ; }
+
                   ?>
                 </p>
               </div>

@@ -52,6 +52,12 @@ if(isset($_POST['Confirm'])){
 
       <section class="donation-form spacing">
         <div class="container">
+          <?php if(isset($_GET['PaymentSucceeded'])){
+            echo "<div class='TicketsBooked'>";
+              echo "<i class='egypt-icon-check'></i>";
+              echo "<p> Tickets Booked Successfully </p>" ;
+            echo "</div>";
+          } ?>
           <div class="inner-container">
             <h3 class="donation-form__title text-center">Book your Ticket</h3>
             <ul class="nav nav-tabs donation-form__tab">
@@ -311,7 +317,7 @@ if(isset($_POST['Confirm'])){
                             <tr>
                             <input type="hidden" name="UserID" value="<?php if(isset($_SESSION['UserID'])){ echo $UserID ;}?>">
                               <td><?php if(isset($_SESSION['UserID'])){ echo $FullName ;}?></td>
-                              <td><?php if(isset($User['Phone']) && $User['Phone'] != 0){ echo $User['Phone'] ;}else{echo "You Need to Add Your Number" ;}?></td>
+                              <td><?php if(isset($User['Phone']) && $User['Phone'] != 0){ echo "0" . $User['Phone'] ;}else{echo "You Need to Add Your Number" ;}?></td>
                               <td><?php if(isset($_SESSION['UserID'])){ echo $User['Email'] ;}?></td>
                             </tr>
                           </tbody>
@@ -331,48 +337,48 @@ if(isset($_POST['Confirm'])){
                     
                     ?>
                     <div class="col-md-12 mt-8">
-                      <h3>Your Cart</h3>
-                      <p>Selected ticket date : <?php if(isset($FetchRow['Date'])){echo $FetchRow['Date'] ;} ?></p>
-                        <input type="hidden" name="Date" value="<?php if(isset($FetchRow['Date'])){echo $FetchRow['Date'] ;}?>">
-                      <div class="table-outer table-responsive">
-                        <table class="cart-table custom">
-                          <thead class="cart-header">
-                            <tr>
-                              <th class="prod-column">Type</th>
-                              <th class="price">Price</th>
-                              <th>Quantity</th>
-                              <th>Subtotal</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            
-                            <?php 
-                            if($Count > 0){
-                              foreach($RunQuery as $Data){ ?>
+                        <h3>Your Cart</h3>
+                          <p>Selected ticket date : <?php if(isset($FetchRow['Date'])){echo $FetchRow['Date'] ;} ?></p>
+                            <input type="hidden" name="Date" value="<?php if(isset($FetchRow['Date'])){echo $FetchRow['Date'] ;}?>">
+                          <div class="table-outer table-responsive">
+                            <table class="cart-table custom">
+                              <thead class="cart-header">
                                 <tr>
-                                      <input type="hidden" name="Price[]" value="<?php if(isset($Data['Price'])){ echo $Data['Price'] ;}?>">
-                                      <input type="hidden" name="Quantity[]" value="<?php if(isset($Data['Quantity'])){ echo $Data['Quantity'] ;} ?>">
-                                  <td><?php if(isset($Data['RoleName'])){ echo $Data['RoleName'] ;} ?></td>
-                                  <td><?php if(isset($Data['Price'])){ echo $Data['Price'] ;} ?></td>
-                                  <td class="qty"><?php if(isset($Data['Quantity'])){ echo $Data['Quantity'] ;} ?></td>
-                                  <td class="sub-total"> <?php if(isset($Data['Total'])){ echo $Data['Total'] ;}  ?> </td>
+                                  <th class="prod-column">Type</th>
+                                  <th class="price">Price</th>
+                                  <th>Quantity</th>
+                                  <th>Subtotal</th>
                                 </tr>
-                              <?php }
-                            } ?>
-                          </tbody>
-                        </table>
-                        <div class="cart-total custom-cart-total">
-                          <?php if($Count > 0){ ?>
-                            <button type="submit" class="thm-btn cart-update__btn cart-update__btn-three">
-                              Pay Now
-                            </button>
-                            <?php }else{?>
-                              <a href="./VisitTickets.php" class="thm-btn cart-update__btn cart-update__btn-three">
-                                Select Tickets
-                              </a>
-                            <?php } ?>
-                        </div>
-                      </div>
+                              </thead>
+                              <tbody>
+                                
+                                <?php 
+                                if($Count > 0){
+                                  foreach($RunQuery as $Data){ ?>
+                                    <tr>
+                                          <input type="hidden" name="Price[]" value="<?php if(isset($Data['Price'])){ echo $Data['Price'] ;}?>">
+                                          <input type="hidden" name="Quantity[]" value="<?php if(isset($Data['Quantity'])){ echo $Data['Quantity'] ;} ?>">
+                                      <td><?php if(isset($Data['RoleName'])){ echo $Data['RoleName'] ;} ?></td>
+                                      <td><?php if(isset($Data['Price'])){ echo $Data['Price'] ;} ?></td>
+                                      <td class="qty"><?php if(isset($Data['Quantity'])){ echo $Data['Quantity'] ;} ?></td>
+                                      <td class="sub-total"> <?php if(isset($Data['Total'])){ echo $Data['Total'] ;}  ?> </td>
+                                    </tr>
+                                  <?php }
+                                } ?>
+                              </tbody>
+                            </table>
+                            <div class="cart-total custom-cart-total">
+                              <?php if($Count > 0){ ?>
+                                <button type="submit" class="thm-btn cart-update__btn cart-update__btn-three">
+                                  Pay Now
+                                </button>
+                                <?php }else{?>
+                                  <a href="./VisitTickets.php" class="thm-btn cart-update__btn cart-update__btn-three">
+                                    Select Tickets
+                                  </a>
+                                <?php } ?>
+                            </div>
+                          </div>
                     </div>
                   </div>
                 </form>

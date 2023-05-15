@@ -62,7 +62,13 @@ li.MembershipLi{
   gap: 10px;
   width: 227px;
 }
-
+div.TicketsBooked{
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 16px;
+  color: green;
+}
 body {
   font-family: "Muli";
   font-size: 16px;

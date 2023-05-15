@@ -1820,10 +1820,6 @@ img.TableImage{
 
 
 
-/* Sign Up
-
- 
-
 
  /* Shopping Cart */
 
@@ -1861,3 +1857,12 @@ img.TableImage{
     border-bottom-right-radius: 16px;
     }
     }
+
+
+div.TicketsBooked{
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 16px;
+    color: green;
+}

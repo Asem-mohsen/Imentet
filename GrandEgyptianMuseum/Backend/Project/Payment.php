@@ -6,7 +6,7 @@ session_start();
 session_regenerate_id();
 
 $PageTitle = "Payment";
-
+include "../NavUser.php";
   // We have 5 Trasnactions that needs payment options 
 
   // 1st is Membership 
@@ -202,8 +202,7 @@ $PageTitle = "Payment";
               $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
               $RunQuery = mysqli_query($con , $EmptyCartQuery);
         
-              header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php#payment");
-
+              header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php?PaymentSucceeded");
             }else{
               $BookTicketFirst = "<div class='alert alert-danger text-center'> You Must Book Ticket First in order to pay </div>";
           }
@@ -234,7 +233,7 @@ $PageTitle = "Payment";
         $FormErrors= array() ;
 
         if(empty($CardNumber) || strlen($CardNumber) != 16 ){
-          $FormErrors[] = "Card Number is Required";
+          $FormErrors[] = "Card Number is Required and must be equal 16 numbers";
         }
         if(empty($CardHolder)){
           $FormErrors[] = "Card Holder Name is Required";
@@ -246,7 +245,7 @@ $PageTitle = "Payment";
           $FormErrors[] = "Expire Year is Required";
         }
         if(strlen($CCV) != 3 || empty($CCV)){
-          $FormErrors[] = "CCV is Required";
+          $FormErrors[] = "CCV is Required ";
         }
         if(empty($FormErrors)){
           $SelectCart = "SELECT * FROM itemscart WHERE UserID = $UserID";
@@ -272,7 +271,7 @@ $PageTitle = "Payment";
             }
           
               if(isset($InsertQuery) && isset($UpdateQuery) && isset($DeleteQuery)){
-                      header("Location: ./Cart.php");
+                      header("Location: ./Cart.php?PaymentSucceeded");
                       unset($_SESSION['cart']);
               }
           }else{
@@ -361,7 +360,7 @@ $PageTitle = "Payment";
 }
 ?>
 
-<?php include "../NavUser.php";
+<?php // include "../NavUser.php";
 
 ?>
 
