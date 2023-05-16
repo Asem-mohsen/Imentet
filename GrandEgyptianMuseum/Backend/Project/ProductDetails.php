@@ -85,7 +85,7 @@ if(empty($ItemID)){
         <div class="container">
             <ul class="list-unstyled thm-breadcrumb thm-breadcrumb__two">
                 <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a></li>
-                <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/OnlineShop.php">Shop</a></li>
+                <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1">Shop</a></li>
                 <li><?php echo $Item['Item'] ?></li>
             </ul>
         </div>
@@ -113,9 +113,9 @@ if(empty($ItemID)){
                                 <h3 class="product-details__title"><?php echo $Item['Item'] ?></h3>
                                 <p class="product-details__price"><?php echo $Item['Price'] . "$" ?></p>
                                 <p class="product-details__text">
-                                    Working from home meant we couldsnack & coffee breaks change our
-                                    desks or view, good, drink on the job desires to obtain pain of because it
-                                    is pain, but because occasionally circumstances.
+                                    All of our products are of excellent quality, the materials used to
+                                    make this <?php echo $Item['Item'] ?> are environmentally friendly and highly
+                                    sustainable and recyclable.
                                 </p>
                                 <p class="product-details__categories">
                                     <span class="text-uppercase">Category : </span>

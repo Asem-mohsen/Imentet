@@ -74,9 +74,9 @@ if(isset($_GET['MoreData'])){
                           </div>
                         </div>
                         <div class="exhibhition-one__content">
-                          <a href="#" class="exhibhition-one__category"><?php echo $Exhibitions['CatName'] ?></a>
+                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Exhibition.php" class="exhibhition-one__category"><?php echo $Exhibitions['CatName'] ?></a>
                           <h3 class="exhibhition-one__title">
-                            <a href="event-details.html">
+                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Exhibitions['ID'] ?>">
                               <?php echo $Exhibitions['Name'] ?>
                             </a>
                           </h3>
@@ -130,7 +130,7 @@ if(isset($_GET['MoreData'])){
                           </div>
                         </div>
                         <div class="exhibhition-one__content">
-                          <a href="#" class="exhibhition-one__category"><?php echo $Exhibitions['CatName'] ?></a>
+                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Exhibition.php" class="exhibhition-one__category"><?php echo $Exhibitions['CatName'] ?></a>
                           <h3 class="exhibhition-one__title">
                             <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Exhibitions['ID'] ?>">
                               <?php echo $Exhibitions['Name'] ?>
@@ -185,7 +185,7 @@ if(isset($_GET['MoreData'])){
                           </div>
                         </div>
                         <div class="exhibhition-one__content">
-                          <a href="#" class="exhibhition-one__category"><?php echo $Exhibitions['CatName'] ?></a>
+                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Exhibition.php" class="exhibhition-one__category"><?php echo $Exhibitions['CatName'] ?></a>
                           <h3 class="exhibhition-one__title">
                             <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Exhibitions['ID'] ?>">
                               <?php echo $Exhibitions['Name'] ?>

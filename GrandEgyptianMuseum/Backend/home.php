@@ -461,7 +461,7 @@ if(isset($_SESSION['AdminID'])){
                     <img src="Images/<?php echo $Collection['Image'] ?>" alt="Awesome Image" />
                     <div class="collection-three__content">
                       <h3 class="collection-three__title">
-                        <a href="collection-details.html">
+                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>">
                           <?php echo $Collection['Collection'] ?>
                         </a>
                       </h3>

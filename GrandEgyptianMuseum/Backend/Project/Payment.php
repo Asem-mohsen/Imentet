@@ -74,6 +74,8 @@ include "../NavUser.php";
 
         }
     }
+  }else{
+    header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
   }
 
   // 2nd is Donation
@@ -157,66 +159,71 @@ include "../NavUser.php";
   // 3rd is Visit tickets
   if(isset($_GET['VisitTickets'])){
 
-    if(isset($_POST['Pay'])){
+    if(isset($_SESSION['UserID'])){
+      if(isset($_POST['Pay'])){
 
-      $CardNumber = $_POST['CardNumber'];
-      $CardHolder = $_POST['CardHolder'];
-      $CCV = $_POST['CCV'];
-
-      $FormErrors= array() ;
-      if(empty($CardNumber) || strlen($CardNumber) != 16 ){
-        $FormErrors[] = "Card Number is Required";
-      }
-      if(empty($CardHolder)){
-        $FormErrors[] = "Card Holder Name is Required";
-      }
-      if(isset($_POST['ExpMonth']) == 0 ){
-        $FormErrors[] = "Expire Month is Required";
-      }
-      if(isset($_POST['ExpYear']) == 0 ){
-        $FormErrors[] = "Expire Year is Required";
-      }
-      if(strlen($CCV) > 3 || empty($CCV)){
-        $FormErrors[] = "CCV is Required";
-      }
-
-      if(empty($FormErrors)){
-        if(isset($UserID)){
-          $SelectCart = "SELECT visitticketNotPaid.* , SUM(Quantity) AS TotalQuantity ,  SUM(Total) AS TotalSum FROM visitticketNotPaid WHERE UserID = $UserID";
-          $RunQuery = mysqli_query($con , $SelectCart);
-          $VisitCart = mysqli_fetch_assoc($RunQuery);
-          $Count = mysqli_num_rows($RunQuery);
-          if($Count > 0){
-
-              $UserID = $_POST['UserID'];
-              $TotalQuantity = $VisitCart['TotalQuantity'];
-              $TotalFinalValue = $VisitCart['TotalSum'];
-              $rawdate      = htmlentities($VisitCart['Date']);
-              $Date         = date('Y-m-d', strtotime($rawdate));
-              $Payment = 1;
-              $PlaceID = 2 ;
-        
-              $InsertQuery = "INSERT INTO visitticket VALUES(NULL , $UserID , $PlaceID , '$Date' , $Payment , $TotalQuantity , $TotalFinalValue)";
-              $RunQuery = mysqli_query($con , $InsertQuery);
-        
-              $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
-              $RunQuery = mysqli_query($con , $EmptyCartQuery);
-        
-              header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php?PaymentSucceeded");
-            }else{
-              $BookTicketFirst = "<div class='alert alert-danger text-center'> You Must Book Ticket First in order to pay </div>";
+        $CardNumber = $_POST['CardNumber'];
+        $CardHolder = $_POST['CardHolder'];
+        $CCV = $_POST['CCV'];
+  
+        $FormErrors= array() ;
+        if(empty($CardNumber) || strlen($CardNumber) != 16 ){
+          $FormErrors[] = "Card Number is Required";
+        }
+        if(empty($CardHolder)){
+          $FormErrors[] = "Card Holder Name is Required";
+        }
+        if(isset($_POST['ExpMonth']) == 0 ){
+          $FormErrors[] = "Expire Month is Required";
+        }
+        if(isset($_POST['ExpYear']) == 0 ){
+          $FormErrors[] = "Expire Year is Required";
+        }
+        if(strlen($CCV) > 3 || empty($CCV)){
+          $FormErrors[] = "CCV is Required";
+        }
+  
+        if(empty($FormErrors)){
+          if(isset($UserID)){
+            $SelectCart = "SELECT visitticketNotPaid.* , SUM(Quantity) AS TotalQuantity ,  SUM(Total) AS TotalSum FROM visitticketNotPaid WHERE UserID = $UserID";
+            $RunQuery = mysqli_query($con , $SelectCart);
+            $VisitCart = mysqli_fetch_assoc($RunQuery);
+            $Count = mysqli_num_rows($RunQuery);
+            if($Count > 0){
+  
+                $UserID = $_POST['UserID'];
+                $TotalQuantity = $VisitCart['TotalQuantity'];
+                $TotalFinalValue = $VisitCart['TotalSum'];
+                $rawdate      = htmlentities($VisitCart['Date']);
+                $Date         = date('Y-m-d', strtotime($rawdate));
+                $Payment = 1;
+                $PlaceID = 2 ;
+          
+                $InsertQuery = "INSERT INTO visitticket VALUES(NULL , $UserID , $PlaceID , '$Date' , $Payment , $TotalQuantity , $TotalFinalValue)";
+                $RunQuery = mysqli_query($con , $InsertQuery);
+          
+                $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
+                $RunQuery = mysqli_query($con , $EmptyCartQuery);
+          
+                header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php?PaymentSucceeded");
+              }else{
+                $BookTicketFirst = "<div class='alert alert-danger text-center'> You Must Book Ticket First in order to pay </div>";
+            }
+          }else{
+            $SignInFirst = "<div class='alert alert-danger text-center'> You Must Sign In to Continue</div>";
           }
-        }else{
-          $SignInFirst = "<div class='alert alert-danger text-center'> You Must Sign In to Continue</div>";
         }
       }
+      if(isset($_POST['Cancel'])){
+        $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
+        $RunQuery = mysqli_query($con , $EmptyCartQuery);
+        header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php");
+        exit();
+      }
+    }else{
+      header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
     }
-    if(isset($_POST['Cancel'])){
-      $EmptyCartQuery = "DELETE FROM visitticketNotPaid WHERE UserID = $UserID";
-      $RunQuery = mysqli_query($con , $EmptyCartQuery);
-      header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php");
-      exit();
-    }
+
   }
 
   // 4th is Online Shopping
@@ -289,7 +296,7 @@ include "../NavUser.php";
         exit();
       }
     }else{
-      echo "You are not a user";
+      header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
     }
   }
 
@@ -356,7 +363,9 @@ include "../NavUser.php";
         header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php?Page=1");
         exit();
       }
-  }
+    }else{
+      header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
+    }
 }
 ?>
 
