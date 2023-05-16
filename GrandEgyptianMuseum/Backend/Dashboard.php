@@ -160,7 +160,7 @@ if (isset($_SESSION["AdminID"])) {
                         $Select = "SELECT feedback .* , user.Name AS UserName , user.ID AS UserID , entertainmnet.Name AS EntertainmentName , entertainmnet.ID AS EntertainmentID FROM feedback 
                                     LEFT JOIN user ON feedback.UserID = user.ID
                                     LEFT JOIN entertainmnet ON feedback.EntertainmnetID = entertainmnet.ID
-                                    ORDER BY feedback.ID DESC LIMIT 3
+                                    ORDER BY feedback.ID DESC LIMIT 4
                         ";
                         $FeedbackQuery = mysqli_query($con , $Select);
                         $fecthquery = mysqli_fetch_assoc($FeedbackQuery);

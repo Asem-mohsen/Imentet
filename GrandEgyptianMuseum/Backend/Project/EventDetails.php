@@ -43,8 +43,9 @@ if(isset($_POST['SubmitFeedback'])){
   if(!empty($Feedback)){
     $InsertFeedback = "INSERT INTO feedback VALUES(NULL , $UserID ,$EventID , '$Feedback')";
     $RunFeedback = mysqli_query($con , $InsertFeedback);
+
   }else{
-    echo "Feedback Cannot be Empty";
+    $FeedbackCannotEmpty = "Feedback Cannot be Empty ";
   }
 }
 
@@ -211,7 +212,7 @@ if(empty($EventID)){
                   </div>
                 <?php } ?>
 
-                <!-- Contact -->
+                <!-- Contact And Feedback-->
                 <div id="contact" class="event-details__single">
                   <div class="event-details__contact">
                     <div class="row">
@@ -266,12 +267,14 @@ if(empty($EventID)){
                               </div>
                             </div>
                           </div>
+
                           <?php if(isset($_SESSION['UserID'])){
                                     if($TodaysDate > $StartDateInTime || $row['Everyday'] == 'Daily'){ 
                                       $SelectUser = "SELECT * FROM entertainmnetticket WHERE UserID = $UserID AND EventID = $EventID";
                                       $RunQuery = mysqli_query($con , $SelectUser);
                                       $UserPaid = mysqli_fetch_assoc($RunQuery);
                                       $CountUserPaid = mysqli_num_rows($RunQuery);
+
                                       if($CountUserPaid >= 1 ){ ?>
                                         <div class="accrodion active">
                                           <div class="accrodion-title">
@@ -280,6 +283,18 @@ if(empty($EventID)){
                                           <div class="accrodion-content" style="padding-top: 0">
                                             <div class="inner">
                                               <div class="product-details__review-form">
+                                                  <?php if(isset($FeedbackCannotEmpty)){
+                                                    echo "<div class='TicketsBooked' style='margin-bottom: 20px; color:red'>";
+                                                      echo "<i class='egypt-icon-remove'></i>";
+                                                      echo "<p>" . $FeedbackCannotEmpty . "</p>" ;
+                                                    echo "</div>";
+                                                  } ?>
+                                                  <?php if(isset($RunFeedback)){
+                                                    echo "<div class='TicketsBooked' style='margin-bottom: 20px;'>";
+                                                      echo "<i class='egypt-icon-check'></i>";
+                                                      echo "<p> Feedback Sent Successfully </p>" ;
+                                                    echo "</div>";
+                                                  } ?>
                                                 <h3 class="product-details__review-form__title">
                                                   Share with us your Feedback!
                                                 </h3>

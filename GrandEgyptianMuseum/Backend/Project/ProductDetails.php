@@ -52,7 +52,8 @@ if(empty($ItemID)){
         if(!empty($Comment)){
             $InsertComment = "INSERT INTO shopcomments VALUES (NULL , $ItemID , $UserID , '$Comment')";
             $RunComment = mysqli_query($con , $InsertComment);
-
+        }else{
+            $EmptyComment = "Comment Cannot be Empty";
         }
 
     }
@@ -157,6 +158,18 @@ if(empty($ItemID)){
                                     <div class="accrodion-content">
                                         <div class="inner">
                                             <div class="product-details__review-form">
+                                                <?php if(isset($EmptyComment)){
+                                                        echo "<div class='TicketsBooked' style='margin-bottom: 20px; color:red'>";
+                                                        echo "<i class='egypt-icon-remove'></i>";
+                                                        echo "<p>" . $EmptyComment . "</p>" ;
+                                                        echo "</div>";
+                                                    } ?>
+                                                    <?php if(isset($RunComment)){
+                                                        echo "<div class='TicketsBooked' style='margin-bottom: 20px;'>";
+                                                        echo "<i class='egypt-icon-check'></i>";
+                                                        echo "<p> Comment Sent Successfully </p>" ;
+                                                        echo "</div>";
+                                                    } ?>
                                                 <h3 class="product-details__review-form__title">Add Your Comment</h3>
                                                 <p class="product-details__review-form__text">Your Email address will not be published.</p>
                                                 <form method="post" class="contact-one__form">
@@ -164,7 +177,7 @@ if(empty($ItemID)){
                                                         <div class="col-lg-6">
                                                             <p class="contact-one__field">
                                                                 <label>Your Name</label>
-                                                                <input type="text" name="Name" placeholder="Your Full Name" value="<?php if(isset($FullName)){ echo $FullName ;} ?>" disabled />
+                                                                <input type="text" name="Name" placeholder="Your Full Name" value="<?php if(isset($FullName)){ echo $FullName ;} ?>" <?php if(isset($FullName)){ echo "disabled" ;} ?> />
                                                                 <input type="hidden" name="UserID" value="<?php echo $UserID ?>"/>
                                                                 <input type="hidden" name="ItemID" value="<?php echo $ItemID ?>"/>
                                                             </p>
@@ -172,7 +185,7 @@ if(empty($ItemID)){
                                                         <div class="col-lg-6">
                                                             <p class="contact-one__field">
                                                                 <label>Email</label>
-                                                                <input type="email" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ;} ?>" disabled  />
+                                                                <input type="email" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ;} ?>" <?php if(isset($User['Email'])){ echo "disabled" ;} ?>  />
                                                             </p>
                                                         </div>
                                                         <div class="col-lg-12">
@@ -181,6 +194,8 @@ if(empty($ItemID)){
                                                                 <textarea name="Comment" required></textarea>
                                                                 <?php if(isset($_SESSION['UserID'])){ ?>
                                                                     <button type="submit" name="AddComment" class="thm-btn contact-one__btn"> Comment </button>
+                                                                <?php }elseif(isset($_SESSION['UserID'])){ ?>
+                                                                    <button type="submit" disabled class="thm-btn contact-one__btn"> Not Authorized </button>
                                                                 <?php }else{ ?>
                                                                     <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn contact-one__btn"> Sign In to Countine </a>
                                                                 <?php } ?>

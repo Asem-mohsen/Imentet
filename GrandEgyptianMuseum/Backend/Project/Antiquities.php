@@ -104,7 +104,7 @@ if($CategoryID != $CollectionRow['CatID']){
                                                   <div class="collection-two__image">
                                                       <img src="../Images/<?php echo $Collection['Image'] ?>" width="300px" height="300px" alt="">
                                                       <div class="collection-two__hover">
-                                                          <a class="img-popup" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>"><i class="egypt-icon-focus"></i>
+                                                          <a class="img-popup" href="../Images/<?php echo $Collection['Image'] ?>"><i class="egypt-icon-focus"></i>
                                                           </a>
                                                       </div>
                                                   </div>
@@ -131,7 +131,7 @@ if($CategoryID != $CollectionRow['CatID']){
                                               <div class="collection-two__image">
                                                   <img src="../Images/<?php echo $Collection['Image'] ?>" width="300px" height="300px" alt="">
                                                   <div class="collection-two__hover">
-                                                      <a class="img-popup" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>"><i class="egypt-icon-focus"></i>
+                                                      <a class="img-popup" href="../Images/<?php echo $Collection['Image'] ?>"><i class="egypt-icon-focus"></i>
                                                       </a>
                                                   </div>
                                               </div>
@@ -159,7 +159,7 @@ if($CategoryID != $CollectionRow['CatID']){
                                                         <div class="collection-two__image">
                                                             <img src="../Images/<?php echo $Collection['Image'] ?>" width="300px" height="300px" alt="">
                                                             <div class="collection-two__hover">
-                                                                <a class="img-popup" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>"><i class="egypt-icon-focus"></i>
+                                                                <a class="img-popup" href="../Images/<?php echo $Collection['Image'] ?>"><i class="egypt-icon-focus"></i>
                                                                 </a>
                                                             </div>
                                                         </div>
