@@ -257,18 +257,18 @@ if(isset($_POST['Confirm'])){
                     <div class="row">
                       <div class="col-md-6">
                         <div class="donation-form__form-field">
-                          <input type="text" name="FirstName" placeholder="First Name" value="<?php if(isset($_SESSION['UserID'])){ echo $User['Name'] ;}?>" disabled/>
+                          <input type="text" name="FirstName" placeholder="First Name" value="<?php if(isset($_SESSION['UserID'])){ echo $User['Name'] ;}?>" <?php if(isset($_SESSION['UserID'])){ echo "disabled" ; } ?> />
                           <input type="hidden" name="UserID" value="<?php if(isset($_SESSION['UserID'])){ echo $UserID ; } ?>">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="donation-form__form-field">
-                          <input type="text" name="LastName" placeholder="Last Name" value="<?php if(isset($User['LastName'])){ echo $User['LastName'] ;}?>" disabled/>
+                          <input type="text" name="LastName" placeholder="Last Name" value="<?php if(isset($User['LastName'])){ echo $User['LastName'] ;}?>" <?php if(isset($User['LastName'])){ echo "disabled" ; } ?> />
                         </div>
                       </div>
                       <div class="col-md-12">
                         <div class="donation-form__form-field">
-                          <input type="email" name="Email" placeholder="Your Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ;}?>" disabled/>
+                          <input type="email" name="Email" placeholder="Your Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ;}?>" <?php if(isset($User['Email'])){ echo "disabled" ; } ?>/>
                         </div>
                       </div>
                       <div class="col-md-12">

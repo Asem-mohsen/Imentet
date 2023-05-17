@@ -91,7 +91,7 @@ if(empty($EventID)){
           <h2 class="inner-banner__title"><?php echo $row['Name'] ?></h2>
           <ul class="list-unstyled thm-breadcrumb">
             <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a></li>
-            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php">Events</a></li>
+            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php?Page=1">Events</a></li>
             <li><?php echo $row['Name'] ?></li>
           </ul>
         </div>
@@ -100,6 +100,14 @@ if(empty($EventID)){
       <!-- Event Details -->
       <section class="event-details">
         <div class="container">
+        <?php 
+          if(isset($_GET['PaymentDone'])){
+                echo "<div class='TicketsBooked' style='justify-content:center'>";
+                echo "<i class='egypt-icon-check'></i>";
+                echo "<p> Tickets Booked Successfully </p>" ;
+              echo "</div>";
+          } 
+        ?>
           <div class="row">
             <div class="col-lg-8">
               <div class="event-details__content">

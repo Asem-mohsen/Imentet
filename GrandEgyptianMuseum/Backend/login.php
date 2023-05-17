@@ -8,6 +8,8 @@ session_regenerate_id();
 
 $PageTitle = "Sign In";
 
+
+
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $Email = $_POST['Email'];
@@ -61,6 +63,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 }
         }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

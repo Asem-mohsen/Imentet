@@ -33,6 +33,24 @@ if(isset($_SESSION['UserID'])){
       <!-- Donate -->
       <section class="cta-one cta-one__donation-page">
         <div class="container">
+        <?php 
+          if(isset($_GET['DonatedDone'])){
+                echo "<div class='TicketsBooked' style='justify-content:center'>";
+                echo "<i class='egypt-icon-check'></i>";
+                echo "<p>Your support helps us to Improve our services, thanks for being a part of our Supportars. </p>" ;
+              echo "</div>";
+          } 
+          if(isset($_GET['DonateWithMembership'])){
+            echo "<div class='TicketsBooked' style='justify-content:center'>";
+            echo "<i class='egypt-icon-check'></i>";
+            echo "<p>
+                      You have donated a very large amount of money, and in order to return 
+                      this large contribution to you, you have been added to Our Membership Plan 
+                      Supporting Membership, Check Your Email For More Details. 
+                  </p>" ;
+          echo "</div>";
+      } 
+        ?>
           <div class="row">
             <div class="col-xl-6 col-lg-12">
               <div class="cta-one__block">
@@ -82,6 +100,7 @@ if(isset($_SESSION['UserID'])){
       <!-- Donate Section Form -->
       <section class="donation-form">
         <div class="container">
+
           <div class="inner-container">
             <h3 class="donation-form__title text-center">Make a Donation</h3>
             <ul class="nav nav-tabs donation-form__tab">

@@ -130,9 +130,49 @@ include "../NavUser.php";
               $PlaceID = $_POST['Place'];
               $Amount = $_POST['Amount'];
               $PaymentID = 1;
+              
+              if($Amount >= 1000000){
+                $SelectMembership = "SELECT * FROM membershippayemnts WHERE UserID = $UserID";
+                $SelectMembershipQuery = mysqli_query($con , $SelectMembership);
+                $MembershipRow = mysqli_fetch_assoc($SelectMembershipQuery);
+                $CountUsers = mysqli_num_rows($SelectMembershipQuery);
+                if(!isset($MembershipRow['UserID'])){
+                  $MembershipID = 12 ; 
+                  $Date = date('Y-m-d');
+                  $EndDate = date('Y-m-d', strtotime($Date. ' + 365 day'));
+  
+                  $InsertMembershipSupport = "INSERT INTO membershippayemnts (UserID , MembershipID , Cost , PaymentID , Date , EndsIn) VALUES($UserID , $MembershipID , $Amount , $PaymentID , '$Date' , '$EndDate')";
+                  $InsertMembershipSupportQuery = mysqli_query($con , $InsertMembershipSupport);   
+  
+                  $InsertDonate = "INSERT INTO donations (UserID , PlaceID , Amount , PaymentID) VALUES($UserID , $PlaceID , $Amount , $PaymentID )";
+                  $InsertQuery = mysqli_query($con , $InsertDonate);    
+  
+                  header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php?DonateWithMembership");  
+                
+                }else{
 
-              $InsertDonate = "INSERT INTO donations (UserID , PlaceID , Amount , PaymentID) VALUES($UserID , $PlaceID , $Amount , $PaymentID )";
-              $InsertQuery = mysqli_query($con , $InsertDonate);        
+                  $DeleteMembership = "DELETE FROM membershippayemnts WHERE UserID = $UserID ";
+                  $DeleteQuery = mysqli_query($con , $DeleteMembership);
+
+                  $MembershipID = 12 ; 
+                  $Date = date('Y-m-d');
+                  $EndDate = date('Y-m-d', strtotime($Date. ' + 365 day'));
+  
+                  $InsertMembershipSupport = "INSERT INTO membershippayemnts (UserID , MembershipID , Cost , PaymentID , Date , EndsIn) VALUES($UserID , $MembershipID , $Amount , $PaymentID , '$Date' , '$EndDate')";
+                  $InsertMembershipSupportQuery = mysqli_query($con , $InsertMembershipSupport);   
+  
+                  $InsertDonate = "INSERT INTO donations (UserID , PlaceID , Amount , PaymentID) VALUES($UserID , $PlaceID , $Amount , $PaymentID )";
+                  $InsertQuery = mysqli_query($con , $InsertDonate);  
+
+                  header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php?DonatedDone");  
+
+                }
+
+              }else{
+                $InsertDonate = "INSERT INTO donations (UserID , PlaceID , Amount , PaymentID) VALUES($UserID , $PlaceID , $Amount , $PaymentID )";
+                $InsertQuery = mysqli_query($con , $InsertDonate);    
+                header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php?DonatedDone");
+              }
             }else{
               $Email  = $_POST['Email'];
               $Name   = $_POST['Name'];
@@ -142,6 +182,8 @@ include "../NavUser.php";
 
               $InsertDonate = "INSERT INTO donations (Name , Email , PlaceID , Amount , PaymentID) VALUES('$Name', '$Email' , $PlaceID , $Amount , $PaymentID )";
               $InsertQuery = mysqli_query($con , $InsertDonate);
+              header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php?DonatedDone");
+
 
             }
           }
@@ -346,7 +388,7 @@ include "../NavUser.php";
               $DeleteQuery = mysqli_query($con , $DeleteCart);
                 
               if(isset($InsertQuery) && isset($DeleteQuery)){
-                      header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=" . $EventID . "");
+                      header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=" . $EventID . "&PaymentDone");
                       exit();
               }
           }else{
@@ -369,9 +411,6 @@ include "../NavUser.php";
 }
 ?>
 
-<?php // include "../NavUser.php";
-
-?>
 
 
       <div class="payment">
