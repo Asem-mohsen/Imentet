@@ -135,7 +135,7 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
                                 <div class="col-lg-6">
                                     <p class="contact-one__field">
                                         <label>Phone:</label>
-                                        <input type="number" name="Phone" pattern="[0-9]*" value="<?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo $row['Phone']; } ?>" <?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo "disabled" ;} ?> >
+                                        <input type="number" name="Phone" pattern="[0-9]*" value="<?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo "0" . $row['Phone']; } ?>" <?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo "disabled" ;} ?> >
                                     </p>
                                 </div>
                                 <div class="col-lg-12">

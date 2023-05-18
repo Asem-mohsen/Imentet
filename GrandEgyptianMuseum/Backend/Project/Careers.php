@@ -160,7 +160,7 @@ if(isset($_SESSION['UserID'])){
                 </form>
               </div>
             </div>
-          <?php }elseif($InterviewDate > $After6MonthDate){ ?>
+          <?php }elseif(isset($InterviewDate) > isset($After6MonthDate)){ ?>
             
             <div class="row">
               <div class="col-lg-6">

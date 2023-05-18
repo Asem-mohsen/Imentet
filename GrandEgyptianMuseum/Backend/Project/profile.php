@@ -56,6 +56,10 @@ if(isset($_SESSION['UserID'])){
     if(empty($_FILES['Image']['name'])){
       $FormErrors[] = "You Must Select an Image";
     }
+    if(empty($rawdate)){
+      $FormErrors[] = "You Must Enter a Valid Birth Date";
+    }
+
 
     if(empty($FormErrors)) {
       if (isset($_FILES['Image']['name'])){

@@ -124,7 +124,7 @@ if (isset($_SESSION["AdminID"])) {
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-4 details">
-                                    <div class="ProfileInfo">
+                                        <div class="ProfileInfo">
                                             <img class="rounded-circle mt-5" width="150px" height="150px" id="image" src="./Images/AdminImages/<?php echo $Admin['Image']?>">
                                             <div class="RightRound" id="upload">
                                                 <input type="file" name="AdminImage" id="AdminImage" accept=".jpg , .png , .jpeg">
@@ -137,11 +137,11 @@ if (isset($_SESSION["AdminID"])) {
                                                 <input type="submit" name="" id="">
                                                 <i class="fa fa-check"></i>
                                             </div>
-                                    </div>
-                                    <div class="mt-50 testimonials-one__info ">
-                                        <h3 class="testimonials-one__name"><?php echo $Admin['Name'] ;?></h3>
-                                        <p class="testimonials-one__designation"><?php echo $Admin['Email'] ?></p>
-                                    </div>
+                                        </div>
+                                        <div class="mt-50 testimonials-one__info ">
+                                            <h3 class="testimonials-one__name"><?php echo $Admin['Name'] ;?></h3>
+                                            <p class="testimonials-one__designation"><?php echo $Admin['Email'] ?></p>
+                                        </div>
                                     </div>
                                     <div class="col-md-8 has-seperator">
                                     <h3 class="login-form__title">Edit Profile</h3>
