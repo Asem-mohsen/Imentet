@@ -70,8 +70,9 @@ if (isset($_SESSION["AdminID"])) {
                                             <p class='mt-20 ml-20 cursor-d fw-bold'>By Careers </p>
                                         </li>
                                             <?php
-                                                $CareersSelect = "SELECT DISTINCT careers.ID AS CareerID , careers.Careers As Career FROM `careers` 
-                                                                    LEFT JOIN applications ON careers.ID = applications.CareerID  ";
+                                                $CareersSelect = "SELECT DISTINCT careers.Careers As Career , careers.ID AS CareerID FROM `careers` 
+                                                                    LEFT JOIN applications ON careers.ID = applications.CareerID
+                                                                    ORDER BY careers.PlaceID DESC ";
                                                 $Run = mysqli_query($con , $CareersSelect);
                                                 $row = mysqli_fetch_assoc($Run);
 

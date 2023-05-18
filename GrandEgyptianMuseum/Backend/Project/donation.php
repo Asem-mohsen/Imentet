@@ -37,19 +37,19 @@ if(isset($_SESSION['UserID'])){
           if(isset($_GET['DonatedDone'])){
                 echo "<div class='TicketsBooked' style='justify-content:center'>";
                 echo "<i class='egypt-icon-check'></i>";
-                echo "<p>Your support helps us to Improve our services, thanks for being a part of our Supportars. </p>" ;
+                echo "<p>Your support helps us Improveing our services, Much Obliged for being a part of our Supporters. </p>" ;
               echo "</div>";
           } 
           if(isset($_GET['DonateWithMembership'])){
             echo "<div class='TicketsBooked' style='justify-content:center'>";
-            echo "<i class='egypt-icon-check'></i>";
-            echo "<p>
-                      You have donated a very large amount of money, and in order to return 
-                      this large contribution to you, you have been added to Our Membership Plan 
-                      Supporting Membership, Check Your Email For More Details. 
-                  </p>" ;
-          echo "</div>";
-      } 
+              echo "<i class='egypt-icon-check'></i>";
+              echo "<p>
+                        You have donated a very large amount of money, and in order to show gratitude and thanks
+                        , you have been added to Our Membership Plan 
+                        <a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VIPmembership.php?MembershipID=12'> Supporting Membership </a> , Check Your Email For More Details. 
+                    </p>" ;
+            echo "</div>";
+          } 
         ?>
           <div class="row">
             <div class="col-xl-6 col-lg-12">
@@ -112,7 +112,7 @@ if(isset($_SESSION['UserID'])){
             </ul>
             <div class="tab-content">
               <div class="tab-pane show active animated fadeInUp" id="money">
-                <form  method='POST' action="./Payment.php?Donations" class="donation-form__form">
+                <form method='POST' action="./Payment.php?Donations" class="donation-form__form">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="donation-form__form-field">

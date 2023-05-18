@@ -21,7 +21,8 @@ if(isset($_SESSION['UserID'])){
   $ApplicationRow = mysqli_fetch_assoc($Select);
   $CountRow = mysqli_num_rows($Select);
 
-
+  $InterviewDate = $ApplicationRow['Date'];
+  $After6MonthDate =date('Y-m-d', strtotime($InterviewDate. ' + 6 Month'));
 
   $FormError = array();
 
@@ -85,8 +86,8 @@ if(isset($_SESSION['UserID'])){
       <section class="contact-one">
         <div class="container">
 
-          <?php  
-          if(isset($CountRow) > 0 && isset($ApplicationRow['UserID'])){ ?>
+          
+          <?php if(isset($CountRow) > 0 && isset($ApplicationRow['UserID']) && $InterviewDate < $After6MonthDate){ ?>
             <div class="row">
               <div class="col-lg-6">
                 <div class="contact-one__main">
@@ -145,11 +146,95 @@ if(isset($_SESSION['UserID'])){
                             disabled >
                         </p>
                     </div>
+                    <?php if($ApplicationRow['Approved'] == 0 && $ApplicationRow['UserID'] != NULL){
+                      echo "<p>You'll have another chance to Apply again after 6 month In " . date('d M Y' , strtotime($After6MonthDate)) . "</p>";
+                    } ?>
                     <div class="col-md-12">
                       <p class="contact-one__field" style="text-align: center;">
                         <button type="submit" disabled class="thm-btn contact-one__btn">
                           Wish You A Good Luck
                         </button>
+                      </p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          <?php }elseif($InterviewDate > $After6MonthDate){ ?>
+            
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="contact-one__main">
+                  <div class="contact-one__image">
+                    <img src="images/resources/contact-1-1.jpeg" class="img-fluid" alt="" />
+                  </div>
+                  <div class="contact-one__content">
+                    <div class="row no-gutters">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <form method="POST" class="contact-one__form">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="contact-one__field">
+                      <input type="hidden" name="UserID" value="<?php echo $UserID ?>">
+                          <label>First Name:</label>
+                          <input type="text" name="FirstName"  value="<?php if(isset($row['Name'])){ echo $row['Name']; } ?>" <?php if(isset($row['Name'])){ echo "disabled" ;} ?>  >
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="contact-one__field">
+                            <label>Last Name:</label>
+                            <input type="text" name="LastName"  value="<?php if(isset($row['LastName'])){ echo $row['LastName']; } ?>" <?php if(isset($row['LastName'])){ echo "disabled" ;} ?> >
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="contact-one__field">
+                            <label>Email:</label>
+                            <input type="email" name="Email" value="<?php if(isset($row['Email'])){ echo $row['Email']; } ?>" <?php if(isset($row['Email'])){ echo "disabled" ;} ?> required>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="contact-one__field">
+                            <label>Phone:</label>
+                            <input type="number" name="Phone" pattern="[0-9]*" value="<?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo $row['Phone']; } ?>" <?php if(isset($row['Phone']) && $row['Phone'] != 0){ echo "disabled" ;} ?> required>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="subject-picker contact-one__field">
+                        <label>Career:</label>
+                        <select class="selectpicker" name="Career" required>
+                          <option value="0" selected>Select a Career</option>
+                          <?php
+                            $SelectCareer = "SELECT * FROM careers WHERE PlaceID = 2";
+                              $RunQuery = mysqli_query($con , $SelectCareer);
+                              $row = mysqli_fetch_assoc($RunQuery);
+                              foreach($RunQuery as $Career){ ?>
+                                  <option value="<?php echo $Career['ID'] ?>"><?php echo $Career['Careers'] ?></option>
+                              <?php } ?>
+                        </select>
+                      </p>
+                    </div>
+                    <div class="col-md-12">
+                      <p class="contact-one__field">
+                        <label>What Makes You the Ideal Candidate for this Position :</label>
+                        <textarea name="Question" required></textarea>
+                        <?php if(isset($_SESSION['UserID'])){ ?> 
+                          <button type="submit" name="Submit" class="thm-btn contact-one__btn">
+                            Confirm
+                          </button>
+                        <?php }elseif(isset($_SESSION['AdminID'])){ ?>
+                          <button disabled class="thm-btn contact-one__btn">
+                            You Already Work With Us !!
+                          </button>
+                        <?php }else{ ?>
+                          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php" class="thm-btn contact-one__btn">
+                            Sign In To Continue
+                          </a>  
+                        <?php } ?>
+
                       </p>
                     </div>
                   </div>

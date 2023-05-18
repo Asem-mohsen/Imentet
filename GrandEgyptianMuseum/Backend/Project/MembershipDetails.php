@@ -168,13 +168,16 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
                 <h3 class="event-details__form-title">Membership Payement</h3>
                 <form method="post">
                   <?php 
-                    // if(isset($_SESSION['UserID'])){
-                    //   $UserID = $_SESSION['UserID'];
                     
                       if(isset($Count) > 0 && isset($Enrolled['UserID'])){ ?>
                         <div class="row">
                           <div class="col-sm-12">
-                            <p>You Already Enrolled In <?php echo $Enrolled['Type'] ?> Membership</p>
+                            <p>You Already Enrolled In <?php
+                             if($Enrolled['Type'] == 'Supporting' || $Enrolled['Type'] == 'Patron'){
+                              echo "<a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VIPmembership.php?MembershipID=" . $Enrolled['MembershipID'] ."'>". $Enrolled['Type'] ."</a>" ;
+                            }else{
+                              echo $Enrolled['Type'] ;
+                            }?> Membership</p>
                           </div>
                           <div class="col-sm-6">
                             <label for="">Started At</label>

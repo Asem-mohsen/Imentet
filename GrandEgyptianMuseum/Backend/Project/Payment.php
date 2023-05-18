@@ -75,7 +75,7 @@ include "../NavUser.php";
         }
     }
   }else{
-    header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
+    // header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
   }
 
   // 2nd is Donation
