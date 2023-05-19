@@ -45,7 +45,7 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
 
 
 }elseif(isset($_POST['Send']) && isset($_SESSION['AdminID'])){
-    $ErrorMsgOfAdmin =  "<div class='alert alert-danger txt-center'> You are Admin Why do you Need That !! </div>" ;
+    $ErrorMsgOfAdmin =  "<div class='alert alert-danger text-center'> You are Admin Why do you Need That !! </div>" ;
 }
 
 ?>
