@@ -123,11 +123,13 @@ if(empty($ItemID)){
                                 </p>
                                 <div class="product-details__button-block">
                                     <input type='hidden' name='Quantity' value="<?php echo $Product['Quantity'] ?>" />
-                                    <?php if(!isset($_POST['add_to_cart'])){ ?>
+                                    <?php if(!isset($_POST['add_to_cart']) && $Item['Quantity'] > 0){ ?>
                                         <button name='add_to_cart' class="thm-btn product-details__cart-btn">Add to Cart <span>+</span></button>
-                                    <?php }else{ ?>
+                                    <?php }elseif(isset($_POST['add_to_cart'])){ ?>
                                         <button disabled class="thm-btn product-details__cart-btn">Added to Cart </button>
-                                    <?php } ?>
+                                    <?php }elseif($Item['Quantity'] <= 0){
+                                        echo "Out Of Stock" ;
+                                    } ?>
                                 </div>
                                 <p class="product-details__availabelity">
                                     <span>Availability:</span>
@@ -250,7 +252,11 @@ if(empty($ItemID)){
                                                 </p>
                                             </div>
                                             <div class="product-one__content-right">
-                                                <button name='add_to_cart' data-toggle="tooltip" data-placement="top" title="Add to Cart" class="product-one__cart-btn"><i class="egypt-icon-supermarket"></i></button>
+                                                <?php if($Product['Quantity'] <= 0){?>
+                                                    Out of Stock
+                                                <?php }else{ ?>
+                                                    <button name='add_to_cart' data-toggle="tooltip" data-placement="top" title="Add to Cart" class="product-one__cart-btn"><i class="egypt-icon-supermarket"></i></button>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>

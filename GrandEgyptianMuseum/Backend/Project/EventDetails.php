@@ -276,8 +276,9 @@ if(empty($EventID)){
                             </div>
                           </div>
 
+                          <!-- Feedback -->
                           <?php if(isset($_SESSION['UserID'])){
-                                    if($TodaysDate > $StartDateInTime || $row['Everyday'] == 'Daily'){ 
+                                    if($TodaysDate >= $StartDateInTime || $row['Everyday'] == 'Daily'){ 
                                       $SelectUser = "SELECT * FROM entertainmnetticket WHERE UserID = $UserID AND EventID = $EventID";
                                       $RunQuery = mysqli_query($con , $SelectUser);
                                       $UserPaid = mysqli_fetch_assoc($RunQuery);
@@ -357,7 +358,7 @@ if(empty($EventID)){
                   <h3 class="event-details__form-title">Online Booking</h3>
                     <div class="row">
                       <?php 
-                              if( ($TodaysDate < $StartDateInTime || $row['Everyday'] == 'Daily') && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
+                              if( ($TodaysDate <= $StartDateInTime || $row['Everyday'] == 'Daily') && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
                                 <div class="col-sm-12">
                                   <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
                                   <input type="hidden" name="EventID" value="<?php echo $EventID ;  ?>" />

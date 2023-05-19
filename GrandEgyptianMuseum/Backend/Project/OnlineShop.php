@@ -153,9 +153,13 @@ if(isset($_POST['Search'])){
                               <input type='hidden' name='Quantity' value="<?php echo $Product['Quantity'] ?>" />
                                 <input type='hidden' name='CatID' value="<?php echo $Product['CategoryID'] ?>" />
                             <div class="product-one__content-right">
-                              <button data-toggle="tooltip" data-placement="top" name='add_to_cart' value="Add to Cart" class="product-one__cart-btn">
-                                <i class="egypt-icon-supermarket"></i>
-                              </button>
+                              <?php if($Product['Quantity'] <= 0){?>
+                                Out of Stock
+                              <?php }else{ ?>
+                                <button data-toggle="tooltip" data-placement="top" name='add_to_cart' value="Add to Cart" class="product-one__cart-btn">
+                                  <i class="egypt-icon-supermarket"></i>
+                                </button>
+                              <?php } ?>
                             </div>
                           </div>
                         </div>
