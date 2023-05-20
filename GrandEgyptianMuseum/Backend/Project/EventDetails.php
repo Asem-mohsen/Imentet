@@ -137,7 +137,7 @@ if(empty($EventID)){
                               <span>Date & Time</span>
                               <p>
                                 <i class="fa fa-clock-o"></i>
-                                <?php echo $StartDate ; ?> , 10.00 to 15.00
+                                <?php echo $StartDate ; ?>  <?php if(isset($EndDate) && $row['Everyday'] != "Daily" && $row['DateTo'] != '0000-00-00' ){echo " - ".$EndDate ; }else{ echo ", 10.00 to 7.00" ;} ?>
                               </p>
                             </li>
                             <li>
@@ -357,8 +357,8 @@ if(empty($EventID)){
                 <form method="post">
                   <h3 class="event-details__form-title">Online Booking</h3>
                     <div class="row">
-                      <?php 
-                              if( ($TodaysDate <= $StartDateInTime || $row['Everyday'] == 'Daily') && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
+                        <?php 
+                              if( ($TodaysDate <= $StartDateInTime || $row['Everyday'] == 'Daily' || $row['DateTo'] > $TodaysDate) && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
                                 <div class="col-sm-12">
                                   <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
                                   <input type="hidden" name="EventID" value="<?php echo $EventID ;  ?>" />

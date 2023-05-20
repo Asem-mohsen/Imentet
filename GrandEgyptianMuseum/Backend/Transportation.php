@@ -142,32 +142,197 @@ if (isset($_SESSION["AdminID"])) {
                                                 <td>Actions</td>
                                             </tr>
                                             <?php
-                                            if(isset($_POST['StationIDF2']) && isset($_POST['StationIDF1']) ){
-                                                $Select = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
-                                                JOIN stations AS F1 ON transportation.StationID = F1.StationID 
-                                                JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
-                                                ORDER BY transportation.ID $sort
-                                                ";
-                                                $Query = mysqli_query($con , $Select);
+                                                if(isset($_POST['StationIDF2']) && isset($_POST['StationIDF1']) ){
+                                                    $Select = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
+                                                    JOIN stations AS F1 ON transportation.StationID = F1.StationID 
+                                                    JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
+                                                    ORDER BY transportation.ID $sort
+                                                    ";
+                                                    $Query = mysqli_query($con , $Select);
 
-                                                $sql = "WHERE F1.StationID IN(".implode(',', $_POST['StationIDF1'] ).") AND F2.StationID IN (".implode(',', $_POST['StationIDF2']).")" ; 
-                                                $SelectTrans = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
-                                                JOIN stations AS F1 ON transportation.StationID = F1.StationID 
-                                                JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
-                                                $sql
-                                                ORDER BY transportation.ID $sort
-                                                ";
+                                                    $sql = "WHERE F1.StationID IN(".implode(',', $_POST['StationIDF1'] ).") AND F2.StationID IN (".implode(',', $_POST['StationIDF2']).")" ; 
+                                                    $SelectTrans = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
+                                                    JOIN stations AS F1 ON transportation.StationID = F1.StationID 
+                                                    JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
+                                                    $sql
+                                                    ORDER BY transportation.ID $sort
+                                                    ";
 
-                                                $Query = mysqli_query($con , $SelectTrans);
-                                                $row = mysqli_fetch_assoc($Query);
-                                                $count = mysqli_num_rows($Query);
-                                                
-                                                
-                                                if($count > 0 ){
+                                                    $Query = mysqli_query($con , $SelectTrans);
+                                                    $row = mysqli_fetch_assoc($Query);
+                                                    $count = mysqli_num_rows($Query);
+                                                    
+                                                    
+                                                    if($count > 0 ){
+                                                        foreach ($Query as $Transportation) {
+                                                            $Time24FormatArrival = $Transportation['ArrivalTime']  ;
+                                                            $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
+            
+                                                            $Time24FormatDeparture = $Transportation['DepartureTime']  ;
+                                                            $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
+                                                            echo "<tr>";
+                                                                echo "<td>" . $Transportation['ID']     . "</td>";
+                                                                echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
+                                                                echo "<td>" . $Time12FormatArrival  . "</td>";
+                                                                echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
+                                                                echo "<td>" . $Time12FormatDeparture  . "</td>";
+                                                                echo "<td>" ;
+                                                                        if( $Transportation['Price'] == 0){
+                                                                            echo "<p class='c-gray fs-13'> Free </p>";
+                                                                            
+                                                                        }else{
+                                                                            echo  $Transportation['Price'] ;
+                                                                        }
+                                                                echo "</td>"; 
+                                                                echo "<td>" ;
+                                                                            if($AdminRole == 2){
+                                                                                echo "<div class='tableButtons'>";
+                                                                                    echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
+                                                                                    echo "<button class='btn btn-danger' disabled> Remove </button>";
+                                                                                echo "</div>";
+                                                                            }else{
+                                                                                echo "<div class='tableButtons'>";
+                                                                                    echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
+                                                                                    echo "<a href='./Transportation.php?action=Remove&TransportationID=". $Transportation['ID']."' class='btn btn-danger'>Remove</a>";
+                                                                                echo "</div>";
+                                                                            }
+                                                                echo "</td>";
+                                                        
+                                                            echo "</tr>";
+                                                        }   
+                                                    }
+                                                }elseif(isset($_POST['StationIDF2']) && !isset($_POST['StationIDF1'])){
+                                                    $Select = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
+                                                    JOIN stations AS F1 ON transportation.StationID = F1.StationID 
+                                                    JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
+                                                    ORDER BY transportation.ID $sort
+                                                    ";
+                                                    $Query = mysqli_query($con , $Select);
+
+                                                    $sql = "WHERE transportation.StationTo IN(".implode(',', $_POST['StationIDF2'] ).")" ; 
+                                                    $SelectTrans = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
+                                                    JOIN stations AS F1 ON transportation.StationID = F1.StationID 
+                                                    JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
+                                                    $sql
+                                                    ORDER BY transportation.ID $sort
+                                                    ";
+
+                                                    $Query = mysqli_query($con , $SelectTrans);
+                                                    $row = mysqli_fetch_assoc($Query);
+                                                    $count = mysqli_num_rows($Query);
+            
+                                                    
+                                                    if($count > 0 ){
+                                                        foreach ($Query as $Transportation) {
+                                                            $Time24FormatArrival = $Transportation['ArrivalTime']  ;
+                                                            $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
+            
+                                                            $Time24FormatDeparture = $Transportation['DepartureTime']  ;
+                                                            $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
+                                                            echo "<tr>";
+                                                                echo "<td>" . $Transportation['ID']     . "</td>";
+                                                                echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
+                                                                echo "<td>" . $Time12FormatArrival  . "</td>";
+                                                                echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
+                                                                echo "<td>" . $Time12FormatDeparture  . "</td>";
+                                                                echo "<td>" ;
+                                                                        if( $Transportation['Price'] == 0){
+                                                                            echo "<p class='c-gray fs-13'> Free </p>";
+                                                                            
+                                                                        }else{
+                                                                            echo  $Transportation['Price'] ;
+                                                                        }
+                                                                echo "</td>"; 
+                                                                echo "<td>" ;
+                                                                            if($AdminRole == 2){
+                                                                                echo "<div class='tableButtons'>";
+                                                                                    echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
+                                                                                    echo "<button class='btn btn-danger' disabled> Remove </button>";
+                                                                                echo "</div>";
+                                                                            }else{
+                                                                                echo "<div class='tableButtons'>";
+                                                                                    echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
+                                                                                    echo "<a href='./Transportation.php?action=Remove&TransportationID=". $Transportation['ID']."' class='btn btn-danger'>Remove</a>";
+                                                                                echo "</div>";
+                                                                            }
+                                                                echo "</td>";
+                                                        
+                                                            echo "</tr>";
+                                                        }   
+                                                    }
+                                                }elseif(isset($_POST['StationIDF1']) && !isset($_POST['StationIDF2'])){
+                                                    $Select = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
+                                                    JOIN stations AS F1 ON transportation.StationID = F1.StationID 
+                                                    JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
+                                                    ORDER BY transportation.ID $sort
+                                                    ";
+                                                    $Query = mysqli_query($con , $Select);
+
+                                                    $sql = "WHERE F1.StationID IN(".implode(',', $_POST['StationIDF1'] ).")" ; 
+                                                    $SelectTrans = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
+                                                    JOIN stations AS F1 ON transportation.StationID = F1.StationID 
+                                                    JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
+                                                    $sql
+                                                    ORDER BY transportation.ID $sort
+                                                    ";
+
+                                                    $Query = mysqli_query($con , $SelectTrans);
+                                                    $row = mysqli_fetch_assoc($Query);
+                                                    $count = mysqli_num_rows($Query);
+            
+                                                    
+                                                    if($count > 0 ){
+                                                        foreach ($Query as $Transportation) {
+                                                            $Time24FormatArrival = $Transportation['ArrivalTime']  ;
+                                                            $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
+            
+                                                            $Time24FormatDeparture = $Transportation['DepartureTime']  ;
+                                                            $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
+                                                            echo "<tr>";
+                                                                echo "<td>" . $Transportation['ID']     . "</td>";
+                                                                echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
+                                                                echo "<td>" . $Time12FormatArrival  . "</td>";
+                                                                echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
+                                                                echo "<td>" . $Time12FormatDeparture  . "</td>";
+                                                                echo "<td>" ;
+                                                                        if( $Transportation['Price'] == 0){
+                                                                            echo "<p class='c-gray fs-13'> Free </p>";
+                                                                            
+                                                                        }else{
+                                                                            echo  $Transportation['Price'] ;
+                                                                        }
+                                                                echo "</td>"; 
+                                                                echo "<td>" ;
+                                                                            if($AdminRole == 2){
+                                                                                echo "<div class='tableButtons'>";
+                                                                                    echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
+                                                                                    echo "<button class='btn btn-danger' disabled> Remove </button>";
+                                                                                echo "</div>";
+                                                                            }else{
+                                                                                echo "<div class='tableButtons'>";
+                                                                                    echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
+                                                                                    echo "<a href='./Transportation.php?action=Remove&TransportationID=". $Transportation['ID']."' class='btn btn-danger'>Remove</a>";
+                                                                                echo "</div>";
+                                                                            }
+                                                                echo "</td>";
+                                                        
+                                                            echo "</tr>";
+                                                        } 
+                                                    }
+                                                }else{
+                                                    $Select = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
+                                                    JOIN stations AS F1 ON transportation.StationID = F1.StationID 
+                                                    JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
+                                                    ORDER BY transportation.ID $sort
+                                                    ";
+                                                    $Query = mysqli_query($con , $Select);
+                                                    $row = mysqli_fetch_assoc($Query);
+                                                    $count = mysqli_num_rows($Query);
+                                                    
                                                     foreach ($Query as $Transportation) {
                                                         $Time24FormatArrival = $Transportation['ArrivalTime']  ;
                                                         $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
-        
+
                                                         $Time24FormatDeparture = $Transportation['DepartureTime']  ;
                                                         $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
                                                         echo "<tr>";
@@ -186,122 +351,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "</td>"; 
                                                             echo "<td>" ;
                                                                         if($AdminRole == 2){
-                                                                            echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
-                                                                            echo "<button class='btn btn-danger' disabled> Remove </button>";
-                                                                        }else{
                                                                             echo "<div class='tableButtons'>";
                                                                                 echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
-                                                                                echo "<a href='./Transportation.php?action=Remove&TransportationID=". $Transportation['ID']."' class='btn btn-danger'>Remove</a>";
+                                                                                echo "<button class='btn btn-danger' disabled> Remove </button>";
                                                                             echo "</div>";
-                                                                        }
-                                                            echo "</td>";
-                                                    
-                                                        echo "</tr>";
-                                                    }   
-                                                }
-                                            }elseif(isset($_POST['StationIDF2']) && !isset($_POST['StationIDF1'])){
-                                                $Select = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
-                                                JOIN stations AS F1 ON transportation.StationID = F1.StationID 
-                                                JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
-                                                ORDER BY transportation.ID $sort
-                                                ";
-                                                $Query = mysqli_query($con , $Select);
-
-                                                $sql = "WHERE transportation.StationTo IN(".implode(',', $_POST['StationIDF2'] ).")" ; 
-                                                $SelectTrans = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
-                                                JOIN stations AS F1 ON transportation.StationID = F1.StationID 
-                                                JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
-                                                $sql
-                                                ORDER BY transportation.ID $sort
-                                                ";
-
-                                                $Query = mysqli_query($con , $SelectTrans);
-                                                $row = mysqli_fetch_assoc($Query);
-                                                $count = mysqli_num_rows($Query);
-        
-                                                
-                                                if($count > 0 ){
-                                                    foreach ($Query as $Transportation) {
-                                                        $Time24FormatArrival = $Transportation['ArrivalTime']  ;
-                                                        $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
-        
-                                                        $Time24FormatDeparture = $Transportation['DepartureTime']  ;
-                                                        $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
-                                                        echo "<tr>";
-                                                            echo "<td>" . $Transportation['ID']     . "</td>";
-                                                            echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
-                                                            echo "<td>" . $Time12FormatArrival  . "</td>";
-                                                            echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
-                                                            echo "<td>" . $Time12FormatDeparture  . "</td>";
-                                                            echo "<td>" ;
-                                                                    if( $Transportation['Price'] == 0){
-                                                                        echo "<p class='c-gray fs-13'> Free </p>";
-                                                                        
-                                                                    }else{
-                                                                        echo  $Transportation['Price'] ;
-                                                                    }
-                                                            echo "</td>"; 
-                                                            echo "<td>" ;
-                                                                        if($AdminRole == 2){
-                                                                            echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
-                                                                            echo "<button class='btn btn-danger' disabled> Remove </button>";
-                                                                        }else{
-                                                                            echo "<div class='tableButtons'>";
-                                                                                echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
-                                                                                echo "<a href='./Transportation.php?action=Remove&TransportationID=". $Transportation['ID']."' class='btn btn-danger'>Remove</a>";
-                                                                            echo "</div>";
-                                                                        }
-                                                            echo "</td>";
-                                                    
-                                                        echo "</tr>";
-                                                    }   
-                                                }
-                                            }elseif(isset($_POST['StationIDF1']) && !isset($_POST['StationIDF2'])){
-                                                $Select = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
-                                                JOIN stations AS F1 ON transportation.StationID = F1.StationID 
-                                                JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
-                                                ORDER BY transportation.ID $sort
-                                                ";
-                                                $Query = mysqli_query($con , $Select);
-
-                                                $sql = "WHERE F1.StationID IN(".implode(',', $_POST['StationIDF1'] ).")" ; 
-                                                $SelectTrans = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
-                                                JOIN stations AS F1 ON transportation.StationID = F1.StationID 
-                                                JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
-                                                $sql
-                                                ORDER BY transportation.ID $sort
-                                                ";
-
-                                                $Query = mysqli_query($con , $SelectTrans);
-                                                $row = mysqli_fetch_assoc($Query);
-                                                $count = mysqli_num_rows($Query);
-        
-                                                
-                                                if($count > 0 ){
-                                                    foreach ($Query as $Transportation) {
-                                                        $Time24FormatArrival = $Transportation['ArrivalTime']  ;
-                                                        $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
-        
-                                                        $Time24FormatDeparture = $Transportation['DepartureTime']  ;
-                                                        $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
-                                                        echo "<tr>";
-                                                            echo "<td>" . $Transportation['ID']     . "</td>";
-                                                            echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
-                                                            echo "<td>" . $Time12FormatArrival  . "</td>";
-                                                            echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
-                                                            echo "<td>" . $Time12FormatDeparture  . "</td>";
-                                                            echo "<td>" ;
-                                                                    if( $Transportation['Price'] == 0){
-                                                                        echo "<p class='c-gray fs-13'> Free </p>";
-                                                                        
-                                                                    }else{
-                                                                        echo  $Transportation['Price'] ;
-                                                                    }
-                                                            echo "</td>"; 
-                                                            echo "<td>" ;
-                                                                        if($AdminRole == 2){
-                                                                            echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
-                                                                            echo "<button class='btn btn-danger' disabled> Remove </button>";
                                                                         }else{
                                                                             echo "<div class='tableButtons'>";
                                                                                 echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
@@ -312,53 +365,8 @@ if (isset($_SESSION["AdminID"])) {
                                                     
                                                         echo "</tr>";
                                                     } 
+                                                    
                                                 }
-                                            }else{
-                                                $Select = "SELECT transportation .* , F1.Station AS StationName  , F2.Station As StationTo FROM transportation 
-                                                JOIN stations AS F1 ON transportation.StationID = F1.StationID 
-                                                JOIN stations AS F2 ON transportation.StationTo = F2.StationID 
-                                                ORDER BY transportation.ID $sort
-                                                ";
-                                                $Query = mysqli_query($con , $Select);
-                                                $row = mysqli_fetch_assoc($Query);
-                                                $count = mysqli_num_rows($Query);
-                                                
-                                                foreach ($Query as $Transportation) {
-                                                    $Time24FormatArrival = $Transportation['ArrivalTime']  ;
-                                                    $Time12FormatArrival = date('h:i A' , strtotime($Time24FormatArrival));
-
-                                                    $Time24FormatDeparture = $Transportation['DepartureTime']  ;
-                                                    $Time12FormatDeparture = date('h:i A' , strtotime($Time24FormatDeparture));
-                                                    echo "<tr>";
-                                                        echo "<td>" . $Transportation['ID']     . "</td>";
-                                                        echo "<td class='bg-eee '>" . $Transportation['StationName']  . "</td>";
-                                                        echo "<td>" . $Time12FormatArrival  . "</td>";
-                                                        echo "<td class='bg-eee'>" . $Transportation['StationTo']  . "</td>";
-                                                        echo "<td>" . $Time12FormatDeparture  . "</td>";
-                                                        echo "<td>" ;
-                                                                if( $Transportation['Price'] == 0){
-                                                                    echo "<p class='c-gray fs-13'> Free </p>";
-                                                                    
-                                                                }else{
-                                                                    echo  $Transportation['Price'] ;
-                                                                }
-                                                        echo "</td>"; 
-                                                        echo "<td>" ;
-                                                                    if($AdminRole == 2){
-                                                                        echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
-                                                                        echo "<button class='btn btn-danger' disabled> Remove </button>";
-                                                                    }else{
-                                                                        echo "<div class='tableButtons'>";
-                                                                            echo "<a href='./Transportation.php?action=Edit&TransportationID=". $Transportation['ID']."' class='btn btn-success'>Edit</a>";
-                                                                            echo "<a href='./Transportation.php?action=Remove&TransportationID=". $Transportation['ID']."' class='btn btn-danger'>Remove</a>";
-                                                                        echo "</div>";
-                                                                    }
-                                                        echo "</td>";
-                                                
-                                                    echo "</tr>";
-                                                } 
-                                                
-                                            }
                                             ?>
                                         </table>
                                     </div>
