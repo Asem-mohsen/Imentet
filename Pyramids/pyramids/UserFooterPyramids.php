@@ -37,9 +37,10 @@
                 <div class="side-menu__block-about">
                     <h3 class="side-menu__block__title">About Us</h3>
                     <p class="side-menu__block-about__text">
-                        We must explain to you how all seds this mistakens idea off
-                        denouncing pleasures and praising pain was born and I will give you
-                        a completed accounts off the system and
+                    The pyramids of Egypt have a rich and fascinating history 
+                    that dates back over 4,500 years. These monumental structures were built as
+                    tombs for the pharaohs, the ancient Egyptian kings, who believed in an afterlife
+                    and wanted to ensure their eternal journey
                     </p>
                     <a href="http://localhost/imentet-1/Pyramids/pyramids/VisitTickets.php" class="thm-btn side-menu__block-about__btn">Get Tickets</a>
                 </div>
@@ -67,7 +68,7 @@
                 </ul>
                 </div>
                 <p class="side-menu__block__text site-footer__copy-text">
-                <a href="#">Egypt</a> 
+                <a href="#">Imentet</a> 
                 <i class="fa fa-copyright"></i> <?php echo date('Y') ?> All Right
                 Reserved
                 </p>

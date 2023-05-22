@@ -121,7 +121,7 @@ include "./Functions/Functions.php";
             <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
                 <div class="container clearfix">
                     <div class="logo-box">
-                        <a class="navbar-brand" href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">
+                        <a class="navbar-brand" href="http://localhost/imentet-1/Pyramids/pyramids/index.php">
                             <img src="images/resources/imentet-gem-logo.svg" class="main-logo" alt="Awesome Image" />
                         </a>
                         <button class="menu-toggler" data-target=".main-navigation">
@@ -134,7 +134,7 @@ include "./Functions/Functions.php";
                                 <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php">Home</a>
                                 <ul class="submenu">
                                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
-                                    <li><a href="">Pyramids</a></li>
+                                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Pyramids</a></li>
                                 </ul>
                             </li>
                             <li>

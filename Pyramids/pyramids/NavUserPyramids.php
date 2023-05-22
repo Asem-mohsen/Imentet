@@ -31,7 +31,7 @@ include "./Functions/Functions.php";
     <link rel="stylesheet" href="css/nouislider.pips.css" />
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.css?v=1" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/payment.css" />
 
@@ -142,7 +142,7 @@ include "./Functions/Functions.php";
             <div class="main-navigation">
                 <ul class="navigation-box @@extra_class">
                 <li class="current">
-                    <a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">Home</a>
+                    <a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a>
                 </li>
                 <li>
                     <a href="http://localhost/Imentet-1/Pyramids/pyramids/AboutUs.php">The Pyramids</a>
