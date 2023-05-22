@@ -132,7 +132,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                   <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php">Home</a>
                   <ul class="submenu">
                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
-                    <li><a href="index-2.php">Pyramids</a></li>
+                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Pyramids</a></li>
                   </ul>
                 </li>
                 <li>
@@ -249,7 +249,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             </li>
             <li class="side-menu__block-contact__list-item">
               <i class="fa fa-envelope"></i>
-              <a href="mailto:example@mail.com">example@mail.com</a>
+              <a href="mailto:example@mail.com">Imentet@mail.com</a>
             </li>
             <li class="side-menu__block-contact__list-item">
               <i class="fa fa-clock-o"></i>
@@ -258,8 +258,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           </ul>
         </div>
         <p class="side-menu__block__text site-footer__copy-text">
-          <a href="#">Egypt</a>
-            <i class="fa fa-copyright"></i> 2023 All Right
+          <a href="#">Imentet</a>
+            <i class="fa fa-copyright"></i> <?php echo date('Y') ?> All Right
           Reserved
         </p>
       </div>

@@ -28,7 +28,7 @@ if(isset($_POST['Book'])){
       $InsertEventTicket = "INSERT INTO eventticketcart VALUES(NULL , $EventID ,$UserID , $Total , $Quantity)";
       $InsertRun = mysqli_query($con , $InsertEventTicket);
       
-      header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?EventTicket");
+      header("Location: http://localhost/imentet-1/Pyramids/pyramids/Payment.php?EventTicket");
       exit();
     }else{
       echo "You Must Have Account to Continue";

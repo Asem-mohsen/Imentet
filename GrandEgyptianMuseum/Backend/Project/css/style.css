@@ -11014,7 +11014,7 @@ input[type="file"] {
   display: grid;
   grid-template-columns: repeat(2,1fr);
   width: 100%;
-  height: calc(100vh - 90px); 
+  height: calc(100vh - 102px); 
 
 }
 

@@ -93,13 +93,13 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
                                         <h3 class="contact-one__title">Egypt</h3>
                                         <p class="contact-one__text">Alexandria Desert Rd, Haram, Giza Governorate X4VF+V3F</p>
                                         <p class="contact-one__text"><a href="tel:321-888-789-0123">TEL: +20-23-531-7344</a></p>
-                                        <p class="contact-one__text"><a href="mailto:egyptmuseum@example.com">E-mail: gem@example.com</a></p>
+                                        <p class="contact-one__text"><a href="mailto:egyptmuseum@example.com">E-mail: Pyramids@example.com</a></p>
                                     </div>
                                     <div class="col-lg-6">
                                         <ul class="contact-one__list list-unstyled">
-                                            <li><span class="contact-one__list-name">Sa & Su <span class="contact-one__list-colon">:</span></span>10am to 10.00pm</li>
-                                            <li><span class="contact-one__list-name">Mo & Tu <span class="contact-one__list-colon">:</span></span>10am to 10.00pm</li>
-                                            <li><span class="contact-one__list-name">We & Th <span class="contact-one__list-colon">:</span></span>10am to 10.00pm</li>
+                                            <li><span class="contact-one__list-name">Sa & Su <span class="contact-one__list-colon">:</span></span>10am to 7.30pm</li>
+                                            <li><span class="contact-one__list-name">Mo & Tu <span class="contact-one__list-colon">:</span></span>10am to 7.30pm</li>
+                                            <li><span class="contact-one__list-name">We & Th <span class="contact-one__list-colon">:</span></span>10am to 7.30pm</li>
                                             <li><span class="contact-one__list-name">FR <span class="contact-one__list-colon">:</span></span>Closed</li>
                                         </ul>
                                     </div>

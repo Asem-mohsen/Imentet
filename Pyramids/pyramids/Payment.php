@@ -239,7 +239,7 @@ include "./NavUserPyramids.php";
                 $rawdate      = htmlentities($VisitCart['Date']);
                 $Date         = date('Y-m-d', strtotime($rawdate));
                 $Payment = 1;
-                $PlaceID = 2 ;
+                $PlaceID = 1 ;
           
                 $InsertQuery = "INSERT INTO visitticket VALUES(NULL , $UserID , $PlaceID , '$Date' , $Payment , $TotalQuantity , $TotalFinalValue)";
                 $RunQuery = mysqli_query($con , $InsertQuery);

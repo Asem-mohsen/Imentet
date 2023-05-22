@@ -174,7 +174,7 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
                           <div class="col-sm-12">
                             <p>You Already Enrolled In <?php
                              if($Enrolled['Type'] == 'Supporting' || $Enrolled['Type'] == 'Patron'){
-                              echo "<a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VIPmembership.php?MembershipID=" . $Enrolled['MembershipID'] ."'>". $Enrolled['Type'] ."</a>" ;
+                              echo "<a href='http://localhost/imentet-1/Pyramids/pyramids/VIPmembership.php?MembershipID=" . $Enrolled['MembershipID'] ."'>". $Enrolled['Type'] ."</a>" ;
                             }else{
                               echo $Enrolled['Type'] ;
                             }?> Membership</p>
@@ -206,7 +206,7 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
                         </div>
                         <div class="col-sm-12">
                           <?php if(isset($UserID)){ ?>
-                              <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?MembershipPayment=<?php echo $MembershipID ?>" class="thm-btn event-details__form-btn" >
+                              <a href="http://localhost/imentet-1/Pyramids/pyramids/Payment.php?MembershipPayment=<?php echo $MembershipID ?>" class="thm-btn event-details__form-btn" >
                               Proceed to Book
                               </a>
                           <?php }elseif(isset($_SESSION['AdminID'])){?>

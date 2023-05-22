@@ -78,7 +78,7 @@ if(isset($_SESSION['AdminID'])){
                   <a href="">Home</a>
                   <ul class="submenu">
                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
-                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">Pyramids</a></li>
+                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Pyramids</a></li>
                   </ul>
                 </li>
                 <li>
@@ -150,7 +150,7 @@ if(isset($_SESSION['AdminID'])){
               </h2>
               <p class="slider-one__text text-uppercase">Visit Us</p>
               <div class="content">
-                <a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php" class="thm-btn slider-one__btn">Find Out More</a>
+                <a href="http://localhost/imentet-1/Pyramids/pyramids/index.php" target="_blank" class="thm-btn slider-one__btn">Find Out More</a>
               </div>
             </div>
           </div>
