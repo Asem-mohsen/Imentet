@@ -78,6 +78,7 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
             }
             
         ?>
+        
         <section class="contact-one">
             <div class="container">
                 <div class="row">

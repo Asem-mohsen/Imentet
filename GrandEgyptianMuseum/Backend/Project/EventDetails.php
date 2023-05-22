@@ -77,7 +77,7 @@ if(empty($EventID)){
 
 
   if($EventID != $row['ID']){
-    header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php");
+    header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php?Page=1");
     exit();
   }
   ?>

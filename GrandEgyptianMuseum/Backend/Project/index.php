@@ -78,7 +78,7 @@ if(isset($_SESSION['AdminID'])){
                   <a href="">Home</a>
                   <ul class="submenu">
                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
-                    <li><a href="index-2.html">Pyramids</a></li>
+                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">Pyramids</a></li>
                   </ul>
                 </li>
                 <li>
@@ -150,7 +150,7 @@ if(isset($_SESSION['AdminID'])){
               </h2>
               <p class="slider-one__text text-uppercase">Visit Us</p>
               <div class="content">
-                <a href="#" class="thm-btn slider-one__btn">Find Out More</a>
+                <a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php" class="thm-btn slider-one__btn">Find Out More</a>
               </div>
             </div>
           </div>
@@ -169,9 +169,8 @@ if(isset($_SESSION['AdminID'])){
         <div class="side-menu__block-about">
           <h3 class="side-menu__block__title">About Us</h3>
           <p class="side-menu__block-about__text">
-            Grand Egyptian Museum is the world's leading museum of history & culture, housing a
-            permanent collection of over 2.3 million objects that span over 5,000
-            which is toil and pain these cases are perfectly. 
+            Imentet, She was the ancient Egyptian goddess of the West 
+            and thus the protector of the necropolises west of the Nile.
           </p>
           <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php" class="thm-btn side-menu__block-about__btn">
             Get Your Tickets
@@ -191,7 +190,7 @@ if(isset($_SESSION['AdminID'])){
             </li>
             <li class="side-menu__block-contact__list-item">
               <i class="fa fa-envelope"></i>
-              <a href="mailto:example@mail.com">example@mail.com</a>
+              <a href="mailto:example@mail.com">Imentet@mail.com</a>
             </li>
             <li class="side-menu__block-contact__list-item">
               <i class="fa fa-clock-o"></i>
@@ -200,8 +199,8 @@ if(isset($_SESSION['AdminID'])){
           </ul>
         </div>
         <p class="side-menu__block__text site-footer__copy-text">
-          <a href="#">Egypt</a>
-            <i class="fa fa-copyright"></i> 2023 All Right
+          <a href="./AboutImentet">Imentet</a>
+            <i class="fa fa-copyright"></i> <?php echo date('Y') ?> All Right
           Reserved
         </p>
       </div>

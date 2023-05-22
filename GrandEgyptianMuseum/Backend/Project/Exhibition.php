@@ -219,9 +219,9 @@ if(isset($_GET['MoreData'])){
               </div>
             <?php } ?>
 
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
 
   <?php include "../UserFooter.php"; ?>

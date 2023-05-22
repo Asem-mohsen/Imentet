@@ -51,8 +51,6 @@ if(isset($_SESSION['UserID'])){
                   $InsertGifts = "INSERT INTO itemscart VALUES(NULL , $UserID , $ProductID , $Quantity , $Total)";
                   $InsertQuery = mysqli_query($con , $InsertGifts);
                   
-                  // $UpdateGifts = "UPDATE giftshop SET Quantity = Quantity-$Quantity WHERE ID = $ProductID";
-                  // $UpdateQuery = mysqli_query($con , $UpdateGifts);
               }
               
           }
@@ -76,7 +74,7 @@ if(isset($_SESSION['UserID'])){
         <div class="container">
             <ul class="list-unstyled thm-breadcrumb thm-breadcrumb__two">
                 <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a></li>
-                <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/OnlineShop.php">Shop</a></li>
+                <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/OnlineShop.php?Page=1">Shop</a></li>
                 <li>Shopping Cart</li>
             </ul>
         </div>

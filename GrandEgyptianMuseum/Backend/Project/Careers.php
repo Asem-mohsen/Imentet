@@ -86,7 +86,6 @@ if(isset($_SESSION['UserID'])){
       <section class="contact-one">
         <div class="container">
 
-          
           <?php if(isset($CountRow) > 0 && isset($ApplicationRow['UserID']) && $InterviewDate < $After6MonthDate){ ?>
             <div class="row">
               <div class="col-lg-6">
