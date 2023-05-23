@@ -231,8 +231,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             permanent collection of over 2.3 million objects that span over 5,000
             which is toil and pain these cases are perfectly. 
           </p>
-          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php" class="thm-btn side-menu__block-about__btn">
-            Get Your Tickets
+          <a href="" class="thm-btn side-menu__block-about__btn">
+            More About Us
           </a>
         </div>
         <hr class="side-menu__block-line" />

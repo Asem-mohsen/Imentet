@@ -289,7 +289,7 @@ if(isset($_SESSION['UserID'])){
                         <select class="selectpicker" name="Career" required>
                           <option value="0" selected>Select a Career</option>
                           <?php
-                            $SelectCareer = "SELECT * FROM careers WHERE PlaceID = 2";
+                            $SelectCareer = "SELECT * FROM careers WHERE PlaceID = 1 AND ID NOT IN(2,4,5)";
                               $RunQuery = mysqli_query($con , $SelectCareer);
                               $row = mysqli_fetch_assoc($RunQuery);
                               foreach($RunQuery as $Career){ ?>

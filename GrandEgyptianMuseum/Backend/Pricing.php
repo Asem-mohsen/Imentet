@@ -132,77 +132,165 @@ if (isset($_SESSION["AdminID"])) {
                                     <div class="row justify-content-md-center">
                                         <div class="col-xl-5 col-lg-6 col-md-8">
                                             <div class="section-title text-center title-ex1">
-                                                <h1 class="PageName">Pricing</h1>
+                                                <h1 class="PageName" style="margin-top:27px;">Pricing</h1>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex f-wrap">
                                             <?php 
-                                            if(isset($_POST['RoleID']) && isset($_POST['PlaceID'])){
-                                                $sql = "WHERE visitpricing.PlaceID IN(".implode(',', $_POST['PlaceID'] ).") AND visitpricing.UserRole IN (".implode(',', $_POST['RoleID']).")" ; 
-        
-                                                $PriceQuery = "SELECT DISTINCT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
-                                                                JOIN userrole ON visitpricing.UserRole = userrole.ID 
-                                                                JOIN place ON visitpricing.PlaceID = place.ID
-                                                                $sql
-                                                                ORDER BY visitpricing.ID $sort 
-                                                                ";
-                            
-                                                $Query = mysqli_query($con , $PriceQuery);
-                                                $fetchquery = mysqli_fetch_row($Query);
-                                                $count =mysqli_num_rows($Query);
-        
-                                                
-                                                if($count > 0 ){
-                                                    foreach($Query as $Pricing){ ?>
-                                                        <div class="PriceDiv">
-                                                            <div class="price-card">
-                                                                <h2><?php echo $Pricing['UserRole'] ?></h2>
-                                                                <ul class="pricing-offers">
-                                                                    <li class="fw-bold"><?php echo $Pricing['PlaceName'] ?></li>
-                                                                    <li><?php 
-                                                                            if($Pricing['MuseumFee']){
-                                                                                echo "<div class=''>";
-                                                                                    echo "<p>Entrance : <span>". $Pricing['EntranceFee'] ."</span></p>";
-                                                                                    echo "<p>Museum : <span>". $Pricing['MuseumFee'] ."</span></p>";
-                                                                                echo "</div>";
-                                                                            }else{
-                                                                                echo "<div class=''>";
-                                                                                    echo "<p>Entrance : <span>".  $Pricing['EntranceFee'] ."</span></p>";
-                                                                                echo "</div>";
-                                                                            }?>
-                                                                    </li>
-                                                                </ul>
-                                                                <div class="d-flex space-between">
-                                                                    <a href="./Pricing.php?action=Edit&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-success btn-mid">Edit</a>
-                                                                    <?php if($AdminRole == 1){  ?>
-                                                                        <a href="./Pricing.php?action=Delete&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-danger btn-mid">Remove</a>
-                                                                    <?php }else{ ?>
-                                                                        <button class="btn btn-danger btn-mid" disabled>Remove</button>
-                                                                    <?php } ?>
+                                                if(isset($_POST['RoleID']) && isset($_POST['PlaceID'])){
+                                                    $sql = "WHERE visitpricing.PlaceID IN(".implode(',', $_POST['PlaceID'] ).") AND visitpricing.UserRole IN (".implode(',', $_POST['RoleID']).")" ; 
+            
+                                                    $PriceQuery = "SELECT DISTINCT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
+                                                                    JOIN userrole ON visitpricing.UserRole = userrole.ID 
+                                                                    JOIN place ON visitpricing.PlaceID = place.ID
+                                                                    $sql
+                                                                    ORDER BY visitpricing.ID $sort 
+                                                                    ";
+                                
+                                                    $Query = mysqli_query($con , $PriceQuery);
+                                                    $fetchquery = mysqli_fetch_row($Query);
+                                                    $count =mysqli_num_rows($Query);
+            
+                                                    
+                                                    if($count > 0 ){
+                                                        foreach($Query as $Pricing){ ?>
+                                                            <div class="PriceDiv" style="margin: auto;">
+                                                                <div class="price-card">
+                                                                    <h2><?php echo $Pricing['UserRole'] ?></h2>
+                                                                    <ul class="pricing-offers">
+                                                                        <li class="fw-bold"><?php echo $Pricing['PlaceName'] ?></li>
+                                                                        <li><?php 
+                                                                                if($Pricing['MuseumFee']){
+                                                                                    echo "<div class=''>";
+                                                                                        echo "<p>Entrance : <span>". $Pricing['EntranceFee'] ."</span></p>";
+                                                                                        echo "<p>Museum : <span>". $Pricing['MuseumFee'] ."</span></p>";
+                                                                                    echo "</div>";
+                                                                                }else{
+                                                                                    echo "<div class=''>";
+                                                                                        echo "<p>Entrance : <span>".  $Pricing['EntranceFee'] ."</span></p>";
+                                                                                    echo "</div>";
+                                                                                }?>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="d-flex space-between">
+                                                                        <a href="./Pricing.php?action=Edit&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-success btn-mid">Edit</a>
+                                                                        <?php if($AdminRole == 1){  ?>
+                                                                            <a href="./Pricing.php?action=Delete&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-danger btn-mid">Remove</a>
+                                                                        <?php }else{ ?>
+                                                                            <button class="btn btn-danger btn-mid" disabled>Remove</button>
+                                                                        <?php } ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                <?php }  
+                                                    <?php }  
+                                                        }
+                                                }elseif(isset($_POST['PlaceID']) && !isset($_POST['RoleID'])){
+                                                    $sql = "WHERE visitpricing.PlaceID IN(".implode(',', $_POST['PlaceID']).")";
+            
+                                                    $PriceQuery = "SELECT DISTINCT visitpricing. *, userrole.RoleName AS UserRole ,visitpricing.UserRole AS RoleID, place.Name AS PlaceName FROM visitpricing 
+                                                                    JOIN userrole ON visitpricing.UserRole = userrole.ID 
+                                                                    JOIN place ON visitpricing.PlaceID = place.ID
+                                                                    $sql
+                                                                    ORDER BY visitpricing.ID $sort 
+                                                                    ";
+                                
+                                                    $Query = mysqli_query($con , $PriceQuery);
+                                                    $fetchquery = mysqli_fetch_row($Query);
+                                                    $count =mysqli_num_rows($Query);
+            
+                                                    
+                                                    if($count > 0 ){
+                                                        foreach($Query as $Pricing){ ?>
+                                                            <div class="PriceDiv" style="margin: auto;">
+                                                                <div class="price-card">
+                                                                    <h2><?php echo $Pricing['UserRole'] ?></h2>
+                                                                    <ul class="pricing-offers">
+                                                                        <li class="fw-bold"><?php echo $Pricing['PlaceName'] ?></li>
+                                                                        <li><?php 
+                                                                                if($Pricing['MuseumFee']){
+                                                                                    echo "<div class=''>";
+                                                                                        echo "<p>Entrance : <span>". $Pricing['EntranceFee'] ."</span></p>";
+                                                                                        echo "<p>Museum : <span>". $Pricing['MuseumFee'] ."</span></p>";
+                                                                                    echo "</div>";
+                                                                                }else{
+                                                                                    echo "<div class=''>";
+                                                                                        echo "<p>Entrance : <span>".  $Pricing['EntranceFee'] ."</span></p>";
+                                                                                    echo "</div>";
+                                                                                }?>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="d-flex space-between">
+                                                                        <a href="./Pricing.php?action=Edit&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-success btn-mid">Edit</a>
+                                                                        <?php if($AdminRole == 1){  ?>
+                                                                            <a href="./Pricing.php?action=Delete&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-danger btn-mid">Remove</a>
+                                                                        <?php }else{ ?>
+                                                                            <button class="btn btn-danger btn-mid" disabled>Remove</button>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    <?php }  
                                                     }
-                                            }elseif(isset($_POST['PlaceID']) && !isset($_POST['RoleID'])){
-                                                $sql = "WHERE visitpricing.PlaceID IN(".implode(',', $_POST['PlaceID']).")";
-        
-                                                $PriceQuery = "SELECT DISTINCT visitpricing. *, userrole.RoleName AS UserRole ,visitpricing.UserRole AS RoleID, place.Name AS PlaceName FROM visitpricing 
-                                                                JOIN userrole ON visitpricing.UserRole = userrole.ID 
-                                                                JOIN place ON visitpricing.PlaceID = place.ID
-                                                                $sql
-                                                                ORDER BY visitpricing.ID $sort 
-                                                                ";
-                            
-                                                $Query = mysqli_query($con , $PriceQuery);
-                                                $fetchquery = mysqli_fetch_row($Query);
-                                                $count =mysqli_num_rows($Query);
-        
-                                                
-                                                if($count > 0 ){
+                                                }elseif(isset($_POST['RoleID']) && !isset($_POST['PlaceID'])){
+                                                    $sql = "WHERE visitpricing.UserRole IN(". implode(',', $_POST['RoleID']).")";
+                                                    $PriceQuery = "SELECT DISTINCT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID , place.Name AS PlaceName FROM visitpricing 
+                                                                    JOIN userrole ON visitpricing.UserRole = userrole.ID 
+                                                                    JOIN place ON visitpricing.PlaceID = place.ID
+                                                                    $sql
+                                                                    ORDER BY visitpricing.ID $sort 
+                                                                    ";
+                                
+                                                    $Query = mysqli_query($con , $PriceQuery);
+                                                    $fetchquery = mysqli_fetch_row($Query);
+                                                    $count =mysqli_num_rows($Query);
+            
+                                                    
+                                                    if($count > 0 ){
+                                                        foreach($Query as $Pricing){ ?>
+                                                            <div class="PriceDiv" style="margin: auto;">
+                                                                <div class="price-card">
+                                                                    <h2><?php echo $Pricing['UserRole'] ?></h2>
+                                                                    <ul class="pricing-offers">
+                                                                        <li class="fw-bold"><?php echo $Pricing['PlaceName'] ?></li>
+                                                                        <li><?php 
+                                                                                if($Pricing['MuseumFee']){
+                                                                                    echo "<div class=''>";
+                                                                                        echo "<p>Entrance : <span>". $Pricing['EntranceFee'] ."</span></p>";
+                                                                                        echo "<p>Museum : <span>". $Pricing['MuseumFee'] ."</span></p>";
+                                                                                    echo "</div>";
+                                                                                }else{
+                                                                                    echo "<div class=''>";
+                                                                                        echo "<p>Entrance : <span>".  $Pricing['EntranceFee'] ."</span></p>";
+                                                                                    echo "</div>";
+                                                                                }?>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="d-flex space-between">
+                                                                    <a href="./Pricing.php?action=Edit&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-success btn-mid">Edit</a>
+                                                                    <?php if($AdminRole == 1){  ?>
+                                                                        <a href="./Pricing.php?action=Delete&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-danger btn-mid">Remove</a>
+                                                                    <?php }else{ ?>
+                                                                        <button class="btn btn-danger btn-mid" disabled>Remove</button>
+                                                                    <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    <?php } 
+                                                    }
+                                                }else{
+                                                    $PriceQuery = "SELECT DISTINCT visitpricing. *, userrole.RoleName AS UserRole ,visitpricing.UserRole AS RoleID  , place.Name AS PlaceName FROM visitpricing 
+                                                                    JOIN userrole ON visitpricing.UserRole = userrole.ID 
+                                                                    JOIN place ON visitpricing.PlaceID = place.ID
+                                                                    ORDER BY visitpricing.ID $sort 
+                                                    ";
+                                
+                                                    $Query = mysqli_query($con , $PriceQuery);
+                                                    $fetchquery = mysqli_fetch_row($Query);
+                                                    $count =mysqli_num_rows($Query);
+                                                    
                                                     foreach($Query as $Pricing){ ?>
-                                                        <div class="PriceDiv">
+                                                        <div class="PriceDiv" style="margin: auto;">
                                                             <div class="price-card">
                                                                 <h2><?php echo $Pricing['UserRole'] ?></h2>
                                                                 <ul class="pricing-offers">
@@ -230,98 +318,10 @@ if (isset($_SESSION["AdminID"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                <?php }  
+                                                        <?php 
+                                                    } 
+                                                    
                                                 }
-                                            }elseif(isset($_POST['RoleID']) && !isset($_POST['PlaceID'])){
-                                                $sql = "WHERE visitpricing.UserRole IN(". implode(',', $_POST['RoleID']).")";
-                                                $PriceQuery = "SELECT DISTINCT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID , place.Name AS PlaceName FROM visitpricing 
-                                                                JOIN userrole ON visitpricing.UserRole = userrole.ID 
-                                                                JOIN place ON visitpricing.PlaceID = place.ID
-                                                                $sql
-                                                                ORDER BY visitpricing.ID $sort 
-                                                                ";
-                            
-                                                $Query = mysqli_query($con , $PriceQuery);
-                                                $fetchquery = mysqli_fetch_row($Query);
-                                                $count =mysqli_num_rows($Query);
-        
-                                                
-                                                if($count > 0 ){
-                                                    foreach($Query as $Pricing){ ?>
-                                                        <div class="PriceDiv">
-                                                            <div class="price-card">
-                                                                <h2><?php echo $Pricing['UserRole'] ?></h2>
-                                                                <ul class="pricing-offers">
-                                                                    <li class="fw-bold"><?php echo $Pricing['PlaceName'] ?></li>
-                                                                    <li><?php 
-                                                                            if($Pricing['MuseumFee']){
-                                                                                echo "<div class=''>";
-                                                                                    echo "<p>Entrance : <span>". $Pricing['EntranceFee'] ."</span></p>";
-                                                                                    echo "<p>Museum : <span>". $Pricing['MuseumFee'] ."</span></p>";
-                                                                                echo "</div>";
-                                                                            }else{
-                                                                                echo "<div class=''>";
-                                                                                    echo "<p>Entrance : <span>".  $Pricing['EntranceFee'] ."</span></p>";
-                                                                                echo "</div>";
-                                                                            }?>
-                                                                    </li>
-                                                                </ul>
-                                                                <div class="d-flex space-between">
-                                                                <a href="./Pricing.php?action=Edit&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-success btn-mid">Edit</a>
-                                                                <?php if($AdminRole == 1){  ?>
-                                                                    <a href="./Pricing.php?action=Delete&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-danger btn-mid">Remove</a>
-                                                                <?php }else{ ?>
-                                                                    <button class="btn btn-danger btn-mid" disabled>Remove</button>
-                                                                <?php } ?>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                <?php } 
-                                                }
-                                            }else{
-                                                $PriceQuery = "SELECT DISTINCT visitpricing. *, userrole.RoleName AS UserRole ,visitpricing.UserRole AS RoleID  , place.Name AS PlaceName FROM visitpricing 
-                                                                JOIN userrole ON visitpricing.UserRole = userrole.ID 
-                                                                JOIN place ON visitpricing.PlaceID = place.ID
-                                                                ORDER BY visitpricing.ID $sort 
-                                                ";
-                            
-                                                $Query = mysqli_query($con , $PriceQuery);
-                                                $fetchquery = mysqli_fetch_row($Query);
-                                                $count =mysqli_num_rows($Query);
-                                                
-                                                foreach($Query as $Pricing){ ?>
-                                                    <div class="PriceDiv">
-                                                        <div class="price-card">
-                                                            <h2><?php echo $Pricing['UserRole'] ?></h2>
-                                                            <ul class="pricing-offers">
-                                                                <li class="fw-bold"><?php echo $Pricing['PlaceName'] ?></li>
-                                                                <li><?php 
-                                                                        if($Pricing['MuseumFee']){
-                                                                            echo "<div class=''>";
-                                                                                echo "<p>Entrance : <span>". $Pricing['EntranceFee'] ."</span></p>";
-                                                                                echo "<p>Museum : <span>". $Pricing['MuseumFee'] ."</span></p>";
-                                                                            echo "</div>";
-                                                                        }else{
-                                                                            echo "<div class=''>";
-                                                                                echo "<p>Entrance : <span>".  $Pricing['EntranceFee'] ."</span></p>";
-                                                                            echo "</div>";
-                                                                        }?>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="d-flex space-between">
-                                                                <a href="./Pricing.php?action=Edit&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-success btn-mid">Edit</a>
-                                                                <?php if($AdminRole == 1){  ?>
-                                                                    <a href="./Pricing.php?action=Delete&PricingID=<?php echo $Pricing['ID'] ?>&RoleID=<?php echo $Pricing['RoleID']?>" class="btn btn-danger btn-mid">Remove</a>
-                                                                <?php }else{ ?>
-                                                                    <button class="btn btn-danger btn-mid" disabled>Remove</button>
-                                                                <?php } ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <?php 
-                                                } 
-                                                
-                                            }
                                             ?>
                                             
                                     </div>
@@ -414,10 +414,9 @@ if (isset($_SESSION["AdminID"])) {
                     echo "</div>";
                 }else{
                     $SelectQuery = "SELECT DISTINCT visitpricing. *, userrole.RoleName AS UserRole, visitpricing.UserRole AS RoleID  ,place.ID AS PlaceID , place.Name AS PlaceName FROM visitpricing 
-                                    JOIN user ON visitpricing.UserRole = user.RoleID 
-                                    JOIN userrole ON user.RoleID = userrole.ID 
+                                    LEFT JOIN userrole ON visitpricing.UserRole = userrole.ID 
                                     JOIN place ON visitpricing.PlaceID = place.ID
-                                    WHERE visitpricing.ID = $PricingID AND RoleID = $RoleID ";
+                                    WHERE visitpricing.ID = $PricingID AND UserRole = $RoleID ";
                     $Select = mysqli_query($con, $SelectQuery);
                     $row = mysqli_fetch_assoc($Select);
                     $count = mysqli_num_rows($Select);

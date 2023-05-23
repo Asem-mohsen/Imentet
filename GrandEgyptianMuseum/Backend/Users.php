@@ -258,7 +258,7 @@ if (isset($_SESSION["AdminID"])) {
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="d-flex flex-column align-items-center text-center p-3 ">
-                                    <img class="rounded-circle mt-5 mb-20" width="150px" src="./Images/AdminImages/<?php echo $User['UserImage'] ?>">
+                                    <img class="rounded-circle mt-5 mb-20" width="150px" height="150px" src="./Images/AdminImages/<?php echo $User['UserImage'] ?>">
                                     <span class="font-weight-bold c-black"><?php echo ucfirst($FullName) ?></span>
                                     <span class="text-black-50"><?php echo $User['Email'] ?></span>
                                     <span> </span>

@@ -223,7 +223,7 @@ if (isset($_SESSION["AdminID"])) {
                                         <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
                                     </div>
                                     <div class="table-responsive">
-                                        <table class="main-table table table-bordered table-hover table-light" id="myTable">
+                                        <table class="main-table table table-bordered table-hover table-light EventsTable" id="myTable">
                                             <tr>
                                                 <td>ID</td>
                                                 <td>Title</td>
@@ -235,17 +235,46 @@ if (isset($_SESSION["AdminID"])) {
                                                 <td>Action</td>
                                             </tr>
                                             <?php
-                                            if(isset($_POST['PlaceID']) && isset($_POST['CatID'])){
-                                                $sql = "WHERE entertainmnet.PlaceID IN(".implode(',', $_POST['PlaceID'] ).") AND entertainmnet.CatID IN (".implode(',', $_POST['CatID']).")" ; 
-                                                $SelectQuery = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName FROM entertainmnet 
-                                                    JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
-                                                    JOIN place ON place.ID = entertainmnet.PlaceID
-                                                    $sql
-                                                    ORDER BY entertainmnet.VIpPrice $Pricesort, entertainmnet.ID $sort
-                                                    ";
-                                                    $Select = mysqli_query($con , $SelectQuery);
-                                                    $fetchquery = mysqli_fetch_row($Select);
-                                                    $count = mysqli_num_rows($Select);
+                                                if(isset($_POST['PlaceID']) && isset($_POST['CatID'])){
+                                                    $sql = "WHERE entertainmnet.PlaceID IN(".implode(',', $_POST['PlaceID'] ).") AND entertainmnet.CatID IN (".implode(',', $_POST['CatID']).")" ; 
+                                                    $SelectQuery = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName FROM entertainmnet 
+                                                        JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
+                                                        JOIN place ON place.ID = entertainmnet.PlaceID
+                                                        $sql
+                                                        ORDER BY entertainmnet.VIpPrice $Pricesort, entertainmnet.ID $sort
+                                                        ";
+                                                        $Select = mysqli_query($con , $SelectQuery);
+                                                        $fetchquery = mysqli_fetch_row($Select);
+                                                        $count = mysqli_num_rows($Select);
+
+                                                        
+                                                        if($count > 0 ){
+                                                            foreach ($Select as $Event) {
+                                                                echo "<tr id='TableData'>";
+                                                                echo "<td>" . $Event['ID']     . "</td>";
+                                                                echo "<td>" . $Event['Name']   . "</td>";
+                                                                echo "<td>" . $Event['Date']  . "</td>";
+                                                                echo "<td>" . $Event['PlaceName']  . "</td>";
+                                                                echo "<td>" . $Event['RegularPrice'] . "</td>";
+                                                                echo "<td>" . $Event['VipPrice'] . "</td>";
+                                                                echo "<td>" . $Event['CatName']   . "</td>";
+                                                                echo "<td>";
+                                                                    echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
+                                                                echo "</td>";
+                                                                echo "</tr>";
+                                                            }   
+                                                        }
+                                                }elseif(isset($_POST['PlaceID']) && !isset($_POST['CatID'])){
+                                                    $sql = "WHERE entertainmnet.PlaceID IN(".implode(',', $_POST['PlaceID']).")";
+                                                    $SelectQuery = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName FROM entertainmnet 
+                                                        JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
+                                                        JOIN place ON place.ID = entertainmnet.PlaceID
+                                                        $sql
+                                                        ORDER BY entertainmnet.VIpPrice $Pricesort, entertainmnet.ID $sort
+                                                        ";
+                                                        $Select = mysqli_query($con , $SelectQuery);
+                                                        $fetchquery = mysqli_fetch_row($Select);
+                                                        $count = mysqli_num_rows($Select);
 
                                                     
                                                     if($count > 0 ){
@@ -262,92 +291,63 @@ if (isset($_SESSION["AdminID"])) {
                                                                 echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
                                                             echo "</td>";
                                                             echo "</tr>";
-                                                        }   
+                                                        }  
                                                     }
-                                            }elseif(isset($_POST['PlaceID']) && !isset($_POST['CatID'])){
-                                                $sql = "WHERE entertainmnet.PlaceID IN(".implode(',', $_POST['PlaceID']).")";
-                                                $SelectQuery = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName FROM entertainmnet 
-                                                    JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
-                                                    JOIN place ON place.ID = entertainmnet.PlaceID
-                                                    $sql
-                                                    ORDER BY entertainmnet.VIpPrice $Pricesort, entertainmnet.ID $sort
-                                                    ";
-                                                    $Select = mysqli_query($con , $SelectQuery);
-                                                    $fetchquery = mysqli_fetch_row($Select);
-                                                    $count = mysqli_num_rows($Select);
-
-                                                
-                                                if($count > 0 ){
-                                                    foreach ($Select as $Event) {
-                                                        echo "<tr id='TableData'>";
-                                                        echo "<td>" . $Event['ID']     . "</td>";
-                                                        echo "<td>" . $Event['Name']   . "</td>";
-                                                        echo "<td>" . $Event['Date']  . "</td>";
-                                                        echo "<td>" . $Event['PlaceName']  . "</td>";
-                                                        echo "<td>" . $Event['RegularPrice'] . "</td>";
-                                                        echo "<td>" . $Event['VipPrice'] . "</td>";
-                                                        echo "<td>" . $Event['CatName']   . "</td>";
-                                                        echo "<td>";
-                                                            echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
-                                                        echo "</td>";
-                                                        echo "</tr>";
-                                                    }  
-                                                }
-                                            }elseif(isset($_POST['CatID']) && !isset($_POST['PlaceID'])){
-                                                $sql = "WHERE entertainmnet.CatID IN(". implode(',', $_POST['CatID']).")";
-                                                $SelectQuery = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName FROM entertainmnet 
-                                                    JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
-                                                    JOIN place ON place.ID = entertainmnet.PlaceID
-                                                    $sql
-                                                    ORDER BY entertainmnet.VIpPrice $Pricesort, entertainmnet.ID $sort
-                                                    ";
-                                                    $Select = mysqli_query($con , $SelectQuery);
-                                                    $fetchquery = mysqli_fetch_row($Select);
-                                                    $count = mysqli_num_rows($Select);
-
-                                                
-                                                if($count > 0 ){
-                                                    foreach ($Select as $Event) {
-                                                        echo "<tr id='TableData'>";
-                                                        echo "<td>" . $Event['ID']     . "</td>";
-                                                        echo "<td>" . $Event['Name']   . "</td>";
-                                                        echo "<td>" . $Event['Date']  . "</td>";
-                                                        echo "<td>" . $Event['PlaceName']  . "</td>";
-                                                        echo "<td>" . $Event['RegularPrice'] . "</td>";
-                                                        echo "<td>" . $Event['VipPrice'] . "</td>";
-                                                        echo "<td>" . $Event['CatName']   . "</td>";
-                                                        echo "<td>";
-                                                            echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
-                                                        echo "</td>";
-                                                        echo "</tr>";
-                                                    } 
-                                                }
-                                            }else{
+                                                }elseif(isset($_POST['CatID']) && !isset($_POST['PlaceID'])){
+                                                    $sql = "WHERE entertainmnet.CatID IN(". implode(',', $_POST['CatID']).")";
                                                     $SelectQuery = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName FROM entertainmnet 
-                                                    JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
-                                                    JOIN place ON place.ID = entertainmnet.PlaceID 
-                                                    ORDER BY entertainmnet.VIpPrice $Pricesort, entertainmnet.ID $sort
-                                                    ";
-                                                    $Select = mysqli_query($con , $SelectQuery);
-                                                    $fetchquery = mysqli_fetch_row($Select);
+                                                        JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
+                                                        JOIN place ON place.ID = entertainmnet.PlaceID
+                                                        $sql
+                                                        ORDER BY entertainmnet.VIpPrice $Pricesort, entertainmnet.ID $sort
+                                                        ";
+                                                        $Select = mysqli_query($con , $SelectQuery);
+                                                        $fetchquery = mysqli_fetch_row($Select);
+                                                        $count = mysqli_num_rows($Select);
 
-                                                
-                                                    foreach ($Select as $Event) {
-                                                        echo "<tr id='TableData'>";
-                                                        echo "<td>" . $Event['ID']     . "</td>";
-                                                        echo "<td>" . $Event['Name']   . "</td>";
-                                                        echo "<td>" . $Event['Date']  . "</td>";
-                                                        echo "<td>" . $Event['PlaceName']  . "</td>";
-                                                        echo "<td>" . $Event['RegularPrice'] . "</td>";
-                                                        echo "<td>" . $Event['VipPrice'] . "</td>";
-                                                        echo "<td>" . $Event['CatName']   . "</td>";
-                                                        echo "<td>";
-                                                            echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
-                                                        echo "</td>";
-                                                        echo "</tr>";
-                                                    }  
-                                                
-                                            }
+                                                    
+                                                    if($count > 0 ){
+                                                        foreach ($Select as $Event) {
+                                                            echo "<tr id='TableData'>";
+                                                            echo "<td>" . $Event['ID']     . "</td>";
+                                                            echo "<td>" . $Event['Name']   . "</td>";
+                                                            echo "<td>" . $Event['Date']  . "</td>";
+                                                            echo "<td>" . $Event['PlaceName']  . "</td>";
+                                                            echo "<td>" . $Event['RegularPrice'] . "</td>";
+                                                            echo "<td>" . $Event['VipPrice'] . "</td>";
+                                                            echo "<td>" . $Event['CatName']   . "</td>";
+                                                            echo "<td>";
+                                                                echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
+                                                            echo "</td>";
+                                                            echo "</tr>";
+                                                        } 
+                                                    }
+                                                }else{
+                                                        $SelectQuery = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName FROM entertainmnet 
+                                                        JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
+                                                        JOIN place ON place.ID = entertainmnet.PlaceID 
+                                                        ORDER BY entertainmnet.VIpPrice $Pricesort, entertainmnet.ID $sort
+                                                        ";
+                                                        $Select = mysqli_query($con , $SelectQuery);
+                                                        $fetchquery = mysqli_fetch_row($Select);
+
+                                                    
+                                                        foreach ($Select as $Event) {
+                                                            echo "<tr id='TableData'>";
+                                                            echo "<td>" . $Event['ID']     . "</td>";
+                                                            echo "<td>" . $Event['Name']   . "</td>";
+                                                            echo "<td>" . $Event['Date']  . "</td>";
+                                                            echo "<td>" . $Event['PlaceName']  . "</td>";
+                                                            echo "<td>" . $Event['RegularPrice'] . "</td>";
+                                                            echo "<td>" . $Event['VipPrice'] . "</td>";
+                                                            echo "<td>" . $Event['CatName']   . "</td>";
+                                                            echo "<td>";
+                                                                echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
+                                                            echo "</td>";
+                                                            echo "</tr>";
+                                                        }  
+                                                    
+                                                }
                                             ?>
                                         </table>
                                     </div>

@@ -172,8 +172,8 @@ if(isset($_SESSION['AdminID'])){
             Imentet, She was the ancient Egyptian goddess of the West 
             and thus the protector of the necropolises west of the Nile.
           </p>
-          <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php" class="thm-btn side-menu__block-about__btn">
-            Get Your Tickets
+          <a href="" class="thm-btn side-menu__block-about__btn">
+            More About Us
           </a>
         </div>
         <hr class="side-menu__block-line" />

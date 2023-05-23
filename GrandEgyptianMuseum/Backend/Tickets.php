@@ -119,8 +119,12 @@ if (isset($_SESSION["AdminID"])) {
                             </div>
                                     <div class="container">
                                         <h1 class="PageName"> Entertainment Tickets </h1>
+                                        <div class="input-group md-form form-sm form-2 pl-0 mb-20">
+                                            <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search something here..." id="myInput" onkeyup="myFunction()" aria-label="Search">
+                                            <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
+                                        </div>
                                         <div class="table-responsive">
-                                            <table class="main-table table table-bordered table-hover table-light">
+                                            <table class="main-table table table-bordered table-hover table-light" id="myTable">
                                                 <tr>
                                                     <td>ID</td>
                                                     <td>User Name</td>
@@ -149,7 +153,7 @@ if (isset($_SESSION["AdminID"])) {
                                                     foreach ($Query as $ETicket) {
                                                         $FullName =  $ETicket['UserName'] . ' ' .  $ETicket['LastName'] ;
 
-                                                        echo "<tr>";
+                                                        echo "<tr id='TableData'>";
                                                             echo "<td>" . $ETicket['ID']     . "</td>";
                                                             echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $ETicket['UserID'] ."'>" . $FullName  . "</a></td>";
                                                             echo "<td><a href='./Entertainments.php?action=MoreInfo&EventID=". $ETicket['EventID'] ."'>" . $ETicket['EventName']   . "</a></td>";
@@ -173,7 +177,7 @@ if (isset($_SESSION["AdminID"])) {
                                                 foreach ($Query as $ETicket) {
                                                     $FullName =  $ETicket['UserName'] . ' ' .  $ETicket['LastName'] ;
 
-                                                    echo "<tr>";
+                                                    echo "<tr id='TableData'>";
                                                         echo "<td>" . $ETicket['ID']     . "</td>";
                                                         echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $ETicket['UserID'] ."'>" . $FullName   . "</a></td>";
                                                         echo "<td><a href='./Entertainments.php?action=MoreInfo&EventID=". $ETicket['EventID'] ."'>" . $ETicket['EventName']   . "</a></td>";
@@ -309,9 +313,12 @@ if (isset($_SESSION["AdminID"])) {
                         </div>
                                 <div class="container">
                                 <h1 class="PageName"> Visit Tickets </h1>
-
+                                    <div class="input-group md-form form-sm form-2 pl-0 mb-20">
+                                        <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search something here..." id="myInput" onkeyup="myFunction()" aria-label="Search">
+                                        <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1"><a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
+                                    </div>
                                     <div class="table-responsive">
-                                        <table class="main-table table table-bordered table-hover table-light">
+                                        <table class="main-table table table-bordered table-hover table-light" id="myTable">
                                             <tr>
                                                 <td>ID</td>
                                                 <td>User Name</td>
@@ -344,7 +351,7 @@ if (isset($_SESSION["AdminID"])) {
                                                             if($count > 0 ){
                                                                 foreach ($Query as $VTicket) {
                                                                     $FullName =  $VTicket['UserName'] . ' ' .  $VTicket['LastName'] ;
-                                                                    echo "<tr>";
+                                                                    echo "<tr id='TableData'>";
                                                                         echo "<td>" . $VTicket['ID']     . "</td>";
                                                                         echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $FullName   . "</td>";
                                                                         echo "<td>" . $VTicket['RoleName']   . "</td>";
@@ -377,7 +384,7 @@ if (isset($_SESSION["AdminID"])) {
                                                     if($count > 0 ){
                                                         foreach ($Query as $VTicket) {
                                                             $FullName =  $VTicket['UserName'] . ' ' .  $VTicket['LastName'] ;
-                                                            echo "<tr>";
+                                                            echo "<tr id='TableData'>";
                                                                 echo "<td>" . $VTicket['ID']     . "</td>";
                                                                 echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $FullName   . "</td>";
                                                                 echo "<td>" . $VTicket['RoleName']   . "</td>";
@@ -408,7 +415,7 @@ if (isset($_SESSION["AdminID"])) {
                                                     if($count > 0 ){
                                                         foreach ($Query as $VTicket) {
                                                             $FullName =  $VTicket['UserName'] . ' ' .  $VTicket['LastName'] ;
-                                                            echo "<tr>";
+                                                            echo "<tr id='TableData'>";
                                                                 echo "<td>" . $VTicket['ID']     . "</td>";
                                                                 echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $FullName   . "</td>";
                                                                 echo "<td>" . $VTicket['RoleName']   . "</td>";
@@ -434,7 +441,7 @@ if (isset($_SESSION["AdminID"])) {
                                                     
                                                     foreach ($Query as $VTicket) {
                                                         $FullName =  $VTicket['UserName'] . ' ' .  $VTicket['LastName'] ;
-                                                        echo "<tr>";
+                                                        echo "<tr id='TableData'>";
                                                             echo "<td>" . $VTicket['ID']     . "</td>";
                                                             echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $FullName   . "</td>";
                                                             echo "<td>" . $VTicket['RoleName']   . "</td>";
