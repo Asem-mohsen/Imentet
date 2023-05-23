@@ -182,7 +182,7 @@ include "./NavUserPyramids.php";
 
               $InsertDonate = "INSERT INTO donations (Name , Email , PlaceID , Amount , PaymentID) VALUES('$Name', '$Email' , $PlaceID , $Amount , $PaymentID )";
               $InsertQuery = mysqli_query($con , $InsertDonate);
-              header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php?DonatedDone");
+              header("Location: http://localhost/imentet-1/Pyramids/pyramids/Donation.php?DonatedDone");
 
 
             }

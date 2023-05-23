@@ -3,11 +3,11 @@
             <a class="site-footer__logo" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php">
                 <img src="images/resources/footer-logo-imentet-gem.png" alt=""/>
             </a>
-            <form action="" class="site-footer__form">
+            <form class="site-footer__form">
                 <div class="site-footer__form-icon">
                 <i class="egypt-icon-email"></i>
                 </div>
-                <input type="text" placeholder="Enter Email Address..." />
+                <input type="email" required placeholder="Enter Email Address..." />
                 <button type="submit">
                 <i class="egypt-icon-right-arrow1"></i>
                 </button>

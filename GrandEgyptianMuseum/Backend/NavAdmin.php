@@ -75,7 +75,7 @@
                                         <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Dashboard.php">Dashboard</a>
                                         <ul class="submenu">
                                             <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
-                                            <li><a href="">Pyramids</a></li>
+                                            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Pyramids</a></li>
                                         </ul>
                                     </li>
 
