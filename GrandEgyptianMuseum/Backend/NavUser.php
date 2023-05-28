@@ -29,7 +29,7 @@ include "./Functions/Functions.php";
     <link rel="stylesheet" href="css/nouislider.pips.css" />
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" href="css/style.css?v=7" />
+    <link rel="stylesheet" href="css/style.css?v=11" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/payment.css" />
 
@@ -103,7 +103,7 @@ include "./Functions/Functions.php";
                                         <i class="fa fa-user"></i>
                                     </a>
                                     <ul class="submenu">
-                                        <li><a href="hhttp://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">Edit Profile </a></li>
+                                        <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">Edit Profile </a></li>
                                         <li><a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php'>Log out</a></li>
                                     </ul>
                                 </li>
@@ -130,23 +130,23 @@ include "./Functions/Functions.php";
                     </div>
                     <div class="main-navigation">
                         <ul class="navigation-box @@extra_class">
-                            <li class="current">
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php">Home</a>
-                                <ul class="submenu">
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
-                                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Pyramids</a></li>
-                                </ul>
+                            <li>
+                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a>
                             </li>
                             <li>
                                 <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">The Museum</a>
                                 <ul class="submenu">
                                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">About Us </a></li>
                                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/contact.php">Contact</a></li>
+                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php">Donation</a></li>
+                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Careers.php">Careers</a></li>
+                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/membership.php">Membership</a></li>
+                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/FAQ.php">FAQ's</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php">Visit</a>
+                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php">Visit</a>
                                 <ul class="submenu">
                                     <li>
                                         <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#open-hrs">Opening Hours</a>
@@ -197,19 +197,7 @@ include "./Functions/Functions.php";
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">Pages</a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1">Shop</a>
-                                        <ul class="submenu right-align">
-                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1">Products</a></li>
-                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Cart.php">Shopping Cart</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php">Donation</a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Careers.php">Careers</a></li>
-                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/membership.php">Membership</a></li>
-                                </ul>
+                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1">Shop</a>
                             </li>
                         </ul>
                     </div>
@@ -239,3 +227,5 @@ include "./Functions/Functions.php";
                 </div>
             </nav>
         </header>
+
+

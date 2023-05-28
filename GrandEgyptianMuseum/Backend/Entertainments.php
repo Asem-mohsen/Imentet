@@ -513,7 +513,7 @@ if (isset($_SESSION["AdminID"])) {
                             }
 
                             if(empty($_POST['Description'])){
-                                $Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip";
+                                $Description = "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip";
                             }else{
                                 $Description = $_POST['Description'];
                             }
@@ -569,18 +569,86 @@ if (isset($_SESSION["AdminID"])) {
                                 $InsertSponsers = mysqli_query($con, $InsertAll);
 
                                 echo "<div class='container'>";
-                                $TheMsg = "<div class='alert alert-success'> Event Added Successfully </div>";
+                                $TheMsg = "<div class='alert alert-success text-center'> Event Added Successfully </div>";
                                 RedirectIndex($TheMsg, "Back");
                                 echo "</div>";
 
                                 
                             }else{
                                 foreach ($FormErrors as $error) {
-                                    echo "<div class='alert alert-danger'>" . $error . "</div>";
+                                    echo "<div class='alert alert-danger text-center'>" . $error . "</div>";
                                 }
                             }
                         } ?>
 
+            <?php }elseif($do == "AddGallery"){ 
+                $EventID = $_GET['EventID'];
+                if(empty($EventID)){
+                    echo "<div class='NoData'>";
+                        echo "<p> Event is Empty !</p>";
+                    echo "</div>";
+                }else{
+
+                ?>
+                <h1 class="PageName"> Add Gallery </h1>
+                    <div class="container">
+                        <form class="form-horizontal" action="?action=InsertGallery" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="EventID" value="<?php echo $_GET['EventID']; ?>">
+                            <div class="form-group insertInput mb-0">
+                                <div class="mb-20">
+                                    <input type="file" style="padding: 4px;" name="Image[]" multiple class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="InsertButton">
+                                    <input type="submit" value="Add" class="btn btn-primary btn-md w-10" />
+                                    <a href="./Entertainments.php?action=MoreInfo&EventID=<?php echo $EventID ?>" class="btn btn-danger btn-md w-10"> Cancel </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                <?php } ?>
+            <?php }elseif($do == "InsertGallery"){
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+
+                    $EventID = $_POST['EventID'];
+                    $image = array_filter($_FILES['Image']['name']);
+                    $targetDir = "Images\Uploads\\" ; 
+                    $allowTypes = array('jpg','png','jpeg','gif'); 
+
+                    if(!empty($image)){ 
+                        foreach($_FILES['Image']['name'] as $key=>$val){ 
+                            // File upload path 
+                            $fileName = basename($_FILES['Image']['name'][$key]); 
+                            $targetFilePath = $targetDir . $fileName; 
+                            
+                            // Check whether file type is valid 
+                            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION); 
+                            if(in_array($fileType, $allowTypes)){ 
+                                // Upload file to server 
+                                if(move_uploaded_file($_FILES["Image"]["tmp_name"][$key], $targetFilePath)){ 
+                                    // Image db insert sql 
+                                    $InsertQuery = "INSERT INTO `eventgallery` Values( Null , $EventID , '$fileName' ) ";
+                                    $InsertEvent = mysqli_query($con, $InsertQuery);
+                                    
+                                }else{ 
+                                    $errorUpload .= $_FILES['Image']['name'][$key].' | '; 
+
+                                } 
+                            }else{ 
+                                $errorUploadType .= $_FILES['Image']['name'][$key].' | '; 
+                            } 
+                        } 
+                        if($InsertEvent){
+                            echo "<div class='container'>";
+                            $TheMsg = "<div class='alert alert-success text-center'> Image Added Successfully </div>";
+                            RedirectIndex($TheMsg, "Back");
+                            echo "</div>";  
+                        }
+                    }else{
+                        echo "<div class='alert alert-danger text-center'> Image Cannot Be Empty </div>" ;
+                    }
+                } ?>
             <?php }elseif($do == "MoreInfo"){ 
                 
                 $EventID = filter_var($_GET['EventID'] , FILTER_SANITIZE_NUMBER_INT); 
@@ -593,17 +661,17 @@ if (isset($_SESSION["AdminID"])) {
                 $SelectEvent = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName, sponsorship.Name AS SponsorshipName , user.Name AS UserName ,user.ID AS UserID
                                     ,eventstatus.Status AS EventStatus ,eventstatus.Reason AS EventReason 
                                     FROM entertainmnet 
-                                JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
-                                JOIN place ON place.ID = entertainmnet.PlaceID
-                                JOIN eventsponsor ON eventsponsor.EventID = entertainmnet.ID 
+                                LEFT JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
+                                LEFT JOIN place ON place.ID = entertainmnet.PlaceID
+                                LEFT JOIN eventsponsor ON eventsponsor.EventID = entertainmnet.ID 
                                 LEFT JOIN feedback ON entertainmnet.ID = feedback.EntertainmnetID
                                 LEFT JOIN user ON feedback.UserID = user.ID
                                 LEFT JOIN eventstatus ON entertainmnet.ID = eventstatus.EventID
-                                JOIN sponsorship ON eventsponsor.ContractID = sponsorship.ContractID
+                                LEFT JOIN sponsorship ON eventsponsor.ContractID = sponsorship.ContractID
                                 WHERE entertainmnet.ID = $EventID LIMIT 1 ";
                 $Events = mysqli_query($con , $SelectEvent);
                 $Event = mysqli_fetch_assoc($Events);
-                $StartDate = date('d M Y', strtotime($Event['Date'])); 
+
 
                 $SelectFeedback = "SELECT feedback.* , userimages.Image AS UserImage , user.Name AS UserName
                                         FROM feedback
@@ -624,6 +692,8 @@ if (isset($_SESSION["AdminID"])) {
 
                 $now = date("Y-m-d");
                     if(isset($Event['ID'])){
+                        $StartDate = date('d M Y', strtotime($Event['Date'])); 
+
                 ?>
                 <h1 class="c-black txt-center mt-70"> <?php echo $Event['Name'] ?> </h1>
                 <section class="pt-40 event-details">
@@ -642,7 +712,7 @@ if (isset($_SESSION["AdminID"])) {
                                                             <p>
                                                                 <i class="fa fa-clock-o"></i>
                                                                 <?php echo $StartDate ; 
-                                                                        if($Event['DateTo'] != Null && $Event['DateTo'] != '0000-00-00' && $Event['Everyday'] != "Daily" && !empty($Event['DateTo']) ){
+                                                                        if($Event['DateTo'] != Null && $Event['DateTo'] != '0000-00-00' && $Event['DateTo'] != '1970-01-01'  && $Event['Everyday'] != "Daily" && !empty($Event['DateTo']) ){
                                                                             $EndDate = date('d M Y', strtotime($Event['DateTo']));
                                                                             echo " - " . $EndDate; 
                                                                             ; 
@@ -715,6 +785,7 @@ if (isset($_SESSION["AdminID"])) {
                                                 <a href="./Entertainments.php?action=Delete&EventID=<?php echo $Event['ID'] ?>" class='thm-btn event-details__form-btn  btn-danger'>Delete</a>
                                             <?php } ?>
                                             <a href="./Entertainments.php?action=Manage" class='thm-btn event-details__form-btn' >Back</a>
+                                            <a href="./Entertainments.php?action=AddGallery&EventID=<?php echo $Event['ID'] ?>" class='thm-btn event-details__form-btn'>Add Gallery</a>
                                         </div>
                                     </div>
                                 </div>

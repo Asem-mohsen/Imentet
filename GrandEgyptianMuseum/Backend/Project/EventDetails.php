@@ -57,13 +57,13 @@ if(empty($EventID)){
   $SelectEvent = "SELECT entertainmnet.* , place.Name AS PlaceName , entertainmnetcategory.Name AS CatName, sponsorship.Name AS SponsorshipName , feedback.Description AS Feedback, user.Name AS UserName ,user.ID AS UserID
                   ,eventstatus.Status AS EventStatus ,eventstatus.Reason AS EventReason 
                   FROM entertainmnet 
-                  JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
-                  JOIN place ON place.ID = entertainmnet.PlaceID
-                  JOIN eventsponsor ON eventsponsor.EventID = entertainmnet.ID 
+                  LEFT JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
+                  LEFT JOIN place ON place.ID = entertainmnet.PlaceID
+                  LEFT JOIN eventsponsor ON eventsponsor.EventID = entertainmnet.ID 
                   LEFT JOIN feedback ON entertainmnet.ID = feedback.EntertainmnetID
                   LEFT JOIN user ON feedback.UserID = user.ID
                   LEFT JOIN eventstatus ON entertainmnet.ID = eventstatus.EventID
-                  JOIN sponsorship ON eventsponsor.ContractID = sponsorship.ContractID
+                  LEFT JOIN sponsorship ON eventsponsor.ContractID = sponsorship.ContractID
                   WHERE entertainmnet.ID = $EventID LIMIT 1 ";
   $Events = mysqli_query($con , $SelectEvent);
   $row = mysqli_fetch_assoc($Events);
@@ -100,14 +100,6 @@ if(empty($EventID)){
       <!-- Event Details -->
       <section class="event-details">
         <div class="container">
-        <?php 
-          if(isset($_GET['PaymentDone'])){
-                echo "<div class='TicketsBooked' style='justify-content:center'>";
-                echo "<i class='egypt-icon-check'></i>";
-                echo "<p> Tickets Booked Successfully </p>" ;
-              echo "</div>";
-          } 
-        ?>
           <div class="row">
             <div class="col-lg-8">
               <div class="event-details__content">
@@ -121,7 +113,11 @@ if(empty($EventID)){
                   <li class="nav-item">
                     <a href="#contact" data-target="#contact" class="nav-link">Contact</a>
                   </li>
-                  <?php if($row['CatID'] == 9 ){ ?>
+                  <?php 
+                    $SelectGallery = "SELECT * FROM eventgallery WHERE EventID = $EventID ";
+                    $SelectRun = mysqli_query($con , $SelectGallery);
+                    $Gallery = mysqli_fetch_assoc($SelectRun); 
+                    if(isset($Gallery['ID']) && $Gallery['EventID'] == $EventID){ ?>
                     <li class="nav-item">
                       <a href="#gallery" data-target="#gallery" class="nav-link" >Gallery</a>
                     </li>
@@ -137,7 +133,7 @@ if(empty($EventID)){
                               <span>Date & Time</span>
                               <p>
                                 <i class="fa fa-clock-o"></i>
-                                <?php echo $StartDate ; ?>  <?php if(isset($EndDate) && $row['Everyday'] != "Daily" && $row['DateTo'] != '0000-00-00' ){echo " - ".$EndDate ; }else{ echo ", 10.00 to 7.00" ;} ?>
+                                <?php echo $StartDate ; ?>  <?php if(isset($EndDate) && $row['Everyday'] != "Daily" && $row['DateTo'] != '0000-00-00' && $row['DateTo'] != '1970-01-01' && $row['DateTo'] != Null){echo " - ".$EndDate ; }else{ echo ", 10.00 to 8.00" ;} ?>
                               </p>
                             </li>
                             <li>
@@ -200,25 +196,21 @@ if(empty($EventID)){
                 </div>
 
                 <!-- Gallery -->
-                <?php if($row['CatID'] == 9 ){ ?>
-                  <div id="gallery" class="event-details__single">
-                    <h3 class="event-details__title">Gallery</h3>
-                    <div class="row masonary-layout">
-                      <div class="col-md-6 masonary-item">
-                        <img class="img-fluid" src="images/event/event-d-g-1.jpg" alt="Awesome Image"/>
-                      </div>
-                      <div class="col-md-6 masonary-item">
-                        <img class="img-fluid" src="images/event/event-d-g-2.jpg" alt="Awesome Image"/>
-                      </div>
-                      <div class="col-md-6 masonary-item">
-                        <img class="img-fluid" src="images/event/event-d-g-3.jpg" alt="Awesome Image" />
-                      </div>
-                      <div class="col-md-6 masonary-item">
-                        <img class="img-fluid" src="images/event/event-d-g-4.jpg" alt="Awesome Image"/>
+                <?php 
+                  if(isset($Gallery['ID']) && $Gallery['EventID'] == $EventID){
+                    ?>
+                    <div id="gallery" class="event-details__single">
+                      <h3 class="event-details__title">Gallery</h3>
+                      <div class="row masonary-layout">
+                        <?php foreach($SelectRun as $Image){ ?>
+                          <div class="col-md-6 masonary-item">
+                            <img class="img-fluid" src="../Images/<?php echo $Image['Image'] ?>" width="370px" style='height: 270px' alt="Awesome Image"/>
+                          </div>
+                        <?php } ?>
                       </div>
                     </div>
-                  </div>
-                <?php } ?>
+                  <?php }
+                ?>
 
                 <!-- Contact And Feedback-->
                 <div id="contact" class="event-details__single">
@@ -484,7 +476,38 @@ if(empty($EventID)){
         </div>
       </div>
 
+      <!-- Success Msg -->
+      <?php if(isset($_GET['PaymentDone'])){ ?>
+          <div id="success" class="modal fade" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <div class="success-content-message">
+                    <i class="fa fa-check"></i>
+                    <h2>success</h2>
 
-  <?php include "../UserFooter.php" ; 
-}
-?>
+                    <p>Your payment has been completed successfully.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      <?php  } ?>
+
+      
+  <?php include "../UserFooter.php" ; ?>
+  
+  <script>
+    jQuery(window).load(function () {
+      jQuery("#success").modal("show");
+    });
+  </script>
+<?php } ?>

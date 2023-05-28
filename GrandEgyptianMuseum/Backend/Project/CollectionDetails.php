@@ -86,7 +86,7 @@ if(empty($CollectionID)){
                                         Artist
                                         <span class="collection-details__sidebar-list__sep">:</span>
                                     </span>
-                                    <span class="collection-details__sidebar-list__value">Bennie</span>
+                                    <span class="collection-details__sidebar-list__value">Ancient Egyptians</span>
                                 </li>
                                 <li>
                                     <span class="collection-details__sidebar-list__name">
@@ -131,25 +131,6 @@ if(empty($CollectionID)){
                                     <span class="collection-details__sidebar-list__value"><?php echo rand(100 , 100000) ?></span>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="collection-details__sidebar-single">
-                            <h3 class="collection-details__sidebar-title"><span>About Artsit</span></h3>
-                            <div class="collection-details__author">
-                                <div class="collection-details__author-top">
-                                    <div class="collection-details__author-image">
-                                        <div class="collection-details__author-image-inner">
-                                            <img src="images/collections/collection-author-1-1.jpg" alt="Awesome Image" />
-                                        </div>
-                                    </div>
-                                    <div class="collection-details__author-top-content">
-                                        <h3 class="collection-details__author-name">Nicolas Cardine</h3>
-                                        <p class="collection-details__author-designation">California</p>
-                                    </div>
-                                </div>
-                                <p class="collection-details__author-text">Denounce with righteous indignation and dislike
-                                    men who are so beguiled and demoralized by the
-                                    charms of pleasure of the moment.</p>
-                            </div>
                         </div>
                         <div class="collection-details__sidebar-single">
                             <h3 class="collection-details__sidebar-subtitle">Share With Friends</h3>

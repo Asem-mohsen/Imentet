@@ -17,7 +17,7 @@ $PageTitle = "Collections";
                     <section class="collection-three">
                         <div class="container">
                             <div class="block-title text-center"> 
-                                <p class="block-title__tag-line"><?php echo $Category['Category'] ?></p>
+                                <p ><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php?CatID=<?php echo $Category['ID']?> " class="block-title__tag-line"><?php echo $Category['Category'] ?></a></p>
                                 <h1 class="block-title__title" id="C1" ></h1>
                             </div>
                             <div class="row masonary-layout">
@@ -26,7 +26,7 @@ $PageTitle = "Collections";
                                 $SelectCollections = " SELECT collections .* , place.Name AS PlaceName FROM collections
                                                         JOIN place ON collections.PlaceID = place.ID
                                                         WHERE CatID = $CatID
-                                                        LIMIT 6 ";
+                                                        LIMIT 8 ";
                                 $RunCollections = mysqli_query($con , $SelectCollections);
                                 $Row = mysqli_fetch_assoc($RunCollections);
                                 $count = mysqli_num_rows($RunCollections);

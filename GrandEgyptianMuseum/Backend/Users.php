@@ -588,9 +588,9 @@ if (isset($_SESSION["AdminID"])) {
                                                     <i class="fa-solid fa-check fa-fw yes"></i>
                                                     <span>
                                                         <?php if($Membership['Entry'] == 0 ){ 
-                                                                    echo " Unlimited Entry" ;
+                                                                    echo " 	Free Limited Admission Entry" ;
                                                             }else{
-                                                                    echo "Free entry for ".$Membership['Entry'] . " times per Month" ;
+                                                                    echo " UnLimited Entry" ;
                                                             } 
                                                         ?>
                                                     </span>
@@ -598,16 +598,13 @@ if (isset($_SESSION["AdminID"])) {
                                                 </li>
                                                 <li>
                                                     <span>
-                                                    <?php if($Membership['DiscountOnTours'] == 1 ){ 
+                                                    <?php if($Membership['DiscountGiftShop'] == 1 ){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Discounts on tours conducted by team hospitality" ;   
-                                                            }elseif($Membership['DiscountOnTours'] == NULL || $Membership['DiscountOnTours'] == 0){
-                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Discounts on tours conducted by team hospitality" ;
+                                                                    echo "	Discounts in Museum Gift Shop Purchases" ;   
                                                             }else{
-                                                                echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                echo $Membership['DiscountOnTours'] . " Discounts on tours conducted by team hospitality" ;                                                       
-                                                            } 
+                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                    echo "	Discounts in Museum Gift Shop Purchases" ;
+                                                            }
                                                         ?>
                                                     </span>
                                                     <i class="fa-solid fa-circle-info help"></i>
@@ -615,12 +612,12 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                         <?php
-                                                            if($Membership['AccessKidsArea'] == 1 ){ 
+                                                            if($Membership['DiscountParking'] == 1 ){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Free Access to Kids Area" ;   
-                                                            }elseif($Membership['AccessKidsArea'] == NULL || $Membership['AccessKidsArea'] == 0){
+                                                                    echo "Discounted Parking" ;   
+                                                            }else{
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Free Access to Kids Area" ;
+                                                                    echo "Discounted Parking" ;
                                                             }
                                                         ?>
                                                     </span>
@@ -631,13 +628,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['ChildernMuseum'] == 1 ){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Free Access To Childern Museum" ;   
-                                                                }elseif($Membership['ChildernMuseum'] == NULL || $Membership['ChildernMuseum'] == 0){
-                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Access To Childern Museum" ;
+                                                                        echo "Access to The GEM Children Museum" ;   
                                                                 }else{
-                                                                    echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo $Membership['ChildernMuseum'] . " Free Entries to Childern Museum " ;
+                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                        echo "Access to The GEM Children Museum" ;
                                                                 }
                                                             ?>
                                                     </span>
@@ -649,12 +643,23 @@ if (isset($_SESSION["AdminID"])) {
                                                                 if($Membership['VouchersMuseum'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
                                                                         echo "Free Voucher For Museum Restaurant" ;   
-                                                                }elseif($Membership['VouchersMuseum'] == NULL || $Membership['VouchersMuseum'] == 0){
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
                                                                         echo "Free Voucher For Museum Restaurant" ;
+                                                                }
+                                                            ?>
+                                                    </span>
+                                                    <i class="fa-solid fa-circle-info help"></i>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                            <?php
+                                                                if($Membership['MembersNewsletter'] == 1){ 
+                                                                        echo "<i class='fa-solid fa-check fa-fw yes'></i>";
+                                                                        echo "Exclusive Members' Newsletter" ;   
                                                                 }else{
-                                                                    echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo $Membership['VouchersMuseum'] . " Free Vouchers For Museum Restaurans" ;
+                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                        echo "Exclusive Members' Newsletter" ;
                                                                 }
                                                             ?>
                                                     </span>
@@ -663,26 +668,12 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                             <?php
-                                                                if($Membership['DiscountOnKidsClasses'] == 1){ 
+                                                                if($Membership['SpecialExhibtions'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Discounts on Kid's Historical Classes & Activities" ;   
-                                                                }elseif($Membership['DiscountOnKidsClasses'] == NULL || $Membership['DiscountOnKidsClasses'] == 0){
+                                                                        echo "Special Exhibition Screening" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Discounts on Kid's Historical Classes & Activities" ;
-                                                                }
-                                                            ?>
-                                                    </span>
-                                                    <i class="fa-solid fa-circle-info help"></i>
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                            <?php
-                                                                if($Membership['SubsMuseumLib'] == 1){ 
-                                                                        echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "A Year of Subscription to the Grand Egyptian Museum Library" ; 
-                                                                }elseif($Membership['SubsMuseumLib'] == NULL || $Membership['SubsMuseumLib'] == 0){
-                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "A Year of Subscription to the Grand Egyptian Museum Library" ; 
+                                                                        echo "Special Exhibition Screening" ; 
                                                                 }
                                                             ?>
                                                     </span>
@@ -694,7 +685,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                 if($Membership['AccessMuseumLib'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
                                                                         echo "Access to The Grand Egyptian Museum Library" ; 
-                                                                }elseif($Membership['AccessMuseumLib'] == NULL || $Membership['AccessMuseumLib'] == 0){
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
                                                                         echo "Access to The Grand Egyptian Museum Library" ; 
                                                                 }
@@ -705,12 +696,12 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                             <?php
-                                                                if($Membership['SpecialRecognition'] == 1){ 
+                                                                if($Membership['InvatationsToActivites'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Special Recognition" ; 
-                                                                }elseif($Membership['SpecialRecognition'] == NULL || $Membership['SpecialRecognition'] == 0){
+                                                                        echo "Invitations to activities day in GEM" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Special Recognition" ; 
+                                                                        echo "Invitations to activities day in GEM" ; 
                                                                 }
                                                             ?>
                                                     </span>
@@ -721,10 +712,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['AccessToEvents'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Access to Exclusive Events" ; 
-                                                                }elseif($Membership['AccessToEvents'] == NULL || $Membership['AccessToEvents'] == 0){
+                                                                        echo "Members-only Events" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Access to Exclusive Events" ; 
+                                                                        echo "Members-only Events" ; 
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -733,12 +724,26 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                             <?php
-                                                                if($Membership['FreeMuseumRest'] == 1){ 
+                                                                if($Membership['PriorityAccessToEvents'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Free Access to All Offilcial Museum Restaurants" ; 
-                                                                }elseif($Membership['FreeMuseumRest'] == NULL || $Membership['FreeMuseumRest'] == 0){
+                                                                        echo "Priority Access to Special Events" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Free Access to All Offilcial Museum Restaurants" ; 
+                                                                        echo "Priority Access to Special Events" ; 
+                                                                }
+                                                            ?>
+                                                    </span>                                       
+                                                    <i class="fa-solid fa-circle-info help"></i>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                            <?php
+                                                                if($Membership['StudentsEvents'] == 1){ 
+                                                                        echo "<i class='fa-solid fa-check fa-fw yes'></i>";
+                                                                        echo "Exclusive Student Events" ; 
+                                                                }else{
+                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                        echo "Exclusive Student Events" ; 
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -826,9 +831,9 @@ if (isset($_SESSION["AdminID"])) {
                                                     <i class="fa-solid fa-check fa-fw yes"></i>
                                                     <span>
                                                         <?php if($Membership['Entry'] == 0 ){ 
-                                                                    echo " Unlimited Entry" ;
+                                                                    echo " 	Free Limited Admission Entry" ;
                                                             }else{
-                                                                    echo "Free entry for ".$Membership['Entry'] . " times per Month" ;
+                                                                    echo " UnLimited Entry" ;
                                                             } 
                                                         ?>
                                                     </span>
@@ -836,16 +841,13 @@ if (isset($_SESSION["AdminID"])) {
                                                 </li>
                                                 <li>
                                                     <span>
-                                                    <?php if($Membership['DiscountOnTours'] == 1 ){ 
+                                                    <?php if($Membership['DiscountGiftShop'] == 1 ){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Discounts on tours conducted by team hospitality" ;   
-                                                            }elseif($Membership['DiscountOnTours'] == NULL || $Membership['DiscountOnTours'] == 0){
-                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Discounts on tours conducted by team hospitality" ;
+                                                                    echo "	Discounts in Museum Gift Shop Purchases" ;   
                                                             }else{
-                                                                echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                echo $Membership['DiscountOnTours'] . " Discounts on tours conducted by team hospitality" ;                                                       
-                                                            } 
+                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                    echo "	Discounts in Museum Gift Shop Purchases" ;
+                                                            }
                                                         ?>
                                                     </span>
                                                     <i class="fa-solid fa-circle-info help"></i>
@@ -853,12 +855,12 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                         <?php
-                                                            if($Membership['AccessKidsArea'] == 1 ){ 
+                                                            if($Membership['DiscountParking'] == 1 ){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Free Access to Kids Area" ;   
-                                                            }elseif($Membership['AccessKidsArea'] == NULL || $Membership['AccessKidsArea'] == 0){
+                                                                    echo "Discounted Parking" ;   
+                                                            }else{
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Free Access to Kids Area" ;
+                                                                    echo "Discounted Parking" ;
                                                             }
                                                         ?>
                                                     </span>
@@ -869,13 +871,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['ChildernMuseum'] == 1 ){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Free Access To Childern Museum" ;   
-                                                                }elseif($Membership['ChildernMuseum'] == NULL || $Membership['ChildernMuseum'] == 0){
-                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Access To Childern Museum" ;
+                                                                        echo "Access to The GEM Children Museum" ;   
                                                                 }else{
-                                                                    echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo $Membership['ChildernMuseum'] . " Free Entries to Childern Museum " ;
+                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                        echo "Access to The GEM Children Museum" ;
                                                                 }
                                                             ?>
                                                     </span>
@@ -887,12 +886,23 @@ if (isset($_SESSION["AdminID"])) {
                                                                 if($Membership['VouchersMuseum'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
                                                                         echo "Free Voucher For Museum Restaurant" ;   
-                                                                }elseif($Membership['VouchersMuseum'] == NULL || $Membership['VouchersMuseum'] == 0){
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
                                                                         echo "Free Voucher For Museum Restaurant" ;
+                                                                }
+                                                            ?>
+                                                    </span>
+                                                    <i class="fa-solid fa-circle-info help"></i>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                            <?php
+                                                                if($Membership['MembersNewsletter'] == 1){ 
+                                                                        echo "<i class='fa-solid fa-check fa-fw yes'></i>";
+                                                                        echo "Exclusive Members' Newsletter" ;   
                                                                 }else{
-                                                                    echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo $Membership['VouchersMuseum'] . " Free Vouchers For Museum Restaurans" ;
+                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                        echo "Exclusive Members' Newsletter" ;
                                                                 }
                                                             ?>
                                                     </span>
@@ -901,26 +911,12 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                             <?php
-                                                                if($Membership['DiscountOnKidsClasses'] == 1){ 
+                                                                if($Membership['SpecialExhibtions'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Discounts on Kid's Historical Classes & Activities" ;   
-                                                                }elseif($Membership['DiscountOnKidsClasses'] == NULL || $Membership['DiscountOnKidsClasses'] == 0){
+                                                                        echo "Special Exhibition Screening" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Discounts on Kid's Historical Classes & Activities" ;
-                                                                }
-                                                            ?>
-                                                    </span>
-                                                    <i class="fa-solid fa-circle-info help"></i>
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                            <?php
-                                                                if($Membership['SubsMuseumLib'] == 1){ 
-                                                                        echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "A Year of Subscription to the Grand Egyptian Museum Library" ; 
-                                                                }elseif($Membership['SubsMuseumLib'] == NULL || $Membership['SubsMuseumLib'] == 0){
-                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "A Year of Subscription to the Grand Egyptian Museum Library" ; 
+                                                                        echo "Special Exhibition Screening" ; 
                                                                 }
                                                             ?>
                                                     </span>
@@ -932,7 +928,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                 if($Membership['AccessMuseumLib'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
                                                                         echo "Access to The Grand Egyptian Museum Library" ; 
-                                                                }elseif($Membership['AccessMuseumLib'] == NULL || $Membership['AccessMuseumLib'] == 0){
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
                                                                         echo "Access to The Grand Egyptian Museum Library" ; 
                                                                 }
@@ -943,12 +939,12 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                             <?php
-                                                                if($Membership['SpecialRecognition'] == 1){ 
+                                                                if($Membership['InvatationsToActivites'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Special Recognition" ; 
-                                                                }elseif($Membership['SpecialRecognition'] == NULL || $Membership['SpecialRecognition'] == 0){
+                                                                        echo "Invitations to activities day in GEM" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Special Recognition" ; 
+                                                                        echo "Invitations to activities day in GEM" ; 
                                                                 }
                                                             ?>
                                                     </span>
@@ -959,10 +955,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['AccessToEvents'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Access to Exclusive Events" ; 
-                                                                }elseif($Membership['AccessToEvents'] == NULL || $Membership['AccessToEvents'] == 0){
+                                                                        echo "Members-only Events" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Access to Exclusive Events" ; 
+                                                                        echo "Members-only Events" ; 
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -971,12 +967,26 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                             <?php
-                                                                if($Membership['FreeMuseumRest'] == 1){ 
+                                                                if($Membership['PriorityAccessToEvents'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Free Access to All Offilcial Museum Restaurants" ; 
-                                                                }elseif($Membership['FreeMuseumRest'] == NULL || $Membership['FreeMuseumRest'] == 0){
+                                                                        echo "Priority Access to Special Events" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Free Access to All Offilcial Museum Restaurants" ; 
+                                                                        echo "Priority Access to Special Events" ; 
+                                                                }
+                                                            ?>
+                                                    </span>                                       
+                                                    <i class="fa-solid fa-circle-info help"></i>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                            <?php
+                                                                if($Membership['StudentsEvents'] == 1){ 
+                                                                        echo "<i class='fa-solid fa-check fa-fw yes'></i>";
+                                                                        echo "Exclusive Student Events" ; 
+                                                                }else{
+                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                        echo "Exclusive Student Events" ; 
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -1062,9 +1072,9 @@ if (isset($_SESSION["AdminID"])) {
                                                     <i class="fa-solid fa-check fa-fw yes"></i>
                                                     <span>
                                                         <?php if($Membership['Entry'] == 0 ){ 
-                                                                    echo " Unlimited Entry" ;
+                                                                    echo " 	Free Limited Admission Entry" ;
                                                             }else{
-                                                                    echo "Free entry for ".$Membership['Entry'] . " times per Month" ;
+                                                                    echo " UnLimited Entry" ;
                                                             } 
                                                         ?>
                                                     </span>
@@ -1072,16 +1082,13 @@ if (isset($_SESSION["AdminID"])) {
                                                 </li>
                                                 <li>
                                                     <span>
-                                                    <?php if($Membership['DiscountOnTours'] == 1 ){ 
+                                                    <?php if($Membership['DiscountGiftShop'] == 1 ){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Discounts on tours conducted by team hospitality" ;   
-                                                            }elseif($Membership['DiscountOnTours'] == NULL || $Membership['DiscountOnTours'] == 0){
-                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Discounts on tours conducted by team hospitality" ;
+                                                                    echo "	Discounts in Museum Gift Shop Purchases" ;   
                                                             }else{
-                                                                echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                echo $Membership['DiscountOnTours'] . " Discounts on tours conducted by team hospitality" ;                                                       
-                                                            } 
+                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                    echo "	Discounts in Museum Gift Shop Purchases" ;
+                                                            }
                                                         ?>
                                                     </span>
                                                     <i class="fa-solid fa-circle-info help"></i>
@@ -1089,12 +1096,12 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                         <?php
-                                                            if($Membership['AccessKidsArea'] == 1 ){ 
+                                                            if($Membership['DiscountParking'] == 1 ){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Free Access to Kids Area" ;   
-                                                            }elseif($Membership['AccessKidsArea'] == NULL || $Membership['AccessKidsArea'] == 0){
+                                                                    echo "Discounted Parking" ;   
+                                                            }else{
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Free Access to Kids Area" ;
+                                                                    echo "Discounted Parking" ;
                                                             }
                                                         ?>
                                                     </span>
@@ -1105,13 +1112,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['ChildernMuseum'] == 1 ){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Free Access To Childern Museum" ;   
-                                                                }elseif($Membership['ChildernMuseum'] == NULL || $Membership['ChildernMuseum'] == 0){
-                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Access To Childern Museum" ;
+                                                                        echo "Access to The GEM Children Museum" ;   
                                                                 }else{
-                                                                    echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo $Membership['ChildernMuseum'] . " Free Entries to Childern Museum " ;
+                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                        echo "Access to The GEM Children Museum" ;
                                                                 }
                                                             ?>
                                                     </span>
@@ -1123,12 +1127,23 @@ if (isset($_SESSION["AdminID"])) {
                                                                 if($Membership['VouchersMuseum'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
                                                                         echo "Free Voucher For Museum Restaurant" ;   
-                                                                }elseif($Membership['VouchersMuseum'] == NULL || $Membership['VouchersMuseum'] == 0){
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
                                                                         echo "Free Voucher For Museum Restaurant" ;
+                                                                }
+                                                            ?>
+                                                    </span>
+                                                    <i class="fa-solid fa-circle-info help"></i>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                            <?php
+                                                                if($Membership['MembersNewsletter'] == 1){ 
+                                                                        echo "<i class='fa-solid fa-check fa-fw yes'></i>";
+                                                                        echo "Exclusive Members' Newsletter" ;   
                                                                 }else{
-                                                                    echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo $Membership['VouchersMuseum'] . " Free Vouchers For Museum Restaurans" ;
+                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                        echo "Exclusive Members' Newsletter" ;
                                                                 }
                                                             ?>
                                                     </span>
@@ -1137,26 +1152,12 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                             <?php
-                                                                if($Membership['DiscountOnKidsClasses'] == 1){ 
+                                                                if($Membership['SpecialExhibtions'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Discounts on Kid's Historical Classes & Activities" ;   
-                                                                }elseif($Membership['DiscountOnKidsClasses'] == NULL || $Membership['DiscountOnKidsClasses'] == 0){
+                                                                        echo "Special Exhibition Screening" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Discounts on Kid's Historical Classes & Activities" ;
-                                                                }
-                                                            ?>
-                                                    </span>
-                                                    <i class="fa-solid fa-circle-info help"></i>
-                                                </li>
-                                                <li>
-                                                    <span>
-                                                            <?php
-                                                                if($Membership['SubsMuseumLib'] == 1){ 
-                                                                        echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "A Year of Subscription to the Grand Egyptian Museum Library" ; 
-                                                                }elseif($Membership['SubsMuseumLib'] == NULL || $Membership['SubsMuseumLib'] == 0){
-                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "A Year of Subscription to the Grand Egyptian Museum Library" ; 
+                                                                        echo "Special Exhibition Screening" ; 
                                                                 }
                                                             ?>
                                                     </span>
@@ -1168,7 +1169,7 @@ if (isset($_SESSION["AdminID"])) {
                                                                 if($Membership['AccessMuseumLib'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
                                                                         echo "Access to The Grand Egyptian Museum Library" ; 
-                                                                }elseif($Membership['AccessMuseumLib'] == NULL || $Membership['AccessMuseumLib'] == 0){
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
                                                                         echo "Access to The Grand Egyptian Museum Library" ; 
                                                                 }
@@ -1179,12 +1180,12 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                             <?php
-                                                                if($Membership['SpecialRecognition'] == 1){ 
+                                                                if($Membership['InvatationsToActivites'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Special Recognition" ; 
-                                                                }elseif($Membership['SpecialRecognition'] == NULL || $Membership['SpecialRecognition'] == 0){
+                                                                        echo "Invitations to activities day in GEM" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Special Recognition" ; 
+                                                                        echo "Invitations to activities day in GEM" ; 
                                                                 }
                                                             ?>
                                                     </span>
@@ -1195,10 +1196,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             <?php
                                                                 if($Membership['AccessToEvents'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Access to Exclusive Events" ; 
-                                                                }elseif($Membership['AccessToEvents'] == NULL || $Membership['AccessToEvents'] == 0){
+                                                                        echo "Members-only Events" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Access to Exclusive Events" ; 
+                                                                        echo "Members-only Events" ; 
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -1207,12 +1208,26 @@ if (isset($_SESSION["AdminID"])) {
                                                 <li>
                                                     <span>
                                                             <?php
-                                                                if($Membership['FreeMuseumRest'] == 1){ 
+                                                                if($Membership['PriorityAccessToEvents'] == 1){ 
                                                                         echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                        echo "Free Access to All Offilcial Museum Restaurants" ; 
-                                                                }elseif($Membership['FreeMuseumRest'] == NULL || $Membership['FreeMuseumRest'] == 0){
+                                                                        echo "Priority Access to Special Events" ; 
+                                                                }else{
                                                                         echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                        echo "Free Access to All Offilcial Museum Restaurants" ; 
+                                                                        echo "Priority Access to Special Events" ; 
+                                                                }
+                                                            ?>
+                                                    </span>                                       
+                                                    <i class="fa-solid fa-circle-info help"></i>
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                            <?php
+                                                                if($Membership['StudentsEvents'] == 1){ 
+                                                                        echo "<i class='fa-solid fa-check fa-fw yes'></i>";
+                                                                        echo "Exclusive Student Events" ; 
+                                                                }else{
+                                                                        echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                        echo "Exclusive Student Events" ; 
                                                                 }
                                                             ?>
                                                     </span>                                       
@@ -1293,9 +1308,9 @@ if (isset($_SESSION["AdminID"])) {
                                                 <i class="fa-solid fa-check fa-fw yes"></i>
                                                 <span>
                                                     <?php if($Membership['Entry'] == 0 ){ 
-                                                                echo " Unlimited Entry" ;
+                                                                echo " 	Free Limited Admission Entry" ;
                                                         }else{
-                                                                echo "Free entry for ".$Membership['Entry'] . " times per Month" ;
+                                                                echo " UnLimited Entry" ;
                                                         } 
                                                     ?>
                                                 </span>
@@ -1303,16 +1318,13 @@ if (isset($_SESSION["AdminID"])) {
                                             </li>
                                             <li>
                                                 <span>
-                                                <?php if($Membership['DiscountOnTours'] == 1 ){ 
+                                                <?php if($Membership['DiscountGiftShop'] == 1 ){ 
                                                                 echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                echo "Discounts on tours conducted by team hospitality" ;   
-                                                        }elseif($Membership['DiscountOnTours'] == NULL || $Membership['DiscountOnTours'] == 0){
-                                                                echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                echo "Discounts on tours conducted by team hospitality" ;
+                                                                echo "	Discounts in Museum Gift Shop Purchases" ;   
                                                         }else{
-                                                            echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                            echo $Membership['DiscountOnTours'] . " Discounts on tours conducted by team hospitality" ;                                                       
-                                                        } 
+                                                                echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                echo "	Discounts in Museum Gift Shop Purchases" ;
+                                                        }
                                                     ?>
                                                 </span>
                                                 <i class="fa-solid fa-circle-info help"></i>
@@ -1320,12 +1332,12 @@ if (isset($_SESSION["AdminID"])) {
                                             <li>
                                                 <span>
                                                     <?php
-                                                        if($Membership['AccessKidsArea'] == 1 ){ 
+                                                        if($Membership['DiscountParking'] == 1 ){ 
                                                                 echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                echo "Free Access to Kids Area" ;   
-                                                        }elseif($Membership['AccessKidsArea'] == NULL || $Membership['AccessKidsArea'] == 0){
+                                                                echo "Discounted Parking" ;   
+                                                        }else{
                                                                 echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                echo "Free Access to Kids Area" ;
+                                                                echo "Discounted Parking" ;
                                                         }
                                                     ?>
                                                 </span>
@@ -1336,13 +1348,10 @@ if (isset($_SESSION["AdminID"])) {
                                                         <?php
                                                             if($Membership['ChildernMuseum'] == 1 ){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Free Access To Childern Museum" ;   
-                                                            }elseif($Membership['ChildernMuseum'] == NULL || $Membership['ChildernMuseum'] == 0){
-                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Access To Childern Museum" ;
+                                                                    echo "Access to The GEM Children Museum" ;   
                                                             }else{
-                                                                echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                echo $Membership['ChildernMuseum'] . " Free Entries to Childern Museum " ;
+                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                    echo "Access to The GEM Children Museum" ;
                                                             }
                                                         ?>
                                                 </span>
@@ -1354,12 +1363,23 @@ if (isset($_SESSION["AdminID"])) {
                                                             if($Membership['VouchersMuseum'] == 1){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
                                                                     echo "Free Voucher For Museum Restaurant" ;   
-                                                            }elseif($Membership['VouchersMuseum'] == NULL || $Membership['VouchersMuseum'] == 0){
+                                                            }else{
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
                                                                     echo "Free Voucher For Museum Restaurant" ;
+                                                            }
+                                                        ?>
+                                                </span>
+                                                <i class="fa-solid fa-circle-info help"></i>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                        <?php
+                                                            if($Membership['MembersNewsletter'] == 1){ 
+                                                                    echo "<i class='fa-solid fa-check fa-fw yes'></i>";
+                                                                    echo "Exclusive Members' Newsletter" ;   
                                                             }else{
-                                                                echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                echo $Membership['VouchersMuseum'] . " Free Vouchers For Museum Restaurans" ;
+                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                    echo "Exclusive Members' Newsletter" ;
                                                             }
                                                         ?>
                                                 </span>
@@ -1368,26 +1388,12 @@ if (isset($_SESSION["AdminID"])) {
                                             <li>
                                                 <span>
                                                         <?php
-                                                            if($Membership['DiscountOnKidsClasses'] == 1){ 
+                                                            if($Membership['SpecialExhibtions'] == 1){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Discounts on Kid's Historical Classes & Activities" ;   
-                                                            }elseif($Membership['DiscountOnKidsClasses'] == NULL || $Membership['DiscountOnKidsClasses'] == 0){
+                                                                    echo "Special Exhibition Screening" ; 
+                                                            }else{
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Discounts on Kid's Historical Classes & Activities" ;
-                                                            }
-                                                        ?>
-                                                </span>
-                                                <i class="fa-solid fa-circle-info help"></i>
-                                            </li>
-                                            <li>
-                                                <span>
-                                                        <?php
-                                                            if($Membership['SubsMuseumLib'] == 1){ 
-                                                                    echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "A Year of Subscription to the Grand Egyptian Museum Library" ; 
-                                                            }elseif($Membership['SubsMuseumLib'] == NULL || $Membership['SubsMuseumLib'] == 0){
-                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "A Year of Subscription to the Grand Egyptian Museum Library" ; 
+                                                                    echo "Special Exhibition Screening" ; 
                                                             }
                                                         ?>
                                                 </span>
@@ -1399,7 +1405,7 @@ if (isset($_SESSION["AdminID"])) {
                                                             if($Membership['AccessMuseumLib'] == 1){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
                                                                     echo "Access to The Grand Egyptian Museum Library" ; 
-                                                            }elseif($Membership['AccessMuseumLib'] == NULL || $Membership['AccessMuseumLib'] == 0){
+                                                            }else{
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
                                                                     echo "Access to The Grand Egyptian Museum Library" ; 
                                                             }
@@ -1410,12 +1416,12 @@ if (isset($_SESSION["AdminID"])) {
                                             <li>
                                                 <span>
                                                         <?php
-                                                            if($Membership['SpecialRecognition'] == 1){ 
+                                                            if($Membership['InvatationsToActivites'] == 1){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Special Recognition" ; 
-                                                            }elseif($Membership['SpecialRecognition'] == NULL || $Membership['SpecialRecognition'] == 0){
+                                                                    echo "Invitations to activities day in GEM" ; 
+                                                            }else{
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Special Recognition" ; 
+                                                                    echo "Invitations to activities day in GEM" ; 
                                                             }
                                                         ?>
                                                 </span>
@@ -1426,10 +1432,10 @@ if (isset($_SESSION["AdminID"])) {
                                                         <?php
                                                             if($Membership['AccessToEvents'] == 1){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Access to Exclusive Events" ; 
-                                                            }elseif($Membership['AccessToEvents'] == NULL || $Membership['AccessToEvents'] == 0){
+                                                                    echo "Members-only Events" ; 
+                                                            }else{
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Access to Exclusive Events" ; 
+                                                                    echo "Members-only Events" ; 
                                                             }
                                                         ?>
                                                 </span>                                       
@@ -1438,12 +1444,26 @@ if (isset($_SESSION["AdminID"])) {
                                             <li>
                                                 <span>
                                                         <?php
-                                                            if($Membership['FreeMuseumRest'] == 1){ 
+                                                            if($Membership['PriorityAccessToEvents'] == 1){ 
                                                                     echo "<i class='fa-solid fa-check fa-fw yes'></i>";
-                                                                    echo "Free Access to All Offilcial Museum Restaurants" ; 
-                                                            }elseif($Membership['FreeMuseumRest'] == NULL || $Membership['FreeMuseumRest'] == 0){
+                                                                    echo "Priority Access to Special Events" ; 
+                                                            }else{
                                                                     echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
-                                                                    echo "Free Access to All Offilcial Museum Restaurants" ; 
+                                                                    echo "Priority Access to Special Events" ; 
+                                                            }
+                                                        ?>
+                                                </span>                                       
+                                                <i class="fa-solid fa-circle-info help"></i>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                        <?php
+                                                            if($Membership['StudentsEvents'] == 1){ 
+                                                                    echo "<i class='fa-solid fa-check fa-fw yes'></i>";
+                                                                    echo "Exclusive Student Events" ; 
+                                                            }else{
+                                                                    echo "<i class='fa-solid fa-xmark fa-fw no'></i>";
+                                                                    echo "Exclusive Student Events" ; 
                                                             }
                                                         ?>
                                                 </span>                                       
@@ -1500,7 +1520,8 @@ if (isset($_SESSION["AdminID"])) {
                                     </div>
                                 <?php } 
                                 
-                            } ?>
+                            } 
+                        ?>
                     
                     </div>
                 </div>
@@ -1767,63 +1788,49 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                             </div>
                             <div class="form-group insertInput mb-0">
-                                <div class="m-auto">
-                                    <input type="number" name="FreeEntry" class="form-control" placeholder="Free Entry" autocomplete="off" required="required" />
-                                </div>
-                            </div> 
-                            <div class="form-group insertInput mb-0">
                                 <div class="mb-0">
                                     <input type="number" name="Price" class="form-control" placeholder="Price" autocomplete="off" />
                                 </div>
                             </div>
-                            <div class="form-group insertInput mb-0">
-                                <div class="mt-20">
-                                    <input type="number" name="ChildernMuseum" class="form-control" placeholder="Access to Childern Museum" autocomplete="off" />
-                                </div>
-                            </div> 
-                            <div class="form-group insertInput mb-0">
-                                <div class="mt-20">
-                                    <input type="number" name="VouchersMuseum" class="form-control" placeholder="Vouchers For Museum Restaurants" autocomplete="off"  />
-                                </div>
-                            </div> 
+
                             <div class="form-group CheckBoxesPanel">
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Discount On Tours</span>
+                                        <span>UnLimited Entry </span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="DiscountOnTours" class="toggle-checkbox" value="1" />
+                                        <input type="checkbox" name="FreeEntry" class="toggle-checkbox" value="1" />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Access to Kids Area</span>
+                                        <span> Access Childern Museum</span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="AccessKidsArea" class="toggle-checkbox" value="1" />
+                                        <input type="checkbox" name="ChildernMuseum" class="toggle-checkbox" value="1" />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
                                     
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span>Discount On Kids Classes</span>
+                                        <span>Vouchers on Museum's Resturants</span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="DiscountOnKidsClasses" class="toggle-checkbox" value="1" />
+                                        <input type="checkbox" name="VouchersMuseum" class="toggle-checkbox" value="1" />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Subscription to Museum Library</span>
+                                        <span> Discount On GiftShop</span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="SubsMuseumLib" class="toggle-checkbox" value="1" />
+                                        <input type="checkbox" name="DiscountGiftShop" class="toggle-checkbox" value="1" />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
@@ -1840,17 +1847,17 @@ if (isset($_SESSION["AdminID"])) {
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Special Recognition</span>
+                                        <span> Discount On Parking</span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="SpecialRecognition" class="toggle-checkbox" value="1" />
+                                        <input type="checkbox" name="DiscountOnParking" class="toggle-checkbox" value="1" />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Access To All Events	</span>
+                                        <span> Members-Only Events	</span>
                                     </div>
                                     <label>
                                         <input type="checkbox" name="AccessToEvents" class="toggle-checkbox" value="1" />
@@ -1860,10 +1867,40 @@ if (isset($_SESSION["AdminID"])) {
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Free Access To Museum Restaurants</span>
+                                        <span> Access to Students Events</span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="FreeMuseumRest" class="toggle-checkbox" value="1" />
+                                        <input type="checkbox" name="StudentsEvents	" class="toggle-checkbox" value="1" />
+                                        <div class="toggle-switch"></div>
+                                    </label>
+                                </div>
+
+                                <div class='CheckBoxDiv'>
+                                    <div>
+                                        <span> Access To Special Exhibitions </span>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" name="SpecialExhibtions" class="toggle-checkbox" value="1" />
+                                        <div class="toggle-switch"></div>
+                                    </label>
+                                </div>
+
+                                <div class='CheckBoxDiv'>
+                                    <div>
+                                        <span> Invitations To Activites	</span>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" name="ActivitesInvitations" class="toggle-checkbox" value="1" />
+                                        <div class="toggle-switch"></div>
+                                    </label>
+                                </div>
+
+                                <div class='CheckBoxDiv'>
+                                    <div>
+                                        <span> Newsletter </span>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" name="Newsletter" class="toggle-checkbox" value="1" />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
@@ -1897,6 +1934,16 @@ if (isset($_SESSION["AdminID"])) {
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
+
+                                <div class='CheckBoxDiv'>
+                                    <div>
+                                        <span> 	Priority Access To Events</span>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" name="PriorityAccessToEvents" class="toggle-checkbox" value="1" />
+                                        <div class="toggle-switch"></div>
+                                    </label>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="InsertButton">
@@ -1912,8 +1959,7 @@ if (isset($_SESSION["AdminID"])) {
                 $Membership = $_POST['Name'];
                 $Price = $_POST['Price'];
                 $Period = $_POST['Period'];
-                $FreeEntry = $_POST['FreeEntry'];
-                $ChildernMuseum = $_POST['ChildernMuseum'];
+
                 
                     $FormErrors = array();
             
@@ -1926,22 +1972,16 @@ if (isset($_SESSION["AdminID"])) {
                     if ($Period == 0 ) {
                         $FormErrors[] = "You Must Select a Period For The Membership";
                     }
-                    if($FreeEntry > 8){
-                        $FormErrors[] = "Too Much Entries For The Museum it Must be less than 8";
-                    }
-                    if($ChildernMuseum > 8){
-                        $FormErrors[] = "Too Much Entries For The Childern Museum it Must be less than 8";
-                    }
 
                     if(!isset($_POST['FreeEntry'])){
                         $FreeEntry = NULL ;
                     }else{
                         $FreeEntry = $_POST['FreeEntry'];
                     }
-                    if(!isset($_POST['DiscountOnTours'])){
-                        $DiscountOnTours = NULL ;
+                    if(!isset($_POST['DiscountGiftShop'])){
+                        $DiscountGiftShop = NULL ;
                     }else{
-                        $DiscountOnTours = $_POST['DiscountOnTours'];
+                        $DiscountGiftShop = $_POST['DiscountGiftShop'];
                     }
                     if(!isset($_POST['ChildernMuseum'])){
                         $ChildernMuseum = NULL ;
@@ -1956,40 +1996,45 @@ if (isset($_SESSION["AdminID"])) {
                             $FormErrors[] = "Too Much Vouchers For The Restaurants it Must be less than 10";
                         }
                     }
-                    if(!isset($_POST['AccessKidsArea'])){
-                        $AccessKidsArea = NULL ;
+                    if(!isset($_POST['DiscountOnParking'])){
+                        $DiscountOnParking = NULL ;
                     }else{
-                        $AccessKidsArea = $_POST['AccessKidsArea'];
+                        $DiscountOnParking = $_POST['DiscountOnParking'];
                     }
-                    if(!isset($_POST['DiscountOnKidsClasses'])){
-                        $DiscountOnKidsClasses = NULL ;
+                    if(!isset($_POST['SpecialExhibtions'])){
+                        $SpecialExhibtions = NULL ;
                     }else{
-                        $DiscountOnKidsClasses = $_POST['DiscountOnKidsClasses'];
-                    }
-                    if(!isset($_POST['SubsMuseumLib'])){
-                        $SubsMuseumLib = NULL ;
-                    }else{
-                        $SubsMuseumLib = $_POST['SubsMuseumLib'];
+                        $SpecialExhibtions = $_POST['SpecialExhibtions'];
                     }
                     if(!isset($_POST['AccessMuseumLib'])){
                         $AccessMuseumLib = NULL ;
                     }else{
                         $AccessMuseumLib = $_POST['AccessMuseumLib'];
                     }
-                    if(!isset($_POST['SpecialRecognition'])){
-                        $SpecialRecognition = NULL ;
+                    if(!isset($_POST['PriorityAccessToEvents'])){
+                        $PriorityAccessToEvents = NULL ;
                     }else{
-                        $SpecialRecognition = $_POST['SpecialRecognition'];
+                        $PriorityAccessToEvents = $_POST['PriorityAccessToEvents'];
                     }
                     if(!isset($_POST['AccessToEvents'])){
                         $AccessToEvents = NULL ;
                     }else{
                         $AccessToEvents = $_POST['AccessToEvents'];
                     }
-                    if(!isset($_POST['FreeMuseumRest'])){
-                        $FreeMuseumRest = NULL ;
+                    if(!isset($_POST['ActivitesInvitations'])){
+                        $ActivitesInvitations = NULL ;
                     }else{
-                        $FreeMuseumRest = $_POST['FreeMuseumRest'];
+                        $ActivitesInvitations = $_POST['ActivitesInvitations'];
+                    }
+                    if(!isset($_POST['Newsletter'])){
+                        $Newsletter = NULL ;
+                    }else{
+                        $Newsletter = $_POST['Newsletter'];
+                    }
+                    if(!isset($_POST['StudentsEvents'])){
+                        $StudentsEvents	 = NULL ;
+                    }else{
+                        $StudentsEvents	 = $_POST['StudentsEvents'];
                     }
                     if(!isset($_POST['AccessTutankhamun'])){
                         $AccessTutankhamun = NULL ;
@@ -2008,7 +2053,7 @@ if (isset($_SESSION["AdminID"])) {
                     }
 
                     if(empty($FormErrors)){
-                        $InsertQuery = "INSERT INTO `membership` Values(Null , '$Membership' , '$Price' , $Period , '$FreeEntry' , '$DiscountOnTours' , '$AccessKidsArea', '$ChildernMuseum' , '$VouchersMuseum' , '$DiscountOnKidsClasses' ,'$SubsMuseumLib'  , '$AccessMuseumLib' , '$SpecialRecognition', '$AccessToEvents', '$FreeMuseumRest', '$AccessTutankhamun', '$AccessHologram', '$AccessToMonuments'  )";
+                        $InsertQuery = "INSERT INTO `membership` Values(Null , '$Membership' , '$Price' , $Period , '$FreeEntry' , '$DiscountGiftShop' , '$DiscountOnParking', '$ChildernMuseum' , '$VouchersMuseum' , '$Newsletter' ,'$SpecialExhibtions'  , '$AccessMuseumLib' , '$ActivitesInvitations', '$AccessToEvents', '$AccessTutankhamun', '$AccessHologram', '$AccessToMonuments' , '$PriorityAccessToEvents' , '$StudentsEvents' )";
                         $Insert = mysqli_query($con, $InsertQuery);
                                 header("Location: ./Users.php?action=CheckAllMembership");
             
@@ -2072,67 +2117,95 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                             </div>
                             <div class="form-group insertInput mb-0">
-                            <label class="mt-20 control-label">Free Entry</label>
-                                <div class="m-auto">
-                                    <input type="number" name="FreeEntry" class="form-control"  value="<?php echo $row['Entry'] ?>"  required="required" />
-                                </div>
-                            </div> 
-                            <div class="form-group insertInput mb-0">
-                            <label class="control-label">Price</label>
+                                <label class="control-label">Price</label>
                                 <div class="m-auto">
                                     <input type="number" name="Price" class="form-control" value="<?php echo $row['Price'] ?>" placeholder="Price" autocomplete="off" />
                                 </div>
                             </div>
-                            <div class="form-group insertInput mb-0">
-                            <label class="mt-20 control-label">Free Entry to Childern Museum</label>
-                                <div class="m-auto">
-                                    <input type="number" name="ChildernMuseum" class="form-control" value="<?php echo $row['ChildernMuseum'] ?>" placeholder="Access to Childern Museum" autocomplete="off" />
-                                </div>
-                            </div> 
-                            <div class="form-group insertInput mb-0">
-                            <label class="mt-20 control-label">Free Vouchers To Museum's Restaurants</label>
-                                <div class="m-auto">
-                                    <input type="number" name="VouchersMuseum" class="form-control"  value="<?php echo $row['VouchersMuseum'] ?>" placeholder="Vouchers For Museum Restaurants" autocomplete="off"  />
-                                </div>
-                            </div> 
                             <div class="form-group CheckBoxesPanel">
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Discount On Tours</span>
+                                        <span> UnLimited Entry </span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="DiscountOnTours" class="toggle-checkbox" value="1" <?php if(isset($row['DiscountOnTours'])&& $row['DiscountOnTours'] != 0 ){echo "Checked";} ?> />
+                                        <input type="checkbox" name="FreeEntry" class="toggle-checkbox" value="1"  <?php if(isset($row['Entry'])&& $row['Entry'] != 0 ){echo "Checked";} ?>  />
+                                        <div class="toggle-switch"></div>
+                                    </label>
+                                </div>
+                                <div class='CheckBoxDiv'>
+                                    <div>
+                                        <span> Discount On GiftShop</span>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" name="DiscountGiftShop" class="toggle-checkbox" value="1" <?php if(isset($row['DiscountGiftShop'])&& $row['DiscountGiftShop'] != 0 ){echo "Checked";} ?> />
+                                        <div class="toggle-switch"></div>
+                                    </label>
+                                </div>
+                                <div class='CheckBoxDiv'>
+                                    <div>
+                                        <span> Discount On Parking</span>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" name="DiscountParking" class="toggle-checkbox" value="1" <?php if(isset($row['DiscountParking'])&& $row['DiscountParking'] != 0 ){echo "Checked";} ?> />
+                                        <div class="toggle-switch"></div>
+                                    </label>
+                                </div>
+                                <div class='CheckBoxDiv'>
+                                    <div>
+                                        <span> Members Newsletter</span>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" name="MembersNewsletter" class="toggle-checkbox" value="1" <?php if(isset($row['MembersNewsletter'])&& $row['MembersNewsletter'] != 0 ){echo "Checked";} ?> />
+                                        <div class="toggle-switch"></div>
+                                    </label>
+                                </div>
+                                <div class='CheckBoxDiv'>
+                                    <div>
+                                        <span> Access to Special Exhibtions</span>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" name="SpecialExhibtions" class="toggle-checkbox" value="1" <?php if(isset($row['SpecialExhibtions'])&& $row['SpecialExhibtions'] != 0 ){echo "Checked";} ?> />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Access to Kids Area</span>
+                                        <span> Invatations To Activites</span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="AccessKidsArea" class="toggle-checkbox" value="1" <?php if(isset($row['AccessKidsArea']) && $row['AccessKidsArea'] != 0){echo "Checked";} ?>  />
+                                        <input type="checkbox" name="InvatationsToActivites" class="toggle-checkbox" value="1" <?php if(isset($row['InvatationsToActivites']) && $row['InvatationsToActivites'] != 0){echo "Checked";} ?>  />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
                                     
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span>Discount On Kids Classes</span>
+                                        <span>Access to Childern Museum</span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="DiscountOnKidsClasses" class="toggle-checkbox" value="1" <?php if(isset($row['DiscountOnKidsClasses'])&& $row['DiscountOnKidsClasses'] != 0){echo "Checked";} ?> />
+                                        <input type="checkbox" name="ChildernMuseum" class="toggle-checkbox" value="1" <?php if(isset($row['ChildernMuseum'])&& $row['ChildernMuseum'] != 0){echo "Checked";} ?> />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Subscription to Museum Library</span>
+                                        <span>Vouchers on Museum Resturants</span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="SubsMuseumLib" class="toggle-checkbox" value="1" <?php if(isset($row['SubsMuseumLib'])&& $row['SubsMuseumLib'] != 0){echo "Checked";} ?> />
+                                        <input type="checkbox" name="VouchersMuseum" class="toggle-checkbox" value="1" <?php if(isset($row['VouchersMuseum'])&& $row['VouchersMuseum'] != 0){echo "Checked";} ?> />
+                                        <div class="toggle-switch"></div>
+                                    </label>
+                                </div>
+
+                                <div class='CheckBoxDiv'>
+                                    <div>
+                                        <span> Priority Access To Events</span>
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" name="PriorityAccessToEvents" class="toggle-checkbox" value="1" <?php if(isset($row['PriorityAccessToEvents'])&& $row['PriorityAccessToEvents'] != 0){echo "Checked";} ?> />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
@@ -2149,17 +2222,7 @@ if (isset($_SESSION["AdminID"])) {
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Special Recognition</span>
-                                    </div>
-                                    <label>
-                                        <input type="checkbox" name="SpecialRecognition" class="toggle-checkbox" value="1" <?php if(isset($row['SpecialRecognition'])&& $row['SpecialRecognition'] != 0){echo "Checked";} ?> />
-                                        <div class="toggle-switch"></div>
-                                    </label>
-                                </div>
-
-                                <div class='CheckBoxDiv'>
-                                    <div>
-                                        <span> Access To All Events	</span>
+                                        <span>Memberso-Only Events</span>
                                     </div>
                                     <label>
                                         <input type="checkbox" name="AccessToEvents" class="toggle-checkbox" value="1" <?php if(isset($row['AccessToEvents'])&& $row['AccessToEvents'] != 0){echo "Checked";} ?> />
@@ -2169,10 +2232,10 @@ if (isset($_SESSION["AdminID"])) {
 
                                 <div class='CheckBoxDiv'>
                                     <div>
-                                        <span> Free Access To Museum Restaurants</span>
+                                        <span>Access to Students Events</span>
                                     </div>
                                     <label>
-                                        <input type="checkbox" name="FreeMuseumRest" class="toggle-checkbox" value="1"  <?php if(isset($row['FreeMuseumRest'])&& $row['FreeMuseumRest'] != 0){echo "Checked";} ?> />
+                                        <input type="checkbox" name="StudentsEvents" class="toggle-checkbox" value="1"  <?php if(isset($row['StudentsEvents'])&& $row['StudentsEvents'] != 0){echo "Checked";} ?> />
                                         <div class="toggle-switch"></div>
                                     </label>
                                 </div>
@@ -2227,8 +2290,6 @@ if (isset($_SESSION["AdminID"])) {
                 $Membership = $_POST['Name'];
                 $Price = $_POST['Price'];
                 $Period = $_POST['Period'];
-                $FreeEntry = $_POST['FreeEntry'];
-                $ChildernMuseum = $_POST['ChildernMuseum'];
                 
                     $FormErrors = array();
             
@@ -2241,22 +2302,17 @@ if (isset($_SESSION["AdminID"])) {
                     if ($Period == 0 ) {
                         $FormErrors[] = "You Must Select a Period For The Membership";
                     }
-                    if($FreeEntry > 8){
-                        $FormErrors[] = "Too Much Entries For The Museum it Must be less than 8";
-                    }
-                    if($ChildernMuseum > 8){
-                        $FormErrors[] = "Too Much Entries For The Childern Museum it Must be less than 8";
-                    }
+
 
                     if(!isset($_POST['FreeEntry'])){
                         $FreeEntry = NULL ;
                     }else{
                         $FreeEntry = $_POST['FreeEntry'];
                     }
-                    if(!isset($_POST['DiscountOnTours'])){
-                        $DiscountOnTours = NULL ;
+                    if(!isset($_POST['DiscountGiftShop'])){
+                        $DiscountGiftShop = NULL ;
                     }else{
-                        $DiscountOnTours = $_POST['DiscountOnTours'];
+                        $DiscountGiftShop = $_POST['DiscountGiftShop'];
                     }
                     if(!isset($_POST['ChildernMuseum'])){
                         $ChildernMuseum = NULL ;
@@ -2267,34 +2323,31 @@ if (isset($_SESSION["AdminID"])) {
                         $VouchersMuseum = NULL ;
                     }else{
                         $VouchersMuseum = $_POST['VouchersMuseum'];
-                        if($VouchersMuseum > 10){
-                            $FormErrors[] = "Too Much Vouchers For The Restaurants it Must be less than 10";
-                        }
                     }
-                    if(!isset($_POST['AccessKidsArea'])){
-                        $AccessKidsArea = NULL ;
+                    if(!isset($_POST['DiscountParking'])){
+                        $DiscountParking = NULL ;
                     }else{
-                        $AccessKidsArea = $_POST['AccessKidsArea'];
+                        $DiscountParking = $_POST['DiscountParking'];
                     }
-                    if(!isset($_POST['DiscountOnKidsClasses'])){
-                        $DiscountOnKidsClasses = NULL ;
+                    if(!isset($_POST['MembersNewsletter'])){
+                        $MembersNewsletter = NULL ;
                     }else{
-                        $DiscountOnKidsClasses = $_POST['DiscountOnKidsClasses'];
-                    }
-                    if(!isset($_POST['SubsMuseumLib'])){
-                        $SubsMuseumLib = NULL ;
-                    }else{
-                        $SubsMuseumLib = $_POST['SubsMuseumLib'];
+                        $MembersNewsletter = $_POST['MembersNewsletter'];
                     }
                     if(!isset($_POST['AccessMuseumLib'])){
                         $AccessMuseumLib = NULL ;
                     }else{
                         $AccessMuseumLib = $_POST['AccessMuseumLib'];
                     }
-                    if(!isset($_POST['SpecialRecognition'])){
-                        $SpecialRecognition = NULL ;
+                    if(!isset($_POST['SpecialExhibtions'])){
+                        $SpecialExhibtions = NULL ;
                     }else{
-                        $SpecialRecognition = $_POST['SpecialRecognition'];
+                        $SpecialExhibtions = $_POST['SpecialExhibtions'];
+                    }
+                    if(!isset($_POST['InvatationsToActivites'])){
+                        $InvatationsToActivites = NULL ;
+                    }else{
+                        $InvatationsToActivites = $_POST['InvatationsToActivites'];
                     }
                     if(!isset($_POST['AccessToEvents'])){
                         $AccessToEvents = NULL ;
@@ -2321,13 +2374,24 @@ if (isset($_SESSION["AdminID"])) {
                     }else{
                         $AccessToMonuments = $_POST['AccessToMonuments'];
                     }
+                    if(!isset($_POST['PriorityAccessToEvents'])){
+                        $PriorityAccessToEvents = NULL ;
+                    }else{
+                        $PriorityAccessToEvents = $_POST['PriorityAccessToEvents'];
+                    }
+                    if(!isset($_POST['StudentsEvents'])){
+                        $StudentsEvents = NULL ;
+                    }else{
+                        $StudentsEvents = $_POST['StudentsEvents'];
+                    }
 
                     if(empty($FormErrors)){
                         $UpdateQuery = "UPDATE membership  SET  Type = '$Membership' , Price = '$Price' , PeriodID = $Period ,  Entry = '$FreeEntry' ,
-                                                                DiscountOnTours = '$DiscountOnTours' , AccessKidsArea = '$AccessKidsArea', ChildernMuseum = '$ChildernMuseum' , 
-                                                                VouchersMuseum = '$VouchersMuseum' , DiscountOnKidsClasses = '$DiscountOnKidsClasses' , SubsMuseumLib ='$SubsMuseumLib'  , 
-                                                                AccessMuseumLib = '$AccessMuseumLib' , SpecialRecognition = '$SpecialRecognition', AccessToEvents = '$AccessToEvents',
-                                                                FreeMuseumRest = '$FreeMuseumRest', AccessTutankhamun = '$AccessTutankhamun', AccessHologram = '$AccessHologram', AccessToMonuments = '$AccessToMonuments'  
+                                                                DiscountGiftShop = '$DiscountGiftShop' , DiscountParking = '$DiscountParking', ChildernMuseum = '$ChildernMuseum' , 
+                                                                VouchersMuseum = '$VouchersMuseum' , MembersNewsletter = '$MembersNewsletter' , SpecialExhibtions ='$SpecialExhibtions'  , 
+                                                                AccessMuseumLib = '$AccessMuseumLib' , InvatationsToActivites = '$InvatationsToActivites', AccessToEvents = '$AccessToEvents',
+                                                                AccessTutankhamun = '$AccessTutankhamun', AccessHologram = '$AccessHologram', AccessToMonuments = '$AccessToMonuments',
+                                                                PriorityAccessToEvents = '$PriorityAccessToEvents', StudentsEvents = '$StudentsEvents'
                                         WHERE ID = $MembershipID ";
                         $Update = mysqli_query($con, $UpdateQuery);
             

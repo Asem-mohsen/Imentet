@@ -22,7 +22,7 @@ $SelectCollections = "SELECT collections .* , collectionscategories.Category AS 
   $CollectionRow = mysqli_fetch_assoc($CollectionRun);
 
 $PageTitle = $CollectionRow['Category'];
-$NumOfRecords = 8 ;
+$NumOfRecords = 9 ;
 if(isset($_GET['MoreData'])){
   $NumOfRecords = $NumOfRecords + $_GET['MoreData'] ;
 }
@@ -52,26 +52,26 @@ if($CategoryID != $CollectionRow['CatID']){
             <div class="inner-container">
               <div class="collection-search__outer">
                 <div class="collection-search__field">
-                  <select class="selectpicker" name="PlaceID">
-                    <option>Location</option>
+                  <select class="selectpicker" name="CatID">
+                    <option value="0"><?php echo $CollectionRow['Category'] ?></option>
                       <?php
-                            $Select = "SELECT * FROM place" ;
+                            $Select = "SELECT * FROM collectionscategories" ;
                             $RunQuery = mysqli_query($con , $Select);
                             $row = mysqli_fetch_assoc($RunQuery);
-                            foreach($RunQuery as $Place){ 
+                            foreach($RunQuery as $Category){ 
                               $Checked = array();
-                              if(isset($_POST['PlaceID'])){
-                                $Checked = $_POST['PlaceID'];
+                              if(isset($_POST['CatID'])){
+                                $Checked = $_POST['CatID'];
                               }
                               ?>
-                              <option value="<?php echo $Place['ID'] ?>" <?php if($Place['ID'] == $Checked){ echo "selected" ;  } ?>><?php echo $Place['Name'] ?></option>
+                              <option value="<?php echo $Category['ID'] ?>" <?php if($Category['ID'] == $Checked){ echo "selected" ;  } ?>><?php echo $Category['Category'] ?></option>
                             <?php } ?> 
                   </select>
                 </div>
               </div>
 
               <button type="submit" name='Find' class="thm-btn collection-search__btn">
-                Collections 
+                Search 
               </button>
             </div>
           </div>
@@ -88,36 +88,12 @@ if($CategoryID != $CollectionRow['CatID']){
                               <div class="row masonary-layout">
                                 <?php 
                                   if(isset($_POST['Find'])){
-                                    if($_POST['PlaceID']){
-                                      $PlaceID =$_POST['PlaceID'] ;
-                                        $sql = "WHERE collections.PlaceID = $PlaceID AND CatID = $CategoryID";
-                                        $SelectCollections = "SELECT collections .* , place.Name AS PlaceName FROM collections
-                                                              JOIN place ON collections.PlaceID = place.ID
-                                                              $sql
-                                                              LIMIT $NumOfRecords";
-                                        $RunQuery = mysqli_query($con , $SelectCollections);
-                                        $CollectionRow = mysqli_fetch_assoc($RunQuery);
-                                        $Count = mysqli_num_rows($RunQuery);
-                                        foreach($RunQuery as $Collection){ ?>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="0ms">
-                                              <div class="collection-two__single">
-                                                  <div class="collection-two__image">
-                                                      <img src="../Images/<?php echo $Collection['Image'] ?>" width="300px" height="300px" alt="">
-                                                      <div class="collection-two__hover">
-                                                          <a class="img-popup" href="../Images/<?php echo $Collection['Image'] ?>"><i class="egypt-icon-focus"></i>
-                                                          </a>
-                                                      </div>
-                                                  </div>
-                                                  <div class="collection-two__content">
-                                                      <p class="collection-two__category"><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>"><?php echo $Collection['PlaceName'] ?></a></p>
-                                                      
-                                                      <h3 class="collection-two__title"><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>"><?php echo $Collection['Collection'] ?></a></h3>
-                                                  </div>
-                                              </div>
-                                            </div>
-                                          <?php 
-                                        } 
-                                    }elseif($_POST['PlaceID'] == 0 ){
+                                    if($_POST['CatID']){
+                                      $CatID =$_POST['CatID'] ;
+                                      header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php?CatID=$CatID ");
+                                      exit();
+                                      
+                                    }elseif($_POST['CatID'] == 0){
                                       $SelectCollections = "SELECT collections .* , place.Name AS PlaceName FROM collections
                                                         JOIN place ON collections.PlaceID = place.ID
                                                         WHERE CatID = $CategoryID
@@ -177,7 +153,7 @@ if($CategoryID != $CollectionRow['CatID']){
 
                               <?php if($Count >= $NumOfRecords){ ?>
                                 <div class="text-center">
-                                  <a href="?MoreData=8" class="exhibhition-one__more-link">
+                                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php?CatID=<?php echo $CategoryID ?>&MoreData=9" class="exhibhition-one__more-link">
                                     <i class="exhibhition-one__more-link__icon">+</i>
                                     <span class="text-uppercase">Load More</span>
                                   </a>

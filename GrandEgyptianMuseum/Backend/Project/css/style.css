@@ -39,7 +39,6 @@
 /*
 * 1. common styles
 */
-
 ::-webkit-scrollbar {
   width: 10px
 }
@@ -54,20 +53,6 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #d99578;
-}
-li.MembershipLi{
-  display: flex;
-  align-items: baseline;
-  text-align: start;
-  gap: 10px;
-  width: 227px;
-}
-div.TicketsBooked{
-  display: flex;
-  justify-content: flex-start;
-  align-items: baseline;
-  gap: 16px;
-  color: green;
 }
 
 body {
@@ -5521,11 +5506,12 @@ a:focus {
 }
 
 .event-page-header {
-  background-image: url(../images/background/inner-banner-bg-2-1.jpg);
+  background-image: url(../images/new/background/background-1.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   padding-bottom: 120px;
+  
 }
 .event-page-header .nav-tabs {
   border-top-color: rgba(255, 255, 255, 0.4);
@@ -6016,8 +6002,8 @@ a:focus {
 .event-details__title {
   margin: 0;
   color: #302e2f;
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 28px;
+  margin-bottom: 15px;
 }
 .event-details__text {
   margin: 0;
@@ -6863,6 +6849,7 @@ a:focus {
   padding-bottom: 97px;
   padding-top: 103px;
 }
+
 .site-footer .container {
   text-align: center;
 }
@@ -7247,7 +7234,7 @@ a:focus {
   padding-top: 120px;
 }
 .video-two .inner-container {
-  background-image: url(../images/resources/video-2-1.jpg);
+  background-image: url(../images/new/background/video-2-1.png);
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
@@ -8147,8 +8134,48 @@ a:focus {
 .department-one__list li a:hover {
   color: #d99578;
 }
+.success-content-message
+{
+  displaY:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px;
+
+}
+.modal {
+  text-align: center;
+  padding: 0 !important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+  /* Adjusts for spacing */
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.success-content-message i {
+  font-size:48px;
+  color: green;
+}
+
+.success-content-message h2 {
+  font-weight: bold;
+  margin-top: 15px;
+  font-family: 'Muli' !important;
+  color: green;
+  text-transform: uppercase;
+}
 .department-one__carrer {
-  background-image: url(../images/resources/carrer-1-1.jpg);
+  background-image: url(../images/new/about-us/career-1-1.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -9079,6 +9106,9 @@ a:focus {
   background-color: #fff;
   padding: 10px 31px;
   margin-top: 20px;
+}
+li.MembershipLi{
+  text-align: left;
 }
 .pricing-one__btn:hover {
   border-color: #d99578;
@@ -10883,7 +10913,7 @@ input[type="file"] {
   list-style: none;
   margin-top: 40px;
   margin-bottom: 40px;
-  /* border: 1px solid #e0cfc7; */
+  border: 1px solid #e0cfc7;
 }
 .side-menu__block .navigation-box ul {
   margin: 0;
@@ -10901,7 +10931,6 @@ input[type="file"] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 20px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -10913,11 +10942,11 @@ input[type="file"] {
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
 }
-/* .side-menu__block .navigation-box li a:before {
+.side-menu__block .navigation-box li a:before {
   content: '\f101';
   font-family: FontAwesome;
   margin-right: 15px;
-} */
+}
 .side-menu__block .navigation-box li a .sub-nav-toggler {
   border: none;
   outline: none;
@@ -11014,7 +11043,7 @@ input[type="file"] {
   display: grid;
   grid-template-columns: repeat(2,1fr);
   width: 100%;
-  height: calc(100vh - 102px); 
+  height: calc(100vh - 90px); 
 
 }
 

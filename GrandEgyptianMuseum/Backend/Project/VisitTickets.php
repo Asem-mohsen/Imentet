@@ -52,12 +52,6 @@ if(isset($_POST['Confirm'])){
 
       <section class="donation-form spacing">
         <div class="container">
-          <?php if(isset($_GET['PaymentSucceeded'])){
-            echo "<div class='TicketsBooked'>";
-              echo "<i class='egypt-icon-check'></i>";
-              echo "<p> Tickets Booked Successfully </p>" ;
-            echo "</div>";
-          } ?>
           <div class="inner-container">
             <h3 class="donation-form__title text-center">Book your Ticket</h3>
             <ul class="nav nav-tabs donation-form__tab">
@@ -105,16 +99,16 @@ if(isset($_POST['Confirm'])){
                                 <th class="prod-column">Type</th>
                                 <th class="price">Price</th>
                                 <th>Quantity</th>
-                                <th>Amenities</th>
                                 <th>Subtotal</th>
                               </tr>
                             </thead>
                             <tbody>
+                                <!-- Egyptian -->
                                 <?php 
                                   $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
                                               JOIN userrole ON visitpricing.UserRole = userrole.ID 
                                               JOIN place ON visitpricing.PlaceID = place.ID 
-                                              WHERE PlaceID = 2 AND UserRole != 2 AND UserRole != 3 
+                                              WHERE PlaceID = 2 AND UserRole != 2 AND UserRole != 3 AND UserRole !=7
                                               ORDER BY visitpricing.ID DESC";
                                   $RunQuery = mysqli_query($con , $SelectVisitPrice);
                                   $VisitRow = mysqli_fetch_assoc($RunQuery);
@@ -123,35 +117,23 @@ if(isset($_POST['Confirm'])){
                                       <td class="prod-column" style="white-space: nowrap">
                                         <div class="column-box">
                                           <h3 class="prod-title padd-top-20">
-                                            <?php echo $Visit['UserRole'] ?>
+                                            <?php echo "GEM - " . $Visit['UserRole'] ?>
                                           </h3>
                                           <input type="hidden" name="UserRole[]" value="<?php if(isset($_SESSION['UserID'])){ echo $Visit['UserRole'] ;} ?>">
                                           <input type="hidden" name="RoleID[]" value="<?php if(isset($_SESSION['UserID'])){ echo $Visit['RoleID'] ;} ?>">
                                         </div>
                                       </td>
                                       <td class="price" style="white-space: nowrap">
-                                      <?php echo $Visit['MuseumFee'] . " LE" ?>
-                                      <input type="hidden" class="VisitPrice" name="Price[]" value="<?php echo $Visit['MuseumFee'] ?>">
+                                      <?php echo $Visit['EntranceFee'] . " EGP" ?>
+                                      <input type="hidden" class="VisitPrice" name="Price[]" value="<?php echo $Visit['EntranceFee'] ?>">
                                       </td>
                                       <td class="qty ">
                                         <input class="quantity-spinner Quantity" max='10' min="0" type="number" value="0" name="Quantity[]" onchange="subTotal()" />
                                       </td>
-                                      <td>
-                                        <div class="amenities-list">
-                                          <p class="login-form__checkbox">
-                                            <input type="checkbox" id="test1" name="radio-group" />
-                                            <label for="test1">Wheelchair</label>
-                                          </p>
-
-                                          <p class="login-form__checkbox">
-                                            <input type="checkbox" id="test2" name="radio-group" />
-                                            <label for="test2">Sunscreen</label>
-                                          </p>
-                                        </div>
-                                      </td>
                                       <td class="SubTotal"></td>
                                     </tr>
-                                  <?php } ?>
+                                  <?php }
+                                ?>
                             </tbody>
                           </table>
 
@@ -178,16 +160,16 @@ if(isset($_POST['Confirm'])){
                                 <th class="prod-column">Type</th>
                                 <th class="price">Price</th>
                                 <th>Quantity</th>
-                                <th>Amenities</th>
                                 <th>Subtotal</th>
                               </tr>
                             </thead>
                               <tbody>
+                                <!-- Forigeners -->
                                 <?php 
                                   $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
                                               JOIN userrole ON visitpricing.UserRole = userrole.ID 
                                               JOIN place ON visitpricing.PlaceID = place.ID 
-                                              WHERE PlaceID = 2 AND UserRole != 1 AND UserRole != 5 ";
+                                              WHERE PlaceID = 2 AND UserRole != 1 AND UserRole != 5 AND UserRole != 4";
                                   $RunQuery = mysqli_query($con , $SelectVisitPrice);
                                   $VisitRow = mysqli_fetch_assoc($RunQuery);
                                   foreach($RunQuery as $VisitForegin){ ?>
@@ -196,35 +178,23 @@ if(isset($_POST['Confirm'])){
                                         <div class="column-box">
                                         <input type="hidden" name="UserID" value="<?php if(isset($_SESSION['UserID'])){ echo $UserID ;} ?>">
                                           <h3 class="prod-title padd-top-20">
-                                            <?php echo $VisitForegin['UserRole'] ?>
+                                            <?php echo "GEM - " . $VisitForegin['UserRole'] ?>
                                           </h3>
                                           <input type="hidden" name="UserRole[]" value="<?php if(isset($_SESSION['UserID'])){ echo $VisitForegin['UserRole'] ;} ?>">
                                           <input type="hidden" name="RoleID[]" value="<?php if(isset($_SESSION['UserID'])){ echo $VisitForegin['RoleID'] ;} ?>">
                                         </div>
                                       </td>
                                       <td class="price" style="white-space: nowrap">
-                                      <?php echo $VisitForegin['MuseumFee'] . " LE" ?>
-                                      <input type="hidden" class="VisitPrice" name="Price[]" value="<?php echo $Visit['MuseumFee'] ?>">
+                                      <?php echo $VisitForegin['EntranceFee'] . " EGP" ?>
+                                      <input type="hidden" class="VisitPrice" name="Price[]" value="<?php echo $VisitForegin['EntranceFee'] ?>">
                                       </td>
                                       <td class="qty">
                                         <input class="quantity-spinner Quantity" max='10' min="0" type="number" value="0" name="Quantity[]" onchange="subTotal()" />
                                       </td>
-                                      <td>
-                                        <div class="amenities-list">
-                                          <p class="login-form__checkbox">
-                                            <input type="checkbox" id="test1" name="radio-group" />
-                                            <label for="test1">Wheelchair</label>
-                                          </p>
-
-                                          <p class="login-form__checkbox">
-                                            <input type="checkbox" id="test2" name="radio-group" />
-                                            <label for="test2">Sunscreen</label>
-                                          </p>
-                                        </div>
-                                      </td>
                                       <td class="sub-total SubTotal"> </td>
                                     </tr>
-                                  <?php } ?>
+                                  <?php }
+                                ?>
                               </tbody>
                           </table>
 
@@ -388,6 +358,34 @@ if(isset($_POST['Confirm'])){
           </div>
         </div>
       </section>
+
+      <?php if(isset($_GET['PaymentSucceeded'])){ ?>
+        <div id="success" class="modal fade" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="success-content-message">
+                  <i class="fa fa-check"></i>
+                  <h2>success</h2>
+
+                  <p>Your payment has been completed successfully.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <?php  } ?>
+
+
     <script>
       var TotalPrice = 0;
       var Price = document.getElementsByClassName('VisitPrice');
@@ -399,7 +397,7 @@ if(isset($_POST['Confirm'])){
         TotalPrice = 0;   
           for(i=0 ; i <Price.length ; i++){
 
-              SubTotal[i].innerText = (Price[i].value)*(Quantity[i].value) + " LE";
+              SubTotal[i].innerText = (Price[i].value)*(Quantity[i].value) + " EGP";
               TotalPrice = TotalPrice + (Price[i].value)*(Quantity[i].value);
           }
           FullTotalOne.innerText = TotalPrice;
@@ -410,3 +408,8 @@ if(isset($_POST['Confirm'])){
 
       <?php  include "../UserFooter.php" ;?>
 
+      <script>
+          jQuery(window).load(function () {
+            jQuery("#success").modal("show");
+          });
+        </script>

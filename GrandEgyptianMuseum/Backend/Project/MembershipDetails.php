@@ -31,8 +31,9 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
     
       $FullName = $User['Name'] . " " . $User['LastName']; 
     
-      $SelectEnrolled = "SELECT membershippayemnts.* , membership.Type AS Type FROM `membershippayemnts`
+      $SelectEnrolled = "SELECT membershippayemnts.* , membership.Type AS Type , membershipperiod.Period AS Period FROM `membershippayemnts`
                         JOIN membership ON membershippayemnts.MembershipID = membership.ID
+                        LEFT JOIN membershipperiod ON membership.PeriodID = membershipperiod.ID
                         WHERE UserID = $UserID LIMIT 1 ";
       $EnrolledRun = mysqli_query($con , $SelectEnrolled);
       $Enrolled = mysqli_fetch_assoc($EnrolledRun);
@@ -78,17 +79,16 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
                     <div class="event-details__single" id="about-event">
                         <h3 class="event-details__title">Details About Plan</h3>
                       <p class="event-details__text">
-                        Equal blame belongs to those who fail in their duty through
-                        weakness of will, which is the same as saying through
-                        shrinking from toil and pain.
+                        This is the <?php echo $MembershipRow['Type'] ?> plan benefit <?php if($MembershipRow['ID'] == 8 ){ echo " (includes: 2 Adults and one child under 18)"; } ?> for the Grand Egyptian Museum, 
+                        where you will receive numerous benefits and other perks.
+                        <br/>
+                        As a member, you'll enjoy a host of benefits designed to 
+                        provide you with unparalleled access and immersive encounters.
                       </p>
-                      <p class="event-details__text">
-                        These cases are perfectly simple and easy to distinguish. In
-                        a free hour, when our power of choice is untrammelled and
-                        when nothing every pleasure is to be welcomed and every pain
-                        avoided. But in cer- tain circumstances and owing to the
-                        claims of duty or the obligations of business.
-                      </p>
+                      <span style="color: #d99578">*Please be aware that this is
+                                a <?php echo $MembershipRow['PeriodTime'] ?> membership.
+                      <br/>
+                      <br/>
                       <br>
                       <h3 class="collection-details__subtitle">Plan Benefits</h3>
                         <br>
@@ -96,47 +96,41 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
                             <li>
                                 <?php if($MembershipRow['Entry'] == 0 ){ 
                                           echo "<i class='egypt-icon-check'></i>";
-                                          echo "Unlimited Entry" ;
+                                          echo "Free Limited Admission Entry" ;
                                       }else{
                                           echo "<i class='egypt-icon-check'></i>";
-                                          echo "Free entry for ".$MembershipRow['Entry'] . " times per Month" ;
+                                          echo "Unlimited Admission Entry" ;
                                       } 
                                   ?>
                             </li>
                             <li>
-                                <?php if($MembershipRow['DiscountOnTours'] == 1 ){ 
+                                <?php if($MembershipRow['DiscountGiftShop'] == 1 ){ 
                                         echo "<i class='egypt-icon-check'></i>";
-                                        echo "Discounts on tours conducted by team hospitality" ;   
-                                    }elseif($MembershipRow['DiscountOnTours'] > 1){
-                                        echo "<i class='egypt-icon-check'></i>";
-                                        echo $MembershipRow['DiscountOnTours'] . " Discounts on tours conducted by team hospitality" ;                                                       
-                                    } 
+                                        echo "Discounts in Museum Gift Shop Purchases" ;   
+                                    }
                                 ?>
                             </li>
                             <li>
                                 <?php
                                   if($MembershipRow['ChildernMuseum'] == 1 ){ 
                                         echo "<i class='egypt-icon-check'></i>";
-                                        echo "Free Access To Childern Museum" ;   
-                                  }elseif($MembershipRow['ChildernMuseum'] > 1){
-                                      echo "<i class='egypt-icon-check'></i>";
-                                      echo $MembershipRow['ChildernMuseum'] . " Free Entries to Childern Museum " ;
+                                        echo "Access to The GEM Children Museum" ;   
                                   }
                               ?>
                             </li>
                             <li>
                                 <?php
-                                    if($MembershipRow['DiscountOnKidsClasses'] == 1){ 
+                                    if($MembershipRow['DiscountParking'] == 1){ 
                                       echo "<i class='egypt-icon-check'></i>";
-                                      echo "Discounts on Kid's Historical Classes & Activities" ;   
+                                      echo "Discounted Parking" ;   
                                     }
                                 ?>
                             </li>
                             <li>
                                 <?php
-                                  if($MembershipRow['SubsMuseumLib'] == 1){ 
+                                  if($MembershipRow['VouchersMuseum'] == 1){ 
                                     echo "<i class='egypt-icon-check'></i>";
-                                    echo "A Year of Subscription to the Grand Egyptian Museum Library" ; 
+                                    echo "Voucher in Restaurants" ; 
                                   }
                               ?>
                             </li>
@@ -144,15 +138,55 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
                                 <?php
                                     if($MembershipRow['AccessMuseumLib'] == 1){ 
                                             echo "<i class='egypt-icon-check'></i>";
-                                            echo "Access to The Grand Egyptian Museum Library" ; 
+                                            echo "Free Access to the GEM Library" ; 
                                     }  
                                 ?>
                             </li>
                             <li>
                               <?php
-                                  if($MembershipRow['AccessKidsArea'] == 1 ){ 
+                                  if($MembershipRow['SpecialExhibtions'] == 1 ){ 
                                     echo "<i class='egypt-icon-check'></i>";
-                                    echo "Free Access to Kids Area" ;   
+                                    echo "Special Exhibition Screening" ;   
+                                  }
+                                ?>
+                            </li>
+                            <li>
+                              <?php
+                                  if($MembershipRow['MembersNewsletter'] == 1 ){ 
+                                    echo "<i class='egypt-icon-check'></i>";
+                                    echo "Exclusive Member's Newsletter" ;   
+                                  }
+                                ?>
+                            </li>
+                            <li>
+                              <?php
+                                  if($MembershipRow['InvatationsToActivites'] == 1 ){ 
+                                    echo "<i class='egypt-icon-check'></i>";
+                                    echo "Invitations to activities day in GEM" ;   
+                                  }
+                                ?>
+                            </li>
+                            <li>
+                              <?php
+                                  if($MembershipRow['AccessToEvents'] == 1 ){ 
+                                    echo "<i class='egypt-icon-check'></i>";
+                                    echo "Members-only Events" ;   
+                                  }
+                                ?>
+                            </li>
+                            <li>
+                              <?php
+                                  if($MembershipRow['PriorityAccessToEvents'] == 1 ){ 
+                                    echo "<i class='egypt-icon-check'></i>";
+                                    echo "Priority Access to Special Events" ;   
+                                  }
+                                ?>
+                            </li>
+                            <li>
+                              <?php
+                                  if($MembershipRow['StudentsEvents'] == 1 ){ 
+                                    echo "<i class='egypt-icon-check'></i>";
+                                    echo "Exclusive Student Events" ;   
                                   }
                                 ?>
                             </li>
@@ -227,5 +261,6 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
           </div>
         </div>
       </section>
-  <?php } ?>
-    <?php include "../UserFooter.php"; ?>
+
+  <?php } 
+  include "../UserFooter.php"; ?>

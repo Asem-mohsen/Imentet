@@ -94,9 +94,9 @@ if(isset($_POST['Search'])){
 <?php include "../NavUser.php"; ?>
 
 
-      <section class="inner-banner" style="background-image: url(images/background/inner-banner-bg-1-2.jpg)">
+      <section class="inner-banner" style="background-image: url(images/Background/shop-bg.png)">
         <div class="container">
-          <h2 class="inner-banner__title">Official Shop</h2>
+          <h2 class="inner-banner__title"><br></h2>
           <ul class="list-unstyled thm-breadcrumb">
             <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a></li>
             <li><a href="">Pages</a></li>

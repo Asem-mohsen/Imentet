@@ -32,24 +32,24 @@ if(isset($_SESSION['AdminID'])){
                             </div>
                             <div class="cta-one__content">
                                 <h3 class="cta-one__title">Become a <br>
-                                    Member of Egypt</h3>
-                                <p class="cta-one__text">Museum Members provide essential funding for us and <br> receive great
-                                    benefits in return!</p>
+                                    Member of Grand Egyptian Museum</h3>
+                                <p class="cta-one__text">Gain Access to Exclusive Features and Resources
+                                    with Our Membership Program!</p>
                                 <ul class="list-unstyled cta-one__list">
+                                    <li>
+                                        <i class="egypt-icon-check"></i>
+                                        Unlimited General Admission
+                                    </li>
                                     <li>
                                         <i class="egypt-icon-check"></i>
                                         Free Tickets to Special Exhibitions
                                     </li>
                                     <li>
                                         <i class="egypt-icon-check"></i>
-                                        Members-only exhibition previews & events
-                                    </li>
-                                    <li>
-                                        <i class="egypt-icon-check"></i>
-                                        Access to a Member Entrance
+                                        Access to The Museum's Library
                                     </li>
                                 </ul>
-                                <a href="" class="cta-one__link">
+                                <a href="./membership.php" class="cta-one__link">
                                     <i class="fa fa-angle-right"></i>
                                     Become a Member
                                 </a>
@@ -82,28 +82,44 @@ if(isset($_SESSION['AdminID'])){
                             <p class="pricing-one__time">$ / <?php echo $Membership['PeriodTime'] ?></p>
                             <div class="pricing-one__bottom">
                                 <ul class="list-unstyled cta-one_list" style='line-height: 33px;'>
+                                    <?php if($Membership['ID'] == 6 ){ ?>
+                                        <p class="pricing-one__text">Benefits for One Person</p> </br>
+                                    <?php }elseif($Membership['ID'] == 8){ ?>
+                                        <p class="pricing-one__text">2 Adults & Under 18 Children</p> </br>
+                                    <?php }elseif($Membership['ID'] == 16){ ?>
+                                        <p class="pricing-one__text">School & colleage</p> </br>
+                                    <?php }elseif($Membership['ID'] == 17){ ?>
+                                        <p class="pricing-one__text">60 and Above</p> </br>
+                                    <?php } ?>
+
                                     <p class="pricing-one__text">Benefits</p> </br>
                                     <li class="MembershipLi">
                                         <i class="egypt-icon-check"></i>
-                                            Free entry for <?php echo $Membership['Entry'] ?> times
+                                            <?php if(isset($Membership['Entry']) && $Membership['Entry'] == 0){ 
+                                                    echo "Limited Admission Entry" ;
+                                            } ?>
                                     </li>
                                     <li class="MembershipLi">
                                         <i class="egypt-icon-check"></i>
                                         <?php
-                                            if($Membership['AccessKidsArea'] == 1 ){ 
-                                                echo "Free Access to Kids Area" ;   
-                                            }elseif($Membership['AccessMuseumLib'] == 1){
-                                                echo "Access to The GEM Library" ; 
+                                            if($Membership['ChildernMuseum'] == 1 ){ 
+                                                echo "Access to Children Museum" ;   
+                                            }elseif($Membership['AccessMuseumLib'] == 1 && $Membership['ID'] != 6){
+                                                echo "Access to The GEM Library";
+                                            }elseif($Membership['AccessToEvents'] == 1){
+                                                echo "Members-only Events";
+                                            }elseif($Membership['SpecialExhibtions'] == 1 && $Membership['ID'] == 6){
+                                                echo "Special Exhibition Screening";
                                             }
                                         ?>
                                     </li>
                                     <li class="MembershipLi">
                                         <i class="egypt-icon-check"></i>
                                         <?php
-                                            if($Membership['VouchersMuseum'] == 1){ 
-                                                echo "Voucher for the Official Restaurant" ;   
-                                            }elseif($Membership['ChildernMuseum'] != 1 || $Membership['ChildernMuseum'] != NULL){ 
-                                                echo $Membership['ChildernMuseum'] . " Free Entries to Childern Museum " ;   
+                                            if($Membership['DiscountGiftShop'] == 1 && ($Membership['ID'] == 6 || $Membership['ID'] == 16)  ){ 
+                                                echo "Discounts in Gift Shop" ;   
+                                            }elseif($Membership['VouchersMuseum'] == 1 && ($Membership['ID'] == 8 || $Membership['ID'] == 17) ){ 
+                                                echo "Voucher in Restaurants" ;   
                                             }
                                         ?>
                                     </li>

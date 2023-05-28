@@ -8,6 +8,12 @@
         });
     }
 
+     if ($('.normal-datepicker').length) {
+        $('.normal-datepicker').datepicker({
+    
+        });
+    }
+
     if ($('.searchByDate-datepicker').length) {
         $('.searchByDate-datepicker').datepicker({
             format: "d - M - yyyy",

@@ -107,16 +107,16 @@ if(isset($_POST['Confirm'])){
                                 <th class="prod-column">Type</th>
                                 <th class="price">Price</th>
                                 <th>Quantity</th>
-                                <th>Amenities</th>
                                 <th>Subtotal</th>
                               </tr>
                             </thead>
                             <tbody>
+                              <!-- Egyptian -->
                                 <?php 
                                   $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
                                               JOIN userrole ON visitpricing.UserRole = userrole.ID 
                                               JOIN place ON visitpricing.PlaceID = place.ID 
-                                              WHERE PlaceID = 1 AND UserRole != 2 AND UserRole != 3 
+                                              WHERE PlaceID = 1 AND UserRole != 2 AND UserRole != 3 AND UserRole !=7
                                               ORDER BY visitpricing.ID DESC";
                                   $RunQuery = mysqli_query($con , $SelectVisitPrice);
                                   $VisitRow = mysqli_fetch_assoc($RunQuery);
@@ -125,35 +125,23 @@ if(isset($_POST['Confirm'])){
                                       <td class="prod-column" style="white-space: nowrap">
                                         <div class="column-box">
                                           <h3 class="prod-title padd-top-20">
-                                            <?php echo $Visit['UserRole'] ?>
+                                            <?php echo "Pyramids - " . $Visit['UserRole'] ?>
                                           </h3>
                                           <input type="hidden" name="UserRole[]" value="<?php if(isset($_SESSION['UserID'])){ echo $Visit['UserRole'] ;} ?>">
                                           <input type="hidden" name="RoleID[]" value="<?php if(isset($_SESSION['UserID'])){ echo $Visit['RoleID'] ;} ?>">
                                         </div>
                                       </td>
                                       <td class="price" style="white-space: nowrap">
-                                      <?php echo $Visit['EntranceFee'] . " LE" ?>
+                                      <?php echo $Visit['EntranceFee'] . " EGP" ?>
                                       <input type="hidden" class="PyramidsPrice" name="Price[]" value="<?php echo $Visit['EntranceFee'] ?>">
                                       </td>
                                       <td class="qty ">
                                         <input class="quantity-spinner Quantity" max='10' min="0" type="number" value="0" name="Quantity[]" onchange="subTotalPyramids()" />
                                       </td>
-                                      <td>
-                                        <div class="amenities-list">
-                                          <p class="login-form__checkbox">
-                                            <input type="checkbox" id="test1" name="radio-group" />
-                                            <label for="test1">Wheelchair</label>
-                                          </p>
-
-                                          <p class="login-form__checkbox">
-                                            <input type="checkbox" id="test2" name="radio-group" />
-                                            <label for="test2">Sunscreen</label>
-                                          </p>
-                                        </div>
-                                      </td>
                                       <td class="SubTotalPyramids"></td>
                                     </tr>
-                                  <?php } ?>
+                                  <?php } 
+                                ?>
                             </tbody>
                           </table>
 
@@ -180,16 +168,16 @@ if(isset($_POST['Confirm'])){
                                 <th class="prod-column">Type</th>
                                 <th class="price">Price</th>
                                 <th>Quantity</th>
-                                <th>Amenities</th>
                                 <th>Subtotal</th>
                               </tr>
                             </thead>
                               <tbody>
+                                <!-- Foreginer Tickets -->
                                 <?php 
                                   $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
                                               JOIN userrole ON visitpricing.UserRole = userrole.ID 
                                               JOIN place ON visitpricing.PlaceID = place.ID 
-                                              WHERE PlaceID = 1 AND UserRole != 1 AND UserRole != 5 ";
+                                              WHERE PlaceID = 1 AND UserRole != 1 AND UserRole != 5 AND UserRole != 4";
                                   $RunQuery = mysqli_query($con , $SelectVisitPrice);
                                   $VisitRow = mysqli_fetch_assoc($RunQuery);
                                   foreach($RunQuery as $VisitForegin){ ?>
@@ -198,35 +186,23 @@ if(isset($_POST['Confirm'])){
                                         <div class="column-box">
                                         <input type="hidden" name="UserID" value="<?php if(isset($_SESSION['UserID'])){ echo $UserID ;} ?>">
                                           <h3 class="prod-title padd-top-20">
-                                            <?php echo $VisitForegin['UserRole'] ?>
+                                            <?php echo "Pyramids - " . $VisitForegin['UserRole'] ?>
                                           </h3>
                                           <input type="hidden" name="UserRole[]" value="<?php if(isset($_SESSION['UserID'])){ echo $VisitForegin['UserRole'] ;} ?>">
                                           <input type="hidden" name="RoleID[]" value="<?php if(isset($_SESSION['UserID'])){ echo $VisitForegin['RoleID'] ;} ?>">
                                         </div>
                                       </td>
                                       <td class="price" style="white-space: nowrap">
-                                      <?php echo $VisitForegin['EntranceFee'] . " LE" ?>
-                                      <input type="hidden" class="PyramidsPrice" name="Price[]" value="<?php echo $Visit['EntranceFee'] ?>">
+                                      <?php echo $VisitForegin['EntranceFee'] . " EGP" ?>
+                                      <input type="hidden" class="PyramidsPrice" name="Price[]" value="<?php echo $VisitForegin['EntranceFee'] ?>">
                                       </td>
                                       <td class="qty">
                                         <input class="quantity-spinner Quantity" max='10' min="0" type="number" value="0" name="Quantity[]" onchange="subTotalPyramids()" />
                                       </td>
-                                      <td>
-                                        <div class="amenities-list">
-                                          <p class="login-form__checkbox">
-                                            <input type="checkbox" id="test1" name="radio-group" />
-                                            <label for="test1">Wheelchair</label>
-                                          </p>
-
-                                          <p class="login-form__checkbox">
-                                            <input type="checkbox" id="test2" name="radio-group" />
-                                            <label for="test2">Sunscreen</label>
-                                          </p>
-                                        </div>
-                                      </td>
                                       <td class="sub-total SubTotalPyramids"> </td>
                                     </tr>
-                                  <?php } ?>
+                                  <?php } 
+                                ?>
                               </tbody>
                           </table>
 
@@ -403,7 +379,7 @@ if(isset($_POST['Confirm'])){
           TotalPricePyramids = 0;   
             for(i=0 ; i <Price.length ; i++){
 
-                SubTotal[i].innerText = (Price[i].value)*(Quantity[i].value) + " LE";
+                SubTotal[i].innerText = (Price[i].value)*(Quantity[i].value) + " EGP";
                 TotalPricePyramids = TotalPricePyramids + (Price[i].value)*(Quantity[i].value);
             }
             FullTotalOne.innerText = TotalPricePyramids;

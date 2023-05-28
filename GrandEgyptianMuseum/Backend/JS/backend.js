@@ -1,7 +1,21 @@
 $(function () {
   "use strict";
 
+// Class Active
+$(document).ready(function() {
+  $('nav ul li').click(function() {
+      $('nav ul li').removeClass('current');
+      $(this).addClass('current');
+  });
+  });
 
+
+      var currentUrl = window.location.href;
+          $('nav ul li a').each(function() {
+          if ($(this).attr('href') === currentUrl) {
+              $(this).parent().addClass('current');
+          }
+          });
 
 // Dashbord + icon 
 $('.toggle-info').click(function(){
@@ -198,20 +212,4 @@ document.getElementById('Cancel').onclick = function(){
 
 
 
-// Quantity and Price In Cart
-// var  GT = 0;
-// var IPrice = document.getElementsByClassName('Iprice');
-// var IQuantity = document.getElementsByClassName('IQuantity');
-// var ITotal = document.getElementsByClassName('Itotal');
-// var GrandTotal = document.getElementById('GrandTotal');
-// function subTotal(){
-//     GT = 0;
-//     for(i=0 ; i <IPrice.length ; i++){
-
-//         ITotal[i].innerText = (IPrice[i].value)*(IQuantity[i].value);
-//         GT = GT + (IPrice[i].value)*(IQuantity[i].value);
-//     }
-//     GrandTotal.innerText = GT;
-// }
-// subTotal(); 
 

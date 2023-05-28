@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="css/style.css?v=5" />
+    <link rel="stylesheet" href="./css/style.css?v=4" />
     <link rel="stylesheet" href="Style//main.css">
     <link rel="stylesheet" href="Style///framework.css">
     <link rel="stylesheet" href="css/responsive.css" />
@@ -52,10 +52,7 @@
         $AdminRole =$row['AdminRole'] ;
         ?>
         
-        <body>
-            <div class="preloader">
-                <span></span>
-            </div>                      
+        <body>                  
                 <header class="site-header site-header__header-one">
                     <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
                         <div class="container clearfix">
@@ -71,12 +68,8 @@
                                 <ul class="navigation-box @@extra_class">
 
                                     <!-- Home Part -->
-                                    <li class="current">
+                                    <li>
                                         <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Dashboard.php">Dashboard</a>
-                                        <ul class="submenu">
-                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
-                                            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Pyramids</a></li>
-                                        </ul>
                                     </li>
 
                                     <!-- Users Part -->

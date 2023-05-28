@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 if($count > 0){
                     if($AdminRow['Active'] == 0){
 
-                        $AccountDiactivatedMsg =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Your Account Is Deactiveted </div>";
+                        $Msg = "Your Account Is Deactiveted";
 
                     }elseif(password_verify( $Password, $AdminRow['Password'])) {
                         $_SESSION['AdminID'] = $AdminRow['ID'];              //Register Sesstion ID
@@ -34,12 +34,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         exit();
                     
                     }else{
-                      $AdminIncorrectMsg =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Email Or Password is Not Correct </div>";
+                      $Msg =  "Email Or Password is Not Correct";
 
                     }
                     
                 }else{
-                  $DoesNotExist =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Account does not Exist, Join Us </div>";
+                  $Msg =  "Account does not Exist, Join Us";
                 }
         }elseif(isset($AdminRow['IsAdmin']) != 1 ){
                 $SelectUser = "SELECT * FROM user WHERE Email = '$Email' LIMIT 1";
@@ -55,11 +55,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
                         exit();
                   }else{
-                    $UserIncorrectMsg =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Email Or Password is Not Correct </div>";
+                    $Msg =  "Email Or Password is Not Correct";
 
                   }
                 }else{
-                  $DoesNotExist =  "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'> Account does not Exist, Join Us </div>";
+                  $Msg =  "Account does not Exist, Join Us";
                 }
         }
 }
@@ -91,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <link rel="stylesheet" href="css/nouislider.pips.css" />
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" href="css/style.css?v=1" />
+    <link rel="stylesheet" href="css/style.css?v=8" />
     <link rel="stylesheet" href="css/responsive.css" />
 
     <title><?php echo $PageTitle ?></title>
@@ -153,16 +153,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
               <div class="col-md-6 box details">
                 <h1>We are glad to see you again! <br /></h1>
                 <p>Sign In with your details to get started</p>
-                <p>
-                  <!-- Error Display -->
-                  <?php
-                    if(isset($AdminIncorrectMsg)){ echo $AdminIncorrectMsg ; }
-                    if(isset($AccountDiactivatedMsg)){ echo $AccountDiactivatedMsg ; }
-                    if(isset($UserIncorrectMsg)){ echo $UserIncorrectMsg ; }
-                    if(isset($DoesNotExist)){ echo $DoesNotExist ; }
-
-                  ?>
-                </p>
               </div>
               <div class="col-md-5 offset-md-1 box">
                 <div class="form">
@@ -173,6 +163,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                       <a href="register.php">Create an Account</a>
                     </p>
                   </div>
+                  <!-- Error Display -->
+                  <?php
+                    if(isset($Msg)){ ?> 
+                      <div class="alert alert-danger" role="alert" style="text-align: center;">
+                        <i class="fa fa-times fa-lg"></i>
+                          <?php echo $Msg ?>
+                      </div>
+                    <?php }
+                  ?>
+                  
+
                 <form method="POST" >
                   <div class="inputs login-form__form">
                     <div class="login-form__field">

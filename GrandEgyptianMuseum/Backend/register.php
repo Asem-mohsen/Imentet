@@ -166,18 +166,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
               <div class="col-md-6 box details">
                 <h1>Join our group in few minutes! <br /></h1>
                 <p>Sign up with your details to get started</p>
-                <p>
-                  <!-- Error Display -->
-                  <?php
-                    if(isset($FormErrors)){
-                      foreach($FormErrors as $Error){
-                        echo "<div class='alert alert-danger text-center' style='width: -webkit-fill-available;'>";
-                          echo $Error;
-                        echo "</div>" ;
-                      }
-                    }
-                  ?>
-                </p>
               </div>
               <div class="col-md-5 offset-md-1 box">
                 <div class="form">
@@ -188,6 +176,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                       Already have an account? <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/login.php">Sign In</a>
                     </p>
                   </div>
+                  <!-- Error Display -->
+                  <?php
+                    if(isset($FormErrors)){
+                      foreach($FormErrors as $Error){ ?>
+                        <div class="alert alert-danger" role="alert" style="text-align: center;">
+                          <i class="fa fa-times fa-lg"></i>
+                            <?php echo $Error; ?>
+                        </div>
+                      <?php  }
+                    }
+                  ?> 
                   <form method='POST'>
                     <div class="inputs login-form__form">
                       <div class="login-form__field">

@@ -528,7 +528,6 @@ include "../NavUser.php";
         </div>
       </div>
 
-    <?php include "../UserFooter.php" ?>
 
     <script>
       document.querySelector(".card-number-input").oninput = () => {
@@ -570,5 +569,8 @@ include "../NavUser.php";
           document.querySelector(".cvv-input").value;
       };
     </script>
+    
+      <?php include "../UserFooter.php" ; ?>
+
   </body>
 </html>

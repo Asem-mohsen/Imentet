@@ -93,69 +93,122 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
                                 <li>
                                     <?php if($MembershipRow['Entry'] == 0 ){ 
                                             echo "<i class='egypt-icon-check'></i>";
-                                            echo "Unlimited Entry" ;
+                                            echo "Free Limited Admission Entry" ;
                                         }else{
                                             echo "<i class='egypt-icon-check'></i>";
-                                            echo "Free entry for ".$MembershipRow['Entry'] . " times per Month" ;
+                                            echo "Unlimited Admission Entry" ;
                                         } 
                                     ?>
                                 </li>
                                 <li>
-                                    <?php if($MembershipRow['SpecialRecognition'] == 1 ){ 
+                                    <?php if($MembershipRow['DiscountGiftShop'] == 1 ){ 
                                             echo "<i class='egypt-icon-check'></i>";
-                                            echo "Special Recognition" ; 
+                                            echo "Discounts in Museum Gift Shop Purchases" ;   
                                         }
                                     ?>
                                 </li>
                                 <li>
                                     <?php
-                                    if($MembershipRow['AccessToEvents'] == 1 ){ 
+                                    if($MembershipRow['ChildernMuseum'] == 1 ){ 
                                             echo "<i class='egypt-icon-check'></i>";
-                                            echo "Access to Exclusive Events" ; 
-                                        }
+                                            echo "Access to The GEM Children Museum" ;   
+                                    }
                                 ?>
                                 </li>
                                 <li>
                                     <?php
-                                        if($MembershipRow['AccessTutankhamun'] == 1){ 
+                                        if($MembershipRow['DiscountParking'] == 1){ 
                                         echo "<i class='egypt-icon-check'></i>";
-                                        echo "FREE Access to Tutankhamun Museum" ; 
+                                        echo "Discounted Parking" ;   
                                         }
-                                        
                                     ?>
                                 </li>
                                 <li>
                                     <?php
-                                    if($MembershipRow['FreeMuseumRest'] == 1){ 
+                                    if($MembershipRow['VouchersMuseum'] == 1){ 
                                         echo "<i class='egypt-icon-check'></i>";
-                                        echo "Invitations to the Offilcial Museum Restaurants" ; 
+                                        echo "Voucher in Restaurants" ; 
                                     }
-                                    
                                 ?>
                                 </li>
                                 <li>
                                     <?php
-                                    if($MembershipRow['AccessHologram'] == 1){ 
-                                        echo "<i class='egypt-icon-check'></i>";
-                                        echo "FREE Access to King Tut's Hologram" ;
-                                    }
-                                    
-                                ?>
-                                </li>
-                                <li>
-                                    <?php
-                                        if($MembershipRow['AccessToMonuments'] == 1){ 
+                                        if($MembershipRow['AccessMuseumLib'] == 1){ 
                                                 echo "<i class='egypt-icon-check'></i>";
-                                                echo "FREE Access to Exclusive Monuments in The Museum" ;
-                                            }  
+                                                echo "Free Access to the GEM Library" ; 
+                                        }  
                                     ?>
                                 </li>
                                 <li>
                                 <?php
-                                    if($MembershipRow['AccessKidsArea'] == 1 ){ 
+                                    if($MembershipRow['SpecialExhibtions'] == 1 ){ 
                                         echo "<i class='egypt-icon-check'></i>";
-                                        echo "Free Access to Kids Area" ;   
+                                        echo "Special Exhibition Screening" ;   
                                     }
+                                    ?>
+                                </li>
+                                <li>
+                                <?php
+                                    if($MembershipRow['MembersNewsletter'] == 1 ){ 
+                                        echo "<i class='egypt-icon-check'></i>";
+                                        echo "Exclusive Member's Newsletter" ;   
+                                    }
+                                    ?>
+                                </li>
+                                <li>
+                                <?php
+                                    if($MembershipRow['InvatationsToActivites'] == 1 ){ 
+                                        echo "<i class='egypt-icon-check'></i>";
+                                        echo "Invitations to activities day in GEM" ;   
+                                    }
+                                    ?>
+                                </li>
+                                <li>
+                                <?php
+                                    if($MembershipRow['AccessToEvents'] == 1 ){ 
+                                        echo "<i class='egypt-icon-check'></i>";
+                                        echo "Members-only Events" ;   
+                                    }
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        if($MembershipRow['PriorityAccessToEvents'] == 1 ){ 
+                                            echo "<i class='egypt-icon-check'></i>";
+                                            echo "Priority Access to Special Events" ;   
+                                        }
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        if($MembershipRow['StudentsEvents'] == 1 ){ 
+                                            echo "<i class='egypt-icon-check'></i>";
+                                            echo "Exclusive Student Events" ;   
+                                        }
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        if($MembershipRow['AccessHologram'] == 1 ){ 
+                                            echo "<i class='egypt-icon-check'></i>";
+                                            echo "Access to Tutankhamon Hologram" ;   
+                                        }
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        if($MembershipRow['AccessTutankhamun'] == 1 ){ 
+                                            echo "<i class='egypt-icon-check'></i>";
+                                            echo "Access to Tutankhamon Museum" ;   
+                                        }
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        if($MembershipRow['AccessToMonuments'] == 1 ){ 
+                                            echo "<i class='egypt-icon-check'></i>";
+                                            echo "Access to Exclusive Monuments" ;   
+                                        }
                                     ?>
                                 </li>
                             </ul>
