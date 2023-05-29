@@ -143,7 +143,7 @@ if(isset($_POST['Search'])){
                                 <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/ProductDetails.php?ItemID=<?php echo $Product['ID'] ?>"><?php echo $Product['Item'] ?></a>
                                 <input type='hidden' name='Item' value="<?php echo $Product['Item'] ?>" />
                               </h3>
-                              <p class="product-one__text"><?php echo  "$" . $Product['Price'] ?></p>
+                              <p class="product-one__text"><?php echo  "EGP " . $Product['Price'] ?></p>
                               <input type='hidden' name='Price' value="<?php echo $Product['Price'] ?>" />
                               <p class="product-one__stars">
                                 Available <?php echo $Product['Quantity'] . " Items" ?>

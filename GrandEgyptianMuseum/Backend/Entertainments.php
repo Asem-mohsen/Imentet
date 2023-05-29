@@ -414,7 +414,7 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                                 <div class="form-group insertInput mb-0">
                                     <div class="mb-20">
-                                    <input type="file" name="Image" placeholder="Image" class="form-control" />
+                                    <input type="file" style="padding: 4px;" name="Image" placeholder="Image" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group insertInput mb-0">
@@ -855,7 +855,7 @@ if (isset($_SESSION["AdminID"])) {
                                     </div>
                                     <div class="form-group insertInput mb-0">
                                         <div class="mb-20">
-                                        <input type="file" name="Image" class="form-control" value="<?php echo $row['Image'] ?>"/>
+                                        <input type="file" style="padding: 4px;" name="Image" class="form-control" value="<?php echo $row['Image'] ?>"/>
                                         </div>
                                     </div>
                                     <div class="form-group insertInput mb-0">
@@ -1081,11 +1081,14 @@ if (isset($_SESSION["AdminID"])) {
 
                                 if ($Check > 0) {
                                     
-                                    $DeleteQuery = "DELETE FROM eventsponsor WHERE EventID = $EventID ";
-                                    $Delete = mysqli_query($con, $DeleteQuery);
+                                    $DeleteGalleryQuery = "DELETE FROM eventgallery WHERE EventID = $EventID ";
+                                    $Delete = mysqli_query($con, $DeleteGalleryQuery);
 
-                                    $DeleteQuery = "DELETE FROM entertainmnet WHERE ID = $EventID ";
-                                    $Delete = mysqli_query($con, $DeleteQuery);
+                                    $DeleteSponsorQuery = "DELETE FROM eventsponsor WHERE EventID = $EventID ";
+                                    $Delete = mysqli_query($con, $DeleteSponsorQuery);
+
+                                    $DeleteEventQuery = "DELETE FROM entertainmnet WHERE ID = $EventID ";
+                                    $Delete = mysqli_query($con, $DeleteEventQuery);
 
                                     header("Location: ./Entertainments.php?action=Manage");
 
@@ -1119,6 +1122,7 @@ if (isset($_SESSION["AdminID"])) {
         exit();
     }
 }
+
 ob_end_flush();
 
 ?>

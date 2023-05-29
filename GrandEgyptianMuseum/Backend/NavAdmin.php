@@ -34,7 +34,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="./css/style.css?v=4" />
-    <link rel="stylesheet" href="Style//main.css">
+    <link rel="stylesheet" href="Style///main.css">
     <link rel="stylesheet" href="Style///framework.css">
     <link rel="stylesheet" href="css/responsive.css" />
 

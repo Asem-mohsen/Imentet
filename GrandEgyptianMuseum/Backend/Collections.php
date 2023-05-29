@@ -92,7 +92,7 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                                 <div class="form-group insertInput">
                                     <div class="mb-20">
-                                        <input type="file" name="Image" class="form-control" />
+                                        <input type="file" style="padding: 4px;" name="Image" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group insertInput">
@@ -254,7 +254,7 @@ if (isset($_SESSION["AdminID"])) {
                                     <div class="form-group insertInput">
                                         <label class=" control-label">Image</label>
                                         <div class="m-auto">
-                                        <input type="file" name="Image" class="form-control" />
+                                        <input type="file" style="padding: 4px;" name="Image" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="form-group insertInput">

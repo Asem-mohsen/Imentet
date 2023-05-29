@@ -91,7 +91,7 @@ if(isset($_POST['Search'])){
 ?>
 
 
-<?php include "./NavUserPyramids.php" ?>
+    <?php include "./NavUserPyramids.php" ?>
 
       <section class="inner-banner" style="background-image: url(images/background/inner-banner-bg-1-2.jpg)">
         <div class="container">
@@ -143,7 +143,7 @@ if(isset($_POST['Search'])){
                                 <a href="http://localhost/imentet-1/Pyramids/pyramids/ProductDetails.php?ItemID=<?php echo $Product['ID'] ?>"><?php echo $Product['Item'] ?></a>
                                 <input type='hidden' name='Item' value="<?php echo $Product['Item'] ?>" />
                               </h3>
-                              <p class="product-one__text"><?php echo  "$" . $Product['Price'] ?></p>
+                              <p class="product-one__text"><?php echo  "EGP " . $Product['Price'] ?></p>
                               <input type='hidden' name='Price' value="<?php echo $Product['Price'] ?>" />
                               <p class="product-one__stars">
                                 Available <?php echo $Product['Quantity'] . " Items" ?>
@@ -182,4 +182,4 @@ if(isset($_POST['Search'])){
         </div>
       </section>
 
-      <?php include "./UserFooterPyramids.php" ; ?>
+    <?php include "./UserFooterPyramids.php" ; ?>

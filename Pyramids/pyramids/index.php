@@ -323,45 +323,137 @@ $PageTitle = "Pyramids";
         </div>
       </section>
 
-      <!-- Collections -->
+      <!-- Gallery -->
       <section class="collection-two">
         <div class="container">
-          <div class="collection-two__top">
-            <div class="block-title text-left">
-              <p class="block-title__tag-line">Collections</p>
-              <h2 class="block-title__title">Special Collections</h2>
-            </div>
+          <div class="collection-two__top" style="display: block;">
+          <div class="block-title text-center">
+            <p class="block-title__tag-line">Gallery</p>
+            <h2 class="block-title__title">The Pyramids of Giza</h2>
+          </div>
           </div>
           <div class="row masonary-layout">
-            <?php 
-              $SelectCollections = "SELECT collections.* , collectionscategories.Category AS Category FROM `collections`
-                                  LEFT JOIN  collectionscategories ON collections.CatID = collectionscategories.ID
-                                  WHERE PlaceID = 1 AND ShowOnPyramidsHome = 1 LIMIT 8";
-              $RunQuery = mysqli_query($con , $SelectCollections);
-              $CollectionRow = mysqli_fetch_assoc($RunQuery);
-              foreach($RunQuery as $Collection){ ?>
-                <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="0ms">
-                  <div class="collection-two__single">
-                    <div class="collection-two__image">
-                      <img src="images/new/gallery/<?php echo $Collection['Image'] ?>" alt="" />
-                      <div class="collection-two__hover">
-                        <a class="img-popup" href="images/new/gallery/<?php echo $Collection['Image'] ?>">
-                          <i class="egypt-icon-focus"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="collection-two__content">
-                      <p class="collection-two__category">
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php?CatID=<?php echo $Collection['CatID'] ?>"><?php echo $Collection['Category'] ?></a>
-                      </p>
-                      <h3 class="collection-two__title">
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>"><?php echo $Collection['Collection'] ?></a>
-                      </h3>
-                    </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="0ms">
+              <div class="collection-two__single">
+                <div class="collection-two__image">
+                  <img src="images/new/gallery/gallery-1.png" alt="" />
+                  <div class="collection-two__hover">
+                    <a class="img-popup" href="images/new/gallery/gallery-1.png">
+                      <i class="egypt-icon-focus"></i>
+                    </a>
                   </div>
                 </div>
-              <?php }
-            ?>
+                <div class="collection-two__content">
+                  <p class="collection-two__category">
+                    <a>Egypt</a>
+                  </p>
+                  <h3 class="collection-two__title">
+                    <a>Sphinx</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="100ms">
+              <div class="collection-two__single">
+                <div class="collection-two__image">
+                  <img src="images/new/gallery/gallery-2.png" alt="" />
+                  <div class="collection-two__hover">
+                    <a class="img-popup" href="images/new/gallery/gallery-2.png">
+                      <i class="egypt-icon-focus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="collection-two__content">
+                  <p class="collection-two__category">
+                    <a>Egypt</a>
+                  </p>
+                  <h3 class="collection-two__title">
+                    <a>Pyramids of Giza</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="200ms">
+              <div class="collection-two__single">
+                <div class="collection-two__image">
+                  <img src="images/new/gallery/gallery-3.png" alt="" />
+                  <div class="collection-two__hover">
+                    <a class="img-popup" href="images/new/gallery/gallery-3.png">
+                      <i class="egypt-icon-focus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="collection-two__content">
+                  <p class="collection-two__category">
+                    <a>Egypt</a>
+                  </p>
+                  <h3 class="collection-two__title">
+                    <a>Pyramids of Giza</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="300ms">
+              <div class="collection-two__single">
+                <div class="collection-two__image">
+                  <img src="images/new/gallery/gallery-5.png" alt="" />
+                  <div class="collection-two__hover">
+                    <a class="img-popup" href="images/new/gallery/gallery-5.png">
+                      <i class="egypt-icon-focus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="collection-two__content">
+                  <p class="collection-two__category">
+                    <a>Egypt</a>
+                  </p>
+                  <h3 class="collection-two__title">
+                    <a>Khufu Pyramids</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="400ms">
+              <div class="collection-two__single">
+                <div class="collection-two__image">
+                  <img src="images/new/gallery/gallery-4.png" alt="" />
+                  <div class="collection-two__hover">
+                    <a href="images/new/gallery/gallery-4.png" class="img-popup">
+                      <i class="egypt-icon-focus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="collection-two__content">
+                  <p class="collection-two__category">
+                    <a>Egypt</a>
+                  </p>
+                  <h3 class="collection-two__title">
+                    <a>Sphinx</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="500ms">
+              <div class="collection-two__single">
+                <div class="collection-two__image">
+                  <img src="images/new/gallery/gallery-6.png" alt="" />
+                  <div class="collection-two__hover">
+                    <a class="img-popup" href="images/new/gallery/gallery-6.png">
+                      <i class="egypt-icon-focus"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="collection-two__content">
+                  <p class="collection-two__category">
+                    <a>Egypt</a>
+                  </p>
+                  <h3 class="collection-two__title">
+                    <a>Khufu Pyramid</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
