@@ -31,7 +31,7 @@ include "./Functions/Functions.php";
     <link rel="stylesheet" href="css/nouislider.pips.css" />
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" href="css/style.css?v=1" />
+    <link rel="stylesheet" href="css/style.css?v=2" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/payment.css" />
 
@@ -141,7 +141,7 @@ include "./Functions/Functions.php";
             </div>
             <div class="main-navigation">
                 <ul class="navigation-box @@extra_class">
-                <li class="current">
+                <li>
                     <a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a>
                 </li>
                 <li>
@@ -151,6 +151,7 @@ include "./Functions/Functions.php";
                     <li><a href="http://localhost/imentet-1/Pyramids/pyramids/ContactUs.php">Contact</a></li>
                     <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Donation.php">Donation</a></li>
                     <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Membership.php">Membership</a></li>
+                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Careers.php">Careers</a></li>
                     <li><a href="contact.html">FAQ's</a></li>
                     </ul>
                 </li>
@@ -183,19 +184,6 @@ include "./Functions/Functions.php";
                         <a href="http://localhost/imentet-1/Pyramids/pyramids/Events.php?Page=1">Events </a>
                     </li>
                     <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Exhibition.php">Exhibition</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="http://localhost/imentet-1/Pyramids/pyramids/Collections.php">Collections</a>
-                    <ul class="submenu">
-                            <?php 
-                                $SelectCollections = "SELECT * FROM collectionscategories LIMIT 5 ";
-                                                        
-                                $SpecificCategory = mysqli_query($con , $SelectCollections);
-                                $SpecificRow = mysqli_fetch_assoc($SpecificCategory); 
-                                foreach ($SpecificCategory as $RowCat){ ?>
-                                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/CollectionCategory.php?CatID=<?php echo $RowCat['ID'] ?>"><?php echo $RowCat['Category'] ?> </a></li>
-                                <?php } ?>
                     </ul>
                 </li>
                 <li>

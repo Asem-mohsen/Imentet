@@ -108,5 +108,6 @@
         <script src="js/nouislider.js"></script>
         <script src="js/jquery.bootstrap-touchspin.min.js"></script>
         <script src="js/theme.js"></script>
+        <script src="js/user.js"></script>
     </body>
 </html>

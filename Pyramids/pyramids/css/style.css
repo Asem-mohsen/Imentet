@@ -40,6 +40,10 @@
 * 1. common styles
 */
 
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
 ::-webkit-scrollbar {
   width: 10px
 }
@@ -7240,7 +7244,8 @@ a:focus {
   padding-top: 120px;
 }
 .video-two .inner-container {
-  background-image: url(../images/resources/video-2-1.jpg);
+
+  background-image: url(../images/new/backgrounds/video-background-1-1.png);
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;

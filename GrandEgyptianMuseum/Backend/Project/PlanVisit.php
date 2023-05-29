@@ -99,14 +99,14 @@ $PageTitle = "Plan Your Visit";
                                   $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
                                                     JOIN userrole ON visitpricing.UserRole = userrole.ID 
                                                     JOIN place ON visitpricing.PlaceID = place.ID 
-                                                    WHERE PlaceID = 2 AND UserRole != 2 AND UserRole != 3 
+                                                    WHERE PlaceID = 2 AND UserRole != 2 AND UserRole != 3  AND UserRole != 7
                                                     ORDER BY visitpricing.ID DESC";
                                   $RunQuery = mysqli_query($con , $SelectVisitPrice);
                                   $VisitRow = mysqli_fetch_assoc($RunQuery);
                                   foreach($RunQuery as $Visit){ ?>
                                     <li>
                                       <span><?php echo $Visit['UserRole']  ?> :</span>
-                                      <span><?php echo $Visit['MuseumFee'] . "$" ?></span>
+                                      <span><?php echo $Visit['MuseumFee'] . " EGP" ?></span>
                                     </li>
                                   <?php } ?>
                             </ul>
@@ -118,13 +118,13 @@ $PageTitle = "Plan Your Visit";
                                   $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
                                               JOIN userrole ON visitpricing.UserRole = userrole.ID 
                                               JOIN place ON visitpricing.PlaceID = place.ID 
-                                              WHERE PlaceID = 2 AND UserRole != 1 AND UserRole != 5 ";
+                                              WHERE PlaceID = 2 AND UserRole != 1 AND UserRole != 5  AND UserRole != 4";
                                   $RunQuery = mysqli_query($con , $SelectVisitPrice);
                                   $VisitRow = mysqli_fetch_assoc($RunQuery);
                                   foreach($RunQuery as $VisitForegin){ ?>
                                     <li>
                                       <span><?php echo $VisitForegin['UserRole']  ?> :</span>
-                                      <span><?php echo $VisitForegin['MuseumFee'] . "$" ?></span>
+                                      <span><?php echo $VisitForegin['MuseumFee'] . " EGP" ?></span>
                                     </li>
                                 <?php } ?>
                             </ul>

@@ -12,43 +12,38 @@ $PageTitle = "Pyramids";
       <!-- Slider Section -->
       <section class="slider-two">
         <div class="slider-one__carousel owl-carousel owl-theme">
-          <div class="item slider-two__slider-1" style="background-image: url(images/slider/slider-2-1.jpg)">
+          <div class="item slider-two__slider-1"  style="background-image: url(images/new/slider/slider-1-1.png); background-blend-mode: overlay;">
             <div class="container text-left">
-              <p class="slider-two__tag-line">Awesome of Collection of</p>
-              <h2 class="slider-two__title">Mercenary Soldiers</h2>
+              <p class="slider-two__tag-line">The Pyramids of Egypt:</p>
+              <h2 class="slider-two__title">A Wonder of the World</h2>
               <p class="slider-two__text">
-                Egypt is the world's leading museum of history & culture,
-                housing a <br />
-                permanent collection of over 2.3 million objects.
+                The Pyramids of Egypt, built over 4,500 years ago, <br />
+                are iconic and enigmatic structures that captivate people worldwide.
               </p>
-              <a href="#" class="thm-btn slider-two__btn">Find Out More</a>
+              <a href="./AboutUs.php" class="thm-btn slider-two__btn">Find Out More</a>
             </div>
           </div>
-          <div class="item slider-two__slider-2" style="background-image: url(images/slider/slider-2-2.jpg)">
+          <div class="item slider-two__slider-2" style="background-image: url(images/new/slider/slider-2-2.png); background-blend-mode: overlay;" >
             <div class="container text-center">
-              <p class="slider-two__tag-line">Greatest Collection of</p>
-              <h2 class="slider-two__title">Egyptian Artifacts</h2>
+              <p class="slider-two__tag-line">The Enigmatic Legacy of</p>
+              <h2 class="slider-two__title">The Ancient World</h2>
               <p class="slider-two__text">
-                Egypt is the world's leading museum of history & culture,
-                housing a <br />
-                permanent collection of over 2.3 million objects.
+                Visiting the Pyramids of Egypt is an opportunity to unravel the mysteries of  <br />
+                the ancient world and discover the secrets of the pharaohs.
               </p>
-              <a href="#" class="thm-btn slider-two__btn">Find Out More</a>
+              <a href="./VisitTickets.php" class="thm-btn slider-two__btn">Visit Now</a>
             </div>
           </div>
-          <div class="item slider-two__slider-3" style="background-image: url(images/slider/slider-2-3.jpg)">
+          <div class="item slider-two__slider-3" style="background-image: url(images/new/slider/slider-2-3.png); background-blend-mode: overlay;" >
             <div class="container text-left">
               <div class="row justify-content-end">
                 <div class="col-xl-7 col-lg-9">
-                  <p class="slider-two__tag-line">A Montage of History</p>
-                  <h2 class="slider-two__title">Proof of Evolution</h2>
+                  <p class="slider-two__tag-line">Rock the Pyramids:</p>
+                  <h2 class="slider-two__title" >Endless Adventure</h2>
                   <p class="slider-two__text">
-                    Egypt is the world's leading museum of history & culture,
-                    housing a
-                    <br />
-                    permanent collection of over 2.3 million objects.
+                    Join us on this unforgettable adventure and discover the magic of the Pyramids of Egypt. Book your tickets now and experience the wonder for yourself!
                   </p>
-                  <a href="#" class="thm-btn slider-two__btn">Find Out More</a>
+                  <a href="./PlanVisit.php" class="thm-btn slider-two__btn">Find Out More</a>
                 </div>
               </div>
             </div>
@@ -74,19 +69,18 @@ $PageTitle = "Pyramids";
                   <div class="block-title">
                     <p class="block-title__tag-line">About Us</p>
                     <h2 class="block-title__sub-title">
-                      The World's Leading Museum of <br />
-                      Histrory & Culture.
+                      Built around  <br />
+                      2500-2600 BCE
                     </h2>
                   </div>
                   <p class="about-one__text">
-                    Desires to obtain pain of itself, because it is pain because
-                    occasionally.
+                    <a style="color: #d99578;" href="./AboutUs.php">The Pyramids of Egypt </a> are an enigmatic wonder that have fascinated people for centuries. 
+                    These ancient structures were built over 4,500 years ago and still stand tall today, 
+                    a testament to the ingenuity and skill of the ancient Egyptians.
                   </p>
                   <p class="about-one__text">
-                    Explain to you how all this mistaken idea of denouncing
-                    pleasure and praising pain was born and I will give you a
-                    complete account of the system, and the actual teachings of
-                    the great explorer of the truth.
+                    Each pyramid was built as a tomb for a pharaoh and their consorts, with the largest and most famous being the Great Pyramid of Giza. 
+                    This incredible feat of engineering is the oldest of the Seven Wonders of the Ancient World and continues to amaze visitors from all over the globe.
                   </p>
                 </div>
               </div>
@@ -97,12 +91,12 @@ $PageTitle = "Pyramids";
                       <i class="egypt-icon-place"></i>
                     </div>
                     <div class="about-one__feature-content">
-                      <h3 class="about-one__feature-title">Egypt Museum</h3>
+                      <h3 class="about-one__feature-title">Pyramids Of Giza</h3>
                       <p class="about-one__feature-text">
-                        Flat A, 20/7, Reynolds Neck <br />
-                        Helenaville 08745.
+                        Al Haram, Nazlet El-Semman <br />
+                        Al Giza Desert, Giza Governorate 3512201 
                       </p>
-                      <a href="#" class="about-one__feature-link">
+                      <a href="https://www.google.com.eg/maps/place/Giza+Necropolis/@29.9773008,31.1299206,17z/data=!3m1!4b1!4m6!3m5!1s0x14584f7de239bbcd:0xca7474355a6e368b!8m2!3d29.9772962!4d31.1324955!16s%2Fm%2F07s6gb8?entry=ttu" target="_blank" class="about-one__feature-link">
                         Get Direction <span>+</span>
                       </a>
                     </div>
@@ -112,12 +106,12 @@ $PageTitle = "Pyramids";
                       <i class="egypt-icon-ticket"></i>
                     </div>
                     <div class="about-one__feature-content">
-                      <h3 class="about-one__feature-title">Free Admission</h3>
+                      <h3 class="about-one__feature-title">Membership Benefits</h3>
                       <p class="about-one__feature-text">
-                        Exhibitions are free for our <br />
-                        museum members.
+                        Enjoy our Benefits for our <br />
+                        Pyramids and GEM Members.
                       </p>
-                      <a href="#" class="about-one__feature-link">
+                      <a href="./Membership.php" class="about-one__feature-link">
                         Become a Member <span>+</span>
                       </a>
                     </div>
@@ -129,12 +123,12 @@ $PageTitle = "Pyramids";
         </div>
       </section>
 
-      <!-- Collections -->
+      <!-- Activites -->
       <section class="collection-one">
         <div class="container">
           <div class="block-title text-center">
-            <p class="block-title__tag-line">Categories</p>
-            <h2 class="block-title__title">On View At Our Museum</h2>
+            <p class="block-title__tag-line">Activites</p>
+            <h2 class="block-title__title">At The Pyramids</h2>
           </div>
           <div class="row">
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="000ms">
@@ -146,11 +140,9 @@ $PageTitle = "Pyramids";
                 </div>
                 <div class="collection-one__content">
                   <h3 class="collection-one__title">
-                    <a href="collection-antiquties.html">Antiquities</a>
+                    <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=">Khufu Pyramid</a>
                   </h3>
-                  <a href="collection-antiquties.html"  class="collection-one__link">
-                    Explore The Collection
-                  </a>
+                  <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=" class="collection-one__link">Explore The Activity</a>
                 </div>
               </div>
             </div>
@@ -163,10 +155,10 @@ $PageTitle = "Pyramids";
                 </div>
                 <div class="collection-one__content">
                   <h3 class="collection-one__title">
-                    <a href="collection-drawing.html">Drawing</a>
+                    <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=41">Horse Riding</a>
                   </h3>
-                  <a href="collection-drawing.html" class="collection-one__link">
-                    Explore The Collection
+                  <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=41" class="collection-one__link">
+                    Explore The Activity
                   </a>
                 </div>
               </div>
@@ -179,9 +171,11 @@ $PageTitle = "Pyramids";
                   </div>
                 </div>
                 <div class="collection-one__content">
-                  <h3 class="collection-one__title"><a href="#">Virtual</a></h3>
-                  <a href="#" class="collection-one__link">
-                    Explore The Collection
+                  <h3 class="collection-one__title">
+                    <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=71">Sound And Light</a>
+                  </h3>
+                  <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=71" class="collection-one__link">
+                    Explore The Activity
                   </a>
                 </div>
               </div>
@@ -195,10 +189,10 @@ $PageTitle = "Pyramids";
                 </div>
                 <div class="collection-one__content">
                   <h3 class="collection-one__title">
-                    <a href="collection-cultural.html">Cultural</a>
+                    <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=26">Sky Diving</a>
                   </h3>
-                  <a  href="collection-cultural.html" class="collection-one__link">
-                    Explore The Collection
+                  <a  href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=26" class="collection-one__link">
+                    Explore The Activity
                   </a>
                 </div>
               </div>
@@ -212,9 +206,10 @@ $PageTitle = "Pyramids";
                 </div>
                 <div class="collection-one__content">
                   <h3 class="collection-one__title">
-                    <a href="collection-painting.html">Painting</a>
+                    <a href="collection-painting.html">Khafre Pyramid</a>
                   </h3>
                   <a href="collection-painting.html" class="collection-one__link">
+                    Explore The Activity
                   </a>
                 </div>
               </div>
@@ -228,17 +223,17 @@ $PageTitle = "Pyramids";
                 </div>
                 <div class="collection-one__content">
                   <h3 class="collection-one__title">
-                    <a href="collection-sculpture.html">Sculpture</a>
+                    <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=44">Air Ballon</a>
                   </h3>
-                  <a href="collection-sculpture.html" class="collection-one__link">
-                    Explore The Collection
+                  <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=44" class="collection-one__link">
+                    Explore The Activity
                   </a>
                 </div>
               </div>
             </div>
           </div>
           <div class="text-center">
-            <a href="#" class="thm-btn collection-one__more-btn">More Categories</a>
+            <a href="./Events.php?Page=1" class="thm-btn collection-one__more-btn">Explore Now</a>
           </div>
         </div>
       </section>
@@ -261,10 +256,11 @@ $PageTitle = "Pyramids";
           </div>
 
           <?php
+          $TodaysDate = date('Y-m-d');
             $SelectEvents= "SELECT entertainmnet.* , entertainmnetcategory.Name AS CatName ,place.Name AS PlaceName  FROM entertainmnet 
-                            JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
-                            JOIN place ON place.ID = entertainmnet.PlaceID 
-                            WHERE PlaceID = 1 
+                            LEFT JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
+                            LEFT JOIN place ON place.ID = entertainmnet.PlaceID 
+                            WHERE PlaceID = 1 AND entertainmnet.ID NOT IN (26 , 41 , 44 , 71 ) AND entertainmnet.Date > '$TodaysDate'
                             ORDER BY ID DESC LIMIT 3";
             $Query = mysqli_query($con , $SelectEvents);
             $EventsRow = mysqli_fetch_assoc($Query);
@@ -279,9 +275,9 @@ $PageTitle = "Pyramids";
                     <div class="event-one__content">
                       <div class="event-one__image">
                         <div class="event-one__image-inner">
-                          <img src="images/<?php echo $Events['Image'] ?>" width="90px" height="90px" alt="" />
+                          <img src="images/<?php echo $Events['Image'] ?>" width="100px" height="100px" alt="" />
                         </div>
-                        <div class="event-one__image-hover"><?php echo $Events['RegularPrice'] . " LE" ?></div>
+                        <div class="event-one__image-hover"><?php echo $Events['RegularPrice'] . " EGP" ?></div>
                       </div>
                       <div class="event-one__text">
                         <div class="event-one__content-top">
@@ -309,8 +305,8 @@ $PageTitle = "Pyramids";
                         </li>
                         <li>
                           <i class="egypt-icon-place-1"></i>
-                          <span>Venue</span>
-                          Al Giza, EGY
+                          <span>Location</span>
+                            Pyramids of Giza, Egypt
                         </li>
                       </ul>
 
@@ -327,207 +323,6 @@ $PageTitle = "Pyramids";
         </div>
       </section>
 
-      <!-- Blog -->
-      <section class="blog-one">
-        <div class="container">
-          <div class="block-title text-center">
-            <p class="block-title__tag-line">News Blog</p>
-            <!-- /.block-title__tag-line -->
-            <h2 class="block-title__title">Latest From Our Blog</h2>
-            <!-- /.block-title__title -->
-          </div>
-          <!-- /.block-title -->
-          <div class="row">
-            <div
-              class="col-lg-3 col-md-6 col-sm-12 wow fadeInUp"
-              data-wow-duration="1500ms"
-              data-wow-delay="0ms"
-            >
-              <div class="blog-one__single">
-                <div class="blog-one__image">
-                  <img src="images/blog/blog-1-1.jpg" alt="" />
-                  <a href="blog-details.html"
-                    ><i class="egypt-icon-add"></i
-                    ><!-- /.egypt-icon-add --></a
-                  >
-                </div>
-                <!-- /.blog-one__image -->
-                <div class="blog-one__content">
-                  <div class="blog-one__top">
-                    <div class="blog-one__date">
-                      <span>
-                        5 <br />
-                        Oct
-                      </span>
-                    </div>
-                    <!-- /.blog-one__date -->
-                    <div class="blog-one__meta">
-                      <a href="#">Admin</a>
-                      <a href="#">Press Release</a>
-                    </div>
-                    <!-- /.blog-one__meta -->
-                  </div>
-                  <!-- /.blog-one__top -->
-                  <h3 class="blog-one__title">
-                    <a href="blog-details.html"
-                      >New visual identity for our egypt museum</a
-                    >
-                  </h3>
-                  <!-- /.blog-one__title -->
-                  <a href="blog-details.html" class="blog-one__link"
-                    >Read More <span>+</span></a
-                  >
-                  <!-- /.blog-one__link -->
-                </div>
-                <!-- /.blog-one__content -->
-              </div>
-              <!-- /.blog-one__single -->
-            </div>
-            <!-- /.col-lg-3 col-md-6 -->
-            <div
-              class="col-lg-3 col-md-6 col-sm-12 wow fadeInUp"
-              data-wow-duration="1500ms"
-              data-wow-delay="100ms"
-            >
-              <div class="blog-one__single">
-                <div class="blog-one__image">
-                  <img src="images/blog/blog-1-2.jpg" alt="" />
-                  <a href="blog-details.html"
-                    ><i class="egypt-icon-add"></i
-                    ><!-- /.egypt-icon-add --></a
-                  >
-                </div>
-                <!-- /.blog-one__image -->
-                <div class="blog-one__content">
-                  <div class="blog-one__top">
-                    <div class="blog-one__date">
-                      <span>
-                        21 <br />
-                        Aug
-                      </span>
-                    </div>
-                    <!-- /.blog-one__date -->
-                    <div class="blog-one__meta">
-                      <a href="#">Admin</a>
-                      <a href="#">Photography</a>
-                    </div>
-                    <!-- /.blog-one__meta -->
-                  </div>
-                  <!-- /.blog-one__top -->
-                  <h3 class="blog-one__title">
-                    <a href="blog-details.html"
-                      >Earlier water color of palace save for the nation</a
-                    >
-                  </h3>
-                  <!-- /.blog-one__title -->
-                  <a href="blog-details.html" class="blog-one__link"
-                    >Read More <span>+</span></a
-                  >
-                  <!-- /.blog-one__link -->
-                </div>
-                <!-- /.blog-one__content -->
-              </div>
-              <!-- /.blog-one__single -->
-            </div>
-            <!-- /.col-lg-3 col-md-6 -->
-            <div
-              class="col-lg-3 col-md-6 col-sm-12 wow fadeInUp"
-              data-wow-duration="1500ms"
-              data-wow-delay="200ms"
-            >
-              <div class="blog-one__single">
-                <div class="blog-one__image">
-                  <img src="images/blog/blog-1-3.jpg" alt="" />
-                  <a href="blog-details.html"
-                    ><i class="egypt-icon-add"></i
-                    ><!-- /.egypt-icon-add --></a
-                  >
-                </div>
-                <!-- /.blog-one__image -->
-                <div class="blog-one__content">
-                  <div class="blog-one__top">
-                    <div class="blog-one__date">
-                      <span>
-                        10 <br />
-                        Aug
-                      </span>
-                    </div>
-                    <!-- /.blog-one__date -->
-                    <div class="blog-one__meta">
-                      <a href="#">Admin</a>
-                      <a href="#">Information</a>
-                    </div>
-                    <!-- /.blog-one__meta -->
-                  </div>
-                  <!-- /.blog-one__top -->
-                  <h3 class="blog-one__title">
-                    <a href="blog-details.html"
-                      >The first ever production car and flying car</a
-                    >
-                  </h3>
-                  <!-- /.blog-one__title -->
-                  <a href="blog-details.html" class="blog-one__link"
-                    >Read More <span>+</span></a
-                  >
-                  <!-- /.blog-one__link -->
-                </div>
-                <!-- /.blog-one__content -->
-              </div>
-              <!-- /.blog-one__single -->
-            </div>
-            <!-- /.col-lg-3 col-md-6 -->
-            <div
-              class="col-lg-3 col-md-6 col-sm-12 wow fadeInUp"
-              data-wow-duration="1500ms"
-              data-wow-delay="300ms"
-            >
-              <div class="blog-one__single">
-                <div class="blog-one__image">
-                  <img src="images/blog/blog-1-4.jpg" alt="" />
-                  <a href="blog-details.html"
-                    ><i class="egypt-icon-add"></i
-                    ><!-- /.egypt-icon-add --></a
-                  >
-                </div>
-                <!-- /.blog-one__image -->
-                <div class="blog-one__content">
-                  <div class="blog-one__top">
-                    <div class="blog-one__date">
-                      <span>
-                        24 <br />
-                        Jun
-                      </span>
-                    </div>
-                    <!-- /.blog-one__date -->
-                    <div class="blog-one__meta">
-                      <a href="#">Admin</a>
-                      <a href="#">Technology</a>
-                    </div>
-                    <!-- /.blog-one__meta -->
-                  </div>
-                  <!-- /.blog-one__top -->
-                  <h3 class="blog-one__title">
-                    <a href="blog-details.html"
-                      >Food: Bigger than the plate exhibition highlights</a
-                    >
-                  </h3>
-                  <!-- /.blog-one__title -->
-                  <a href="blog-details.html" class="blog-one__link"
-                    >Read More <span>+</span></a
-                  >
-                  <!-- /.blog-one__link -->
-                </div>
-                <!-- /.blog-one__content -->
-              </div>
-              <!-- /.blog-one__single -->
-            </div>
-            <!-- /.col-lg-3 col-md-6 -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container -->
-      </section>
-
       <!-- Collections -->
       <section class="collection-two">
         <div class="container">
@@ -536,359 +331,39 @@ $PageTitle = "Pyramids";
               <p class="block-title__tag-line">Collections</p>
               <h2 class="block-title__title">Special Collections</h2>
             </div>
-
-            <div class="collection-two__more-links-wrap">
-              <a href="#" class="collection-two__more-links">
-                <i class="fa fa-angle-right"></i>
-                View More Collections 
-              </a>
-            </div>
           </div>
-
           <div class="row masonary-layout">
-            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="0ms">
-              <div class="collection-two__single">
-                <div class="collection-two__image">
-                  <img src="images/collections/collections-1-1.jpg" alt="" />
-                  <div class="collection-two__hover">
-                    <a class="img-popup" href="images/collections/collections-1-1.jpg">
-                      <i class="egypt-icon-focus"></i>
-                    </a>
+            <?php 
+              $SelectCollections = "SELECT collections.* , collectionscategories.Category AS Category FROM `collections`
+                                  LEFT JOIN  collectionscategories ON collections.CatID = collectionscategories.ID
+                                  WHERE PlaceID = 1 AND ShowOnPyramidsHome = 1 LIMIT 8";
+              $RunQuery = mysqli_query($con , $SelectCollections);
+              $CollectionRow = mysqli_fetch_assoc($RunQuery);
+              foreach($RunQuery as $Collection){ ?>
+                <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="0ms">
+                  <div class="collection-two__single">
+                    <div class="collection-two__image">
+                      <img src="images/new/gallery/<?php echo $Collection['Image'] ?>" alt="" />
+                      <div class="collection-two__hover">
+                        <a class="img-popup" href="images/new/gallery/<?php echo $Collection['Image'] ?>">
+                          <i class="egypt-icon-focus"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="collection-two__content">
+                      <p class="collection-two__category">
+                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php?CatID=<?php echo $Collection['CatID'] ?>"><?php echo $Collection['Category'] ?></a>
+                      </p>
+                      <h3 class="collection-two__title">
+                        <a href="http://localhost/imentet-1/Pyramids/pyramids/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>"><?php echo $Collection['Collection'] ?></a>
+                      </h3>
+                    </div>
                   </div>
                 </div>
-                <div class="collection-two__content">
-                  <p class="collection-two__category">
-                    <a href="collection-details.html">Painting</a>
-                  </p>
-                  <h3 class="collection-two__title">
-                    <a href="collection-details.html">Alexandria in Prison</a>
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item"
-              data-wow-duration="1500ms"
-              data-wow-delay="100ms"
-            >
-              <div class="collection-two__single">
-                <div class="collection-two__image">
-                  <img src="images/collections/collections-1-2.jpg" alt="" />
-                  <div class="collection-two__hover">
-                    <a
-                      class="img-popup"
-                      href="images/collections/collections-1-2.jpg"
-                      ><i class="egypt-icon-focus"></i>
-                      <!-- /.egypt-icon-focus --></a
-                    >
-                  </div>
-                  <!-- /.collection-two__hover -->
-                </div>
-                <!-- /.collection-two__image -->
-                <div class="collection-two__content">
-                  <p class="collection-two__category">
-                    <a href="collection-details.html">Sculpture</a>
-                  </p>
-                  <!-- /.collection-two__category -->
-                  <h3 class="collection-two__title">
-                    <a href="collection-details.html">The Lascaux Cave</a>
-                  </h3>
-                  <!-- /.collection-two__title -->
-                </div>
-                <!-- /.collection-two__content -->
-              </div>
-              <!-- /.collection-two__single -->
-            </div>
-            <!-- /.col-lg-4 masonary-item -->
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item"
-              data-wow-duration="1500ms"
-              data-wow-delay="200ms"
-            >
-              <div class="collection-two__single">
-                <div class="collection-two__image">
-                  <img src="images/collections/collections-1-3.jpg" alt="" />
-                  <div class="collection-two__hover">
-                    <a
-                      class="img-popup"
-                      href="images/collections/collections-1-3.jpg"
-                      ><i class="egypt-icon-focus"></i>
-                      <!-- /.egypt-icon-focus --></a
-                    >
-                  </div>
-                  <!-- /.collection-two__hover -->
-                </div>
-                <!-- /.collection-two__image -->
-                <div class="collection-two__content">
-                  <p class="collection-two__category">
-                    <a href="collection-details.html">Drawing</a>
-                  </p>
-                  <!-- /.collection-two__category -->
-                  <h3 class="collection-two__title">
-                    <a href="collection-details.html">Mare and Foal</a>
-                  </h3>
-                  <!-- /.collection-two__title -->
-                </div>
-                <!-- /.collection-two__content -->
-              </div>
-              <!-- /.collection-two__single -->
-            </div>
-            <!-- /.col-lg-4 masonary-item -->
-
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item"
-              data-wow-duration="1500ms"
-              data-wow-delay="300ms"
-            >
-              <div class="collection-two__single">
-                <div class="collection-two__image">
-                  <img src="images/collections/collections-1-5.jpg" alt="" />
-                  <div class="collection-two__hover">
-                    <a
-                      class="img-popup"
-                      href="images/collections/collections-1-5.jpg"
-                      ><i class="egypt-icon-focus"></i>
-                      <!-- /.egypt-icon-focus --></a
-                    >
-                  </div>
-                  <!-- /.collection-two__hover -->
-                </div>
-                <!-- /.collection-two__image -->
-                <div class="collection-two__content">
-                  <p class="collection-two__category">
-                    <a href="collection-details.html">Painting</a>
-                  </p>
-                  <!-- /.collection-two__category -->
-                  <h3 class="collection-two__title">
-                    <a href="collection-details.html"
-                      >Tower of Babel (Babylon)</a
-                    >
-                  </h3>
-                  <!-- /.collection-two__title -->
-                </div>
-                <!-- /.collection-two__content -->
-              </div>
-              <!-- /.collection-two__single -->
-            </div>
-            <!-- /.col-lg-4 masonary-item -->
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item"
-              data-wow-duration="1500ms"
-              data-wow-delay="400ms"
-            >
-              <div class="collection-two__single">
-                <div class="collection-two__image">
-                  <img src="images/collections/collections-1-4.jpg" alt="" />
-                  <div class="collection-two__hover">
-                    <a
-                      class="img-popup"
-                      href="images/collections/collections-1-4.jpg"
-                      ><i class="egypt-icon-focus"></i>
-                      <!-- /.egypt-icon-focus --></a
-                    >
-                  </div>
-                  <!-- /.collection-two__hover -->
-                </div>
-                <!-- /.collection-two__image -->
-                <div class="collection-two__content">
-                  <p class="collection-two__category">
-                    <a href="collection-details.html">Antiquities</a>
-                  </p>
-                  <!-- /.collection-two__category -->
-                  <h3 class="collection-two__title">
-                    <a href="collection-details.html">Mercenary Soldiers</a>
-                  </h3>
-                  <!-- /.collection-two__title -->
-                </div>
-                <!-- /.collection-two__content -->
-              </div>
-              <!-- /.collection-two__single -->
-            </div>
-            <!-- /.col-lg-4 masonary-item -->
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item"
-              data-wow-duration="1500ms"
-              data-wow-delay="500ms"
-            >
-              <div class="collection-two__single">
-                <div class="collection-two__image">
-                  <img src="images/collections/collections-1-6.jpg" alt="" />
-                  <div class="collection-two__hover">
-                    <a
-                      class="img-popup"
-                      href="images/collections/collections-1-6.jpg"
-                      ><i class="egypt-icon-focus"></i>
-                      <!-- /.egypt-icon-focus --></a
-                    >
-                  </div>
-                  <!-- /.collection-two__hover -->
-                </div>
-                <!-- /.collection-two__image -->
-                <div class="collection-two__content">
-                  <p class="collection-two__category">
-                    <a href="collection-details.html">Sculpture</a>
-                  </p>
-                  <!-- /.collection-two__category -->
-                  <h3 class="collection-two__title">
-                    <a href="collection-details.html">Alexandria in Prison</a>
-                  </h3>
-                  <!-- /.collection-two__title -->
-                </div>
-                <!-- /.collection-two__content -->
-              </div>
-              <!-- /.collection-two__single -->
-            </div>
-            <!-- /.col-lg-4 masonary-item -->
+              <?php }
+            ?>
           </div>
-          <!-- /.row -->
         </div>
-        <!-- /.container -->
-      </section>
-
-      <!-- Visitors Section -->
-      <section class="testimonials-two">
-        <div class="container">
-          <div class="block-title text-center">
-            <p class="block-title__tag-line">Feedback</p>
-            <!-- /.block-title__tag-line -->
-            <h2 class="block-title__title">Words From Visitors</h2>
-            <!-- /.block-title__title -->
-          </div>
-          <!-- /.block-title -->
-          <div class="row">
-            <div
-              class="col-lg-4 wow fadeInUp"
-              data-wow-duration="1500ms"
-              data-wow-delay="0ms"
-            >
-              <div class="testimonials-two__single">
-                <div class="testimonials-two__image">
-                  <img src="images/resources/testi-2-1.jpg" alt="" />
-                </div>
-                <!-- /.testimonials-two__image -->
-                <h3 class="testimonials-two__name">Jeffrin Melina</h3>
-                <!-- /.testimonials-two__name -->
-                <p class="testimonials-two__designation">California</p>
-                <!-- /.testimonials-two__designation -->
-                <div class="testimonials-two__content">
-                  <div class="testimonials-two__qoute"></div>
-                  <!-- /.testimonials-two__qoute -->
-                  <h3 class="testimonials-two__title">Good worth to visit</h3>
-                  <!-- /.testimonials-two__title -->
-                  <p class="testimonials-two__text">
-                    Wonderful Exhibit.Great presentation lot of interestting
-                    things I did not know about Egypt, it is awesome.
-                  </p>
-                  <!-- /.testimonials-two__text -->
-                  <div class="testimonials-two__stars">
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                  </div>
-                  <!-- /.testimonials-two__stars -->
-                </div>
-                <!-- /.testimonials-two__content -->
-              </div>
-              <!-- /.testimonials-two__single -->
-            </div>
-            <!-- /.col-lg-4 -->
-            <div
-              class="col-lg-4 wow fadeInUp"
-              data-wow-duration="1500ms"
-              data-wow-delay="100ms"
-            >
-              <div class="testimonials-two__single">
-                <div class="testimonials-two__image">
-                  <img src="images/resources/testi-2-2.jpg" alt="" />
-                </div>
-                <!-- /.testimonials-two__image -->
-                <h3 class="testimonials-two__name">Duke Frederick</h3>
-                <!-- /.testimonials-two__name -->
-                <p class="testimonials-two__designation">Newyork</p>
-                <!-- /.testimonials-two__designation -->
-                <div class="testimonials-two__content">
-                  <div class="testimonials-two__qoute"></div>
-                  <!-- /.testimonials-two__qoute -->
-                  <h3 class="testimonials-two__title">Guide was fabulous</h3>
-                  <!-- /.testimonials-two__title -->
-                  <p class="testimonials-two__text">
-                    There are some interesting historical pictures and
-                    information dating back to the cattle ranches here.
-                  </p>
-                  <!-- /.testimonials-two__text -->
-                  <div class="testimonials-two__stars">
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star-o"></i
-                    ><!-- /.fa fa-star -->
-                  </div>
-                  <!-- /.testimonials-two__stars -->
-                </div>
-                <!-- /.testimonials-two__content -->
-              </div>
-              <!-- /.testimonials-two__single -->
-            </div>
-            <!-- /.col-lg-4 -->
-            <div
-              class="col-lg-4 wow fadeInUp"
-              data-wow-duration="1500ms"
-              data-wow-delay="200ms"
-            >
-              <div class="testimonials-two__single">
-                <div class="testimonials-two__image">
-                  <img src="images/resources/testi-2-3.jpg" alt="" />
-                </div>
-                <!-- /.testimonials-two__image -->
-                <h3 class="testimonials-two__name">Hugh Isadore</h3>
-                <!-- /.testimonials-two__name -->
-                <p class="testimonials-two__designation">California</p>
-                <!-- /.testimonials-two__designation -->
-                <div class="testimonials-two__content">
-                  <div class="testimonials-two__qoute"></div>
-                  <!-- /.testimonials-two__qoute -->
-                  <h3 class="testimonials-two__title">The great history</h3>
-                  <!-- /.testimonials-two__title -->
-                  <p class="testimonials-two__text">
-                    You’re immediately welcomed and included. And then if you
-                    don’t want to it’s easy enough to close.
-                  </p>
-                  <!-- /.testimonials-two__text -->
-                  <div class="testimonials-two__stars">
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                    <i class="fa fa-star"></i
-                    ><!-- /.fa fa-star -->
-                  </div>
-                  <!-- /.testimonials-two__stars -->
-                </div>
-                <!-- /.testimonials-two__content -->
-              </div>
-              <!-- /.testimonials-two__single -->
-            </div>
-            <!-- /.col-lg-4 -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container -->
       </section>
 
       <!-- Membership -->
@@ -907,8 +382,8 @@ $PageTitle = "Pyramids";
                     Member of Pyramids
                   </h3>
                   <p class="cta-one__text">
-                    Be one of our Pyramids Members  <br />
-                    and Enjoy our benefits !
+                    Gain Access to Exclusive Features and Resources<br />
+                    with Our Membership Program!
                   </p>
                   <ul class="list-unstyled cta-one__list">
                     <li>
@@ -917,11 +392,11 @@ $PageTitle = "Pyramids";
                     </li>
                     <li>
                       <i class="egypt-icon-check"></i>
-                      Enjoy a Free access to Childen Museum
+                      Access to Exclusive Activities
                     </li>
                     <li>
                       <i class="egypt-icon-check"></i>
-                      Subscription to Library
+                      Free Tickets to Special Exhibitions
                     </li>
                   </ul>
                   <a href="./Membership.php" class="cta-one__link">

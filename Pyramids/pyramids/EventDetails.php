@@ -121,7 +121,11 @@ if(empty($EventID)){
                   <li class="nav-item">
                     <a href="#contact" data-target="#contact" class="nav-link">Contact</a>
                   </li>
-                  <?php if($row['CatID'] == 9 ){ ?>
+                  <?php 
+                    $SelectGallery = "SELECT * FROM eventgallery WHERE EventID = $EventID ";
+                    $SelectRun = mysqli_query($con , $SelectGallery);
+                    $Gallery = mysqli_fetch_assoc($SelectRun); 
+                    if(isset($Gallery['ID']) && $Gallery['EventID'] == $EventID){ ?>
                     <li class="nav-item">
                       <a href="#gallery" data-target="#gallery" class="nav-link" >Gallery</a>
                     </li>
@@ -137,7 +141,7 @@ if(empty($EventID)){
                               <span>Date & Time</span>
                               <p>
                                 <i class="fa fa-clock-o"></i>
-                                <?php echo $StartDate ; ?>  <?php if(isset($EndDate) && $row['Everyday'] != "Daily" && $row['DateTo'] != '0000-00-00' ){echo " - ".$EndDate ; }else{ echo ", 10.00 to 7.00" ;} ?>
+                                <?php echo $StartDate ; ?>  <?php if(isset($EndDate) && $row['Everyday'] != "Daily" && $row['DateTo'] != '0000-00-00' && $row['DateTo'] != '1970-01-01' && $row['DateTo'] != Null){echo " - ".$EndDate ; }else{ echo ", 10.00 to 7.00" ;} ?>
                               </p>
                             </li>
                             <li>
@@ -200,25 +204,21 @@ if(empty($EventID)){
                 </div>
 
                 <!-- Gallery -->
-                <?php if($row['CatID'] == 9 ){ ?>
-                  <div id="gallery" class="event-details__single">
-                    <h3 class="event-details__title">Gallery</h3>
-                    <div class="row masonary-layout">
-                      <div class="col-md-6 masonary-item">
-                        <img class="img-fluid" src="images/event/event-d-g-1.jpg" alt="Awesome Image"/>
-                      </div>
-                      <div class="col-md-6 masonary-item">
-                        <img class="img-fluid" src="images/event/event-d-g-2.jpg" alt="Awesome Image"/>
-                      </div>
-                      <div class="col-md-6 masonary-item">
-                        <img class="img-fluid" src="images/event/event-d-g-3.jpg" alt="Awesome Image" />
-                      </div>
-                      <div class="col-md-6 masonary-item">
-                        <img class="img-fluid" src="images/event/event-d-g-4.jpg" alt="Awesome Image"/>
+                <?php 
+                  if(isset($Gallery['ID']) && $Gallery['EventID'] == $EventID){
+                    ?>
+                    <div id="gallery" class="event-details__single">
+                      <h3 class="event-details__title">Gallery</h3>
+                      <div class="row masonary-layout">
+                        <?php foreach($SelectRun as $Image){ ?>
+                          <div class="col-md-6 masonary-item">
+                            <img class="img-fluid" src="./Images/<?php echo $Image['Image'] ?>" width="370px" style='height: 270px' alt="Awesome Image"/>
+                          </div>
+                        <?php } ?>
                       </div>
                     </div>
-                  </div>
-                <?php } ?>
+                  <?php }
+                ?>
 
                 <!-- Contact And Feedback-->
                 <div id="contact" class="event-details__single">

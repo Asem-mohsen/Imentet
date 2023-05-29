@@ -61,68 +61,49 @@ if(isset($_SESSION['AdminID'])){
               <div class="about-three__tab">
                 <ul class="list-unstyled nav nav-tabs about-three__tab-list" role="tablist">
                   <li class="nav-item">
-                    <a data-toggle="tab" href="#year-1" role="tab" class="nav-link active"> 2002</a>
+                    <a data-toggle="tab" href="#year-1" role="tab" class="nav-link active">Khufu</a>
                   </li>
                   <li class="nav-item">
-                    <a data-toggle="tab" href="#year-2" role="tab" class="nav-link">2003</a>
+                    <a data-toggle="tab" href="#year-2" role="tab" class="nav-link">Khafre</a>
                   </li>
                   <li class="nav-item">
-                    <a data-toggle="tab" href="#year-3" role="tab" class="nav-link">2011</a>
+                    <a data-toggle="tab" href="#year-3" role="tab" class="nav-link">Menkaure</a>
                   </li>
                   <li class="nav-item">
-                    <a data-toggle="tab" href="#year-4" role="tab" class="nav-link">2014</a>
+                    <a data-toggle="tab" href="#year-4" role="tab" class="nav-link">Sphinx</a>
                   </li>
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane animated fadeInUp show active" id="year-1">
                     <div class="about-three__tab-content">
                       <p class="about-three__tab-text">
-                        In January of 2002, the Egyptian government announced a
-                        worldwide competition for the design of a new museum
-                        complex to house, display, and preserve some of the
-                        world's greatest ancient treasures with which the modern
-                        country of Egypt has the privilege of being entrusted.
+                        The Great Pyramid of Khufu (also known as the Pyramid of Cheops) was built around 2560 BC.
                       </p>
-                      <a href="#" class="about-three__tab-link">Read Full story <span>+</span></a>
+                      <a href="https://en.wikipedia.org/wiki/Egyptian_pyramids" target="_blank"  class="about-three__tab-link">Read Full story <span>+</span></a>
                     </div>
                   </div>
                   <div class="tab-pane animated fadeInUp" id="year-2">
                     <div class="about-three__tab-content">
                       <p class="about-three__tab-text">
-                        In 2003, the winner of the architectural design
-                        competition was announced at a press conference in
-                        Cairo, with the Irish firm Heneghan Peng Architects
-                        securing the contract to turn their ultra-modern concept
-                        into the new Grand Egyptian Museum.
+                        The Pyramid of Khafre (also known as the Pyramid of Chephren) was built around 2530 BC.
                       </p>
-                      <a href="#" class="about-three__tab-link">Read Full story <span>+</span></a>
+                      <a href="https://en.wikipedia.org/wiki/Egyptian_pyramids" target="_blank"  class="about-three__tab-link">Read Full story <span>+</span></a>
                     </div>
                   </div>
                   <div class="tab-pane animated fadeInUp" id="year-3">
                     <div class="about-three__tab-content">
                       <p class="about-three__tab-text">
-                        As the outbreak of the Arab Spring reached Egypt in
-                        early 2011, work on the project ground to a halt as the
-                        country experienced several years of unfortunate
-                        political instability and uncertainty. <br />
-                        Tourism to Egypt also dwindled during these years,
-                        drying up the government's coffers and jeopardizing the
-                        grand new museum's future.
+                        The Pyramid of Menkaure was built around 2510 BC..
                       </p>
-                      <a href="#" class="about-three__tab-link">Read Full story <span>+</span></a>
+                      <a href="https://en.wikipedia.org/wiki/Egyptian_pyramids" target="_blank"  class="about-three__tab-link">Read Full story <span>+</span></a>
                     </div>
                   </div>
                   <div class="tab-pane animated fadeInUp" id="year-4">
                     <div class="about-three__tab-content">
                       <p class="about-three__tab-text">
-                        But following the restabilization of the government in
-                        2014 and the preservation of that stability ever since,
-                        the project soon got back on track and construction
-                        resumed with the help of international loans to cover
-                        the financial shortfalls caused by the lingering effects
-                        of the tourism downturn.
+                        The Great Sphinx of Giza is believed to have been constructed during the reign of the Pharaoh Khafre, around 2500 BC.
                       </p>
-                      <a href="#" class="about-three__tab-link">Read Full story <span>+</span></a>
+                      <a href="https://en.wikipedia.org/wiki/Egyptian_pyramids" target="_blank"  class="about-three__tab-link">Read Full story <span>+</span></a>
                     </div>
                   </div>
                 </div>
@@ -132,106 +113,23 @@ if(isset($_SESSION['AdminID'])){
         </div>
       </section>
 
-      <!-- Museum Departments -->
-      <section class="department-one">
-        <div class="department-one__top">
-          <div class="container">
-            <div class="block-title text-center">
-              <p class="block-title__tag-line">Departments</p>
-              <h2 class="block-title__title">Departments of The Museum</h2>
-            </div>
-          </div>
-        </div>
-        <div class="department-one__bottom">
-          <div class="container">
-            <div class="inner-container wow fadeInRight" data-wow-duration="1500ms">
-              <div class="row">
-                <div class="col-lg-4">
-                  <ul class="department-one__list list-unstyled">
-                    <li>
-                      <a href="#">
-                        Department of <br />
-                        Sculpture Collection
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Department of Vases, Metalwork & <br />
-                        Minor Arts Collections</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Department of Prehistoric, Egyptian, <br />
-                        Cypriot and Antiquities
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-4">
-                  <ul class="department-one__list list-unstyled">
-                    <li>
-                      <a href="#"
-                        >Department of Exhibitions, <br />
-                        Communication and Education</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Department of Technical Support <br />
-                        and Museography</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Department of Administrative and <br />
-                        Financial Support</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-4">
-                  <div class="department-one__carrer">
-                    <div class="department-one__carrer-inner">
-                      <i class="egypt-icon-career"></i>
-                      <h3 class="department-one__carrer-title">
-                        Find Your Career
-                      </h3>
-                      <a href="http://localhost/imentet-1/Pyramids/pyramids/Careers.php" class="department-one__carrer-link"
-                        >Job Oppurtunities <span>+</span></a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- Video -->
-      <section class="video-two">
+      <section class="video-two" style="background: #302e2f;">
         <div class="container">
           <div class="inner-container wow fadeInUp" data-wow-duration="1500ms">
-            <a
-              href="https://www.youtube.com/watch?v=hO1tzmi1V5g"
-              class="video-popup video-two__btn"
-              ><i class="egypt-icon-circular"></i
-            ></a>
+            <a href="https://www.youtube.com/watch?v=hO1tzmi1V5g"  class="video-popup video-two__btn">
+              <i class="egypt-icon-circular"></i>
+            </a>
             <h3 class="video-two__title">
               Great Art and Great Art Experiences
             </h3>
-            <!-- /.video-two__title -->
-            <p class="video-two__tag-line">Since 1969</p>
-            <!-- /.video-two__tag-line -->
+            <p class="video-two__tag-line">2580 BC</p>
           </div>
-          <!-- /.inner-container -->
         </div>
-        <!-- /.container -->
       </section>
 
-      <br>
-      <br>
-      <br>
+      </section>
+      <section class="team-one" style="background-color: #302e2f;">
 
-    <?php include "./UserFooterPyramids.php" ; ?>
+      <?php include "./UserFooterPyramids.php" ; ?>

@@ -74,11 +74,11 @@ if(isset($_POST['Search'])){
 
 }
 
-  $SelectProducts = "SELECT giftshop.* , giftcategory.Category AS CategoryName FROM giftshop 
+  $SelectProducts = " SELECT giftshop.* , giftcategory.Category AS CategoryName FROM giftshop 
                     JOIN giftcategory ON giftshop.CategoryID = giftcategory.ID 
                     ORDER BY Price $SortValue , giftshop.Quantity $QuantityValue
                     LIMIT $StartFrom , $RecoedPerPage 
-                    ";
+                    " ;
   $RunQuery = mysqli_query($con , $SelectProducts);
   $fetchquery = mysqli_fetch_row($RunQuery);
   $Count = mysqli_num_rows($RunQuery);
@@ -99,7 +99,6 @@ if(isset($_POST['Search'])){
           <h2 class="inner-banner__title"><br></h2>
           <ul class="list-unstyled thm-breadcrumb">
             <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a></li>
-            <li><a href="">Pages</a></li>
             <li>Store</li>
           </ul>
         </div>

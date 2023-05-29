@@ -62,7 +62,7 @@ if(isset($_GET['MoreData'])){
                     <div class="col-lg-4">
                       <div class="exhibhition-one__single wow fadeInUp" data-wow-duration="1500ms">
                         <div class="exhibhition-one__image">
-                          <div class="exhibhition-one__image-inner">
+                          <div class="exhibhition-one__image-inner"  style='max-height:210px'>
                             <span class="exhibhition-one__image-border-1"></span>
                             <span class="exhibhition-one__image-border-2"></span>
                             <span class="exhibhition-one__image-border-3"></span>
@@ -118,7 +118,7 @@ if(isset($_GET['MoreData'])){
                     <div class="col-lg-4">
                       <div class="exhibhition-one__single wow fadeInUp" data-wow-duration="1500ms">
                         <div class="exhibhition-one__image">
-                          <div class="exhibhition-one__image-inner">
+                          <div class="exhibhition-one__image-inner"  style='max-height:210px'>
                             <span class="exhibhition-one__image-border-1"></span>
                             <span class="exhibhition-one__image-border-2"></span>
                             <span class="exhibhition-one__image-border-3"></span>
@@ -159,7 +159,7 @@ if(isset($_GET['MoreData'])){
               <?php 
                   $SelectExhibitions = "SELECT entertainmnet.* , entertainmnetcategory.Name AS CatName FROM entertainmnet 
                                         JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
-                                        WHERE CatID = 9 AND Date BETWEEN '2021-12-02' AND '2023-04-30'
+                                        WHERE CatID = 9 AND Date BETWEEN '2020-12-02' AND '2023-04-30'
                                         LIMIT $NumOfRecords";
                   $Query = mysqli_query($con , $SelectExhibitions);
                   $ExhibitionsRow = mysqli_fetch_assoc($Query);
@@ -173,7 +173,7 @@ if(isset($_GET['MoreData'])){
                     <div class="col-lg-4">
                       <div class="exhibhition-one__single wow fadeInUp" data-wow-duration="1500ms">
                         <div class="exhibhition-one__image">
-                          <div class="exhibhition-one__image-inner">
+                          <div class="exhibhition-one__image-inner"  style='max-height:210px'>
                             <span class="exhibhition-one__image-border-1"></span>
                             <span class="exhibhition-one__image-border-2"></span>
                             <span class="exhibhition-one__image-border-3"></span>
