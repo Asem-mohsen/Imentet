@@ -31,7 +31,7 @@ include "./Functions/Functions.php";
     <link rel="stylesheet" href="css/nouislider.pips.css" />
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" href="css/style.css?v=2" />
+    <link rel="stylesheet" href="css/style.css?v=4" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/payment.css" />
 
@@ -57,8 +57,8 @@ include "./Functions/Functions.php";
                 </div>
                 <div class="topbar-two__text">
                     <p>
-                    Plan Your Visit <?php echo date('h.i'  , strtotime('+1 hour')) ?> - 07.30 <br />
-                    Friday: 10.30 - 09.30
+                    Plan Your Visit <br />
+                    <?php echo date('h.i'  , strtotime('+1 hour')) ?> - 07.30 
                     </p>
                 </div>
                 </div>
@@ -108,23 +108,24 @@ include "./Functions/Functions.php";
                 <!-- Social Media Icons -->
                 <li>
                     <div class="topbar-two__social">
-                        <a href="https://www.facebook.com/GrandEgyptianMuseum/" target="_blank" data-toggle="tooltip" data-placement="top"  title="Facebook">
+                        <a href="https://www.facebook.com/giza.pyramids/" target="_blank" data-toggle="tooltip" data-placement="top"  title="Facebook">
                         <i class="fa fa-facebook-f"></i>
                         </a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter">
+                        <a href="https://twitter.com/PyramidsGiza" data-toggle="tooltip" data-placement="top" title="Twitter">
                         <i class="fa fa-twitter"></i>
                         </a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram">
+                        <a href="https://www.instagram.com/explore/locations/250717230/great-pyramids-of-giza/" data-toggle="tooltip" data-placement="top" title="Instagram">
                         <i class="fa fa-instagram"></i>
                         </a>
                     </div>
                 </li>
+
                 <li>
-                <a href="#" class="topbar-two__sidemenu-nav side-menu__toggler">
-                    <span class="topbar-two__sidemenu-nav-line"></span>
-                    <span class="topbar-two__sidemenu-nav-line"></span>
-                    <span class="topbar-two__sidemenu-nav-line"></span>
-                </a>
+                    <a href="#" class="topbar-two__sidemenu-nav side-menu__toggler">
+                        <span class="topbar-two__sidemenu-nav-line"></span>
+                        <span class="topbar-two__sidemenu-nav-line"></span>
+                        <span class="topbar-two__sidemenu-nav-line"></span>
+                    </a>
                 </li>
             </ul>
             </div>
@@ -159,21 +160,18 @@ include "./Functions/Functions.php";
                 <li>
                     <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php">Visit</a>
                     <ul class="submenu">
-                    <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#open-hrs">Opening Hours</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#admission">Admission Cost</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#how-to-get">How to Get Here</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#anenities">Amenities</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#interior">Interior Map</a>
-                    </li>
+                        <li>
+                            <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#open-hrs">Opening Hours</a>
+                        </li>
+                        <li>
+                            <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#admission">Admission Cost</a>
+                        </li>
+                        <li>
+                            <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#how-to-get">How to Get Here</a>
+                        </li>
+                        <li>
+                            <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#anenities">Amenities</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -210,6 +208,12 @@ include "./Functions/Functions.php";
                             <?php }
                         } ?>
                 </a>
+
+                <!-- Search Icon -->
+                <a href="#" class="site-header__header-two__search search-popup__toggler">
+                    <i class="egypt-icon-search"></i>
+                </a>
+              
 
                 <a href="http://localhost/imentet-1/Pyramids/pyramids/VisitTickets.php" class="thm-btn site-header__header-two__btn">Buy Tickets</a>
             </div>

@@ -52,8 +52,8 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
         <div class="container">
           <h2 class="inner-banner__title">Membership Subscription</h2>
           <ul class="list-unstyled thm-breadcrumb">
-            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a></li>
-            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/membership.php">Membership</a></li>
+            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a></li>
+            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Membership.php">Membership</a></li>
             <li><?php echo $MembershipRow['Type'] . " Membership" ?></li>
           </ul>
         </div>

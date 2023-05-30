@@ -71,7 +71,7 @@ if(empty($ItemID)){
     $PageTitle = $Item['Item'] . " Details";
 
     if($ItemID != $Item['ID']){
-        header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1");
+        header("Location: http://localhost/imentet-1/Pyramids/pyramids/OnlineShop.php?Page=1");
         exit();
         }
 
@@ -84,7 +84,7 @@ if(empty($ItemID)){
         <!-- Upper Part -->
         <div class="container">
             <ul class="list-unstyled thm-breadcrumb thm-breadcrumb__two">
-                <li><a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">Home</a></li>
+                <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a></li>
                 <li><a href="http://localhost/imentet-1/Pyramids/pyramids/OnlineShop.php?Page=1">Shop</a></li>
                 <li><?php echo $Item['Item'] ?></li>
             </ul>
@@ -267,5 +267,5 @@ if(empty($ItemID)){
             </div>
         </section>
 
-  <?php include "./UserFooterPyramids.php" ; 
+    <?php include "./UserFooterPyramids.php" ; 
 } ?>

@@ -56,7 +56,7 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
                 <h2 class="inner-banner__title">Contact Us</h2>
                 <p class="inner-banner__text">We're always here to help you with anything you might need.</p><!-- /.inner-banner__text -->
                 <ul class="list-unstyled thm-breadcrumb">
-                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">Home</a></li>
+                    <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a></li>
                     <li><a href="http://localhost/imentet-1/Pyramids/pyramids/AboutUs.php">Pyramids</a></li>
                     <li>Contact Us</li>
                 </ul>
@@ -66,16 +66,16 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
         <!-- Showing Errors -->
         <?php 
 
-          if(isset($ErrorMsgOfAdmin)){ echo $ErrorMsgOfAdmin ; }
-          if(isset($MsgSuccess)){ echo $MsgSuccess ; }
+            if(isset($ErrorMsgOfAdmin)){ echo $ErrorMsgOfAdmin ; }
+            if(isset($MsgSuccess)){ echo $MsgSuccess ; }
 
-          if(isset($FormErrors)){
-              foreach($FormErrors as $Error){
-                  echo "<div class='alert alert-danger text-center'>";
-                      echo $Error;
-                  echo "</div>";
-              }
-          }
+            if(isset($FormErrors)){
+                foreach($FormErrors as $Error){
+                    echo "<div class='alert alert-danger text-center'>";
+                        echo $Error;
+                    echo "</div>";
+                }
+            }
 
         ?>
 
@@ -85,7 +85,7 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
                     <div class="col-lg-6">
                         <div class="contact-one__main">
                             <div class="contact-one__image">
-                                <img src="images/resources/contact-1-1.jpeg" class="img-fluid" alt="" />
+                                <img src="images/resources/membership-1.png" class="img-fluid" alt="" />
                             </div>
                             <div class="contact-one__content">
                                 <div class="row no-gutters">

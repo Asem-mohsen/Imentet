@@ -133,7 +133,15 @@ if(empty($EventID)){
                               <span>Date & Time</span>
                               <p>
                                 <i class="fa fa-clock-o"></i>
-                                <?php echo $StartDate ; ?>  <?php if(isset($EndDate) && $row['Everyday'] != "Daily" && $row['DateTo'] != '0000-00-00' && $row['DateTo'] != '1970-01-01' && $row['DateTo'] != Null){echo " - ".$EndDate ; }else{ echo ", 10.00 to 8.00" ;} ?>
+                                <?php echo $StartDate ; 
+                                      if(isset($EndDate) && $row['Everyday'] != "Daily" && $row['DateTo'] != '0000-00-00' && $row['DateTo'] != '1970-01-01' && $row['DateTo'] != Null){
+                                          echo " - ". $EndDate ; 
+                                      }elseif($row['Everyday'] == "Daily"){
+                                        echo " - Happens Daily" ;
+                                      }else{
+                                        echo ", 10.00 to 7.00" ;
+                                      }
+                                ?>
                               </p>
                             </li>
                             <li>
@@ -259,7 +267,11 @@ if(empty($EventID)){
                                         </ul>
                                       </div>
                                       <div class="col-lg-6">
-                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13821.875835399496!2d31.122688!3d29.994688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584534984a8ad1%3A0x45764c5bc4ec261a!2sGrand%20Egyptian%20Museum!5e0!3m2!1sen!2seg!4v1681483362521!5m2!1sen!2seg" class="google-map__home" allowfullscreen></iframe>
+                                        <?php if($row['PlaceName'] == "Grand Egyptian Museum"){ ?>
+                                          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13821.875835399496!2d31.122688!3d29.994688!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584534984a8ad1%3A0x45764c5bc4ec261a!2sGrand%20Egyptian%20Museum!5e0!3m2!1sen!2seg!4v1681483362521!5m2!1sen!2seg" class="google-map__home" allowfullscreen></iframe>
+                                        <?php }else{ ?>
+                                          <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.006641777741!2d31.13162697553705!3d29.979239121657272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584587ac8f291b%3A0x810c2f3fa2a52424!2sThe%20Great%20Pyramid%20of%20Giza!5e0!3m2!1sen!2seg!4v1685319609844!5m2!1sen!2seg" class="google-map__home" allowfullscreen ></iframe>
+                                        <?php } ?>
                                       </div>
                                     </div>
                                   </div>

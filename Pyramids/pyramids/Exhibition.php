@@ -14,12 +14,12 @@ if(isset($_GET['MoreData'])){
 ?>
   <?php include "./NavUserPyramids.php" ; ?>
 
-      <section class="inner-banner">
+      <section class="inner-banner" style="background-image: url(./images/Background/inner-banner-bg-2-2.png);">
         <div class="container">
           <h2 class="inner-banner__title">Exhibition</h2>
           <ul class="list-unstyled thm-breadcrumb">
-            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">Home</a></li>
-            <li><a href="">What's On</a></li>
+            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a></li>
+            <li><a>What's On</a></li>
             <li>Exhibition</li>
           </ul>
 

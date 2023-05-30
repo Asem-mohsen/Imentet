@@ -72,7 +72,7 @@ if(isset($_SESSION['UserID'])){
 
     <div class="container">
         <ul class="list-unstyled thm-breadcrumb thm-breadcrumb__two">
-            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">Home</a></li>
+            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a></li>
             <li><a href="http://localhost/imentet-1/Pyramids/pyramids/OnlineShop.php?Page=1">Shop</a></li>
             <li>Shopping Cart</li>
         </ul>

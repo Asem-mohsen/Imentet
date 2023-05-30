@@ -24,7 +24,7 @@ if(isset($_SESSION['AdminID'])){
         <div class="container">
           <h2 class="inner-banner__title">About Pyramids</h2>
           <ul class="list-unstyled thm-breadcrumb">
-            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">Home</a></li>
+            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a></li>
             <li>The Pyramids</li>
           </ul>
         </div>
@@ -129,7 +129,8 @@ if(isset($_SESSION['AdminID'])){
         </div>
       </section>
 
-      </section>
+    
       <section class="team-one" style="background-color: #302e2f;">
+      </section>
 
-      <?php include "./UserFooterPyramids.php" ; ?>
+    <?php include "./UserFooterPyramids.php" ; ?>

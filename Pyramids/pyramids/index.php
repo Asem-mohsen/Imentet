@@ -140,9 +140,9 @@ $PageTitle = "Pyramids";
                 </div>
                 <div class="collection-one__content">
                   <h3 class="collection-one__title">
-                    <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=">Khufu Pyramid</a>
+                    <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=74">Khufu Pyramid</a>
                   </h3>
-                  <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=" class="collection-one__link">Explore The Activity</a>
+                  <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=74" class="collection-one__link">Explore The Activity</a>
                 </div>
               </div>
             </div>
@@ -206,9 +206,9 @@ $PageTitle = "Pyramids";
                 </div>
                 <div class="collection-one__content">
                   <h3 class="collection-one__title">
-                    <a href="collection-painting.html">Khafre Pyramid</a>
+                    <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=75">Khafre Pyramid</a>
                   </h3>
-                  <a href="collection-painting.html" class="collection-one__link">
+                  <a href="http://localhost/imentet-1/Pyramids/pyramids/EventDetails.php?EventID=75" class="collection-one__link">
                     Explore The Activity
                   </a>
                 </div>
@@ -260,7 +260,7 @@ $PageTitle = "Pyramids";
             $SelectEvents= "SELECT entertainmnet.* , entertainmnetcategory.Name AS CatName ,place.Name AS PlaceName  FROM entertainmnet 
                             LEFT JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
                             LEFT JOIN place ON place.ID = entertainmnet.PlaceID 
-                            WHERE PlaceID = 1 AND entertainmnet.ID NOT IN (26 , 41 , 44 , 71 ) AND entertainmnet.Date > '$TodaysDate'
+                            WHERE PlaceID = 1 AND entertainmnet.ID NOT IN (26 , 41 , 44 , 71 , 74 ,75 ) AND entertainmnet.Date > '$TodaysDate'
                             ORDER BY ID DESC LIMIT 3";
             $Query = mysqli_query($con , $SelectEvents);
             $EventsRow = mysqli_fetch_assoc($Query);

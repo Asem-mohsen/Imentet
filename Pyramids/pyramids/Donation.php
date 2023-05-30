@@ -24,7 +24,7 @@ if(isset($_SESSION['UserID'])){
         <div class="container">
           <h2 class="inner-banner__title">Donations</h2>
           <ul class="list-unstyled thm-breadcrumb">
-            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/pyramids.php">Home</a></li>
+            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a></li>
             <li>Donations</li>
           </ul>
         </div>
@@ -63,12 +63,12 @@ if(isset($_SESSION['UserID'])){
                     Achive Our Goal
                   </h3>
                   <p class="cta-one__text">
-                    Thank you for considering giving to the museum. Your gift
-                    <br />
-                    will allow future generations to discover.
+                    Thank you for considering giving to the Pyramids of Egypt.
+                  <br />
+                    Your gift will allow future generations to discover.                    
                   </p>
                   <p class="cta-one__text">
-                    <span>Ways to Contribute to Our Museum:</span>
+                    <span>Ways to Contribute to The Pyramids:</span>
                   </p>
                   <ul class="list-unstyled cta-one__list">
                     <li>
@@ -81,7 +81,7 @@ if(isset($_SESSION['UserID'])){
                     </li>
                     <li>
                       <i class="egypt-icon-check"></i>
-                      Adopt an Artifact & Support the Museum
+                      Adopt an Artifact & Support the Pyramids
                     </li>
                   </ul>
                   <a href="http://localhost/imentet-1/Pyramids/pyramids/ContactUs.php" class="cta-one__link">
@@ -91,7 +91,7 @@ if(isset($_SESSION['UserID'])){
               </div>
             </div>
             <div class="col-xl-6 col-lg-12">
-              <img src="images/resources/donation-1-1.jpg" alt="" class="img-fluid" />
+              <img src="images/resources/donation-1.png" alt="" class="img-fluid" />
             </div>
           </div>
         </div>

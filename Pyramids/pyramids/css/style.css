@@ -53,7 +53,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: white;
+  background-color: #d99578;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -5518,7 +5518,7 @@ a:focus {
 }
 
 .event-page-header {
-  background-image: url(../images/background/inner-banner-bg-2-1.jpg);
+  background-image: url(../images/Background/inner-banner-bg-2-1.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -7665,7 +7665,7 @@ a:focus {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-image: url(../images/background/inner-banner-bg-1-1.jpg);
+  background-image: url(../images/Background/inner-banner-bg-1-1.png);
 }
 .inner-banner__title {
   margin: 0;
@@ -8728,7 +8728,8 @@ a:focus {
 .plan-visit {
   padding-top: 25px;
   padding-bottom: 120px;
-  background-color: #f2ebe8;
+  /* background-color: #f2ebe8; */
+  background-color: #302e2f;
 }
 .plan-visit .nav-tabs {
   margin: 0;
@@ -8752,7 +8753,8 @@ a:focus {
 .plan-visit .nav-tabs .nav-link {
   font-family: "Prata";
   font-size: 16px;
-  color: #302e2f;
+  color: #fff;
+  /* color: #302e2f; */
   padding: 25px 30px;
   border-color: transparent !important;
   -webkit-transition: all .4s ease;

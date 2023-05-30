@@ -58,8 +58,8 @@ if(isset($_SESSION['UserID'])){
               Join our team now
             </p>
           <ul class="list-unstyled thm-breadcrumb">
-            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a></li>
-            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/AboutUs.php">Pyramids</a></li>
+            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a></li>
+            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/AboutUs.php">Pyramids</a></li>
             <li>Careers</li>
           </ul>
         </div>
@@ -93,7 +93,7 @@ if(isset($_SESSION['UserID'])){
               <div class="col-lg-6">
                 <div class="contact-one__main">
                   <div class="contact-one__image">
-                    <img src="images/resources/contact-1-1.jpeg" class="img-fluid" alt="" />
+                    <img src="images/resources/membership-1.png" class="img-fluid" alt="" />
                   </div>
                   <div class="contact-one__content">
                     <div class="row no-gutters">
@@ -167,7 +167,7 @@ if(isset($_SESSION['UserID'])){
               <div class="col-lg-6">
                 <div class="contact-one__main">
                   <div class="contact-one__image">
-                    <img src="images/resources/contact-1-1.jpeg" class="img-fluid" alt="" />
+                  <img src="images/resources/membership-1.png" class="img-fluid" alt="" />
                   </div>
                   <div class="contact-one__content">
                     <div class="row no-gutters">
@@ -247,7 +247,7 @@ if(isset($_SESSION['UserID'])){
               <div class="col-lg-6">
                 <div class="contact-one__main">
                   <div class="contact-one__image">
-                    <img src="images/resources/contact-1-1.jpeg" class="img-fluid" alt="" />
+                  <img src="images/resources/membership-1.png" class="img-fluid" alt="" />
                   </div>
                   <div class="contact-one__content">
                     <div class="row no-gutters">

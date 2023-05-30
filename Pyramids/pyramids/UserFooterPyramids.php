@@ -1,7 +1,8 @@
+        <!-- Footer -->
         <footer class="site-footer">
             <div class="container">
             <a class="site-footer__logo" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php">
-                <img src="images/resources/footer-logo-imentet-gem.png" alt=""/>
+                <img src="images/resources/IMENTET-DARK-PYRAMIDS.png" width="240px" alt=""/>
             </a>
             <form class="site-footer__form">
                 <div class="site-footer__form-icon">
@@ -13,18 +14,19 @@
                 </button>
             </form>
             <div class="site-footer__social">
-                <a href="#"><i class="egypt-icon-logo"></i></a>
-                <a href="#"><i class="egypt-icon-twitter"></i></a>
-                <a href="#"><i class="egypt-icon-instagram"></i></a>
-                <a href="#"><i class="egypt-icon-play"></i></a>
+                <a href="https://www.facebook.com/giza.pyramids/"><i class="egypt-icon-logo"></i></a>
+                <a href="https://twitter.com/PyramidsGiza"><i class="egypt-icon-twitter"></i></a>
+                <a href="https://www.instagram.com/explore/locations/250717230/great-pyramids-of-giza/"><i class="egypt-icon-instagram"></i></a>
             </div>
             <p class="site-footer__copy">
                 Copyrights &copy; <?php echo date('Y') ?> <a href="http://localhost/Imentet-1/Pyramids/pyramids/AboutUs.php">Imentet</a>, All Rights Reserved.
             </p>
             </div>
         </footer>
+
         </div>
 
+        <!-- Side Menu -->
         <div class="side-menu__block">
             <div class="side-menu__block-overlay custom-cursor__overlay">
                 <div class="cursor"></div>
@@ -32,7 +34,7 @@
             </div>
             <div class="side-menu__block-inner">
                 <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php">
-                <img src="images/resources/dark-logo.png" alt="Awesome Image" />
+                <img src="images/resources/dark-logo-imentet.png" alt="Awesome Image" />
                 </a>
                 <div class="side-menu__block-about">
                     <h3 class="side-menu__block__title">About Us</h3>
@@ -75,6 +77,7 @@
             </div>
         </div>
 
+        <!-- Search -->
         <div class="search-popup">
             <div class="search-popup__overlay custom-cursor__overlay">
                 <div class="cursor"></div>
@@ -89,9 +92,12 @@
                 </form>
             </div>
         </div>
+
+        <!-- to Up -->
         <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
             <i class="egypt-icon-arrow-2"></i>
         </a>
+
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/bootstrap-datepicker.min.js"></script>
