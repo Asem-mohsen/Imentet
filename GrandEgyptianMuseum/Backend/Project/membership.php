@@ -67,68 +67,69 @@ if(isset($_SESSION['AdminID'])){
         <section class="pricing-one">
             <div class="container">
                 <div class="row">
-                  <?php 
-                  $SelectMembership = "SELECT membership.* ,  membershipperiod.Period AS PeriodTime  FROM membership
-                                        JOIN membershipperiod ON membership.PeriodID = membershipperiod.ID 
-                                        WHERE membership.ID != 12 AND membership.ID != 13";
-                  $RunQuery = mysqli_query($con , $SelectMembership);
-                  $MembershipRow = mysqli_fetch_assoc($RunQuery);
-                  foreach($RunQuery as $Membership){ ?>
-                      <div class="col-lg-3 col-md-6">
-                        <div class="pricing-one__single wow fadeInUp" style="height: 560px;" data-wow-duration="1500ms" data-wow-delay="000ms">
-                            <p class="pricing-one__name">Plan</p>
-                            <h3 class="pricing-one__type"><?php echo $Membership['Type'] ?></h3>
-                            <p class="pricing-one__amount"><?php echo $Membership['Price'] ?></p>
-                            <p class="pricing-one__time">$ / <?php echo $Membership['PeriodTime'] ?></p>
-                            <div class="pricing-one__bottom">
-                                <ul class="list-unstyled cta-one_list" style='line-height: 33px;'>
-                                    <?php if($Membership['ID'] == 6 ){ ?>
-                                        <p class="pricing-one__text">Benefits for One Person</p> </br>
-                                    <?php }elseif($Membership['ID'] == 8){ ?>
-                                        <p class="pricing-one__text">2 Adults & Under 18 Children</p> </br>
-                                    <?php }elseif($Membership['ID'] == 16){ ?>
-                                        <p class="pricing-one__text">School & colleage</p> </br>
-                                    <?php }elseif($Membership['ID'] == 17){ ?>
-                                        <p class="pricing-one__text">60 and Above</p> </br>
-                                    <?php } ?>
+                    <?php 
+                        $SelectMembership = "SELECT membership.* ,  membershipperiod.Period AS PeriodTime  FROM membership
+                                                JOIN membershipperiod ON membership.PeriodID = membershipperiod.ID 
+                                                WHERE membership.ID != 12 AND membership.ID != 13";
+                        $RunQuery = mysqli_query($con , $SelectMembership);
+                        $MembershipRow = mysqli_fetch_assoc($RunQuery);
+                        foreach($RunQuery as $Membership){ ?>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="pricing-one__single wow fadeInUp" style="height: 560px;" data-wow-duration="1500ms" data-wow-delay="000ms">
+                                    <p class="pricing-one__name">Plan</p>
+                                    <h3 class="pricing-one__type"><?php echo $Membership['Type'] ?></h3>
+                                    <p class="pricing-one__amount"><?php echo $Membership['Price'] ?></p>
+                                    <p class="pricing-one__time">$ / <?php echo $Membership['PeriodTime'] ?></p>
+                                    <div class="pricing-one__bottom">
+                                        <ul class="list-unstyled cta-one_list" style='line-height: 33px;'>
+                                            <?php if($Membership['ID'] == 6 ){ ?>
+                                                <p class="pricing-one__text">Benefits for One Person</p> </br>
+                                            <?php }elseif($Membership['ID'] == 8){ ?>
+                                                <p class="pricing-one__text">2 Adults & Under 18 Children</p> </br>
+                                            <?php }elseif($Membership['ID'] == 16){ ?>
+                                                <p class="pricing-one__text">School & colleage</p> </br>
+                                            <?php }elseif($Membership['ID'] == 17){ ?>
+                                                <p class="pricing-one__text">60 and Above</p> </br>
+                                            <?php } ?>
 
-                                    <p class="pricing-one__text">Benefits</p> </br>
-                                    <li class="MembershipLi">
-                                        <i class="egypt-icon-check"></i>
-                                            <?php if(isset($Membership['Entry']) && $Membership['Entry'] == 0){ 
-                                                    echo "Limited Admission Entry" ;
-                                            } ?>
-                                    </li>
-                                    <li class="MembershipLi">
-                                        <i class="egypt-icon-check"></i>
-                                        <?php
-                                            if($Membership['ChildernMuseum'] == 1 ){ 
-                                                echo "Access to Children Museum" ;   
-                                            }elseif($Membership['AccessMuseumLib'] == 1 && $Membership['ID'] != 6){
-                                                echo "Access to The GEM Library";
-                                            }elseif($Membership['AccessToEvents'] == 1){
-                                                echo "Members-only Events";
-                                            }elseif($Membership['SpecialExhibtions'] == 1 && $Membership['ID'] == 6){
-                                                echo "Special Exhibition Screening";
-                                            }
-                                        ?>
-                                    </li>
-                                    <li class="MembershipLi">
-                                        <i class="egypt-icon-check"></i>
-                                        <?php
-                                            if($Membership['DiscountGiftShop'] == 1 && ($Membership['ID'] == 6 || $Membership['ID'] == 16)  ){ 
-                                                echo "Discounts in Gift Shop" ;   
-                                            }elseif($Membership['VouchersMuseum'] == 1 && ($Membership['ID'] == 8 || $Membership['ID'] == 17) ){ 
-                                                echo "Voucher in Restaurants" ;   
-                                            }
-                                        ?>
-                                    </li>
-                                </ul>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/MembershipDetails.php?MembershipID=<?php echo $Membership['ID'] ?>" class="pricing-one__btn thm-btn">Join</a>
+                                            <p class="pricing-one__text">Benefits</p> </br>
+                                            <li class="MembershipLi">
+                                                <i class="egypt-icon-check"></i>
+                                                    <?php if(isset($Membership['Entry']) && $Membership['Entry'] == 0){ 
+                                                            echo "Limited Admission Entry" ;
+                                                    } ?>
+                                            </li>
+                                            <li class="MembershipLi">
+                                                <i class="egypt-icon-check"></i>
+                                                <?php
+                                                    if($Membership['ChildernMuseum'] == 1 ){ 
+                                                        echo "Access to Children Museum" ;   
+                                                    }elseif($Membership['AccessMuseumLib'] == 1 && $Membership['ID'] != 6){
+                                                        echo "Access to The GEM Library";
+                                                    }elseif($Membership['AccessToEvents'] == 1){
+                                                        echo "Members-only Events";
+                                                    }elseif($Membership['SpecialExhibtions'] == 1 && $Membership['ID'] == 6){
+                                                        echo "Special Exhibition Screening";
+                                                    }
+                                                ?>
+                                            </li>
+                                            <li class="MembershipLi">
+                                                <i class="egypt-icon-check"></i>
+                                                <?php
+                                                    if($Membership['DiscountGiftShop'] == 1 && ($Membership['ID'] == 6 || $Membership['ID'] == 16)  ){ 
+                                                        echo "Discounts in Gift Shop" ;   
+                                                    }elseif($Membership['VouchersMuseum'] == 1 && ($Membership['ID'] == 8 || $Membership['ID'] == 17) ){ 
+                                                        echo "Voucher in Restaurants" ;   
+                                                    }
+                                                ?>
+                                            </li>
+                                        </ul>
+                                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/MembershipDetails.php?MembershipID=<?php echo $Membership['ID'] ?>" class="pricing-one__btn thm-btn">Join</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                <?php } ?>
+                        <?php } 
+                    ?>
                 </div>
             </div>
         </section>

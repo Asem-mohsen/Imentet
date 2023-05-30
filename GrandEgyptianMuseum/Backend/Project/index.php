@@ -75,7 +75,7 @@ if(isset($_SESSION['AdminID'])){
             <div class="main-navigation">
               <ul class="navigation-box @@extra_class">
                 <li class="current">
-                  <a href="">Home</a>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php">Home</a>
                   <ul class="submenu">
                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Grand Egyptian Museum</a></li>
                     <li><a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Pyramids</a></li>
@@ -83,9 +83,6 @@ if(isset($_SESSION['AdminID'])){
                 </li>
                 <li>
                   <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">About Us</a>
-                  <ul class="submenu">
-                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">Our Story </a></li>
-                  </ul>
                 </li>
                 <?php if(isset($_SESSION['UserID'])){ ?>
                 <li>

@@ -127,7 +127,7 @@ if(isset($_POST['Search'])){
       <section class="product-one">
         <div class="container">
             <div class="row">
-              <?php 
+                <?php 
                   
                   foreach ($RunQuery as $Product) { ?>
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-duration="1500ms">
@@ -164,7 +164,8 @@ if(isset($_POST['Search'])){
                         </div>
                       </form>
                     </div>
-                  <?php }?>
+                  <?php }
+                ?>
             </div>
 
 

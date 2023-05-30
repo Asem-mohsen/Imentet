@@ -123,10 +123,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                   </ul>
                 </li>
                 <li>
-                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">About Us</a>
-                  <ul class="submenu">
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/AboutImentet.php">About Us</a>
+                  <!-- <ul class="submenu">
                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">Our Story </a></li>
-                  </ul>
+                  </ul> -->
                 </li>
                 <li>
                   <a href="register.php" class="thm-btn topbar-one__btn">
@@ -282,10 +282,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/TweenMax.min.js"></script>
     <script src="js/waypoints.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/nouislider.js"></script>
-    <script src="js/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="JS/wow.min.js"></script>
+    <script src="JS/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="JS/nouislider.js"></script>
+    <script src="JS/jquery.bootstrap-touchspin.min.js"></script>
     <script src="JS/theme.js"></script>
   </body>
 </html>

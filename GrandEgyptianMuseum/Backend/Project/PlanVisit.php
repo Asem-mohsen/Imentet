@@ -19,6 +19,7 @@ $PageTitle = "Plan Your Visit";
           </ul>
         </div>
       </section>
+      
       <section class="plan-visit">
         <div class="container">
           <ul class="nav nav-tabs plan-visit__tab-links">

@@ -4,7 +4,7 @@ include "./DatabaseConnection/Connection.php";
 ob_start();
 session_start();
 session_regenerate_id();
-$PageTitle = "About";
+$PageTitle = "About GEM";
 
 if(isset($_SESSION['UserID'])){
   $UserID = $_SESSION['UserID'];
@@ -84,7 +84,7 @@ if(isset($_SESSION['AdminID'])){
                         world's greatest ancient treasures with which the modern
                         country of Egypt has the privilege of being entrusted.
                       </p>
-                      <a href="#" class="about-three__tab-link">Read Full story <span>+</span></a>
+                      <a href="https://grandegyptianmuseum.org/about/" class="about-three__tab-link">Read Full story <span>+</span></a>
                     </div>
                   </div>
                   <div class="tab-pane animated fadeInUp" id="year-2">
@@ -96,7 +96,7 @@ if(isset($_SESSION['AdminID'])){
                         securing the contract to turn their ultra-modern concept
                         into the new Grand Egyptian Museum.
                       </p>
-                      <a href="#" class="about-three__tab-link">Read Full story <span>+</span></a>
+                      <a href="https://grandegyptianmuseum.org/about/" class="about-three__tab-link">Read Full story <span>+</span></a>
                     </div>
                   </div>
                   <div class="tab-pane animated fadeInUp" id="year-3">
@@ -110,7 +110,7 @@ if(isset($_SESSION['AdminID'])){
                         drying up the government's coffers and jeopardizing the
                         grand new museum's future.
                       </p>
-                      <a href="#" class="about-three__tab-link">Read Full story <span>+</span></a>
+                      <a href="https://grandegyptianmuseum.org/about/" class="about-three__tab-link">Read Full story <span>+</span></a>
                     </div>
                   </div>
                   <div class="tab-pane animated fadeInUp" id="year-4">
@@ -123,7 +123,7 @@ if(isset($_SESSION['AdminID'])){
                         the financial shortfalls caused by the lingering effects
                         of the tourism downturn.
                       </p>
-                      <a href="#" class="about-three__tab-link">Read Full story <span>+</span></a>
+                      <a href="https://grandegyptianmuseum.org/about/" class="about-three__tab-link">Read Full story <span>+</span></a>
                     </div>
                   </div>
                 </div>
@@ -226,6 +226,7 @@ if(isset($_SESSION['AdminID'])){
           </div>
         </div>
       </section>
+
       <br>
       <br>
       <br>
