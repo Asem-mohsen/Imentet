@@ -259,9 +259,6 @@ $PageTitle = "Plan Your Visit";
                           <li class="nav-item">
                             <a role="tab" data-toggle="tab"  href="#first-floor" class="nav-link active">Main Museum</a>
                           </li>
-                          <li class="nav-item">
-                            <a role="tab" data-toggle="tab"  href="#second-floor" class="nav-link">Commercial Area</a>
-                          </li>
                         </ul>
                         <div class="tab-content">
                           <div class="tab-pane animated fadeInUp show active"  id="first-floor" >
@@ -269,10 +266,6 @@ $PageTitle = "Plan Your Visit";
                               <img class="img-fluid" src="images/new/157962228_769935400573835_5141445286589870490_n.jpg" alt="Awesome Image" />
                             </div>
                           </div>
-                          <div class="tab-pane animated fadeInUp" id="second-floor">
-                            <div class="plan-visit__map-content">
-                              <img src="images/resources/int-map.jpg" class="img-fluid" alt="Awesome Image" />
-                            </div>
                           </div>
                         </div>
                       </div>

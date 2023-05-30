@@ -71,7 +71,7 @@ $MembershipID =  filter_var($_GET['MembershipID'], FILTER_SANITIZE_NUMBER_INT);
                           <p class="pricing-one__name">Plan</p>
                           <h3 class="pricing-one__type">For <?php echo $MembershipRow['Type'] ?></h3>
                           <p class="pricing-one__amount"><?php echo $MembershipRow['Price'] ?></p>
-                          <p class="pricing-one__time"> LE / Month</p>
+                          <p class="pricing-one__time"> EGP / Month</p>
                         </div>
                       </div>
                     </div>             

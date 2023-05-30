@@ -79,7 +79,7 @@ if(isset($_SESSION['AdminID'])){
                                     <p class="pricing-one__name">Plan</p>
                                     <h3 class="pricing-one__type"><?php echo $Membership['Type'] ?></h3>
                                     <p class="pricing-one__amount"><?php echo $Membership['Price'] ?></p>
-                                    <p class="pricing-one__time">$ / <?php echo $Membership['PeriodTime'] ?></p>
+                                    <p class="pricing-one__time">EGP / <?php echo $Membership['PeriodTime'] ?></p>
                                     <div class="pricing-one__bottom">
                                         <ul class="list-unstyled cta-one_list" style='line-height: 33px;'>
                                             <?php if($Membership['ID'] == 6 ){ ?>

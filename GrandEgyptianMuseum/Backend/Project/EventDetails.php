@@ -162,7 +162,7 @@ if(empty($EventID)){
                               <span>Ticket Cost</span>
                               <p>
                                 <i class="fa fa-money"></i>
-                                Regular - <?php echo $row['RegularPrice'] ?>
+                                Regular - <?php echo $row['RegularPrice'] ." EGP"?>
                               </p>
                             </li>
                           </ul>

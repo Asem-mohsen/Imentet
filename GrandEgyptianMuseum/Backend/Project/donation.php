@@ -87,7 +87,7 @@ if(isset($_SESSION['UserID'])){
             <h3 class="donation-form__title text-center">Make a Donation</h3>
             <ul class="nav nav-tabs donation-form__tab">
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#money">
+                <a class="nav-link active" data-toggle="tab">
                   Financial Donation
                 </a>
               </li>
