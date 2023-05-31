@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2023 at 11:32 AM
+-- Generation Time: May 31, 2023 at 09:40 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -123,7 +123,8 @@ INSERT INTO `applications` (`ID`, `UserID`, `ContractID`, `CareerID`, `Date`, `A
 (16, 2, NULL, 1, '2023-09-21', 2, '', NULL),
 (28, 19, NULL, 3, NULL, 2, '', NULL),
 (29, 26, NULL, 3, '2023-05-15', 0, 'Not applicable for the job description.', NULL),
-(33, 25, NULL, 1, '2023-05-23', 2, '', NULL);
+(33, 25, NULL, 1, '2023-05-23', 2, '', NULL),
+(34, 29, NULL, 6, NULL, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -206,13 +207,7 @@ INSERT INTO `collections` (`ID`, `Collection`, `Image`, `Description`, `PlaceID`
 (37, 'Tomb of King Tutankhamun', 'collection-paitning-3.png', 'The tomb of Tutankhamun, also known by its tomb number, KV62, is the burial place of Tutankhamun (reigned c. 1334–1325 BC), a pharaoh of the Eighteenth Dynasty of ancient Egypt, in the Valley of the Kings. The tomb consists of four chambers and an entrance staircase and corridor. It is smaller and less extensively decorated than other Egyptian royal tombs of its time, and it probably originated as a tomb for a non-royal individual that was adapted for Tutankhamun\'s use after his premature death. Like other pharaohs, Tutankhamun was buried with a wide variety of funerary objects and personal possessions, such as coffins, furniture, clothing and jewelry, though in the unusually limited space these goods had to be densely packed. Robbers entered the tomb twice in the years immediately following the burial, but Tutankhamun\'s mummy and most of the burial goods remained intact. The tomb\'s low position', 2, 4, 0, 0),
 (38, 'Deir El-Medina Village', 'collection-paitning-4.png', 'Dayr al-Madīnah, is an ancient Egyptian workmen\'s village which was home to the artisans who worked on the tombs in the Valley of the Kings during the 18th to 20th Dynasties of the New Kingdom of Egypt (ca. 1550–1080 BCE) The settlement\'s ancient name was Set maat (\"Place of Truth\"), and the workmen who lived there were called \"Servants in the Place of Truth\".During the Christian era, the temple of Hathor was converted into a Monastery of Saint Isidorus the Martyr (Coptic: ⲡⲧⲟⲡⲟⲥ ⲙ̄ⲫⲁⲅⲓⲟⲥ ⲁⲡⲁ ⲓⲥⲓⲇⲱⲣⲟⲥ ⲡⲙⲁⲣⲧⲉⲣⲟⲥ) from which the Egyptian Arabic name Deir el-Medina (\"Monastery of the City\") is derived', 2, 4, 0, 0),
 (39, 'Temple of Hatshepsut', 'collection-paitning-5.png', 'The mortuary temple of Hatshepsut (Egyptian: Ḏsr-ḏsrw meaning \"Holy of Holies\") is a mortuary temple built during the reign of Pharaoh Hatshepsut of the Eighteenth Dynasty of Egypt. Located opposite the city of Luxor, it is considered to be a masterpiece of ancient architecture.Its three massive terraces rise above the desert floor and into the cliffs of Deir el-Bahari. Her tomb, KV20, lies inside the same massif capped by El Qurn, a pyramid for her mortuary complex. At the edge of the desert, 1 km (0.62 mi) east, connected to the complex by a causeway lies the accompanying valley temple. Across the river Nile, the whole structure points towards the monumental Eighth Pylon, Hatshepsut\'s most recognizable addition to the Temple of Karnak and the site from which the procession of the Beautiful Festival of the Valley departed. The temple\'s twin functions are identified by its axes: its main east-west axis served to receive the barque of Amun-Re at the climax of the festival, while its nor', 2, 4, 0, 0),
-(40, 'Papyrus of Ani', 'collection-paitning-6.png', 'The Papyrus of Ani is a papyrus manuscript in the form of a scroll with cursive hieroglyphs and color illustrations that was created c. 1250 BCE, during the Nineteenth Dynasty of the New Kingdom of ancient Egypt. Egyptians compiled an individualized book for certain people upon their death, called the Book of Going Forth by Day, more commonly known as the Book of the Dead, typically containing declarations and spells to help the deceased in their afterlife. The Papyrus of Ani is the manuscript compiled for the Theban scribe Ani', 2, 4, 0, 0),
-(41, 'Throne of Tutankhamun', 'collection-paitning-1.png', 'The golden throne of Tutankhamun is a unique work of art. The luxurious armchair is distinguished by the complexity of its technique and an abundance of details.\r\nIts colors have not faded over three thousand years, which serves as a testament to the high skill of the ancient Egyptian craftsmen.', 2, 4, 0, 0),
-(42, 'Relief of Hatshepsut', 'collection-paitning-2.png', 'Builders reused this painted relief block in the foundation of Ramesses IV\'s mortuary temple, subsequently excavated by the Metropolitan Museum. In the relief, western Asian soldiers are shown being trampled under the horses that pull the royal chariot, signaling the foreigners\' defeat in battle by the might of the Egyptian pharaoh. When the piece was excavated, this and another fragment of a battle scene (13.180.22) were dated to the reign of Ramesses II. A recent study of their stylistic and iconographic features, however, has caused scholars to redate them earlier, probably to the reign of Amenhotep II. This redating indicates that by the middle of the Eighteenth Dynasty, monumental battle scenes had become part of the decorative scheme of a temple\'s exterior walls.', 2, 4, 0, 0),
-(43, 'Tomb of King Tutankhamun', 'collection-paitning-3.png', 'The tomb of Tutankhamun, also known by its tomb number, KV62, is the burial place of Tutankhamun (reigned c. 1334–1325 BC), a pharaoh of the Eighteenth Dynasty of ancient Egypt, in the Valley of the Kings. The tomb consists of four chambers and an entrance staircase and corridor. It is smaller and less extensively decorated than other Egyptian royal tombs of its time, and it probably originated as a tomb for a non-royal individual that was adapted for Tutankhamun\'s use after his premature death. Like other pharaohs, Tutankhamun was buried with a wide variety of funerary objects and personal possessions, such as coffins, furniture, clothing and jewelry, though in the unusually limited space these goods had to be densely packed. Robbers entered the tomb twice in the years immediately following the burial, but Tutankhamun\'s mummy and most of the burial goods remained intact. The tomb\'s low position', 2, 4, 0, 0),
-(44, 'Deir El-Medina Village', 'collection-paitning-4.png', 'Dayr al-Madīnah, is an ancient Egyptian workmen\'s village which was home to the artisans who worked on the tombs in the Valley of the Kings during the 18th to 20th Dynasties of the New Kingdom of Egypt (ca. 1550–1080 BCE) The settlement\'s ancient name was Set maat (\"Place of Truth\"), and the workmen who lived there were called \"Servants in the Place of Truth\".During the Christian era, the temple of Hathor was converted into a Monastery of Saint Isidorus the Martyr (Coptic: ⲡⲧⲟⲡⲟⲥ ⲙ̄ⲫⲁⲅⲓⲟⲥ ⲁⲡⲁ ⲓⲥⲓⲇⲱⲣⲟⲥ ⲡⲙⲁⲣⲧⲉⲣⲟⲥ) from which the Egyptian Arabic name Deir el-Medina (\"Monastery of the City\") is derived', 2, 4, 0, 0),
-(45, 'Temple of Hatshepsut', 'collection-paitning-5.png', 'The mortuary temple of Hatshepsut (Egyptian: Ḏsr-ḏsrw meaning \"Holy of Holies\") is a mortuary temple built during the reign of Pharaoh Hatshepsut of the Eighteenth Dynasty of Egypt. Located opposite the city of Luxor, it is considered to be a masterpiece of ancient architecture.Its three massive terraces rise above the desert floor and into the cliffs of Deir el-Bahari. Her tomb, KV20, lies inside the same massif capped by El Qurn, a pyramid for her mortuary complex. At the edge of the desert, 1 km (0.62 mi) east, connected to the complex by a causeway lies the accompanying valley temple. Across the river Nile, the whole structure points towards the monumental Eighth Pylon, Hatshepsut\'s most recognizable addition to the Temple of Karnak and the site from which the procession of the Beautiful Festival of the Valley departed. The temple\'s twin functions are identified by its axes: its main east-west axis served to receive the barque of Amun-Re at the climax of the festival, while its north-south axis represented the life cycle of the pharaoh from coronation to rebirth', 2, 4, 0, 0),
-(46, 'Papyrus of Ani', 'collection-paitning-6.png', 'The Papyrus of Ani is a papyrus manuscript in the form of a scroll with cursive hieroglyphs and color illustrations that was created c. 1250 BCE, during the Nineteenth Dynasty of the New Kingdom of ancient Egypt. Egyptians compiled an individualized book for certain people upon their death, called the Book of Going Forth by Day, more commonly known as the Book of the Dead, typically containing declarations and spells to help the deceased in their afterlife. The Papyrus of Ani is the manuscript compiled for the Theban scribe Ani', 2, 4, 0, 0);
+(40, 'Papyrus of Ani', 'collection-paitning-6.png', 'The Papyrus of Ani is a papyrus manuscript in the form of a scroll with cursive hieroglyphs and color illustrations that was created c. 1250 BCE, during the Nineteenth Dynasty of the New Kingdom of ancient Egypt. Egyptians compiled an individualized book for certain people upon their death, called the Book of Going Forth by Day, more commonly known as the Book of the Dead, typically containing declarations and spells to help the deceased in their afterlife. The Papyrus of Ani is the manuscript compiled for the Theban scribe Ani', 2, 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -268,7 +263,8 @@ INSERT INTO `donations` (`ID`, `UserID`, `Name`, `Email`, `PlaceID`, `Amount`, `
 (46, 27, NULL, NULL, 1, 1000000, 1),
 (48, 28, NULL, NULL, 1, 3000, 1),
 (49, NULL, 'shams eldin', 'Shams@yahoo.com', 2, 653, 1),
-(50, 26, NULL, NULL, 1, 200, 1);
+(50, 26, NULL, NULL, 1, 200, 1),
+(53, 29, NULL, NULL, 1, 200, 1);
 
 -- --------------------------------------------------------
 
@@ -303,33 +299,33 @@ INSERT INTO `entertainmnet` (`ID`, `Name`, `Image`, `Description`, `PlaceID`, `D
 (22, 'Carl Cox', 'pexels-wendy-wei-1190297.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2023-05-19', NULL, NULL, 2000, 5000, 1),
 (23, 'Shakira', 'pexels-annam-w-1047442.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-09-28', NULL, NULL, 2500, 10000, 1),
 (24, '47 SOUL', 'pexels-wendy-wei-1190298.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-09-07', NULL, NULL, 500, 1000, 1),
-(25, 'Dior', 'Dior.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2022-12-22', NULL, NULL, 3000, 6000, 6),
-(26, 'Skydiving Egypt', 'Skydiving.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2023-06-15', '0000-00-00', 'Daily', 4500, 6000, 3),
+(25, 'Dior', 'Dior.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2022-12-22', NULL, NULL, 4500, 6000, 6),
+(26, 'Skydiving Egypt', 'Skydiving.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2023-06-15', '0000-00-00', 'Daily', 4500, 9600, 3),
 (27, 'Squash ', 'squach.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2023-06-08', '0000-00-00', '', 350, 650, 3),
 (28, 'Mega Marathon ', 'Marathon.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2023-07-13', NULL, NULL, 1200, 3000, 3),
 (29, 'Signs From Egypt', 'signsfromegypt.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-05-10', '2023-05-26', '', 200, 400, 2),
-(41, 'Horse And Camels', 'Horses.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2023-04-13', '0000-00-00', 'Daily', 150, 0, 3),
-(43, 'Children Museum', 'ChildernMus.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-06-22', '0000-00-00', 'Daily', 60, 0, 10),
-(44, 'Hot Air Balloon', 'HotAir.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2023-09-29', '0000-00-00', 'Daily', 1500, 0, 3),
-(50, 'The Exhibits Cover All Time of The Egyptian Civilization', 'collections-3-1.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-08-12', '2023-09-21', '', 150, 0, 9),
-(51, 'Hadrian and Athens. Conversing with an Ideal World', 'collections-3-2.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-07-05', '2023-08-15', '', 150, 0, 9),
-(52, 'Classicita ed Europa. The common destiny of Greece and Italy', 'collections-3-3.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2024-01-18', '2024-02-28', '', 200, 0, 9),
+(41, 'Horse And Camels', 'Horses.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2023-04-13', '0000-00-00', 'Daily', 150, 250, 3),
+(43, 'Children Museum', 'ChildernMus.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-06-22', '0000-00-00', 'Daily', 60, 450, 10),
+(44, 'Hot Air Balloon', 'HotAir.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 1, '2023-09-29', '0000-00-00', 'Daily', 1200, 1800, 3),
+(50, 'The Exhibits Cover All Time of The Egyptian Civilization', 'collections-3-1.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-08-12', '2023-09-21', '', 250, 500, 9),
+(51, 'Hadrian and Athens. Conversing with an Ideal World', 'collections-3-2.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-07-05', '2023-08-15', '', 450, 900, 9),
+(52, 'Classicita ed Europa. The common destiny of Greece and Italy', 'collections-3-3.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2024-01-18', '2024-02-28', '', 500, 1000, 9),
 (53, 'Amr Diab', 'amrdiab.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2024-01-31', '0000-00-00', '', 1500, 2500, 1),
-(54, 'Golden Parade Memorial Festival', 'GoldenParade.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2024-04-02', '2024-04-03', '', 300, 0, 2),
-(55, 'Arts for Kids', 'event-2-2.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2024-05-15', '0000-00-00', '', 500, 0, 8),
-(56, 'Business Hub ', 'Congress.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-07-14', '2023-08-02', '', 200, 0, 7),
-(57, 'Opening Ceremony', 'opining.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-11-08', '2023-11-12', '', 2000, 0, 2),
-(61, 'RiseUp Summit of the Decade', 'events-2-1.png', 'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-06-07', '1970-01-01', '', 200, 0, 7),
-(62, 'Imentet x BIS: Discusssion', 'events-2-3.png', 'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-06-26', '1970-01-01', '', 100, 0, 8),
+(54, 'Golden Parade Memorial Festival', 'GoldenParade.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2024-04-02', '2024-04-03', '', 300, 800, 2),
+(55, 'Arts for Kids', 'event-2-2.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2024-05-15', '0000-00-00', '', 500, 1000, 8),
+(56, 'Business Hub ', 'Congress.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-07-14', '2023-08-02', '', 200, 300, 7),
+(57, 'Opening Ceremony', 'opining.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-11-08', '2023-11-12', '', 2000, 10000, 2),
+(61, 'RiseUp Summit of the Decade', 'events-2-1.png', 'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-06-07', '1970-01-01', '', 200, 300, 7),
+(62, 'Imentet x BIS: Discusssion', 'events-2-3.png', 'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-06-26', '1970-01-01', '', 100, 100, 8),
 (63, 'A Night with Omar Khairat', 'events-2-4.png', 'Harmony of Heritage: A Night with Omar Khairat is a captivating concert where the legendary Pianist Omar Khairat takes the stage, enchanting the audience with his exquisite melodies and timeless musical heritage.', 2, '2023-05-07', NULL, NULL, 500, 2500, 1),
-(64, 'Soprano Fatma & Maestro Nader Abbassi', 'events-2-5.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-04-27', NULL, NULL, 1000, NULL, 1),
-(65, 'Art Cairo 4th Edition', 'events-2-6.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-04-19', '2023-04-23', NULL, 300, NULL, 2),
+(64, 'Soprano Fatma & Maestro Nader Abbassi', 'events-2-5.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-04-27', NULL, NULL, 1000, 1200, 1),
+(65, 'Art Cairo 4th Edition', 'events-2-6.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip', 2, '2023-04-19', '2023-04-23', NULL, 300, 600, 2),
 (67, 'Raphael, The Madonna of the Canopy on display ', 'event-4-6.jpg', 'The great altarpiece, magnificent although unfinished, painted by Raphael at the end of his Florentine period, and part of the Palatine Gallerys collection,  is now on view in the Tuscan town of Pescia, in the church that had housed it for more than 150 y', 2, '2023-05-30', '2023-06-09', '', 500, 1000, 9),
-(68, 'Emotions in Antiquity and Ancient Egypt', 'event-4-1.jpg', 'The exhibition contains selected artefacts from the Museum Collection of Classical Antiquities and Egyptian Collection. Each one tells a story related to emotions of the time. But together they reveal feelings that are similar at different times and place', 2, '2021-05-11', '2021-10-12', NULL, 600, NULL, 9),
-(70, 'Egypt in Europe: By the eyes of Civilization', 'event-3-6.jpg', 'The Royal Frederik University (today the University of Oslo) opens in 1813, at a time when ancient Egypt is a trend in Europe. Napoleon has rediscovered the rich cultural heritage of the fertile land on the banks of the Nile, prompting an army of scientis', 2, '2024-01-03', '2024-01-16', NULL, 2000, 6000, 9),
-(71, 'Sound And Light', 'event-1-2.png', 'Step through a portal to ancient times, with the memorable Pyramids Sound and Light Show. The Sound Light show pyramids will take you on a journey thousands of years back, bringing the Egyptian legacy back to life Thousands of years have passed since the pharaohs walked on earth, leaving behind a mystery on how the great pyramids were built. And, we cannot just skip the enigmatic sphinx, standing prominently as a guard to protect the Great Pyramids.', 1, '2023-05-29', '1970-01-01', 'Daily', 200, 0, 1),
-(74, 'Khufu Pyramid', 'pexels-diego-ferrari-13865652.jpg', 'The Great Pyramid of Giza is the largest Egyptian pyramid and the tomb of Fourth Dynasty pharaoh Khufu. Built in the early 26th century BC during a period of around 27 years, the pyramid is the oldest of the Seven Wonders of the Ancient World, and the only one to remain largely intact. It is the most famous monument of the Giza pyramid complex, in the Pyramid Fields of the Memphis and its Necropolis UNESCO World Heritage Site, in Giza, Egypt. It is at the most Northern end of the line of the 3 Pyramids of Giza', 1, '2023-05-31', NULL, 'Daily', 100, 0, 3),
-(75, 'Khafre Pyramid', 'gallery-6.png', 'The pyramid of Khafre or of Chephren , romanized: haram ḵafra) is the middle of the three Ancient Egyptian Pyramids of Giza, the second tallest and second largest of the group. It is the tomb of the Fourth-Dynasty pharaoh Khafre (Chefren), who ruled c. 2558−2532 BC', 1, '2023-05-30', '1970-01-01', 'Daily', 30, 0, 3),
+(68, 'Emotions in Antiquity and Ancient Egypt', 'event-4-1.jpg', 'The exhibition contains selected artefacts from the Museum Collection of Classical Antiquities and Egyptian Collection. Each one tells a story related to emotions of the time. But together they reveal feelings that are similar at different times and place', 2, '2021-05-11', '2021-10-12', NULL, 600, 1000, 9),
+(70, 'Egypt in Europe: By the eyes of Civilization', 'event-3-6.jpg', 'The Royal Frederik University (today the University of Oslo) opens in 1813, at a time when ancient Egypt is a trend in Europe. Napoleon has rediscovered the rich cultural heritage of the fertile land on the banks of the Nile, prompting an army of scientis', 2, '2024-01-03', '2024-01-16', NULL, 2000, 3000, 9),
+(71, 'Sound And Light', 'event-1-2.png', 'Step through a portal to ancient times, with the memorable Pyramids Sound and Light Show. The Sound Light show pyramids will take you on a journey thousands of years back, bringing the Egyptian legacy back to life Thousands of years have passed since the pharaohs walked on earth, leaving behind a mystery on how the great pyramids were built. And, we cannot just skip the enigmatic sphinx, standing prominently as a guard to protect the Great Pyramids.', 1, '2023-05-29', '1970-01-01', 'Daily', 200, 400, 1),
+(74, 'Khufu Pyramid', 'pexels-diego-ferrari-13865652.jpg', 'The Great Pyramid of Giza is the largest Egyptian pyramid and the tomb of Fourth Dynasty pharaoh Khufu. Built in the early 26th century BC during a period of around 27 years, the pyramid is the oldest of the Seven Wonders of the Ancient World, and the only one to remain largely intact. It is the most famous monument of the Giza pyramid complex, in the Pyramid Fields of the Memphis and its Necropolis UNESCO World Heritage Site, in Giza, Egypt. It is at the most Northern end of the line of the 3 Pyramids of Giza', 1, '2023-05-31', NULL, 'Daily', 100, 450, 3),
+(75, 'Khafre Pyramid', 'gallery-6.png', 'The pyramid of Khafre or of Chephren , romanized: haram ḵafra) is the middle of the three Ancient Egyptian Pyramids of Giza, the second tallest and second largest of the group. It is the tomb of the Fourth-Dynasty pharaoh Khafre (Chefren), who ruled c. 2558−2532 BC', 1, '2023-05-30', '1970-01-01', 'Daily', 30, 100, 3),
 (76, 'King Tutankhamun', 'tutankhamun-death-mask-pharaonic-egypt.jpg', 'Tutankhamun has captivated audiences worldwide since British archaeologist Howard Carter discovered his tomb back in 1922. He has become an international icon of our Egyptian civilization.\r\nPainstakingly excavated over the course of almost ten years, the tombs four small rock-cut chambers hidden beneath the sands of the Valley of the Kings yielded over 5,000 incredible objects, bearing witness to the life and death of this king. The discovery of the tomb of Tutankhamun was the most spectacular discovery in the history of archeology.\r\nAlthough a recent CT scan of Tutankhamuns mummy has revealed interesting new information about the techniques in his mummification, and has confirmed that he was around 18 years old when he died, the cause of his death is still uncertain.', 2, '2023-05-31', '1970-01-01', 'Daily', 550, 2700, 10),
 (77, 'Restoration Museum', 'career-1-1.png', 'Monument restoration can be accomplished in two primary ways: structurally and chemically. The process of strengthening the foundations so that the buildings can withstand future natural calamities is known as structural restoration. we will take you to a trip to discover our the monuments before and after their restoration process.', 2, '2023-05-31', '1970-01-01', 'Daily', 400, 1100, 10),
 (78, 'King Khufu Solar Boat', 'KhufuSolarBoat.jpg', 'The Khufu ship is an intact full-size solar barque from ancient Egypt. It was sealed into a pit at the foot of the Great Pyramid of pharaoh Khufu around 2500 BC, during the Fourth Dynasty of the ancient Egyptian Old Kingdom. Like other buried Ancient Egyptian ships, it was part of the extensive grave goods intended for use in the afterlife. The Khufu ship is one of the oldest, largest and best-preserved vessels from antiquity. It is 43.4 meters (142 ft) long and 5.9 meters (19 ft) wide, and has been identified as the worlds oldest intact ship, and described as a masterpiece of woodcraft that could sail today if put into a lake or a river.\r\nThe ship was preserved in the Giza Solar boat museum, but was relocated to the Grand Egyptian Museum in August 2021.', 2, '2023-05-31', '1970-01-01', 'Daily', 225, 600, 10),
@@ -398,7 +394,11 @@ INSERT INTO `entertainmnetticket` (`ID`, `EventID`, `UserID`, `Price`, `PaymentI
 (20, 23, 28, 2500, 1, 1),
 (21, 44, 26, 3000, 1, 2),
 (23, 76, 2, 6500, 1, 4),
-(25, 76, 2, 550, 1, 1);
+(25, 76, 2, 550, 1, 1),
+(26, 77, 29, 400, 1, 1),
+(27, 78, 29, 2475, 1, 6),
+(28, 70, 29, 10000, 1, 3),
+(29, 13, 29, 200, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -593,20 +593,20 @@ CREATE TABLE `giftshop` (
 INSERT INTO `giftshop` (`ID`, `Item`, `Image`, `Quantity`, `Price`, `CategoryID`) VALUES
 (1, 'Sofa', 'images (2).jpg', 5, 2000, 1),
 (3, 'The Winged Sun of Thebes Tissue Box', 'shop-2.png', 10, 1500, 1),
-(4, 'Hieroglyphs Notebook', 'shop-5.png', 22, 500, 6),
+(4, 'Hieroglyphs Notebook', 'shop-5.png', 20, 500, 6),
 (6, 'Coffee Table', 'shop-10.png', 8, 2500, 1),
 (7, 'Horus Jewelry Box', 'shop-4.png', 8, 6000, 1),
 (8, 'Box', 'shop-1-2.jpg', 0, 400, 3),
 (9, 'Lizard Sculpture', 'collection-1-2.png', 18, 500, 7),
-(10, 'Medal', 'shop-1-4.jpg', 22, 150, 6),
+(10, 'Medal', 'shop-1-4.jpg', 20, 150, 6),
 (11, 'Othman Empire Painting ', 'event-d-g-1.jpg', 18, 700, 5),
 (12, 'Egypt Travel Poster', 'shop-7.png', 21, 600, 5),
-(13, 'Papyrus Painting', 'shop-8.png', 22, 400, 5),
+(13, 'Papyrus Painting', 'shop-8.png', 19, 400, 5),
 (14, 'Winged Sacred Scarab', 'Unique.jpg', 21, 500, 3),
 (15, 'Scarab winged black', 'Scarab.jpg', 34, 500, 7),
 (16, 'Scarab Beetele Khepri', 'statue of winged.jpg', 42, 800, 7),
-(17, 'Hieroglyphs Hand Fan', 'shop-3.png', 43, 300, 6),
-(18, 'Sphinx heavy stone', '81baHk3Y4qL._AC_SX569_.jpg', 36, 800, 7),
+(17, 'Hieroglyphs Hand Fan', 'shop-3.png', 41, 300, 6),
+(18, 'Sphinx heavy stone', '81baHk3Y4qL._AC_SX569_.jpg', 33, 800, 7),
 (19, 'Isis Trinket Box', 'shop-9.png', 32, 1000, 7),
 (20, 'Nefertiti Gold Necklace', 'shop-d-1.png', 70, 900, 3),
 (21, 'Scarab Falcon Pyramid Box', 'shop-6.png', 32, 1500, 3),
@@ -693,7 +693,8 @@ INSERT INTO `membershippayemnts` (`ID`, `UserID`, `MembershipID`, `Cost`, `Payme
 (11, 24, 16, 250, 1, '2023-05-13', '2023-06-12'),
 (15, 25, 17, 330, 1, '2023-05-14', '2023-06-14'),
 (26, 27, 12, 1000000, 1, '2023-05-18', '2024-05-17'),
-(27, 28, 17, 330, 1, '2023-05-22', '2023-06-22');
+(27, 28, 17, 330, 1, '2023-05-22', '2023-06-22'),
+(30, 29, 6, 350, 1, '2023-05-31', '2023-07-01');
 
 -- --------------------------------------------------------
 
@@ -913,7 +914,8 @@ INSERT INTO `user` (`ID`, `Name`, `LastName`, `DateOfBirth`, `Phone`, `Email`, `
 (25, 'Fady', 'Hennah', '2000-06-28', 0, 'Fady@yahoo.com', '$2y$10$LqMpln.ZqPhhs/dPUrxUBexwEgmsEbJM2ATJBd/JXRgDI0o9BdG3u', 1),
 (26, 'Karim', 'Gamal', NULL, NULL, 'KarimGamal@yahoo.com', '$2y$10$QdMMsvnNwTMp.wrWBcfGaOperQQpoDM5zf1oS3BGPBQNY6SXDdUSC', NULL),
 (27, 'Nadin', 'Faid', '1999-08-19', 1235423682, 'NadinFaid@yahoo.com', '$2y$10$RDkeczAf0KK5Tc2a7vSaN.hKhPrvOwMSk2zRNKGXuSJ4evwvEeocK', 5),
-(28, 'Hend', 'Rostom', '1979-07-19', 129382942, 'HendRostom@hotmail.com', '$2y$10$pVSDdzPq/i/Jz9PElWjo3u68LPqEW7rq9/ZzAhpDwz.TNj6NitbKy', 5);
+(28, 'Hend', 'Rostom', '1979-07-19', 129382942, 'HendRostom@hotmail.com', '$2y$10$pVSDdzPq/i/Jz9PElWjo3u68LPqEW7rq9/ZzAhpDwz.TNj6NitbKy', 5),
+(29, 'Yassin', '', NULL, NULL, 'Yassin@gmail.com', '$2y$10$NhCCEn.4aRrIy.QiEQBjQ..TR6tpsoChc/ZYTDSHLF0QtQUTV78om', NULL);
 
 -- --------------------------------------------------------
 
@@ -940,7 +942,8 @@ INSERT INTO `userimages` (`ID`, `UserID`, `Image`) VALUES
 (10, 25, 'avatar.png'),
 (11, 26, 'avatar.png'),
 (12, 27, 'avatar.png'),
-(13, 28, 'Hend.jpg');
+(13, 28, 'Hend.jpg'),
+(14, 29, 'avatar.png');
 
 -- --------------------------------------------------------
 
@@ -984,7 +987,13 @@ INSERT INTO `useritems` (`ID`, `UserID`, `GiftShopID`, `Quantity`, `PaymentID`, 
 (95, 28, 13, 2, 1, 800),
 (96, 28, 9, 1, 1, 500),
 (97, 28, 18, 1, 1, 800),
-(98, 28, 13, 1, 1, 400);
+(98, 28, 13, 1, 1, 400),
+(99, 29, 17, 2, 1, 600),
+(100, 29, 4, 2, 1, 1000),
+(101, 29, 18, 1, 1, 800),
+(102, 29, 18, 2, 1, 1600),
+(103, 29, 13, 3, 1, 1200),
+(104, 29, 10, 2, 1, 300);
 
 -- --------------------------------------------------------
 
@@ -1076,7 +1085,8 @@ INSERT INTO `visitticket` (`ID`, `UserID`, `PlaceID`, `Date`, `PaymentID`, `Quan
 (40, 24, 2, '2023-06-01', 1, 6, 780),
 (41, 28, 1, '2023-05-22', 1, 2, 100),
 (42, 26, 2, '2023-05-25', 1, 2, 340),
-(43, 26, 2, '2023-05-25', 1, 2, 280);
+(43, 26, 2, '2023-05-25', 1, 2, 280),
+(44, 29, 2, '2023-05-31', 1, 3, 1225);
 
 -- --------------------------------------------------------
 
@@ -1093,24 +1103,6 @@ CREATE TABLE `visitticketnotpaid` (
   `Date` date NOT NULL,
   `Total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `visitticketnotpaid`
---
-
-INSERT INTO `visitticketnotpaid` (`ID`, `UserID`, `UserRoleID`, `Quantity`, `PlaceID`, `Date`, `Total`) VALUES
-(347, 2, 5, 0, 2, '2023-05-31', 0),
-(348, 2, 4, 0, 2, '2023-05-31', 0),
-(349, 2, 1, 0, 2, '2023-05-31', 0),
-(350, 2, 2, 0, 2, '2023-05-31', 0),
-(351, 2, 3, 0, 2, '2023-05-31', 0),
-(352, 2, 7, 0, 2, '2023-05-31', 0),
-(353, 2, 5, 0, 2, '2023-05-31', 0),
-(354, 2, 4, 0, 2, '2023-05-31', 0),
-(355, 2, 1, 0, 2, '2023-05-31', 0),
-(356, 2, 2, 0, 2, '2023-05-31', 0),
-(357, 2, 3, 0, 2, '2023-05-31', 0),
-(358, 2, 7, 0, 2, '2023-05-31', 0);
 
 --
 -- Indexes for dumped tables
@@ -1409,7 +1401,7 @@ ALTER TABLE `adminrole`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `careers`
@@ -1433,7 +1425,7 @@ ALTER TABLE `collectionscategories`
 -- AUTO_INCREMENT for table `donations`
 --
 ALTER TABLE `donations`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `entertainmnet`
@@ -1451,7 +1443,7 @@ ALTER TABLE `entertainmnetcategory`
 -- AUTO_INCREMENT for table `entertainmnetticket`
 --
 ALTER TABLE `entertainmnetticket`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `eventgallery`
@@ -1475,7 +1467,7 @@ ALTER TABLE `eventstatus`
 -- AUTO_INCREMENT for table `eventticketcart`
 --
 ALTER TABLE `eventticketcart`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -1499,7 +1491,7 @@ ALTER TABLE `giftshop`
 -- AUTO_INCREMENT for table `itemscart`
 --
 ALTER TABLE `itemscart`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `membership`
@@ -1511,7 +1503,7 @@ ALTER TABLE `membership`
 -- AUTO_INCREMENT for table `membershippayemnts`
 --
 ALTER TABLE `membershippayemnts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `membershipperiod`
@@ -1565,19 +1557,19 @@ ALTER TABLE `transportation`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `userimages`
 --
 ALTER TABLE `userimages`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `useritems`
 --
 ALTER TABLE `useritems`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `userrole`
@@ -1595,13 +1587,13 @@ ALTER TABLE `visitpricing`
 -- AUTO_INCREMENT for table `visitticket`
 --
 ALTER TABLE `visitticket`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `visitticketnotpaid`
 --
 ALTER TABLE `visitticketnotpaid`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=359;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 
 --
 -- Constraints for dumped tables
