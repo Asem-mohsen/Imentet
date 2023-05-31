@@ -173,7 +173,7 @@ if(empty($EventID)){
                                 Egyptian - <?php echo $row['EgyptianPrice'] ." EGP"?> <br>
 
                                 <i class="fa fa-money"></i>
-                                Foreginers - <?php if(isset($row['ForeignPrice']) && $row['ForeignPrice'] != 0 ){ echo $row['ForeignPrice'] ." EGP" ;}else{ echo $row['EgyptianPrice'] ;}?> <br>
+                                Foreginers - <?php if(isset($row['ForeignPrice']) && $row['ForeignPrice'] != 0 ){ echo $row['ForeignPrice'] ." EGP" ;}else{ echo $row['EgyptianPrice'] ." EGP" ;}?> <br>
                                 
                               </p>
                             </li>
