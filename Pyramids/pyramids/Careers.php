@@ -69,7 +69,7 @@ if(isset($_SESSION['UserID'])){
       <?php 
 
         if(isset($SuccessMsg)){
-          header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Careers.php');
+          header('Location: http://localhost/imentet-1/Pyramids/pyramid/Careers.php');
           echo $SuccessMsg ;
         }
         if(isset($AlreadyEnrolled)){ echo $AlreadyEnrolled ; }
@@ -89,6 +89,7 @@ if(isset($_SESSION['UserID'])){
         <div class="container">
 
           <?php if(isset($CountRow) > 0 && isset($ApplicationRow['UserID']) && $InterviewDate < $After6MonthDate){ ?>
+            <!-- Already Sumbitted -->
             <div class="row">
               <div class="col-lg-6">
                 <div class="contact-one__main">
@@ -162,7 +163,7 @@ if(isset($_SESSION['UserID'])){
               </div>
             </div>
           <?php }elseif(isset($InterviewDate) > isset($After6MonthDate)){ ?>
-            
+            <!-- After 6 Month of Sumbitting -->
             <div class="row">
               <div class="col-lg-6">
                 <div class="contact-one__main">
@@ -243,6 +244,7 @@ if(isset($_SESSION['UserID'])){
               </div>
             </div>
           <?php }else{ ?>
+            <!-- Not One of them -->
             <div class="row">
               <div class="col-lg-6">
                 <div class="contact-one__main">

@@ -371,7 +371,7 @@ include "./NavUserPyramids.php";
             $FormErrors[] = "CCV is Required";
           }
         if(empty($FormErrors)){
-          $SelectCart = "SELECT eventticketcart.* , SUM(TotalPrice) AS Total , SUM(Quantity) AS TotalQuantity FROM `eventticketcart` WHERE UserID = 2";
+          $SelectCart = "SELECT eventticketcart.* , SUM(TotalPrice) AS Total , SUM(Quantity) AS TotalQuantity FROM `eventticketcart` WHERE UserID = $UserID";
           $RunQuery = mysqli_query($con , $SelectCart);
           $EventCart = mysqli_fetch_assoc($RunQuery);
           $Count = mysqli_num_rows($RunQuery);
@@ -401,7 +401,6 @@ include "./NavUserPyramids.php";
       if(isset($_POST['Cancel'])){
         $DeleteCart = "DELETE FROM eventticketcart WHERE UserID = $UserID";
         $DeleteQuery = mysqli_query($con , $DeleteCart);
-
         header("Location: http://localhost/imentet-1/Pyramids/pyramids/Events.php?Page=1");
         exit();
       }

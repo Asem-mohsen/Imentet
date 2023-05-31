@@ -371,7 +371,7 @@ include "../NavUser.php";
             $FormErrors[] = "CCV is Required";
           }
         if(empty($FormErrors)){
-          $SelectCart = "SELECT eventticketcart.* , SUM(TotalPrice) AS Total , SUM(Quantity) AS TotalQuantity FROM `eventticketcart` WHERE UserID = 2";
+          $SelectCart = "SELECT eventticketcart.* , SUM(TotalPrice) AS Total , SUM(Quantity) AS TotalQuantity FROM `eventticketcart` WHERE UserID = $UserID";
           $RunQuery = mysqli_query($con , $SelectCart);
           $EventCart = mysqli_fetch_assoc($RunQuery);
           $Count = mysqli_num_rows($RunQuery);
@@ -408,7 +408,7 @@ include "../NavUser.php";
     }else{
       header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
     }
-}
+  }
 ?>
 
 

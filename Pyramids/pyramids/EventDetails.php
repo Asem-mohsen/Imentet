@@ -18,7 +18,7 @@ if(isset($_POST['Book'])){
   $RunQuery = mysqli_query($con , $SelectEmail);
   $Count = mysqli_num_rows($RunQuery);
     if($Count > 0){
-      for($i = 0 ; $i < count($_POST['Quantity']) ; $i++){
+      for($i = 0 ; $i < count($_POST['Price']) ; $i++){
         $Quantity = $_POST['Quantity'][$i];
         $EventID = $_POST['EventID'];
         $Price = $_POST['Price'][$i];
@@ -27,17 +27,19 @@ if(isset($_POST['Book'])){
         
         $TotalValue[$i] = 0 ;
         $TotalValue[$i] += $Price * $Quantity ; 
-        $Total  = $TotalValue[$i];
-        
-        if($Total != 0 ){
-          $InsertEventTicket = "INSERT INTO eventticketcart VALUES(NULL , $EventID ,$UserID , $Total , $Quantity)";
+
+      }
+      $FinalQuan = array_sum($_POST['Quantity']);
+      $Total = array_sum($TotalValue);
+
+        if($Total > 0 ){
+          $InsertEventTicket = "INSERT INTO eventticketcart VALUES(NULL , $EventID ,$UserID , $Total , $FinalQuan)";
           $InsertRun = mysqli_query($con , $InsertEventTicket);
-          header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?EventTicket");
+          header("Location: http://localhost/imentet-1/Pyramids/pyramids/Payment.php?EventTicket");
           exit();
         }else{
           $MustSelectQuantity = "Must Select Quantity to Continue";
         }
-      }
     }
 }
 
@@ -106,14 +108,6 @@ if(empty($EventID)){
       <!-- Event Details -->
       <section class="event-details">
         <div class="container">
-          <?php 
-            if(isset($_GET['PaymentDone'])){
-                  echo "<div class='TicketsBooked' style='justify-content:center'>";
-                  echo "<i class='egypt-icon-check'></i>";
-                  echo "<p> Tickets Booked Successfully </p>" ;
-                echo "</div>";
-            } 
-          ?>
           <div class="row">
             <div class="col-lg-8">
               <div class="event-details__content">
@@ -420,14 +414,27 @@ if(empty($EventID)){
                                 </div>
                               <?php }else{ ?>
                                   <!-- The date of the event has passed -->
+                                  <input type="hidden" name="Price[]" value="<?php echo $row['EgyptianPrice'] ;  ?>" class="EventPrice"/>
+                                  <input type="hidden" name="Price[]" value="<?php echo $row['ForeignPrice'] ;  ?>" class="EventPrice"/>
                                   <div class="col-sm-12">
-                                    <input type="text" name="Name" placeholder="Your Name"  disabled/>
+                                    <input type="text" name="Name" placeholder="Your Name" disabled/>
                                   </div>
                                   <div class="col-sm-12">
                                     <input type="text" name="Email" placeholder="Email Address" disabled/>
                                   </div>
                                   <div class="col-sm-6">
-                                    <input class="quantity-spinner" type="text" value="1" max='10' disabled/>
+                                    <label>Egyptians</label>
+                                    <input class="quantity-spinner Quantity" type="text" value="0" max='10' onchange="subTotal()"/>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <label>Foreigners</label>
+                                    <input class="quantity-spinner Quantity" type="text" value="0" max='10' onchange="subTotal()"/>
+                                  </div>
+                                  <div class="col-sm-12">
+                                    Total
+                                    <span class="text-capitalize cart-total__highlight" id="TotalPrice">
+                                    
+                                    </span>
                                   </div>
                                   <div class="col-sm-12">
                                     <?php if($TodaysDate > $StartDateInTime){ ?>
@@ -517,6 +524,27 @@ if(empty($EventID)){
         </div>
       </div>
 
+      <!-- Success Msg -->
+      <?php if(isset($_GET['PaymentDone'])){ ?>
+        <div id="success" class="modal fade" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="success-content-message">
+                  <i class="fa fa-check"></i>
+                  <h2>success</h2>
+
+                  <p>Your payment has been completed successfully.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php  } ?>
+
       <script>
         var TotalPrice = 0;
         var Price = document.getElementsByClassName('EventPrice');
@@ -532,6 +560,12 @@ if(empty($EventID)){
         subTotal(); 
       </script>
 
-  <?php include "./UserFooterPyramids.php" ; 
-}
+  <?php include "./UserFooterPyramids.php" ;  ?>
+
+  <script>
+        jQuery(window).load(function () {
+          jQuery("#success").modal("show");
+        });
+  </script>
+<?php }
 ?>

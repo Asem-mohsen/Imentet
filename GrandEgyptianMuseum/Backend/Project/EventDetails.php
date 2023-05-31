@@ -19,7 +19,7 @@ if(isset($_POST['Book'])){
   $Count = mysqli_num_rows($RunQuery);
     if($Count > 0){
 
-      for($i = 0 ; $i < count($_POST['Quantity']) ; $i++){
+      for($i = 0 ; $i < count($_POST['Price']) ; $i++){
         $Quantity = $_POST['Quantity'][$i];
         $EventID = $_POST['EventID'];
         $Price = $_POST['Price'][$i];
@@ -28,17 +28,19 @@ if(isset($_POST['Book'])){
         
         $TotalValue[$i] = 0 ;
         $TotalValue[$i] += $Price * $Quantity ; 
-        $Total  = $TotalValue[$i];
-        
-        if($Total != 0 ){
-          $InsertEventTicket = "INSERT INTO eventticketcart VALUES(NULL , $EventID ,$UserID , $Total , $Quantity)";
+
+      }
+      $FinalQuan = array_sum($_POST['Quantity']);
+      $Total = array_sum($TotalValue);
+
+        if($Total > 0 ){
+          $InsertEventTicket = "INSERT INTO eventticketcart VALUES(NULL , $EventID ,$UserID , $Total , $FinalQuan)";
           $InsertRun = mysqli_query($con , $InsertEventTicket);
           header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?EventTicket");
           exit();
         }else{
           $MustSelectQuantity = "Must Select Quantity to Continue";
         }
-      }
       
     }
 }
@@ -429,7 +431,18 @@ if(empty($EventID)){
                                     <input type="text" name="Email" placeholder="Email Address" disabled/>
                                   </div>
                                   <div class="col-sm-6">
-                                    <input class="quantity-spinner" type="text" value="1" max='10' disabled/>
+                                    <label>Egyptians</label>
+                                    <input class="quantity-spinner Quantity" type="text" value="0" max='10' onchange="subTotal()"/>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <label>Foreigners</label>
+                                    <input class="quantity-spinner Quantity" type="text" value="0" max='10' onchange="subTotal()"/>
+                                  </div>
+                                  <div class="col-sm-12">
+                                    Total
+                                    <span class="text-capitalize cart-total__highlight" id="TotalPrice">
+                                    
+                                    </span>
                                   </div>
                                   <div class="col-sm-12">
                                     <?php if($TodaysDate > $StartDateInTime){ ?>

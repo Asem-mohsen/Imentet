@@ -31,7 +31,7 @@ include "./Functions/Functions.php";
     <link rel="stylesheet" href="css/nouislider.pips.css" />
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" href="css/style.css?v=4" />
+    <link rel="stylesheet" href="css/style.css?v=5" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/payment.css" />
 

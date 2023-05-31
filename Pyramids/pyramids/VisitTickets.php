@@ -368,6 +368,33 @@ if(isset($_POST['Confirm'])){
         </div>
       </section>
 
+      <!-- Success MSG -->
+      <?php if(isset($_GET['PaymentSucceeded'])){ ?>
+        <div id="success" class="modal fade" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="success-content-message">
+                  <i class="fa fa-check"></i>
+                  <h2>success</h2>
+
+                  <p>Your payment has been completed successfully.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <?php  } ?>
+      
       <script>
         var TotalPricePyramids = 0;
         var Price = document.getElementsByClassName('PyramidsPrice');
@@ -389,3 +416,9 @@ if(isset($_POST['Confirm'])){
       </script>
 
 <?php include "./UserFooterPyramids.php" ; ?>
+
+      <script>
+        jQuery(window).load(function () {
+          jQuery("#success").modal("show");
+        });
+      </script>

@@ -111,7 +111,7 @@ $PageTitle = "Plan Your Visit";
                                   </li>
                                 <?php } ?>
                           </ul>
-                          <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
+                          <p style="padding-left: 20px;"> Valid ID or Passport is a Must</p>
                         </div>
 
                         <!-- khufu Pyramid -->
@@ -121,7 +121,7 @@ $PageTitle = "Plan Your Visit";
                               <span style="font-weight: bold;">Khufu Pyramid:</span>
                             </li>
                                   <li>
-                                    <span>Egyptian :</span>
+                                    <span>Egyptians :</span>
                                     <span> 100 EGP</span>
                                   </li>
                                   <li>
@@ -133,11 +133,11 @@ $PageTitle = "Plan Your Visit";
                                     <span> 440 EGP</span>
                                   </li>
                                   <li>
-                                    <span>Foreginers Students:</span>
+                                    <span>Foreginer Students:</span>
                                     <span> 220 EGP</span>
                                   </li>
                           </ul>
-                          <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
+                          <p style="padding-left: 20px;"> Valid ID or Passport is a Must</p>
                         </div>
 
                         <!-- Khafre Pyramid -->
@@ -147,7 +147,7 @@ $PageTitle = "Plan Your Visit";
                               <span style="font-weight: bold;">Khafre Pyramid:</span>
                             </li>
                                   <li>
-                                    <span>Egyptian :</span>
+                                    <span>Egyptians :</span>
                                     <span> 30 EGP</span>
                                   </li>
                                   <li>
@@ -159,11 +159,11 @@ $PageTitle = "Plan Your Visit";
                                     <span> 100 EGP</span>
                                   </li>
                                   <li>
-                                    <span>Foreginers Students:</span>
+                                    <span>Foreginer Students:</span>
                                     <span> 50 EGP</span>
                                   </li>
                           </ul>
-                          <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
+                          <p style="padding-left: 20px;"> Valid ID or Passport is a Must</p>
                         </div>
 
                       </div>

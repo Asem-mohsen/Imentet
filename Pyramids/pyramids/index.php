@@ -277,7 +277,7 @@ $PageTitle = "Pyramids";
                         <div class="event-one__image-inner">
                           <img src="images/<?php echo $Events['Image'] ?>" width="100px" height="100px" alt="" />
                         </div>
-                        <div class="event-one__image-hover"><?php echo $Events['RegularPrice'] . " EGP" ?></div>
+                        <div class="event-one__image-hover"><?php echo $Events['EgyptianPrice'] . " EGP" ?></div>
                       </div>
                       <div class="event-one__text">
                         <div class="event-one__content-top">
