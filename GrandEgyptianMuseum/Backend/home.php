@@ -253,7 +253,7 @@ if(isset($_SESSION['AdminID'])){
                           </div>
                           <div class="event-two__image-inner">
                             <div class="event-two__price">
-                              <span><?php echo $Event['RegularPrice'] . " $" ?></span>
+                              <span><?php echo $Event['EgyptianPrice'] . " EGP" ?></span>
                             </div>
                             <img src="./Images/<?php echo $Event['Image'] ?>" width="170px" height="170px" alt="Awesome Image" />
                           </div>
@@ -307,7 +307,7 @@ if(isset($_SESSION['AdminID'])){
                           </div>
                           <div class="event-two__image-inner">
                             <div class="event-two__price">
-                              <span><?php echo $UpcomingEvents['RegularPrice'] . " $" ?></span>
+                              <span><?php echo $UpcomingEvents['EgyptianPrice'] . " EGP" ?></span>
                             </div>
                             <img src="./Images/<?php echo $UpcomingEvents['Image'] ?>" width="170px" height="170px"  alt="Awesome Image" />
                           </div>
@@ -345,7 +345,7 @@ if(isset($_SESSION['AdminID'])){
                     $SelectPastEvents= "SELECT entertainmnet.* , entertainmnetcategory.Name AS CatName ,place.Name AS PlaceName  FROM entertainmnet 
                                     JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
                                     JOIN place ON place.ID = entertainmnet.PlaceID 
-                                    WHERE CatID != 9 AND PlaceID = 2  AND Date BETWEEN '2020-10-10' AND '2023-6-25'
+                                    WHERE CatID != 9 AND CatID != 10 AND entertainmnet.ID != 79 AND PlaceID = 2 AND Date BETWEEN '2020-10-10' AND '2023-6-25'
                                     ORDER BY ID DESC LIMIT 3";
                     $Query = mysqli_query($con , $SelectPastEvents);
                     $EventsRow = mysqli_fetch_assoc($Query);
@@ -361,7 +361,7 @@ if(isset($_SESSION['AdminID'])){
                           </div>
                           <div class="event-two__image-inner">
                             <div class="event-two__price">
-                              <span><?php echo $PastEvents['RegularPrice'] ."$" ?></span>
+                              <span><?php echo $PastEvents['EgyptianPrice'] ." EGP" ?></span>
                             </div>
                             <img src="./Images/<?php echo $PastEvents['Image'] ?>" width="170px" height="170px" alt="Awesome Image" />
                           </div>

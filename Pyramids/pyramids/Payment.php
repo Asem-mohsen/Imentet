@@ -371,14 +371,14 @@ include "./NavUserPyramids.php";
             $FormErrors[] = "CCV is Required";
           }
         if(empty($FormErrors)){
-          $SelectCart = "SELECT * FROM eventticketcart WHERE UserID = $UserID";
+          $SelectCart = "SELECT eventticketcart.* , SUM(TotalPrice) AS Total , SUM(Quantity) AS TotalQuantity FROM `eventticketcart` WHERE UserID = 2";
           $RunQuery = mysqli_query($con , $SelectCart);
           $EventCart = mysqli_fetch_assoc($RunQuery);
           $Count = mysqli_num_rows($RunQuery);
           if($Count > 0){
               $EventID = $EventCart['EventID'];
-              $Quantity = $EventCart['Quantity'];
-              $Total = $EventCart['TotalPrice'];
+              $Quantity = $EventCart['TotalQuantity'];
+              $Total = $EventCart['Total'];
               $Payment = 1;
 
               $InsertEventTicket = "INSERT INTO entertainmnetticket VALUES(NULL , $EventID , $UserID , $Total , $Payment , $Quantity )";

@@ -18,20 +18,26 @@ if(isset($_POST['Book'])){
   $RunQuery = mysqli_query($con , $SelectEmail);
   $Count = mysqli_num_rows($RunQuery);
     if($Count > 0){
-      $EventID = $_POST['EventID'];
-      $Price = $_POST['Price'];
-      $Email = $_POST['Email'];
-      $Quantity = $_POST['Quantity'];
-      $UserID = $_POST['UserID'];
-      
-      $Total = $Price * $Quantity ;
-      $InsertEventTicket = "INSERT INTO eventticketcart VALUES(NULL , $EventID ,$UserID , $Total , $Quantity)";
-      $InsertRun = mysqli_query($con , $InsertEventTicket);
-      
-      header("Location: http://localhost/imentet-1/Pyramids/pyramids/Payment.php?EventTicket");
-      exit();
-    }else{
-      echo "You Must Have Account to Continue";
+      for($i = 0 ; $i < count($_POST['Quantity']) ; $i++){
+        $Quantity = $_POST['Quantity'][$i];
+        $EventID = $_POST['EventID'];
+        $Price = $_POST['Price'][$i];
+        $Email = $_POST['Email'];
+        $UserID = $_POST['UserID'];
+        
+        $TotalValue[$i] = 0 ;
+        $TotalValue[$i] += $Price * $Quantity ; 
+        $Total  = $TotalValue[$i];
+        
+        if($Total != 0 ){
+          $InsertEventTicket = "INSERT INTO eventticketcart VALUES(NULL , $EventID ,$UserID , $Total , $Quantity)";
+          $InsertRun = mysqli_query($con , $InsertEventTicket);
+          header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Payment.php?EventTicket");
+          exit();
+        }else{
+          $MustSelectQuantity = "Must Select Quantity to Continue";
+        }
+      }
     }
 }
 
@@ -170,7 +176,11 @@ if(empty($EventID)){
                               <span>Ticket Cost</span>
                               <p>
                                 <i class="fa fa-money"></i>
-                                Regular - <?php echo $row['RegularPrice'] ." EGP" ?>
+                                Egyptian - <?php echo $row['EgyptianPrice'] ." EGP"?> <br>
+
+                                <i class="fa fa-money"></i>
+                                Foreginers - <?php if(isset($row['ForeignPrice']) && $row['ForeignPrice'] != 0 ){ echo $row['ForeignPrice'] ." EGP" ;}else{ echo $row['EgyptianPrice'] ;}?> <br>
+                                
                               </p>
                             </li>
                           </ul>
@@ -182,9 +192,6 @@ if(empty($EventID)){
                     </div>
                   </div>
                   <h3 class="event-details__title">Details About Event</h3>
-                  <p class="event-details__text">
-                    <?php echo $row['Description'] ?>
-                  </p>
                   <p class="event-details__text">
                     <?php echo $row['Description'] ?>
                   </p>
@@ -371,17 +378,30 @@ if(empty($EventID)){
                     <div class="row">
                         <?php 
                               if( ($TodaysDate <= $StartDateInTime || $row['Everyday'] == 'Daily' || $row['DateTo'] > $TodaysDate) && $row['EventStatus'] != 'Postponed' && $row['EventStatus'] != 'Cancelled'){ ?>
+                                <!-- If the date is not passed The form Will Open -->
                                 <div class="col-sm-12">
                                   <input type="hidden" name="UserID" value="<?php if(isset($UserID)){ echo $UserID ; } ?>" />
                                   <input type="hidden" name="EventID" value="<?php echo $EventID ;  ?>" />
-                                  <input type="hidden" name="Price" value="<?php echo $row['RegularPrice'] ;  ?>" />
+                                  <input type="hidden" name="Price[]" value="<?php echo $row['EgyptianPrice'] ;  ?>" class="EventPrice"/>
+                                  <input type="hidden" name="Price[]" value="<?php echo $row['ForeignPrice'] ;  ?>" class="EventPrice"/>
                                   <input type="text" name="Name" placeholder="Your Name" value="<?php if(isset($FullName)){ echo $FullName ; } ?>"/>
                                 </div>
                                 <div class="col-sm-12">
                                   <input type="text" name="Email" placeholder="Email Address" value="<?php if(isset($User['Email'])){ echo $User['Email'] ; } ?>"/>
                                 </div>
                                 <div class="col-sm-6">
-                                  <input class="quantity-spinner" type="text" value="1" max='10' name="Quantity" />
+                                  <label>Egyptians</label>
+                                  <input class="quantity-spinner Quantity" type="text" value="0" max='10' name="Quantity[]" onchange="subTotal()"/>
+                                </div>
+                                <div class="col-sm-6">
+                                  <label>Foreigners</label>
+                                  <input class="quantity-spinner Quantity" type="text" value="0" max='10' name="Quantity[]" onchange="subTotal()"/>
+                                </div>
+                                <div class="col-sm-12">
+                                  Total
+                                  <span class="text-capitalize cart-total__highlight" id="TotalPrice">
+                                  
+                                  </span>
                                 </div>
                                 <div class="col-sm-12">
                                   <?php if(isset($UserID)){ ?>
@@ -399,6 +419,7 @@ if(empty($EventID)){
                                   <?php } ?>
                                 </div>
                               <?php }else{ ?>
+                                  <!-- The date of the event has passed -->
                                   <div class="col-sm-12">
                                     <input type="text" name="Name" placeholder="Your Name"  disabled/>
                                   </div>
@@ -496,6 +517,20 @@ if(empty($EventID)){
         </div>
       </div>
 
+      <script>
+        var TotalPrice = 0;
+        var Price = document.getElementsByClassName('EventPrice');
+        var Quantity = document.getElementsByClassName('Quantity');
+        var FullTotalOne = document.getElementById('TotalPrice');
+        function subTotal(){
+          TotalPrice = 0;   
+            for(i=0 ; i <Price.length ; i++){
+                TotalPrice = TotalPrice + (Price[i].value)*(Quantity[i].value) ;
+            }
+            FullTotalOne.innerText = TotalPrice + " EGP";
+        }
+        subTotal(); 
+      </script>
 
   <?php include "./UserFooterPyramids.php" ; 
 }

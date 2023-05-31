@@ -107,7 +107,7 @@ $PageTitle = "Plan Your Visit";
                                   foreach($RunQuery as $Visit){ ?>
                                     <li>
                                       <span><?php echo $Visit['UserRole']  ?> :</span>
-                                      <span><?php echo $Visit['MuseumFee'] . " EGP" ?></span>
+                                      <span><?php echo $Visit['EntranceFee'] . " EGP" ?></span>
                                     </li>
                                   <?php } ?>
                             </ul>
@@ -125,7 +125,7 @@ $PageTitle = "Plan Your Visit";
                                   foreach($RunQuery as $VisitForegin){ ?>
                                     <li>
                                       <span><?php echo $VisitForegin['UserRole']  ?> :</span>
-                                      <span><?php echo $VisitForegin['MuseumFee'] . " EGP" ?></span>
+                                      <span><?php echo $VisitForegin['EntranceFee'] . " EGP" ?></span>
                                     </li>
                                 <?php } ?>
                             </ul>
@@ -198,7 +198,38 @@ $PageTitle = "Plan Your Visit";
                               <div class="inner">
                                 <p>
                                   In the Museum's commercial area, you'll find a
-                                  variety of restaurants and cafes.
+                                  variety of restaurants and cafes as :
+                                  <br>
+                                    <b> 30 NORTH </b> </br>
+                                    The coveted home-grown brewers are now mere seconds away from Ramses II…care to share a brownie bite with the statue? Anyone?
+                                    <br>
+
+                                    <b>Zooba </b> </br>
+                                    Egypt’s best restaurant - and 9th in the MENA region -according to the MENA’s 50 Best Restaurants Awardsis satiating koshary-affiliated and shawarma-related hunger pangs at the Grand Egyptian Museum.
+                                    <br>
+
+                                    <b>Starbucks </b> </br>
+                                    Blended? Cubes? Soy milk? These are a few of the questions that will inevitably infiltrate your thoughts throughout your quaint trips across the museum.
+                                    <br>
+
+                                    <b>Beano’s </b> </br>
+                                    Perhaps a caffeine-induced frenzy is what one needs as they re-acquaint themselves with centuries of heritage, legacy and uhm…whipped cream.
+                                    <br>
+
+                                    <b>Dolato </b> </br>
+                                    The ice creamery is now serving its dollop-sized icicles and creamy concoctions beneath the light-filled walkways of Giza’s Grand Egyptian Museum.
+                                    <br>
+
+                                    <b>Ladurée </b> </br>
+                                    Perhaps high-tea and caramel-dipped eclairs are what one needs subsequent a spirited deep-dive into the encrypted worlds of centuries past.
+                                    <br>
+
+                                    <b>Bittersweet </b> </br>
+                                    For those planning on spending the whole day (bed and breakfast style) engrossed in Egyptology, then this-restaurant-turned-cult classic is the perfect go-to during your Grand Egyptian Museum explorations.
+                                    <br>
+
+                                    <b>Ratios Bakery </b> </br>
+                                    Because mouthfuls of quiche and blueberry crumble are in fact the only known remedy to sore muscles (please do not try this at home) Ratios Bakery is setting up shop at the Grand Egyptian Museum
                                 </p>
                               </div>
                             </div>

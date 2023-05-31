@@ -100,7 +100,7 @@ $PageTitle = "Plan Your Visit";
                                 $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
                                                   JOIN userrole ON visitpricing.UserRole = userrole.ID 
                                                   JOIN place ON visitpricing.PlaceID = place.ID 
-                                                  WHERE PlaceID = 1 AND visitpricing.ID NOT IN (4 , 7)
+                                                  WHERE PlaceID = 1 AND visitpricing.UserRole NOT IN (4 , 7)
                                                   ORDER BY visitpricing.ID DESC";
                                 $RunQuery = mysqli_query($con , $SelectVisitPrice);
                                 $VisitRow = mysqli_fetch_assoc($RunQuery);
@@ -114,25 +114,28 @@ $PageTitle = "Plan Your Visit";
                           <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
                         </div>
 
-                        <!-- Hufu Pyramid -->
+                        <!-- khufu Pyramid -->
                         <div class="item">
                           <ul class="list-unstyled plan-visit__price-list">
                             <li>
                               <span style="font-weight: bold;">Khufu Pyramid:</span>
                             </li>
-                              <?php 
-                                $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
-                                            JOIN userrole ON visitpricing.UserRole = userrole.ID 
-                                            JOIN place ON visitpricing.PlaceID = place.ID 
-                                            WHERE PlaceID = 1 AND visitpricing.ID NOT IN (4 , 7) ";
-                                $RunQuery = mysqli_query($con , $SelectVisitPrice);
-                                $VisitRow = mysqli_fetch_assoc($RunQuery);
-                                foreach($RunQuery as $VisitForegin){ ?>
                                   <li>
-                                    <span><?php echo $VisitForegin['UserRole']  ?> :</span>
-                                    <span><?php echo $VisitForegin['EntranceFee'] . " EGP" ?></span>
+                                    <span>Egyptian :</span>
+                                    <span> 100 EGP</span>
                                   </li>
-                              <?php } ?>
+                                  <li>
+                                    <span>Egyptian Students:</span>
+                                    <span> 50 EGP</span>
+                                  </li>
+                                  <li>
+                                    <span>Foreginers :</span>
+                                    <span> 440 EGP</span>
+                                  </li>
+                                  <li>
+                                    <span>Foreginers Students:</span>
+                                    <span> 220 EGP</span>
+                                  </li>
                           </ul>
                           <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
                         </div>
@@ -143,19 +146,22 @@ $PageTitle = "Plan Your Visit";
                             <li>
                               <span style="font-weight: bold;">Khafre Pyramid:</span>
                             </li>
-                              <?php 
-                                $SelectVisitPrice = "SELECT visitpricing. *, userrole.RoleName AS UserRole , visitpricing.UserRole AS RoleID ,place.Name AS PlaceName FROM visitpricing 
-                                            JOIN userrole ON visitpricing.UserRole = userrole.ID 
-                                            JOIN place ON visitpricing.PlaceID = place.ID 
-                                            WHERE PlaceID = 1 AND visitpricing.ID NOT IN (4 , 7)";
-                                $RunQuery = mysqli_query($con , $SelectVisitPrice);
-                                $VisitRow = mysqli_fetch_assoc($RunQuery);
-                                foreach($RunQuery as $VisitForegin){ ?>
                                   <li>
-                                    <span><?php echo $VisitForegin['UserRole']  ?> :</span>
-                                    <span><?php echo $VisitForegin['EntranceFee'] . " EGP" ?></span>
+                                    <span>Egyptian :</span>
+                                    <span> 30 EGP</span>
                                   </li>
-                              <?php } ?>
+                                  <li>
+                                    <span>Egyptian Students:</span>
+                                    <span> 10 EGP</span>
+                                  </li>
+                                  <li>
+                                    <span>Foreginers :</span>
+                                    <span> 100 EGP</span>
+                                  </li>
+                                  <li>
+                                    <span>Foreginers Students:</span>
+                                    <span> 50 EGP</span>
+                                  </li>
                           </ul>
                           <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
                         </div>

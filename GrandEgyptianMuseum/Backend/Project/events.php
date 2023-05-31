@@ -138,7 +138,7 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                                 <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="event-three__cat"><?php echo $Event['CatName'] ?></a>
                               </div>
                               <div class="event-three__content">
-                                <p class="event-three__text" style="overflow: hidden; max-height: 182px;">
+                                <p class="event-three__text"  style="overflow: hidden; max-height: 182px; min-height: 182px;">
                                   <?php echo $Event['Description'] ?>
                                 </p>
                                 <ul class="event-three__list list-unstyled">
@@ -158,7 +158,7 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                                   </li>
                                 </ul>
                                 <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="thm-btn event-three__btn">
-                                  <span class="main-text">$ <?php echo $Event['RegularPrice'] ?> / Person</span>
+                                  <span class="main-text">EGP <?php echo $Event['EgyptianPrice'] ?> / Person</span>
                                   <span class="hover-text">More Details</span>
                                 </a>
                               </div>
@@ -196,7 +196,7 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                               <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="event-three__cat"><?php echo $Event['CatName'] ?></a>
                             </div>
                             <div class="event-three__content">
-                              <p class="event-three__text" style="overflow: hidden; max-height: 182px;">
+                              <p class="event-three__text"  style="overflow: hidden; max-height: 182px; min-height: 182px;">
                                 <?php echo $Event['Description'] ?>
                               </p>
                               <ul class="event-three__list list-unstyled">
@@ -216,7 +216,7 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                                 </li>
                               </ul>
                               <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="thm-btn event-three__btn">
-                                <span class="main-text">$ <?php echo $Event['RegularPrice'] ?> / Person</span>
+                                <span class="main-text">EGP <?php echo $Event['EgyptianPrice'] ?> / Person</span>
                                 <span class="hover-text">More Details</span>
                               </a>
                             </div>
@@ -254,7 +254,7 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                               <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="event-three__cat"><?php echo $Event['CatName'] ?></a>
                             </div>
                             <div class="event-three__content">
-                              <p class="event-three__text" style="overflow: hidden; max-height: 182px;">
+                              <p class="event-three__text"  style="overflow: hidden; max-height: 182px; min-height: 182px;">
                                 <?php echo $Event['Description'] ?>
                               </p>
                               <ul class="event-three__list list-unstyled">
@@ -274,7 +274,7 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                                 </li>
                               </ul>
                               <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="thm-btn event-three__btn">
-                                <span class="main-text">$ <?php echo $Event['RegularPrice'] ?> / Person</span>
+                                <span class="main-text">EGP <?php echo $Event['EgyptianPrice'] ?> / Person</span>
                                 <span class="hover-text">More Details</span>
                               </a>
                             </div>
@@ -309,9 +309,9 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                             <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="event-three__cat"><?php echo $Event['CatName'] ?></a>
                           </div>
                           <div class="event-three__content">
-                            <p class="event-three__text" style="overflow: hidden; max-height: 182px;">
-                              <?php echo $Event['Description'] ?>
-                            </p>
+                              <p class="event-three__text"  style="overflow: hidden; max-height: 182px; min-height: 182px;">
+                                <?php echo $Event['Description'] ?>
+                              </p>
                             <ul class="event-three__list list-unstyled">
                               <li>
                                 <span>Date & Time</span>
@@ -329,7 +329,7 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                               </li>
                             </ul>
                             <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="thm-btn event-three__btn">
-                              <span class="main-text">$ <?php echo $Event['RegularPrice'] ?> / Person</span>
+                              <span class="main-text">EGP <?php echo $Event['EgyptianPrice'] ?> / Person</span>
                               <span class="hover-text">More Details</span>
                             </a>
                           </div>
@@ -366,9 +366,9 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                             <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="event-three__cat"><?php echo $Event['CatName'] ?></a>
                           </div>
                           <div class="event-three__content">
-                            <p class="event-three__text" style="overflow: hidden; max-height: 182px;">
-                              <?php echo $Event['Description'] ?>
-                            </p>
+                              <p class="event-three__text"  style="overflow: hidden; max-height: 182px; min-height: 182px;">
+                                <?php echo $Event['Description'] ?>
+                              </p>
                             <ul class="event-three__list list-unstyled">
                               <li>
                                 <span>Date & Time</span>
@@ -386,7 +386,7 @@ $StartFrom = ($Page-1) * $RecoedPerPage ;
                               </li>
                             </ul>
                             <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $Event['ID'] ?>" class="thm-btn event-three__btn">
-                              <span class="main-text">$ <?php echo $Event['RegularPrice'] ?> / Person</span>
+                              <span class="main-text">EGP <?php echo $Event['EgyptianPrice'] ?> / Person</span>
                               <span class="hover-text">More Details</span>
                             </a>
                           </div>

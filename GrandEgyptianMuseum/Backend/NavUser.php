@@ -166,13 +166,13 @@ include "./Functions/Functions.php";
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">What’s On</a>
+                                <a href="#">What's On</a>
                                 <ul class="submenu">
                                     <li>
                                         <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php?Page=1">Events </a>
                                         <ul class="submenu">
                                             <?php 
-                                                $SelectEvent = "SELECT * FROM entertainmnet ORDER BY ID DESC LIMIT 4 ";
+                                                $SelectEvent = "SELECT * FROM entertainmnet ORDER BY ID ASC LIMIT 4 ";
                                                 $SpecificEvent = mysqli_query($con , $SelectEvent);
                                                 $SpecificRow = mysqli_fetch_assoc($SpecificEvent); 
                                                 foreach ($SpecificEvent as $RowEvent){ ?>
@@ -181,6 +181,18 @@ include "./Functions/Functions.php";
                                         </ul>
                                     </li>
                                     <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Exhibition.php">Exhibition</a></li>
+                                    <li>
+                                        <a >Museums </a>
+                                        <ul class="submenu">
+                                            <?php 
+                                                $SelectEvent = "SELECT * FROM entertainmnet WHERE CatID = 10 AND ID != 82 LIMIT 4 ";
+                                                $SpecificEvent = mysqli_query($con , $SelectEvent);
+                                                $SpecificRow = mysqli_fetch_assoc($SpecificEvent); 
+                                                foreach ($SpecificEvent as $RowEvent){ ?>
+                                                    <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $RowEvent['ID'] ?>"><?php echo $RowEvent['Name'] ?> </a></li>
+                                                <?php } ?>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <li>

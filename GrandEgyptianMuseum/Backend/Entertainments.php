@@ -229,8 +229,8 @@ if (isset($_SESSION["AdminID"])) {
                                                 <td>Title</td>
                                                 <td>Date</td>
                                                 <td>Place</td>
-                                                <td>Price</td>
-                                                <td>VIP Price</td>
+                                                <td>Egyptian Price</td>
+                                                <td>Foregin Price</td>
                                                 <td>Category</td>
                                                 <td>Action</td>
                                             </tr>
@@ -255,14 +255,14 @@ if (isset($_SESSION["AdminID"])) {
                                                                 echo "<td>" . $Event['Name']   . "</td>";
                                                                 echo "<td>" . $Event['Date']  . "</td>";
                                                                 echo "<td>" . $Event['PlaceName']  . "</td>";
-                                                                echo "<td>" . $Event['RegularPrice'] . "</td>";
-                                                                echo "<td>" . $Event['VipPrice'] . "</td>";
+                                                                echo "<td>" . $Event['EgyptianPrice'] . "</td>";
+                                                                echo "<td>" . $Event['ForeginPrice'] . "</td>";
                                                                 echo "<td>" . $Event['CatName']   . "</td>";
                                                                 echo "<td>";
                                                                     echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
                                                                 echo "</td>";
                                                                 echo "</tr>";
-                                                            }   
+                                                            }  
                                                         }
                                                 }elseif(isset($_POST['PlaceID']) && !isset($_POST['CatID'])){
                                                     $sql = "WHERE entertainmnet.PlaceID IN(".implode(',', $_POST['PlaceID']).")";
@@ -284,14 +284,14 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "<td>" . $Event['Name']   . "</td>";
                                                             echo "<td>" . $Event['Date']  . "</td>";
                                                             echo "<td>" . $Event['PlaceName']  . "</td>";
-                                                            echo "<td>" . $Event['RegularPrice'] . "</td>";
-                                                            echo "<td>" . $Event['VipPrice'] . "</td>";
+                                                            echo "<td>" . $Event['EgyptianPrice'] . "</td>";
+                                                            echo "<td>" . $Event['ForeginPrice'] . "</td>";
                                                             echo "<td>" . $Event['CatName']   . "</td>";
                                                             echo "<td>";
                                                                 echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
                                                             echo "</td>";
                                                             echo "</tr>";
-                                                        }  
+                                                        } 
                                                     }
                                                 }elseif(isset($_POST['CatID']) && !isset($_POST['PlaceID'])){
                                                     $sql = "WHERE entertainmnet.CatID IN(". implode(',', $_POST['CatID']).")";
@@ -313,8 +313,8 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "<td>" . $Event['Name']   . "</td>";
                                                             echo "<td>" . $Event['Date']  . "</td>";
                                                             echo "<td>" . $Event['PlaceName']  . "</td>";
-                                                            echo "<td>" . $Event['RegularPrice'] . "</td>";
-                                                            echo "<td>" . $Event['VipPrice'] . "</td>";
+                                                            echo "<td>" . $Event['EgyptianPrice'] . "</td>";
+                                                            echo "<td>" . $Event['ForeginPrice'] . "</td>";
                                                             echo "<td>" . $Event['CatName']   . "</td>";
                                                             echo "<td>";
                                                                 echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
@@ -338,8 +338,8 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "<td>" . $Event['Name']   . "</td>";
                                                             echo "<td>" . $Event['Date']  . "</td>";
                                                             echo "<td>" . $Event['PlaceName']  . "</td>";
-                                                            echo "<td>" . $Event['RegularPrice'] . "</td>";
-                                                            echo "<td>" . $Event['VipPrice'] . "</td>";
+                                                            echo "<td>" . $Event['EgyptianPrice'] . "</td>";
+                                                            echo "<td>" . $Event['ForeginPrice'] . "</td>";
                                                             echo "<td>" . $Event['CatName']   . "</td>";
                                                             echo "<td>";
                                                                 echo "<a href='./Entertainments.php?action=MoreInfo&EventID=" . $Event['ID'] . "' class='btn btn-outline-primary activate'>"   . 'Check' . "</a>";
@@ -384,12 +384,12 @@ if (isset($_SESSION["AdminID"])) {
                             $Insert = mysqli_query($con, $InsertQuery);
                 
                                     echo "<div class='container'>";
-                                    $TheMsg = "<div class='alert alert-success'> Category Added Successfully </div>";
+                                    $TheMsg = "<div class='alert alert-success text-center'> Category Added Successfully </div>";
                                     RedirectIndex($TheMsg, "Back");
                                     echo "</div>";
                         }else{
                             foreach ($FormErrors as $error) {
-                                echo "<div class='alert alert-danger'>" . $error . "</div>";
+                                echo "<div class='alert alert-danger text-center'>" . $error . "</div>";
                             }
                         }
                     }
@@ -439,12 +439,12 @@ if (isset($_SESSION["AdminID"])) {
                                 </div>
                                 <div class="form-group insertInput mb-0 ">
                                     <div class="m-auto">
-                                        <input type="number" name="RegularPrice" placeholder="Regular Price" class="form-control" required="required" />
+                                        <input type="number" name="RegularPrice" placeholder="Egyptian Price" class="form-control" required="required" />
                                     </div>
                                 </div>
                                 <div class="form-group insertInput mb-0">
                                     <div class="mb-20">
-                                        <input type="number" name="VIP" class="form-control" placeholder="VIP Price" />
+                                        <input type="number" name="VIP" class="form-control" placeholder="Foreigners Price" />
                                     </div>
                                 </div>
                                 <div class="form-group insertInput">
@@ -739,9 +739,10 @@ if (isset($_SESSION["AdminID"])) {
                                                                 <span>Ticket Cost</span>
                                                                 <p>
                                                                     <i class="fa fa-money"></i>
-                                                                    Reg - <?php echo $Event['RegularPrice'] ;?>
+                                                                    Egyptian - <?php echo $Event['EgyptianPrice'] ;?> <br>
                                                                     
-                                                                    <?php if(isset($Event['VipPrice']) && $Event['VipPrice'] != 0){ echo "/ VIP - " . $Event['VipPrice'] ; }  ?>
+                                                                    <i class="fa fa-money"></i>
+                                                                    <?php if(isset($Event['ForeignPrice']) && $Event['ForeignPrice'] != 0){ echo "Foreginers - " . $Event['ForeignPrice'] ; }  ?>
                                                                 </p>
                                                             </li>
                                                             <li>
@@ -879,12 +880,12 @@ if (isset($_SESSION["AdminID"])) {
                                     </div>
                                     <div class="form-group insertInput mb-0">
                                         <div class="m-auto">
-                                            <input type="number" name="RegularPrice" class="form-control" placeholder="Regular Price" required="required" value="<?php echo $row['RegularPrice'] ?>" />
+                                            <input type="number" name="RegularPrice" class="form-control" placeholder="Egyptian Price" required="required" value="<?php echo $row['EgyptianPrice'] ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group insertInput mb-0">
                                         <div class="m-auto">
-                                            <input type="number" name="VIP" class="form-control" placeholder="VIP Price" value="<?php echo $row['VipPrice'] ?>" />
+                                            <input type="number" name="VIP" class="form-control" placeholder="Foreigners Price" value="<?php echo $row['ForeignPrice'] ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group insertInput">
@@ -1033,7 +1034,7 @@ if (isset($_SESSION["AdminID"])) {
                                     $FormErrors[] = "You Must Enter a Valid Date";
                                 }
                                 if (empty($RegularPrice)) {
-                                    $FormErrors[] = "Please Enter a Regular Price for the Event ";
+                                    $FormErrors[] = "Please Enter a Egyptian Price for the Event ";
                                 }
 
                                 if (empty($image)){
@@ -1049,7 +1050,7 @@ if (isset($_SESSION["AdminID"])) {
 
                                 if (empty($FormErrors)) {
 
-                                    $UpdateQuery = "UPDATE `entertainmnet` SET Name = '$Name' , Image = '$image', Description = '$Description' , PlaceID = $PlaceID , Date = '$Date', DateTo = '$DateTo'  , Everyday = '$Everyday'  , RegularPrice = $RegularPrice , VipPrice = '$VIP' , CatID = $CategoryID WHERE ID = $EventID ";
+                                    $UpdateQuery = "UPDATE `entertainmnet` SET Name = '$Name' , Image = '$image', Description = '$Description' , PlaceID = $PlaceID , Date = '$Date', DateTo = '$DateTo'  , Everyday = '$Everyday'  , EgyptianPrice = $RegularPrice , ForeignPrice = '$VIP' , CatID = $CategoryID WHERE ID = $EventID ";
                                     $Update = mysqli_query($con, $UpdateQuery);
 
                                     $UpdateAll = "UPDATE `eventsponsor` SET  EventID = $EventID , ContractID = $SponsoredBy WHERE EventID = $EventID ";
