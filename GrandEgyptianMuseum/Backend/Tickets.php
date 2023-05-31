@@ -210,10 +210,10 @@ if (isset($_SESSION["AdminID"])) {
                 }
 
                 $ETicketQuery = "SELECT visitticket . * , user.Name AS UserName , user.RoleID  AS RoleID , userrole.RoleName AS RoleName , paymentoptions.PaymentType AS Payment , place.Name AS PlaceName , place.ID AS PlaceID FROM visitticket
-                                JOIN user ON visitticket.UserID = user.ID 
-                                    JOIN userrole ON userrole.ID = user.RoleID
-                                JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
-                                JOIN place ON visitticket.PlaceID = place.ID
+                                LEFT JOIN user ON visitticket.UserID = user.ID 
+                                    LEFT  JOIN userrole ON userrole.ID = user.RoleID
+                                LEFT JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
+                                LEFT JOIN place ON visitticket.PlaceID = place.ID
                                 ORDER BY visitticket.ID $sort , Date $DateSort
                                 ";
                 $Query = mysqli_query($con , $ETicketQuery);
@@ -334,10 +334,10 @@ if (isset($_SESSION["AdminID"])) {
                                                             $sql = "WHERE visitticket.PlaceID IN(".implode(',', $_POST['PlaceID'] ).") AND RoleID IN (".implode(',', $_POST['RoleID']).")" ; 
                     
                                                             $ETicketQuery = "SELECT visitticket . * , user.Name AS UserName , user.RoleID  AS RoleID , userrole.RoleName AS RoleName ,  user.LastName AS LastName , paymentoptions.PaymentType AS Payment , place.Name AS PlaceName , place.ID AS PlaceID FROM visitticket
-                                                            JOIN user ON visitticket.UserID = user.ID 
-                                                                JOIN userrole ON userrole.ID = user.RoleID
-                                                            JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
-                                                            JOIN place ON visitticket.PlaceID = place.ID
+                                                            LEFT JOIN user ON visitticket.UserID = user.ID 
+                                                                LEFT JOIN userrole ON userrole.ID = user.RoleID
+                                                            LEFT JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
+                                                            LEFT JOIN place ON visitticket.PlaceID = place.ID
                                                             $sql
                                                             ORDER BY Date $DateSort ,visitticket.ID $sort 
                                                             ";
@@ -354,8 +354,13 @@ if (isset($_SESSION["AdminID"])) {
                                                                     echo "<tr id='TableData'>";
                                                                         echo "<td>" . $VTicket['ID']     . "</td>";
                                                                         echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $FullName   . "</td>";
-                                                                        echo "<td>" . $VTicket['RoleName']   . "</td>";
-                                                                        echo "<td>" . $VTicket['PlaceName']   . "</td>";
+                                                                        echo "<td>";
+                                                                            if(isset($VTicket['RoleName'])){ 
+                                                                                echo $VTicket['RoleName'] ;
+                                                                            }else{
+                                                                                echo "<p class='fs-13 c-gray'>Not Determined yet</p>" ;
+                                                                            } 
+                                                                        echo "</td>";                                                                        echo "<td>" . $VTicket['PlaceName']   . "</td>";
                                                                         echo "<td>" . $VTicket['Date']   . "</td>";
                                                                         echo "<td>" . $VTicket['Quantity']   . "</td>";
                                                                         echo "<td>" . $VTicket['Total']   . "</td>";
@@ -367,10 +372,10 @@ if (isset($_SESSION["AdminID"])) {
                                                     $sql = "WHERE visitticket.PlaceID IN(".implode(',', $_POST['PlaceID']).")";
 
                                                     $ETicketQuery = "SELECT visitticket . * , user.Name AS UserName,  user.LastName AS LastName  , user.RoleID  AS RoleID , userrole.RoleName AS RoleName , paymentoptions.PaymentType AS Payment , place.Name AS PlaceName , place.ID AS PlaceID FROM visitticket
-                                                    JOIN user ON visitticket.UserID = user.ID 
-                                                        JOIN userrole ON userrole.ID = user.RoleID
-                                                    JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
-                                                    JOIN place ON visitticket.PlaceID = place.ID
+                                                    LEFT JOIN user ON visitticket.UserID = user.ID 
+                                                        LEFT JOIN userrole ON userrole.ID = user.RoleID
+                                                    LEFT JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
+                                                    LEFT JOIN place ON visitticket.PlaceID = place.ID
                                                     $sql
                                                     ORDER BY Date $DateSort ,visitticket.ID $sort 
                                                     ";
@@ -387,8 +392,13 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "<tr id='TableData'>";
                                                                 echo "<td>" . $VTicket['ID']     . "</td>";
                                                                 echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $FullName   . "</td>";
-                                                                echo "<td>" . $VTicket['RoleName']   . "</td>";
-                                                                echo "<td>" . $VTicket['PlaceName']   . "</td>";
+                                                                echo "<td>";
+                                                                        if(isset($VTicket['RoleName'])){ 
+                                                                            echo $VTicket['RoleName'] ;
+                                                                        }else{
+                                                                            echo "<p class='fs-13 c-gray'>Not Determined yet</p>" ;
+                                                                        } 
+                                                                echo "</td>";                                                                echo "<td>" . $VTicket['PlaceName']   . "</td>";
                                                                 echo "<td>" . $VTicket['Date']   . "</td>";
                                                                 echo "<td>" . $VTicket['Quantity']   . "</td>";
                                                                 echo "<td>" . $VTicket['Total']   . "</td>";
@@ -400,10 +410,10 @@ if (isset($_SESSION["AdminID"])) {
                                                     $sql = "WHERE RoleID IN(". implode(',', $_POST['RoleID']).")";
                                                     
                                                     $EVTicketQuery = "SELECT visitticket . * , user.Name AS UserName , user.LastName AS LastName , user.RoleID  AS RoleID , userrole.RoleName AS RoleName , paymentoptions.PaymentType AS Payment , place.Name AS PlaceName , place.ID AS PlaceID FROM visitticket
-                                                    JOIN user ON visitticket.UserID = user.ID 
-                                                        JOIN userrole ON userrole.ID = user.RoleID
-                                                    JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
-                                                    JOIN place ON visitticket.PlaceID = place.ID
+                                                    LEFT JOIN user ON visitticket.UserID = user.ID 
+                                                        LEFT JOIN userrole ON userrole.ID = user.RoleID
+                                                    LEFT JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
+                                                    LEFT JOIN place ON visitticket.PlaceID = place.ID
                                                     $sql
                                                     ORDER BY Date $DateSort ,visitticket.ID $sort 
                                                     ";
@@ -418,8 +428,13 @@ if (isset($_SESSION["AdminID"])) {
                                                             echo "<tr id='TableData'>";
                                                                 echo "<td>" . $VTicket['ID']     . "</td>";
                                                                 echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $FullName   . "</td>";
-                                                                echo "<td>" . $VTicket['RoleName']   . "</td>";
-                                                                echo "<td>" . $VTicket['PlaceName']   . "</td>";
+                                                                echo "<td>";
+                                                                        if(isset($VTicket['RoleName'])){ 
+                                                                            echo $VTicket['RoleName'] ;
+                                                                        }else{
+                                                                            echo "<p class='fs-13 c-gray'>Not Determined yet</p>" ;
+                                                                        } 
+                                                                echo "</td>";                                                                echo "<td>" . $VTicket['PlaceName']   . "</td>";
                                                                 echo "<td>" . $VTicket['Date']   . "</td>";
                                                                 echo "<td>" . $VTicket['Quantity']   . "</td>";
                                                                 echo "<td>" . $VTicket['Total']   . "</td>";
@@ -429,10 +444,10 @@ if (isset($_SESSION["AdminID"])) {
                                                     }
                                                 }else{
                                                     $ETicketQuery = "SELECT visitticket . * , user.Name AS UserName , user.LastName AS LastName , user.RoleID  AS RoleID , userrole.RoleName AS RoleName , paymentoptions.PaymentType AS Payment , place.Name AS PlaceName , place.ID AS PlaceID FROM visitticket
-                                                    JOIN user ON visitticket.UserID = user.ID 
-                                                        JOIN userrole ON userrole.ID = user.RoleID
-                                                    JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
-                                                    JOIN place ON visitticket.PlaceID = place.ID
+                                                    LEFT JOIN user ON visitticket.UserID = user.ID 
+                                                        LEFT JOIN userrole ON userrole.ID = user.RoleID
+                                                    LEFT JOIN paymentoptions ON visitticket.PaymentID = paymentoptions.ID
+                                                    LEFT JOIN place ON visitticket.PlaceID = place.ID
                                                     ORDER BY Date $DateSort ,visitticket.ID $sort 
                                                     ";
                                                     $Query = mysqli_query($con , $ETicketQuery);
@@ -444,7 +459,13 @@ if (isset($_SESSION["AdminID"])) {
                                                         echo "<tr id='TableData'>";
                                                             echo "<td>" . $VTicket['ID']     . "</td>";
                                                             echo "<td><a href='./Users.php?action=MoreInfo&UserID=". $VTicket['UserID'] ."' class='t-none'>" . $FullName   . "</td>";
-                                                            echo "<td>" . $VTicket['RoleName']   . "</td>";
+                                                            echo "<td>";
+                                                                if(isset($VTicket['RoleName'])){ 
+                                                                    echo $VTicket['RoleName'] ;
+                                                                }else{
+                                                                    echo "<p class='fs-13 c-gray'>Not Determined yet</p>" ;
+                                                                } 
+                                                            echo "</td>";
                                                             echo "<td>" . $VTicket['PlaceName']   . "</td>";
                                                             echo "<td>" . $VTicket['Date']   . "</td>";
                                                             echo "<td>" . $VTicket['Quantity']   . "</td>";

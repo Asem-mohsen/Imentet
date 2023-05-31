@@ -53,12 +53,6 @@ if(isset($_POST['Confirm'])){
 
       <section class="donation-form spacing">
         <div class="container">
-          <?php if(isset($_GET['PaymentSucceeded'])){
-            echo "<div class='TicketsBooked'>";
-              echo "<i class='egypt-icon-check'></i>";
-              echo "<p> Tickets Booked Successfully </p>" ;
-            echo "</div>";
-          } ?>
           <div class="inner-container">
             <h3 class="donation-form__title text-center">Book your Ticket</h3>
             <ul class="nav nav-tabs donation-form__tab">

@@ -172,7 +172,7 @@ if(empty($EventID)){
                               <span>Ticket Cost</span>
                               <p >
                                 <i class="fa fa-money"></i>
-                                Egyptian - <?php echo $row['EgyptianPrice'] ." EGP"?> <br>
+                                Egyptians - <?php echo $row['EgyptianPrice'] ." EGP"?> <br>
 
                                 <i class="fa fa-money"></i>
                                 Foreginers - <?php if(isset($row['ForeignPrice']) && $row['ForeignPrice'] != 0){ echo $row['ForeignPrice'] ." EGP" ;}else{ echo $row['EgyptianPrice']." EGP"  ;}?> <br>
@@ -432,11 +432,11 @@ if(empty($EventID)){
                                   </div>
                                   <div class="col-sm-6">
                                     <label>Egyptians</label>
-                                    <input class="quantity-spinner Quantity" type="text" value="0" max='10' onchange="subTotal()"/>
+                                    <input class="quantity-spinner Quantity" name="Quantity[]" type="text" value="0" max='10' onchange="subTotal()"/>
                                   </div>
                                   <div class="col-sm-6">
                                     <label>Foreigners</label>
-                                    <input class="quantity-spinner Quantity" type="text" value="0" max='10' onchange="subTotal()"/>
+                                    <input class="quantity-spinner Quantity" name="Quantity[]" type="text" value="0" max='10' onchange="subTotal()"/>
                                   </div>
                                   <div class="col-sm-12">
                                     Total

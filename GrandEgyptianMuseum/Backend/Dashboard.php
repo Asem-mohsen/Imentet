@@ -204,12 +204,12 @@ if (isset($_SESSION["AdminID"])) {
                         $dataPoints1 = array();
                         $dataPoints2 = array();
 
-                        $sql="SELECT Name , RegularPrice , VIpPrice FROM entertainmnet LIMIT 7";
+                        $sql="SELECT Name , EgyptianPrice , ForeignPrice FROM entertainmnet ORDER BY ID DESC LIMIT 7";
 
                         if ($result=mysqli_query($con,$sql)){	  
                             foreach($result as $ChartRow){
-                                array_push($dataPoints1, array("label"=> $ChartRow["Name"], "y"=> $ChartRow["RegularPrice"]));
-                                array_push($dataPoints2, array("label"=> $ChartRow["Name"], "y"=> $ChartRow["VIpPrice"]));
+                                array_push($dataPoints1, array("label"=> $ChartRow["Name"], "y"=> $ChartRow["EgyptianPrice"]));
+                                array_push($dataPoints2, array("label"=> $ChartRow["Name"], "y"=> $ChartRow["ForeignPrice"]));
                             }
                         }
 

@@ -756,7 +756,7 @@ if (isset($_SESSION["AdminID"])) {
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 clearfix">
-                                                    <img src="./images/<?php echo $Event['Image'] ?>" width="400px" height='400px'  class="float-right" alt="Awesome Image" />
+                                                    <img src="./images/<?php echo $Event['Image'] ?>" width="420px" height='420px'  class="float-right" alt="Awesome Image" />
                                                 </div>
                                             </div>
                                         </div>
