@@ -580,4 +580,5 @@ if(empty($EventID)){
       jQuery("#success").modal("show");
     });
   </script>
+  
 <?php } ?>

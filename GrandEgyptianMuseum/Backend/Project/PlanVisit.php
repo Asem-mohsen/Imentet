@@ -111,7 +111,7 @@ $PageTitle = "Plan Your Visit";
                                     </li>
                                   <?php } ?>
                             </ul>
-                            <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
+                            <p style="padding-left: 20px;"> Valid ID or Passport is a Must</p>
                           </div>
                           <div class="item">
                             <ul class="list-unstyled plan-visit__price-list">
@@ -129,7 +129,7 @@ $PageTitle = "Plan Your Visit";
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <p style="padding-left: 20px;"> Valid ID or Passport is Must</p>
+                            <p style="padding-left: 20px;"> Valid ID or Passport is a Must</p>
                           </div>
                         </div>
                         <br />
