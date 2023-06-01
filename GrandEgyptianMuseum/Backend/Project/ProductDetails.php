@@ -81,7 +81,7 @@ if(empty($ItemID)){
     $PageTitle = $Item['Item'] . " Details";
 
     if($ItemID != $Item['ID']){
-        header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php");
+        header("Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1");
         exit();
         }
 
@@ -121,7 +121,7 @@ if(empty($ItemID)){
                                 <input type='hidden' name='CatID' value="<?php echo $Item['CategoryID'] ?>" />
 
                                 <h3 class="product-details__title"><?php echo $Item['Item'] ?></h3>
-                                <p class="product-details__price"><?php echo $Item['Price'] . "$" ?></p>
+                                <p class="product-details__price"><?php echo $Item['Price'] . " EGP" ?></p>
                                 <p class="product-details__text">
                                     All of our products are of excellent quality, the materials used to
                                     make this <?php echo $Item['Item'] ?> are environmentally friendly and highly
@@ -199,13 +199,15 @@ if(empty($ItemID)){
                                                                                 <span class="product-details__review-sep">–</span>
                                                                                 <span class="product-details__review-date"><?php echo $Date ?></span>
                                                                             </div>
-                                                                            <?php if($UserComment['UserID'] == $UserID ){ ?>
-                                                                                <div class="product-details__review-top-right" style="position:absolute; right:37px">
-                                                                                    <button name='DeleteComment'style="background-color: #d99578; border:none ; color:white ; border-radius: 7px; padding: 5px 14px;"> 
-                                                                                        Remove
-                                                                                    </button>
-                                                                                </div>
-                                                                            <?php } ?>
+                                                                            <?php if(isset($_SESSION['UserID'])){
+                                                                                    if($UserComment['UserID'] == $UserID ){ ?>
+                                                                                        <div class="product-details__review-top-right" style="position:absolute; right:37px">
+                                                                                            <button name='DeleteComment'style="background-color: #d99578; border:none ; color:white ; border-radius: 7px; padding: 5px 14px;"> 
+                                                                                                Remove
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    <?php }
+                                                                            } ?>
                                                                         </div>
                                                                         <p class="product-details__review-text"><?php echo $UserComment['Comment'] ?></p>
                                                                     </div>
@@ -284,7 +286,7 @@ if(empty($ItemID)){
                                                 <h3 class="product-one__title">
                                                     <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/ProductDetails.php?ItemID=<?php echo $Product['ID'] ?>"><?php echo $Product['Item'] ?></a>
                                                 </h3>
-                                                <p class="product-one__text">$ <?php echo $Product['Price'] ?></p>
+                                                <p class="product-one__text">EGP <?php echo $Product['Price'] ?></p>
                                                 <input type='hidden' name='Price' value="<?php echo $Product['Price'] ?>" />
                                                 <p class="product-one__stars">
                                                     <?php echo "Available ".$Product['Quantity'] . " In Stock"?>
