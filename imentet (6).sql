@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2023 at 09:40 PM
+-- Generation Time: Jun 01, 2023 at 06:03 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -398,7 +398,8 @@ INSERT INTO `entertainmnetticket` (`ID`, `EventID`, `UserID`, `Price`, `PaymentI
 (26, 77, 29, 400, 1, 1),
 (27, 78, 29, 2475, 1, 6),
 (28, 70, 29, 10000, 1, 3),
-(29, 13, 29, 200, 1, 1);
+(29, 13, 29, 200, 1, 1),
+(30, 23, 26, 25000, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -797,17 +798,21 @@ CREATE TABLE `shopcomments` (
   `ID` int(11) NOT NULL,
   `ProductID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
-  `Comment` varchar(255) NOT NULL
+  `Comment` varchar(255) NOT NULL,
+  `Date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `shopcomments`
 --
 
-INSERT INTO `shopcomments` (`ID`, `ProductID`, `UserID`, `Comment`) VALUES
-(1, 14, 24, 'Good Quality'),
-(2, 18, 26, 'Me gusto mucho'),
-(4, 13, 28, 'Best quality ever');
+INSERT INTO `shopcomments` (`ID`, `ProductID`, `UserID`, `Comment`, `Date`) VALUES
+(1, 14, 24, 'Good Quality', '2023-04-12'),
+(2, 18, 26, 'Me gusto mucho', '2023-04-05'),
+(4, 13, 28, 'Best quality ever', '2023-04-20'),
+(8, 11, 29, 'Great', '2023-05-17'),
+(9, 11, 28, 'I bought it and highly recommended', '2023-05-19'),
+(12, 18, 28, 'This product is of excellent quality, the materials used to make this one are environmentally friendly and highly sustainable and recyclable.', '2023-06-01');
 
 -- --------------------------------------------------------
 
@@ -1086,7 +1091,8 @@ INSERT INTO `visitticket` (`ID`, `UserID`, `PlaceID`, `Date`, `PaymentID`, `Quan
 (41, 28, 1, '2023-05-22', 1, 2, 100),
 (42, 26, 2, '2023-05-25', 1, 2, 340),
 (43, 26, 2, '2023-05-25', 1, 2, 280),
-(44, 29, 2, '2023-05-31', 1, 3, 1225);
+(44, 29, 2, '2023-05-31', 1, 3, 1225),
+(45, 26, 1, '2023-06-10', 1, 5, 660);
 
 -- --------------------------------------------------------
 
@@ -1443,7 +1449,7 @@ ALTER TABLE `entertainmnetcategory`
 -- AUTO_INCREMENT for table `entertainmnetticket`
 --
 ALTER TABLE `entertainmnetticket`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `eventgallery`
@@ -1467,7 +1473,7 @@ ALTER TABLE `eventstatus`
 -- AUTO_INCREMENT for table `eventticketcart`
 --
 ALTER TABLE `eventticketcart`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -1491,7 +1497,7 @@ ALTER TABLE `giftshop`
 -- AUTO_INCREMENT for table `itemscart`
 --
 ALTER TABLE `itemscart`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `membership`
@@ -1533,7 +1539,7 @@ ALTER TABLE `q&a`
 -- AUTO_INCREMENT for table `shopcomments`
 --
 ALTER TABLE `shopcomments`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `sponsorship`
@@ -1587,13 +1593,13 @@ ALTER TABLE `visitpricing`
 -- AUTO_INCREMENT for table `visitticket`
 --
 ALTER TABLE `visitticket`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `visitticketnotpaid`
 --
 ALTER TABLE `visitticketnotpaid`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=377;
 
 --
 -- Constraints for dumped tables
