@@ -50,6 +50,7 @@ if(empty($CollectionID)){
                         <h3 class="collection-details__title"><?php echo $Collection['Collection'] ?></h3>
                         <br>
                         <img src="../Images/<?php echo $Collection['Image'] ?>" alt="Awesome Image" class="img-fluid" />
+                        <?php $ImageSize = getimagesize("../Images/" . $Collection['Image'] . "") ; ?>
                         <br>
                         <br>
                         <a href="#" class="collection-details__link"><i class="fa fa-download"></i> Download Image</a>
@@ -93,7 +94,7 @@ if(empty($CollectionID)){
                                         Year
                                         <span class="collection-details__sidebar-list__sep">:</span>
                                     </span>
-                                    <span class="collection-details__sidebar-list__value">1865 - 1924</span>
+                                    <span class="collection-details__sidebar-list__value">2500BC - 2700BC</span>
                                 </li>
                                 <li>
                                     <span class="collection-details__sidebar-list__name">
@@ -114,7 +115,7 @@ if(empty($CollectionID)){
                                         Dimension
                                         <span class="collection-details__sidebar-list__sep">:</span>
                                     </span>
-                                    <span class="collection-details__sidebar-list__value">w2560 * h1280 mm</span>
+                                    <span class="collection-details__sidebar-list__value"><?php echo  $ImageSize[3] ?></span>
                                 </li>
                                 <li>
                                     <span class="collection-details__sidebar-list__name">
