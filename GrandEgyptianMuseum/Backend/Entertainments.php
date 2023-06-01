@@ -739,10 +739,10 @@ if (isset($_SESSION["AdminID"])) {
                                                                 <span>Ticket Cost</span>
                                                                 <p>
                                                                     <i class="fa fa-money"></i>
-                                                                    Egyptian - <?php echo $Event['EgyptianPrice'] ;?> <br>
+                                                                    Egyptian - <?php echo $Event['EgyptianPrice'] ." EGP" ;?> <br>
                                                                     
                                                                     <i class="fa fa-money"></i>
-                                                                    <?php if(isset($Event['ForeignPrice']) && $Event['ForeignPrice'] != 0){ echo "Foreginers - " . $Event['ForeignPrice'] ; }  ?>
+                                                                    <?php if(isset($Event['ForeignPrice']) && $Event['ForeignPrice'] != 0){ echo "Foreginers - " . $Event['ForeignPrice'] . " EGP" ; }  ?>
                                                                 </p>
                                                             </li>
                                                             <li>
