@@ -502,4 +502,4 @@ $PageTitle = "Pyramids";
         </div>
       </section>
 
-<?php include "./UserFooterPyramids.php"; ?>
+  <?php include "./UserFooterPyramids.php"; ?>

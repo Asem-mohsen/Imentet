@@ -50,13 +50,23 @@ if(empty($ItemID)){
         $ItemID = $_POST['ItemID'];
 
         if(!empty($Comment)){
-            $InsertComment = "INSERT INTO shopcomments VALUES (NULL , $ItemID , $UserID , '$Comment')";
+            $InsertComment = "INSERT INTO shopcomments VALUES (NULL , $ItemID , $UserID , '$Comment', now() )";
             $RunComment = mysqli_query($con , $InsertComment);
         }else{
             $EmptyComment = "Comment Cannot be Empty";
         }
 
     }
+    if(isset($_POST['DeleteComment'])){
+        $CommentID = $_POST['CommentID'];
+        $UserID = $_POST['UserID'];
+        $ProductID = $_POST['ProductID'];
+        $DeleteComment = "DELETE FROM shopcomments
+                            WHERE ID = $CommentID AND UserID = $UserID AND ProductID = $ProductID ";
+        $DeleteRun = mysqli_query($con , $DeleteComment);
+
+    }
+
     $ItemID = $_GET['ItemID'] ;
 
     $SelectProduct = "SELECT giftshop.* , giftcategory.Category AS CategoryName FROM giftshop 
@@ -149,7 +159,7 @@ if(empty($ItemID)){
                                     </div>
                                     <div class="accrodion-content">
                                         <div class="inner">
-                                            <p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</p>
+                                            <p>All of our products are of excellent quality, the materials used to make this Othman Empire Painting are environmentally friendly and highly sustainable and recyclable.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -160,20 +170,52 @@ if(empty($ItemID)){
                                     <div class="accrodion-content">
                                         <div class="inner">
                                             <div class="product-details__review-form">
-                                                <?php if(isset($EmptyComment)){
-                                                        echo "<div class='TicketsBooked' style='margin-bottom: 20px; color:red'>";
-                                                        echo "<i class='egypt-icon-remove'></i>";
-                                                        echo "<p>" . $EmptyComment . "</p>" ;
-                                                        echo "</div>";
-                                                    } ?>
-                                                    <?php if(isset($RunComment)){
-                                                        echo "<div class='TicketsBooked' style='margin-bottom: 20px;'>";
-                                                        echo "<i class='egypt-icon-check'></i>";
-                                                        echo "<p> Comment Sent Successfully </p>" ;
-                                                        echo "</div>";
-                                                    } ?>
+                                                <!-- Reviews -->
+                                                <div class="product-details__review" style="margin-bottom: 40px;">
+                                                    <?php 
+                                                        $SelectComments = "SELECT shopcomments.* , user.Name AS UserName, user.LastName AS LastName , userimages.Image AS Image FROM shopcomments 
+                                                                            JOIN user ON shopcomments.UserID = user.ID 
+                                                                            LEFT JOIN userimages ON user.ID = userimages.UserID
+                                                                            WHERE ProductID = $ItemID
+                                                                            ORDER BY shopcomments.ID DESC
+                                                                            LIMIT 3 ";
+                                                        $RunSelectComments = mysqli_query($con , $SelectComments);
+                                                        $CommentRow = mysqli_fetch_assoc($RunSelectComments);
+                                                        foreach($RunSelectComments as $UserComment){ 
+                                                            $FullNameInComments =  $UserComment['UserName'] . ' ' .  $UserComment['LastName'] ;
+                                                            $Date = date('M d, Y' ,strtotime($UserComment['Date'])) ?>
+                                                            <form action="" method="post" style='margin-bottom: 27px;'>
+                                                                <div class="product-details__review-single">
+                                                                    <input type="hidden" name="CommentID" value="<?php echo $UserComment['ID'] ?>">
+                                                                    <input type="hidden" name="ProductID" value="<?php echo $UserComment['ProductID'] ?>">
+                                                                    <input type="hidden" name="UserID" value="<?php echo $UserComment['UserID'] ?>">
+                                                                    <div class="product-details__review-left">
+                                                                        <img src="../Images/<?php echo $UserComment['Image'] ?>" width="70px" height="70px" alt="Awesome Image" />
+                                                                    </div>
+                                                                    <div class="product-details__review-right">
+                                                                        <div class="product-details__review-top">
+                                                                            <div class="product-details__review-top-left">
+                                                                                <h3 class="product-details__review-title"><?php if(isset($FullNameInComments)){ echo $FullNameInComments ; }else{  echo $UserComment['UserName'] ; } ?></h3>
+                                                                                <span class="product-details__review-sep">–</span>
+                                                                                <span class="product-details__review-date"><?php echo $Date ?></span>
+                                                                            </div>
+                                                                            <?php if($UserComment['UserID'] == $UserID ){ ?>
+                                                                                <div class="product-details__review-top-right" style="position:absolute; right:37px">
+                                                                                    <button name='DeleteComment'style="background-color: #d99578; border:none ; color:white ; border-radius: 7px; padding: 5px 14px;"> 
+                                                                                        Remove
+                                                                                    </button>
+                                                                                </div>
+                                                                            <?php } ?>
+                                                                        </div>
+                                                                        <p class="product-details__review-text"><?php echo $UserComment['Comment'] ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        <?php }
+                                                    ?>
+                                                </div>
                                                 <h3 class="product-details__review-form__title">Add Your Comment</h3>
-                                                <p class="product-details__review-form__text">Your Email address will not be published.</p>
+                                                <p class="product-details__review-form__text" style="margin-bottom: 20px;">Your Email address will not be published.</p>
                                                 <form method="post" class="contact-one__form">
                                                     <div class="row">
                                                         <div class="col-lg-6">
@@ -266,6 +308,14 @@ if(empty($ItemID)){
                 </div>
             </div>
         </section>
+
+        <!-- Error Msg -->
+        <?php if(isset($EmptyComment)){ ?>
+            <div class="alert alert-danger" role="alert" style="text-align: center;">
+                <i class="fa fa-times fa-lg"></i>
+                <?php echo $EmptyComment ?>
+            </div>
+        <?php  } ?>
 
     <?php include "../UserFooter.php" ; 
 } ?>
