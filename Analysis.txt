@@ -9,7 +9,7 @@ Project Name => Imentet
                                 /     \
                                /       \
                               /         \
-                          Admin _     Main Website
+                          Admin _      UserInterface
                           / | \  \          |   \
                          /  |  \  \         |    \
                         /   |   \  CS       |     \
