@@ -64,7 +64,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         }
 }
 
-
+if(isset($_SESSION['UserID'])){
+  header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
+}elseif(isset($_SESSION['AdminID'])){
+  header('Location: ./Dashboard.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

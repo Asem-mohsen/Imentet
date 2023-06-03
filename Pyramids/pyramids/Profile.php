@@ -25,8 +25,8 @@ if(isset($_SESSION['UserID'])){
 
   if(isset($_POST['Save'])){
     $UserID    = $_POST['UserID'];
-    $FirstName = $_POST['FirstName'];
-    $LastName  = $_POST['LastName'];
+    $FirstName =  mysqli_real_escape_string($con, $_POST['FirstName']);
+    $LastName  =  mysqli_real_escape_string($con, $_POST['LastName']);
     $Email     = $_POST['Email'];
     $Phone     = $_POST['Phone'];
     $rawdate      = htmlentities($_POST['DOB']);
@@ -59,7 +59,19 @@ if(isset($_SESSION['UserID'])){
     if(empty($rawdate)){
       $FormErrors[] = "You Must Enter a Valid Birth Date";
     }
-
+    if (!preg_match ("/^[a-zA-z]*$/", $FirstName) ) {  
+      $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+    } 
+    if (!preg_match ("/^[a-zA-z]*$/", $LastName) ) {  
+      $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+    } 
+    $pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";  
+    if (!preg_match ($pattern, $Email) ){  
+      $FormErrors[] = "Email is not valid";  
+    }
+    if (!preg_match ("/^[0-9]*$/", $Phone) ){  
+      $FormErrors[] = "Only numeric value is allowed.";   
+    }
 
     if(empty($FormErrors)) {
       if (isset($_FILES['Image']['name'])){

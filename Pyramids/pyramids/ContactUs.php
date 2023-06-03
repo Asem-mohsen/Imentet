@@ -15,8 +15,13 @@ if(isset($_SESSION['UserID'])){
 }
 
 if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
-    $UsersQuestion = $_POST['UsersQuestion'];
-    $Email = $_POST['Email'];
+    $UsersQuestion = stripslashes($_POST['UsersQuestion']);
+    $FirstName = stripslashes($_POST['FirstName']);
+    $Email = stripslashes($_POST['Email']);
+
+    $UsersQuestion = mysqli_real_escape_string($con , $UsersQuestion);
+    $FirstName = mysqli_real_escape_string($con , $FirstName);
+
     $FormErrors = array();
 
     if(empty($_POST['Email']) || !isset($_POST['Email'])){
@@ -45,7 +50,7 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
     }
 
 }elseif(isset($_POST['Send']) && isset($_SESSION['AdminID'])){
-    $ErrorMsgOfAdmin =  "<div class='alert alert-danger text-center'> You are Admin Why do you Need That !! </div>" ;
+    $ErrorMsgOfAdmin =  "<div class='alert alert-danger text-center'> You are an Admin Why do you Need That !! </div>" ;
 }
 
 ?>

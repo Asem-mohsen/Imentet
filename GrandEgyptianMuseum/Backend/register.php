@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         $Name = mysqli_real_escape_string($con, $_POST['Name']);
         $Email = mysqli_real_escape_string($con, $_POST['Email']);
-        $Password = $_POST['Password'];
+        $Password = mysqli_real_escape_string($con,  $_POST['Password']);
         $hashedPassword = password_hash($Password , PASSWORD_DEFAULT);
 
     
@@ -43,12 +43,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           if(strlen($Name) < 3){
             $FormErrors[] = "Type Your Full Name";
           }
+
+          $pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";  
+          if (!preg_match ($pattern, $Email) ){  
+            $FormErrors[] = "Email is not valid";  
+          }
               if(empty($FormErrors)){
 
                 $SplitedName = split_name($Name);
                 $FirstName = $SplitedName[0];
                 $LastName = $SplitedName[1];
-
+                if (!preg_match ("/^[a-zA-z]*$/", $FirstName) ) {  
+                  $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+                }
+                if (!preg_match ("/^[a-zA-z]*$/", $LastName) ) {  
+                  $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+                } 
                 $Insert = "INSERT INTO user(Name, LastName , Email, Password) VALUES('$FirstName' , '$LastName' , '$Email' , '$hashedPassword')";
                 $RunQuery = mysqli_query($con, $Insert);
                 
@@ -75,6 +85,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         }
     
     }
+}
+
+if(isset($_SESSION['UserID'])){
+  header('Location: http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php');
+}elseif(isset($_SESSION['AdminID'])){
+  header('Location: ./Dashboard.php');
 }
 ?>
 

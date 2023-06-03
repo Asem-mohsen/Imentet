@@ -16,9 +16,7 @@ if(isset($_SESSION['UserID'])){
 if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
     $UsersQuestion = stripslashes($_POST['UsersQuestion']);
     $FirstName = stripslashes($_POST['FirstName']);
-    $UsersQuestion = stripslashes($_POST['UsersQuestion']);
-
-    $Email = $_POST['Email'];
+    $Email = stripslashes($_POST['Email']);
 
     $UsersQuestion = mysqli_real_escape_string($con , $UsersQuestion);
     $FirstName = mysqli_real_escape_string($con , $FirstName);
