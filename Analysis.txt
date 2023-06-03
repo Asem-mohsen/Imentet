@@ -1,4 +1,4 @@
-----------------------------------Pyramids Project---------------------------------------------------------
+----------------------------------Imentet Project---------------------------------------------------------
 
 Project Name => Imentet
 
@@ -8,14 +8,16 @@ Project Name => Imentet
                                 Project
                                 /     \
                                /       \
-                            Admin      Main Website
-                            / | \            |
-                           /  |  \           |
-                      Master  |  3rdLevel    |
-                            2ndLevel        Users
+                              /         \
+                          Admin _     Main Website
+                          / | \  \          |   \
+                         /  |  \  \         |    \
+                        /   |   \  CS       |     \
+                    Master  |  Operations   |      \
+                        Strategic          GEM    Pyramids
 
 --------------Definations---------
-AdminPanel => are the backbone of the entire system, it shows the users, events information with making the CRUD
+AdminPlatform => are the backbone of the entire system, it shows the users, events information with making the CRUD
               operations on all of them
               it Consisties of 4 Levels,  =>
                           *
@@ -67,6 +69,15 @@ Customer Care Level => Admins here are responsible for
 2-Open Localhost php myadmin
 3-Create a new database with the name =>>>  imentet 
 4-then from the tool bar Select Import 
-5-Choose the downloaded file 
+5-Select the downloaded file 
 6-Click Import 
 --------------Done------------
+
+
+
+-------------------- To Open the System -------------------------
+Make sure That the Main File is Named "imentet-1"  not -main- 
+Make sure you unzipped it in the htdocs file inside Xamp
+Make sure that the files inside "imentet-1" Starts with GrandEgyptianMuseum then Pyramids
+
+Open  the system after running the database first
