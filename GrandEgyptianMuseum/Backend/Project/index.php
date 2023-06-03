@@ -141,9 +141,9 @@ if(isset($_SESSION['AdminID'])){
                 PYRAMIDS OF GIZA
               </p>
               <h2 class="slider-one__title">
-                The Seven Wonders <br />
-                of <br />
-                The World.
+                One of <br>
+                The Seven Wonders<br>
+                of The World.
               </h2>
               <p class="slider-one__text text-uppercase">Visit Us</p>
               <div class="content">

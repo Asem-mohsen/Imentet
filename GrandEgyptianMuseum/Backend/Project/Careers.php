@@ -198,7 +198,7 @@ if(isset($_SESSION['UserID'])){
                     <div class="col-md-6">
                         <p class="contact-one__field">
                             <label>Phone:</label>
-                            <input type="number" name="Phone" pattern="[0-9]*" value="<?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo $row['Phone']; } ?>" <?php if(isset($row['Phone']) && $row['Phone'] != 0){ echo "disabled" ;} ?> required>
+                            <input type="number" name="Phone" pattern="[0-9]*" value="<?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo "0" . $row['Phone']; } ?>" <?php if(isset($row['Phone']) && $row['Phone'] != 0){ echo "disabled" ;} ?> required>
                         </p>
                     </div>
                     <div class="col-md-6">
@@ -278,7 +278,7 @@ if(isset($_SESSION['UserID'])){
                     <div class="col-md-6">
                         <p class="contact-one__field">
                             <label>Phone:</label>
-                            <input type="number" name="Phone" pattern="[0-9]*" value="<?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo $row['Phone']; } ?>" <?php if(isset($row['Phone']) && $row['Phone'] != 0){ echo "disabled" ;} ?> required>
+                            <input type="number" name="Phone" pattern="[0-9]*" value="<?php if(isset($row['Phone']) && $row['Phone'] != 0 ){ echo "0" . $row['Phone']; } ?>" <?php if(isset($row['Phone']) && $row['Phone'] != 0){ echo "disabled" ;} ?> required>
                         </p>
                     </div>
                     <div class="col-md-6">

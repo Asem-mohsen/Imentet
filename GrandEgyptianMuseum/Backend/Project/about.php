@@ -145,64 +145,16 @@ if(isset($_SESSION['AdminID'])){
         </div>
         <div class="department-one__bottom">
           <div class="container">
-            <div class="inner-container wow fadeInRight" data-wow-duration="1500ms">
-              <div class="row">
-                <div class="col-lg-4">
-                  <ul class="department-one__list list-unstyled">
-                    <li>
-                      <a href="#">
-                        Department of <br />
-                        Sculpture Collection
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Department of Vases, Metalwork & <br />
-                        Minor Arts Collections</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Department of Prehistoric, Egyptian, <br />
-                        Cypriot and Antiquities
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-4">
-                  <ul class="department-one__list list-unstyled">
-                    <li>
-                      <a href="#"
-                        >Department of Exhibitions, <br />
-                        Communication and Education</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Department of Technical Support <br />
-                        and Museography</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        >Department of Administrative and <br />
-                        Financial Support</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-4">
-                  <div class="department-one__carrer">
-                    <div class="department-one__carrer-inner">
-                      <i class="egypt-icon-career"></i>
-                      <h3 class="department-one__carrer-title">
-                        Find Your Career
-                      </h3>
-                      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Careers.php" class="department-one__carrer-link"
-                        >Job Oppurtunities <span>+</span></a
-                      >
-                    </div>
-                  </div>
+            <div class="col-lg-4 offset-lg-4">
+              <div class="department-one__carrer" style="position: relative; bottom: 40px;">
+                <div class="department-one__carrer-inner">
+                  <i class="egypt-icon-career"></i>
+                  <h3 class="department-one__carrer-title">
+                    Find Your Career
+                  </h3>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Careers.php" class="department-one__carrer-link"
+                    >Job Oppurtunities <span>+</span></a
+                  >
                 </div>
               </div>
             </div>

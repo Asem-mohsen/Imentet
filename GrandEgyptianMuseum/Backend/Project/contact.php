@@ -14,8 +14,15 @@ if(isset($_SESSION['UserID'])){
     $row = mysqli_fetch_assoc($Select);
 }
 if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
-    $UsersQuestion = $_POST['UsersQuestion'];
+    $UsersQuestion = stripslashes($_POST['UsersQuestion']);
+    $FirstName = stripslashes($_POST['FirstName']);
+    $UsersQuestion = stripslashes($_POST['UsersQuestion']);
+
     $Email = $_POST['Email'];
+
+    $UsersQuestion = mysqli_real_escape_string($con , $UsersQuestion);
+    $FirstName = mysqli_real_escape_string($con , $FirstName);
+
     $FormErrors = array();
 
     if(empty($_POST['Email']) || !isset($_POST['Email'])){
@@ -25,7 +32,7 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
     if(empty($UsersQuestion)){
         $FormErrors[] = "Message is Required ";
     }
-    if(empty($_POST['FirstName'])){
+    if(empty($FirstName)){
         $FormErrors[] = "Name is Required ";
     }elseif(isset($_SESSION['UserID'])){
         $Name = $row['Name'];
@@ -33,6 +40,7 @@ if(isset($_POST['Send']) && !isset($_SESSION['AdminID'])){
     if(empty($_POST['Phone']) || $_POST['Phone'] == 0 || !isset($_POST['Phone']) ){
         $FormErrors[] = "Phone is Required ";
     }
+
 
     if(empty($FormErrors)){
         $InsertMessage = "INSERT INTO `q&a` (Email , UsersQuestion) VALUES( '$Email' ,'$UsersQuestion') ";

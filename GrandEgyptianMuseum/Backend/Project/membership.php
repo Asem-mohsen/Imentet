@@ -57,7 +57,7 @@ if(isset($_SESSION['AdminID'])){
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-12">
-                        <img src="images/resources/contact-1-1.jpeg" alt="" class="img-fluid" />
+                        <img src="images/resources/membership-1-1.jpg" alt="" class="img-fluid" />
                     </div>
                 </div>
             </div>
@@ -92,15 +92,14 @@ if(isset($_SESSION['AdminID'])){
                                                 <p class="pricing-one__text">60 and Above</p> </br>
                                             <?php } ?>
 
-                                            <p class="pricing-one__text">Benefits</p> </br>
                                             <li class="MembershipLi">
-                                                <i class="egypt-icon-check"></i>
+                                                <i class="egypt-icon-check" style="color: #d99578;"></i>
                                                     <?php if(isset($Membership['Entry']) && $Membership['Entry'] == 0){ 
                                                             echo "Limited Admission Entry" ;
                                                     } ?>
                                             </li>
                                             <li class="MembershipLi">
-                                                <i class="egypt-icon-check"></i>
+                                                <i class="egypt-icon-check" style="color: #d99578;"></i>
                                                 <?php
                                                     if($Membership['ChildernMuseum'] == 1 ){ 
                                                         echo "Access to Children Museum" ;   
@@ -114,7 +113,7 @@ if(isset($_SESSION['AdminID'])){
                                                 ?>
                                             </li>
                                             <li class="MembershipLi">
-                                                <i class="egypt-icon-check"></i>
+                                                <i class="egypt-icon-check" style="color: #d99578;"></i>
                                                 <?php
                                                     if($Membership['DiscountGiftShop'] == 1 && ($Membership['ID'] == 6 || $Membership['ID'] == 16)  ){ 
                                                         echo "Discounts in Gift Shop" ;   

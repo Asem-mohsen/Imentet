@@ -61,10 +61,6 @@ if(isset($_SESSION['UserID'])){
                       <i class="egypt-icon-check"></i>
                       Donate the Historical Artifacts
                     </li>
-                    <li>
-                      <i class="egypt-icon-check"></i>
-                      Adopt an Artifact & Support the Museum
-                    </li>
                   </ul>
                   <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/contact.php" class="cta-one__link">
                     <i class="fa fa-angle-right"></i>
@@ -73,7 +69,7 @@ if(isset($_SESSION['UserID'])){
               </div>
             </div>
             <div class="col-xl-6 col-lg-12">
-              <img src="images/resources/donation-1-1.jpg" alt="" class="img-fluid" />
+              <img src="images/resources/donation-1.png" alt="" class="img-fluid" />
             </div>
           </div>
         </div>

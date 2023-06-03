@@ -137,7 +137,7 @@ if(isset($_SESSION['AdminID'])){
             <?php 
               $SelectExhibitions = "SELECT entertainmnet.* , entertainmnetcategory.Name AS CatName FROM entertainmnet 
                                     JOIN entertainmnetcategory ON entertainmnetcategory.ID = entertainmnet.CatID 
-                                    WHERE CatID = 9 ORDER BY ID DESC LIMIT 3";
+                                    WHERE CatID = 9 ORDER BY entertainmnet.ID ASC LIMIT 3";
               $Query = mysqli_query($con , $SelectExhibitions);
               $ExhibitionsRow = mysqli_fetch_assoc($Query);
               foreach($Query as $Exhibitions){ 
@@ -520,28 +520,93 @@ if(isset($_SESSION['AdminID'])){
             <h2 class="block-title__title">Discover The Collection</h2>
           </div>
           <div class="row masonary-layout">
-            <?php 
-              $SelectCollections = "SELECT * FROM `collections` WHERE PlaceID = 2 AND ShowOnMuseumHome = 1 LIMIT 8";
-              $RunQuery = mysqli_query($con , $SelectCollections);
-              $CollectionRow = mysqli_fetch_assoc($RunQuery);
-              foreach($RunQuery as $Collection){ ?>
-                <div class="col-lg-4 col-md-6 col-sm-12 masonary-item wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="000ms">
-                  <div class="collection-three__single">
-                    <img src="Images/<?php echo $Collection['Image'] ?>" alt="Awesome Image" />
-                    <div class="collection-three__content">
-                      <h3 class="collection-three__title">
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>">
-                          <?php echo $Collection['Collection'] ?>
-                        </a>
-                      </h3>
-                      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=<?php echo $Collection['ID'] ?>" class="collection-three__link">
-                        <span>+</span>
-                      </a>
-                    </div>
-                  </div>
+            <!-- 1 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 masonary-item wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="000ms">
+              <div class="collection-three__single">
+                <img src="Images/collections-1-1.png" alt="Awesome Image"/>
+                <div class="collection-three__content">
+                  <h3 class="collection-three__title">
+                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=17">
+                      Ancient book of <br />
+                      the dead 
+                    </a>                      
+                  </h3>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=17" class="collection-three__link"><span>+</span></a>
                 </div>
-            <?php } ?>
-          </div>
+              </div>
+            </div>
+            <!-- 2 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 masonary-item wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="100ms">
+              <div class="collection-three__single">
+                <img src="Images/collections-1-2.png" alt="Awesome Image"/>
+                <div class="collection-three__content">
+                  <h3 class="collection-three__title">
+                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=18">
+                      Ancient burial chambers </br>
+                      for Pharaohs
+                    </a>                      
+                  </h3>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=18" class="collection-three__link"><span>+</span></a>
+                </div>
+              </div>
+            </div>
+            <!-- 3 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 masonary-item wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="200ms">
+              <div class="collection-three__single">
+                <img src="Images/collections-1-3.png" alt="Awesome Image"/>
+                <div class="collection-three__content">
+                  <h3 class="collection-three__title">
+                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=19">
+                      The tomb of Pharaoh <br>
+                      Seti I 
+                    </a>                      
+                  </h3>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=19" class="collection-three__link"><span>+</span></a>
+                </div>
+              </div>
+            </div>
+            <!-- 4 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 masonary-item wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="300ms">
+              <div class="collection-three__single">
+                <img src="./Images/collections-1-5.png" alt="Awesome Image"/>
+                <div class="collection-three__content">
+                  <h3 class="collection-three__title">
+                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=21">
+                      Ancient cuneiform writing script 
+                    </a>                      
+                  </h3>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=21" class="collection-three__link"><span>+</span></a>
+                </div>
+              </div>
+            </div>
+            <!-- 5 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 masonary-item wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="400ms">
+              <div class="collection-three__single">
+                <img src="./Images/collections-1-4.png" alt="Awesome Image"/>
+                <div class="collection-three__content">
+                  <h3 class="collection-three__title">
+                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=20">
+                      Tutankhamun’s treasures
+                    </a>                      
+                  </h3>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=20" class="collection-three__link"><span>+</span></a>
+                </div>
+              </div>
+            </div>
+            <!-- 6 -->
+            <div class="col-lg-8 col-md-6 col-sm-12 masonary-item wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="500ms">
+              <div class="collection-three__single">
+                <img src="Images/collections-1-6.png" alt="Awesome Image"/>
+                <div class="collection-three__content">
+                  <h3 class="collection-three__title">
+                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=22">
+                      King Sity
+                    </a>                      
+                  </h3>
+                  <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/CollectionDetails.php?CollectionID=22" class="collection-three__link"><span>+</span></a>
+                </div>
+              </div>
+            </div>
 
           <div class="text-center">
             <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Collections.php" class="collection-three__more-link">
