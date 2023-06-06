@@ -21,7 +21,7 @@ if (isset($_SESSION["AdminID"])) {
             $AdminRole = $row['AdminRole'];
 
             $do = isset($_GET['action']) ? $_GET['action'] : "Manage" ;
-                if($do == "Manage"){
+            if($do == "Manage"){
                     $CategoriesQuery = "SELECT * FROM entertainmnetcategory " ;
                     $Categories = mysqli_query($con , $CategoriesQuery);
                     $row = mysqli_fetch_row($Categories); 
@@ -67,7 +67,7 @@ if (isset($_SESSION["AdminID"])) {
                                         $rows = mysqli_fetch_row($Select);
                                         $count = mysqli_num_rows($Select);
                                     ?>
-                                <div class="Category swiper mySwiper">
+                                <div class="Category swiper swiper-container mySwiper">
                                             <h3 class="mt-50"><?php echo $Category['Name']; ?></h3>
                                             
                                     <div class="Boxes swiper-wrapper">
@@ -371,12 +371,15 @@ if (isset($_SESSION["AdminID"])) {
                             </form>
             <?php }elseif($do == "InsertCategory"){
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    $CategoryName = $_POST['Name'];
-                
+                        $CategoryName = mysqli_real_escape_string($con , $_POST['Name']);
+
                         $FormErrors = array();
                 
                         if (empty($CategoryName)) {
                             $FormErrors[] = "The Category Should Have a Name it Cannot be empty";
+                        }
+                        if (!preg_match ("/^[a-zA-z]*$/", $CategoryName) ) {  
+                            $FormErrors[] = "Only alphabets and whitespace are allowed.";  
                         }
                 
                         if(empty($FormErrors)){
@@ -495,7 +498,9 @@ if (isset($_SESSION["AdminID"])) {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
 
                             $CategoryID   = $_POST['CategoryID'];
-                            $Name         = $_POST['Name'];
+                            $Name = mysqli_real_escape_string($con , $_POST['Name']);
+                            $Description = mysqli_real_escape_string($con , $_POST['Description']);
+
                             $PlaceID      = $_POST['Place'];
                             $RegularPrice = $_POST['RegularPrice'];
                             $SponsoredBy  = $_POST['SponsoredBy'];
@@ -512,10 +517,10 @@ if (isset($_SESSION["AdminID"])) {
                                 $Everyday = $_POST['Everyday'];
                             }
 
-                            if(empty($_POST['Description'])){
+                            if(empty($Description)){
                                 $Description = "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip";
                             }else{
-                                $Description = $_POST['Description'];
+                                $Description = mysqli_real_escape_string($con , $_POST['Description']);
                             }
                             
                             $rawdate      = htmlentities($_POST['Date']);
@@ -557,6 +562,9 @@ if (isset($_SESSION["AdminID"])) {
                             }
                             if($DateTo == '0000-00-00') {
                                 $DateTo = NULL ;
+                            }
+                            if (!preg_match ("/^[a-zA-z]*$/", $Name) ) {  
+                                $FormErrors[] = "Only alphabets and whitespace are allowed.";  
                             }
 
                             if (empty($FormErrors)) {
@@ -985,8 +993,8 @@ if (isset($_SESSION["AdminID"])) {
 
                                 $EventID      = $_POST['EventID'];
                                 $CategoryID   = $_POST['CatID'];
-                                $Name         = $_POST['Name'];
-                                $Description  = $_POST['Description'];
+                                $Name         = mysqli_real_escape_string($con , $_POST['Name']);
+                                $Description  = mysqli_real_escape_string($con , $_POST['Description']);
                                 $PlaceID      = $_POST['Place'];
                                 $RegularPrice = $_POST['RegularPrice'];
                                 $SponsoredBy  = $_POST['SponsoredBy'];
@@ -1046,6 +1054,9 @@ if (isset($_SESSION["AdminID"])) {
                                 }
                                 if(empty($DateTo) || $DateTo == "1970-01-01") {
                                     $DateTo = NULL ;
+                                }
+                                if (!preg_match ("/^[a-zA-z]*$/", $Name) ) {  
+                                    $FormErrors[] = "Only alphabets and whitespace are allowed.";  
                                 }
 
                                 if (empty($FormErrors)) {
@@ -1114,9 +1125,10 @@ if (isset($_SESSION["AdminID"])) {
             $TheMsg = "<div class='alert alert-danger txt-center'>"  . "You Are Not Authorized To Access This Platform" . '</div>';
             RedirectIndex($TheMsg);
             echo "</div>";      
-        } 
-    include "./AdminFooter.php";
-
+        }
+        
+    include "./AdminFooter.php"; 
+    
 }else{
     if(!isset($_SESSION["AdminID"])){
         header("Location: login.php");

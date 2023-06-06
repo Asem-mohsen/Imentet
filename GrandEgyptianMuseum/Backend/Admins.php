@@ -76,9 +76,9 @@ if (isset($_SESSION["AdminID"])) {
             } elseif ($do == 'Insert') {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
 
-                    $Name      = $_POST['Name'];
+                    $Name      = mysqli_real_escape_string($con , $_POST['Name']);
+                    $Address   = mysqli_real_escape_string($con , $_POST['Address']);
                     $Phone     = $_POST['Phone'];
-                    $Address   = $_POST['Address'];
                     $Email     = $_POST['Email'];
                     $Password  = $_POST['Password'];
                     $Role      = $_POST['Role'];
@@ -104,6 +104,9 @@ if (isset($_SESSION["AdminID"])) {
                     }
                     if ($Role == 0) {
                         $FormErrors[] = "You Must Select a Correct Role For The Admin";
+                    }
+                    if (!preg_match ("/^[a-zA-z]*$/", $Name) ) {  
+                        $FormErrors[] = "Name Only alphabets and whitespace are allowed.";  
                     }
 
                     if (empty($FormErrors)) {
@@ -817,9 +820,9 @@ if (isset($_SESSION["AdminID"])) {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     $AdminID    = $_POST['AdminID'];
-                    $Name       = $_POST['Name'];
+                    $Name      = mysqli_real_escape_string($con , $_POST['Name']);
+                    $Address   = mysqli_real_escape_string($con , $_POST['Address']);
                     $Phone      = $_POST['Phone'];
-                    $Address    = $_POST['Address'];
                     $Role       = $_POST['Role'];
 
                     $FormErrors = array();
@@ -836,6 +839,9 @@ if (isset($_SESSION["AdminID"])) {
                     }
                     if ($Role == 0) {
                         $FormErrors[] = "Role Cannot be Empty";
+                    }
+                    if (!preg_match ("/^[a-zA-z]*$/", $Name) ) {  
+                        $FormErrors[] = "Name Only alphabets and whitespace are allowed.";  
                     }
 
                     if (empty($FormErrors)) {

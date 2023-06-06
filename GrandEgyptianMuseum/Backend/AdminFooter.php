@@ -147,7 +147,11 @@
     <script src="./JS/jquery-ui.min.js"></script>
     <script src="./JS/jquery.selectBoxIt.min.js"></script>
     <script src="./JS/bootstrap.min.js"></script>
-    <script src="./JS//backend.js?v=1"></script>
+    <script src="JS/backend.js"></script>
+    <!-- Swipper New -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- End Swipper -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

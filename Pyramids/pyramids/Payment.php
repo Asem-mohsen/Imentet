@@ -48,6 +48,9 @@ include "./NavUserPyramids.php";
             if(empty($CardHolder)){
               $FormErrors[] = "Card Holder Name is Required";
             }
+            if (!preg_match ("/^[a-zA-z]*$/", $CardHolder) ) {  
+              $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+            }
             if(isset($_POST['ExpMonth']) == 0 ){
               $FormErrors[] = "Expire Month is Required";
             }
@@ -101,6 +104,9 @@ include "./NavUserPyramids.php";
           }
           if(empty($CardHolder)){
             $FormErrors[] = "Card Holder Name is Required";
+          }
+          if (!preg_match ("/^[a-zA-z]*$/", $CardHolder) ) {  
+            $FormErrors[] = "Only alphabets and whitespace are allowed.";  
           }
           if(isset($_POST['ExpMonth']) == 0 ){
             $FormErrors[] = "Expire Month is Required";
@@ -215,6 +221,9 @@ include "./NavUserPyramids.php";
         if(empty($CardHolder)){
           $FormErrors[] = "Card Holder Name is Required";
         }
+        if (!preg_match ("/^[a-zA-z]*$/", $CardHolder) ) {  
+          $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+        }
         if(isset($_POST['ExpMonth']) == 0 ){
           $FormErrors[] = "Expire Month is Required";
         }
@@ -286,6 +295,9 @@ include "./NavUserPyramids.php";
         }
         if(empty($CardHolder)){
           $FormErrors[] = "Card Holder Name is Required";
+        }
+        if (!preg_match ("/^[a-zA-z]*$/", $CardHolder) ) {  
+          $FormErrors[] = "Only alphabets and whitespace are allowed.";  
         }
         if(isset($_POST['ExpMonth']) == 0 ){
           $FormErrors[] = "Expire Month is Required";
@@ -360,6 +372,9 @@ include "./NavUserPyramids.php";
           }
           if(empty($CardHolder)){
             $FormErrors[] = "Card Holder Name is Required";
+          }
+          if (!preg_match ("/^[a-zA-z]*$/", $CardHolder) ) {  
+            $FormErrors[] = "Only alphabets and whitespace are allowed.";  
           }
           if(isset($_POST['ExpMonth']) == 0 ){
             $FormErrors[] = "Expire Month is Required";

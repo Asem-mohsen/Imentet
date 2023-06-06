@@ -48,7 +48,8 @@ if(isset($_POST['Book'])){
 if(isset($_POST['SubmitFeedback'])){
   $EventID = $_POST['EventID'];
   $UserID = $_POST['UserID'];
-  $Feedback = $_POST['Feedback'];
+  $Feedback = mysqli_real_escape_string($con , $_POST['Feedback']);
+
 
   if(!empty($Feedback)){
     $InsertFeedback = "INSERT INTO feedback VALUES(NULL , $UserID ,$EventID , '$Feedback')";

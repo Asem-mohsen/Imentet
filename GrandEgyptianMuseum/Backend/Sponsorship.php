@@ -29,11 +29,11 @@ if (isset($_SESSION["AdminID"])) {
                         $sort = $_GET['sort'];
                     }
                     $SelectQuery = "SELECT sponsorship .* , eventsponsor.EventID AS EventID , entertainmnet.Name AS EventName , membership.Type AS Type FROM sponsorship
-                    LEFT JOIN eventsponsor ON sponsorship.ContractID = eventsponsor.ContractID
-                    LEFT JOIN entertainmnet ON eventsponsor.EventID = entertainmnet.ID
-                    JOIN membership ON sponsorship.MembershipID = membership.ID
-                    ORDER BY sponsorship.ContractID $sort
-                    ";
+                                    LEFT JOIN eventsponsor ON sponsorship.ContractID = eventsponsor.ContractID
+                                    LEFT JOIN entertainmnet ON eventsponsor.EventID = entertainmnet.ID
+                                    JOIN membership ON sponsorship.MembershipID = membership.ID
+                                    ORDER BY sponsorship.ContractID $sort
+                                    ";
                         $Select = mysqli_query($con , $SelectQuery);
                         $fecthquery = mysqli_fetch_row($Select);
                         ?>
@@ -221,8 +221,8 @@ if (isset($_SESSION["AdminID"])) {
                     <?php
                 }elseif($do == "Insert"){
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                        $Name = $_POST['Name'];
-                        $Signed = $_POST['Signed'];
+                        $Name = mysqli_real_escape_string($con , $_POST['Name']);
+                        $Signed = mysqli_real_escape_string($con , $_POST['Signed']);
 
                     
                             $FormErrors = array();
@@ -234,7 +234,12 @@ if (isset($_SESSION["AdminID"])) {
                             if (empty($Signed)) {
                                 $FormErrors[] = "Deal IS Done By ? Cannot be empty";
                             }
-                    
+                            if (!preg_match ("/^[a-zA-z]*$/", $Name) ) {  
+                                $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+                            }
+                            if (!preg_match ("/^[a-zA-z]*$/", $Signed) ) {  
+                                $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+                            }
                             if(empty($FormErrors)){
                                 $InsertQuery = "INSERT INTO `sponsorship` Values( Null , '$Name' , '$Signed' , 12 )";
                                 $Insert = mysqli_query($con, $InsertQuery);

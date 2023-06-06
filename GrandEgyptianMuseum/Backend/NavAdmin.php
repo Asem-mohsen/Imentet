@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="plugins/egypt-icons/style.css" />
     <link rel="stylesheet" href="css/nouislider.css" />
     <link rel="stylesheet" href="css/nouislider.pips.css" />
+    <link rel="stylesheet"  href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
@@ -34,7 +35,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="./css/style.css?v=4" />
-    <link rel="stylesheet" href="Style///main.css">
+    <link rel="stylesheet" href="Style//main.css">
     <link rel="stylesheet" href="Style///framework.css">
     <link rel="stylesheet" href="css/responsive.css" />
 

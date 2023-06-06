@@ -1733,14 +1733,16 @@ if (isset($_SESSION["AdminID"])) {
                 <?php
         }elseif($do == "InsertRole"){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $RoleName = $_POST['Name'];
-            
+                $RoleName = mysqli_real_escape_string($con , $_POST['Name']);
+
                     $FormErrors = array();
             
                     if (empty($RoleName)) {
                         $FormErrors[] = "The Role Should Have a Name it Cannot be empty";
                     }
-            
+                    if (!preg_match ("/^[a-zA-z]*$/", $RoleName) ) {  
+                        $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+                    }
                     if(empty($FormErrors)){
                         $InsertQuery = "INSERT INTO `userrole` Values( Null , '$RoleName' )";
                         $Insert = mysqli_query($con, $InsertQuery);
@@ -1956,7 +1958,7 @@ if (isset($_SESSION["AdminID"])) {
             }
         }elseif($do == "InsertMembership"){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $Membership = $_POST['Name'];
+                $Membership = mysqli_real_escape_string($con , $_POST['Name']);
                 $Price = $_POST['Price'];
                 $Period = $_POST['Period'];
 
@@ -1972,7 +1974,9 @@ if (isset($_SESSION["AdminID"])) {
                     if ($Period == 0 ) {
                         $FormErrors[] = "You Must Select a Period For The Membership";
                     }
-
+                    if (!preg_match ("/^[a-zA-z]*$/", $Membership) ) {  
+                        $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+                    }
                     if(!isset($_POST['FreeEntry'])){
                         $FreeEntry = NULL ;
                     }else{
@@ -2287,7 +2291,7 @@ if (isset($_SESSION["AdminID"])) {
         }elseif($do == "UpdateMembership"){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $MembershipID = $_POST['MembershipID'];
-                $Membership = $_POST['Name'];
+                $Membership = mysqli_real_escape_string($con , $_POST['Name']);
                 $Price = $_POST['Price'];
                 $Period = $_POST['Period'];
                 
@@ -2301,6 +2305,9 @@ if (isset($_SESSION["AdminID"])) {
                     }
                     if ($Period == 0 ) {
                         $FormErrors[] = "You Must Select a Period For The Membership";
+                    }
+                    if (!preg_match ("/^[a-zA-z]*$/", $Membership) ) {  
+                        $FormErrors[] = "Only alphabets and whitespace are allowed.";  
                     }
 
 

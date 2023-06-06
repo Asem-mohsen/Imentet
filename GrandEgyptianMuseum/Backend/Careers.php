@@ -527,7 +527,7 @@ if (isset($_SESSION["AdminID"])) {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $ApplicantID = $_POST['ApplicantID'];
                         $Statues  = $_POST['Statues'];
-                        $Reason  = $_POST['Reason'];
+                        $Reason = mysqli_real_escape_string($con , $_POST['Reason']);
 
                         $rawdate      = htmlentities($_POST['Date']);
                         $Date         = date('Y-m-d', strtotime($rawdate));
@@ -593,9 +593,9 @@ if (isset($_SESSION["AdminID"])) {
                     <?php
             }elseif($do == "InsertCareer"){
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    $Career = $_POST['Career'];
                     $Place  = $_POST['Place'];
-                
+                    $Career = mysqli_real_escape_string($con , $_POST['Career']);
+
                         $FormErrors = array();
                 
                         if (empty($Career)) {
@@ -604,7 +604,9 @@ if (isset($_SESSION["AdminID"])) {
                         if ($Place == 0) {
                             $FormErrors[] = "You Must Select a Place";
                         }
-                
+                        if (!preg_match ("/^[a-zA-z]*$/", $Career) ) {  
+                            $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+                        }
                         if(empty($FormErrors)){
                             $InsertQuery = "INSERT INTO `careers` Values( Null , '$Career' , $Place)";
                             $Insert = mysqli_query($con, $InsertQuery);

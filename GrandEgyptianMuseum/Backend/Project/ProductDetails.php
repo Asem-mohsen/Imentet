@@ -45,7 +45,7 @@ if(empty($ItemID)){
         }
     }
     if(isset($_POST['AddComment'])){
-        $Comment = $_POST['Comment'];
+        $Comment = mysqli_real_escape_string($con , $_POST['Comment']);
         $UserID = $_POST['UserID'];
         $ItemID = $_POST['ItemID'];
 

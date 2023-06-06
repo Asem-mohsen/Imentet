@@ -401,11 +401,10 @@ if (isset($_SESSION["AdminID"])) {
             }elseif($do == "UpdateItem"){
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {        
                     $ItemID = $_POST['ItemID'];
-                    $ItemName = $_POST['Item'];
                     $Quantity = $_POST['Quantity'];
                     $Price = $_POST['Price'];
                     $Categories = $_POST['Categories'];
-                    
+                    $ItemName = mysqli_real_escape_string($con , $_POST['Item']);
                     $image = $_FILES['Image']['name'];
                     $folder = "Images\Uploads\\".$image;
 
@@ -430,7 +429,9 @@ if (isset($_SESSION["AdminID"])) {
                     }
                     if (empty($image)){
                         $FormErrors[] = "You Must Select an Image For The Item";
-
+                    }
+                    if (!preg_match ("/^[a-zA-z]*$/", $ItemName) ) {  
+                        $FormErrors[] = "Only alphabets and whitespace are allowed.";  
                     }
 
                     if(empty($FormErrors)){
@@ -500,11 +501,10 @@ if (isset($_SESSION["AdminID"])) {
                 <?php
             }elseif($do == "InsertItems"){
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {        
-                    $ItemName = $_POST['Item'];
                     $Quantity = $_POST['Quantity'];
                     $Price = $_POST['Price'];
                     $Categories = $_POST['Categories'];
-                    
+                    $ItemName = mysqli_real_escape_string($con , $_POST['Item']);
                     $image = $_FILES['Image']['name'];
                     $folder = "Images\Uploads\\".$image;
 
@@ -533,7 +533,9 @@ if (isset($_SESSION["AdminID"])) {
                     if ($Categories == 0) {
                         $FormErrors[] = "You Must Enter a Valid Category";
                     }
-
+                    if (!preg_match ("/^[a-zA-z]*$/", $ItemName) ) {  
+                        $FormErrors[] = "Only alphabets and whitespace are allowed.";  
+                    }
                     if(empty($FormErrors)){
                         $InsertItems = "INSERT INTO `giftshop` VALUES( NULL , '$ItemName' , '$image' , $Quantity , $Price , $Categories )" ;
                         $Insert = mysqli_query($con , $InsertItems);
@@ -604,7 +606,7 @@ if (isset($_SESSION["AdminID"])) {
                     <?php
             }elseif($do == "InsertCategory"){
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    $Category = $_POST['Category'];
+                    $Category = mysqli_real_escape_string($con , $_POST['Category']);
                     $Place  = $_POST['Place'];
                 
                         $FormErrors = array();
@@ -614,6 +616,9 @@ if (isset($_SESSION["AdminID"])) {
                         }
                         if ($Place == 0) {
                             $FormErrors[] = "You Must Select a Place";
+                        }
+                        if (!preg_match ("/^[a-zA-z]*$/", $Category) ) {  
+                            $FormErrors[] = "Only alphabets and whitespace are allowed.";  
                         }
                 
                         if(empty($FormErrors)){

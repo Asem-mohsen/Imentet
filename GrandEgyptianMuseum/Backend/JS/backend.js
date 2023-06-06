@@ -50,13 +50,14 @@ $('.toggle-info').click(function(){
     }
   });
 
-  //Convert Password INTO showen text
-  var PassField = $('.Password');
-  $('.show-pass').hover(function(){
-  PassField.attr('type' , 'text');
-  },function(){
-   PassField.attr('type','password');
-  });
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    },
+});
 
   //Confirmation message on delete button
   $('.confirm').click(function(){
@@ -115,21 +116,7 @@ $(document).ready(function(){
         $(this).closest('.product-data').find('.input-quantity').val(value);
     }
   })
-})
-
-
-
-
-
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 4,
-    spaceBetween: 15,
-    freeMode: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
+});
 
 
 

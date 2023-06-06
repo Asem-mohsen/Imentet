@@ -163,8 +163,8 @@ if (isset($_SESSION["AdminID"])) {
             }elseif($do == "Insert"){
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
 
-                    $Collection   = $_POST['Collection'];
-                    $Description  = $_POST['Description'];
+                    $Collection =  mysqli_real_escape_string($con , $_POST['Collection']);
+                    $Description =  mysqli_real_escape_string($con , $_POST['Description']);
                     $PlaceID      = $_POST['Place'];
                     $CategoryID      = $_POST['Category'];
 
@@ -182,6 +182,7 @@ if (isset($_SESSION["AdminID"])) {
                         $ShowOnMuseum = $_POST['ShowOnMuseum'];
                     }
 
+
                     if (isset($image)) {
                         $imageName = $_FILES['Image']['name'];
                         $imageType = $_FILES['Image']['type'];
@@ -196,7 +197,7 @@ if (isset($_SESSION["AdminID"])) {
                         $FormErrors[] = "The Collection Should Have a Name";
                     }
                     if (empty($Description)) {
-                        $FormErrors[] = "You Must Enter a Description";
+                        $FormErrors[] = "You Must Type a Description";
                     }
                     if (empty($image)) {
                         $FormErrors[] = "You Must Insert an Image ";
@@ -206,6 +207,9 @@ if (isset($_SESSION["AdminID"])) {
                     }
                     if ($CategoryID == 0) {
                         $FormErrors[] = "You Must Select a Correct Category to the Collection";
+                    }
+                    if (!preg_match ("/^[a-zA-z]*$/", $Collection) ) {  
+                        $FormErrors[] = "Only alphabets and whitespace are allowed For The Collection Name";  
                     }
 
                     if (empty($FormErrors)) {
@@ -336,11 +340,11 @@ if (isset($_SESSION["AdminID"])) {
             }elseif($do == "Update"){
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
 
-                        $CollectionID      = $_POST['CollectionID'];
-                        $Collection         = $_POST['Collection'];
+                        $Collection   =  mysqli_real_escape_string($con , $_POST['Collection']);
+                        $Description  =  mysqli_real_escape_string($con , $_POST['Description']);
+                        $CollectionID = $_POST['CollectionID'];
                         $PlaceID      = $_POST['Place'];
-                        $Description = $_POST['Description'];
-                        $CategoryID = $_POST['Category'];
+                        $CategoryID   = $_POST['Category'];
 
                         $image        = $_FILES['Image']['name'];
                         $folder       = "Images\Uploads\\".$image;
@@ -376,7 +380,10 @@ if (isset($_SESSION["AdminID"])) {
                         if (empty($image)){
                             $FormErrors[] = "You Must Enter a image For The Collection";
                         }
-
+                        if (!preg_match ("/^[a-zA-z]*$/", $Collection) ) {  
+                            $FormErrors[] = "Only alphabets and whitespace are allowed For The Collection Name";  
+                        }
+                        
                         if (empty($FormErrors)) {
 
                             $UpdateQuery = "UPDATE `collections` SET Collection = '$Collection' , Image = '$image' , Description = '$Description' , PlaceID = $PlaceID , CatID = $CategoryID , ShowOnPyramidsHome = '$ShowOnPyramids' , ShowOnMuseumHome = '$ShowOnMuseum' WHERE ID = $CollectionID ";
