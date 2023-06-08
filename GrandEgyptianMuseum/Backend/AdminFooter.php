@@ -147,7 +147,7 @@
     <script src="./JS/jquery-ui.min.js"></script>
     <script src="./JS/jquery.selectBoxIt.min.js"></script>
     <script src="./JS/bootstrap.min.js"></script>
-    <script src="JS/backend.js"></script>
+    <script src="JS//backend.js"></script>
     <!-- Swipper New -->
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <!-- End Swipper -->

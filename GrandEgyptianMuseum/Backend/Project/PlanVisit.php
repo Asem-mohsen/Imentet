@@ -190,7 +190,7 @@ $PageTitle = "Plan Your Visit";
                           </h3>
                         </div>
                         <div class="accrodion-grp" data-grp-name="plan-visit__accrodion">
-                          <div class="accrodion active">
+                          <div class="accrodion">
                             <div class="accrodion-title">
                               <h4>Dining</h4>
                             </div>
@@ -234,7 +234,7 @@ $PageTitle = "Plan Your Visit";
                               </div>
                             </div>
                           </div>
-                          <div class="accrodion">
+                          <div class="accrodion active">
                             <div class="accrodion-title">
                               <h4>Restrooms</h4>
                             </div>

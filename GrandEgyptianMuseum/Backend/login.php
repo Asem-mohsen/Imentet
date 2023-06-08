@@ -92,6 +92,11 @@ if(isset($_SESSION['UserID'])){
     <link rel="stylesheet" href="css/owl.theme.default.min.css" />
     <link rel="stylesheet" href="plugins/egypt-icons/style.css" />
     <link rel="stylesheet" href="css/nouislider.css" />
+    
+    <!-- Captcha -->
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+    <!-- Captcha -->
+
     <link rel="stylesheet" href="css/nouislider.pips.css" />
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css" />
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />

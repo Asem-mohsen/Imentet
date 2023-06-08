@@ -706,7 +706,6 @@ div.EventsPage div.Category h3{
 div.Box{
     border: 1px solid #e9e5e5;
     border-radius: 6px;
-    padding: 10px;
     margin-right: 34px;
     overflow: hidden;
 }
@@ -768,7 +767,7 @@ div.PlusBoxEntertainment a
     border: 1px solid  #e9e5e5;
     border-radius: 6px;
     width: 217px;    
-    height: 322px;
+    height: 300px;
 }
 .swiper {
     width: 105%;
