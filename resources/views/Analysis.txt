@@ -1,0 +1,83 @@
+----------------------------------Imentet Project---------------------------------------------------------
+
+Project Name => Imentet
+
+
+
+--------------Stracture----------
+                                Project
+                                /     \
+                               /       \
+                              /         \
+                          Admin _      UserInterface
+                          / | \  \          |   \
+                         /  |  \  \         |    \
+                        /   |   \  CS       |     \
+                    Master  |  Operations   |      \
+                        Strategic          GEM    Pyramids
+
+--------------Definations---------
+AdminPlatform => are the backbone of the entire system, it shows the users, events information with making the CRUD
+              operations on all of them
+              it Consisties of 4 Levels,  =>
+                          *
+                        /   \
+                       /     \
+                      /       \
+                     /  Master \
+                    ----------  \
+                   /StratigcLevel\
+                  --------------- \
+                 / Operation Level \
+                ------------------- \
+               / Customer Care Level \
+              /---------------------  \
+
+Master Level => The Master admins here are responsible for 
+                1- Delete events
+                2- CRUD Admins
+                3- Add and Delete sponsorship
+                4- Remove Transportations
+
+Stratigc Level => The Admins here are responsible for
+                1- Can Edit any Events 
+                2- Confirmation for ShopOwners and Horse men
+                3- Add Category
+                4- Add Membership Type
+                5- Add User roles
+                6- Add Careers
+                7- Edit and Delete on Gift Shop
+                8- Access to Donation
+                9- Edit and remove from Collections
+                10- Access to sponsorship
+                11- Edit on Transportations
+
+Operations Level => The Admins here are responsible for
+                1- Add Entertainments 
+                2- add on GiftShop
+                3- access Tickets platform
+                4- access to Collections page AND Add them
+
+Customer Care Level => Admins here are responsible for
+                1- Answer questions on the Messages platform 
+                2- Edit the answers or replyes
+
+
+
+-------------------- HOW TO IMPORT DATABASE ------------------------------------------------------------------
+1-Download the file
+2-Open Localhost php myadmin
+3-Create a new database with the name =>>>  imentet 
+4-then from the tool bar Select Import 
+5-Select the downloaded file 
+6-Click Import 
+--------------Done------------
+
+
+
+-------------------- To Open the System -------------------------
+Make sure That the Main File is Named "imentet-1"  not -main- 
+Make sure you unzipped it in the htdocs file inside Xamp
+Make sure that the files inside "imentet-1" Starts with GrandEgyptianMuseum then Pyramids
+
+Open  the system after running the database first
