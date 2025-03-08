@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shop_items_category', function (Blueprint $table) {
+        Schema::create('user_memberships', function (Blueprint $table) {
             $table->id();
-            $table->json('name')->unique(); // Example: "Statues", "Books", "Souvenirs"
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('membership_id')->constrained()->onDelete('cascade');
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shop_items_category');
+        Schema::dropIfExists('user_memberships');
     }
 };

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('gift_shops', function (Blueprint $table) {
             $table->id();
             $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
-            $table->string('name'); // e.g., "Museum Shop", "Pyramids Shop", "Online Shop"
-            $table->string('location')->nullable();
+            $table->json('name'); // e.g., "Museum Shop", "Pyramids Shop", "Online Shop"
+            $table->json('location')->nullable();
             $table->timestamps();
         });
     }
