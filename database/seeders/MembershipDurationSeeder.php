@@ -14,9 +14,10 @@ class MembershipDurationSeeder extends Seeder
         $durations = ['Monthly', 'Yearly', 'Open'];
 
         foreach (Membership::all() as $membership) {
-            MembershipDuration::firstOrCreate([
+            MembershipDuration::create([
                 'membership_id' => $membership->id,
                 'duration' => $durations[array_rand($durations)],
+                'created_at' => now(),
             ]);
         }
     }

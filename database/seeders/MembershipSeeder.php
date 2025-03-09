@@ -10,10 +10,17 @@ class MembershipSeeder extends Seeder
 {
     public function run()
     {
-        $memberships = ['Individual', 'Families', 'Supporting', 'Patron', 'Students', 'Seniors'];
+        $memberships = [
+            'Individual' => 'فردي',
+            'Families' => 'العائلات',
+            'Supporting' => 'دعم',
+            'Patron' => 'الراعي',
+            'Students' => 'طلاب',
+            'Seniors' => 'كبار السن',
+        ];
 
-        foreach ($memberships as $membership) {
-            Membership::firstOrCreate(['name' => $membership]);
+        foreach ($memberships as $en => $ar) {
+            Membership::create(['name' => ['en' => $en, 'ar' => $ar]]);
         }
     }
 }

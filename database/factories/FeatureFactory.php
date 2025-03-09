@@ -11,8 +11,13 @@ class FeatureFactory extends Factory
 
     public function definition()
     {
+        $nameEn = $this->faker->sentence(3);
+        $nameAr = 'ترجمة ' . $nameEn;
+
         return [
-            'name' => $this->faker->sentence(3),
+            'name' => ['en' => $nameEn, 'ar' => $nameAr],
+            'is_active' => true,
+            'is_bold' => true,
         ];
     }
 }

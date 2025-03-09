@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\VisitorType;
 
@@ -10,10 +9,19 @@ class VisitorTypeSeeder extends Seeder
 {
     public function run()
     {
-        $types = ['Student', 'Senior', 'Foreigner Senior'];
+        $types = [
+            'Egyptian Student' => 'طالب مصري',
+            'Foreigner Adult' => 'بالغ أجنبي',
+            'Foreigner Student' => 'طالب أجنبي',
+            'Egyptian Senior' => 'مسن مصري',
+            'Egyptian Adult' => 'بالغ مصري',
+            'Foreigner Senior' => 'مسن أجنبي',
+        ];
 
-        foreach ($types as $type) {
-            VisitorType::firstOrCreate(['name' => $type]);
+        foreach ($types as $en => $ar) {
+            VisitorType::create([
+                'name' => ['en' => $en, 'ar' => $ar]
+            ]);
         }
     }
 }
