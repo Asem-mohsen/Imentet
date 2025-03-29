@@ -11,7 +11,7 @@ class EventCategory extends Model
 {
     use HasFactory, HasTranslations;
     protected $guarded = ['id'];
-    public $translatable = ['name'];
+    public $translatable = ['name' , 'description'];
 
     public function events(): HasMany
     {

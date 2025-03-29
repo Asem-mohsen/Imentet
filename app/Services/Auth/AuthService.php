@@ -13,9 +13,6 @@ class AuthService
         $this->userRepository = $userRepository;
     }
 
-    /**
-     * Handle user login and return token if successful.
-     */
     public function login(array $credentials): array
     {
         if (Auth::attempt($credentials)) {
@@ -34,6 +31,7 @@ class AuthService
     /**
      * Register a new user and generate a token.
      */
+
     public function register(array $data): array
     {
         $data['password'] = Hash::make($data['password']);
@@ -41,18 +39,18 @@ class AuthService
 
         $user = $this->userRepository->createUser($data);
 
-        $accessToken = $this->generateToken($user);
+        Auth::login($user);
 
         return [
             'user' => $user,
-            'token' => $accessToken,
+            'token' => $this->generateToken($user),
         ];
     }
 
     /**
      * Generate a personal access token for a user.
      */
-    private function generateToken(User $user): string
+    private function generateToken($user): string
     {
         return $user->createToken('API Token')->plainTextToken;
     }
@@ -62,15 +60,16 @@ class AuthService
     */
    public function webLoign(array $credentials): void
    {
-       if (!Auth::attempt($credentials)) {
-           throw new \Exception('Invalid credentials provided.', 401);
-       }
+        $user = $this->userRepository->findBy(['email' => $credentials['email']]);
 
-       $user = Auth::user();
+        if (!$user || !Hash::check($credentials['password'], $user->password)) {
+            throw new \Exception('Invalid credentials provided.', 401);
+        }
 
-       if (!$user->status) {
-           Auth::logout();
-           throw new \Exception('Your account has been disabled.', 403);
-       }
+        if (!$user->status) {
+            throw new \Exception('Your account has been disabled.', 403);
+        }
+
+        Auth::login($user);
    }
 }

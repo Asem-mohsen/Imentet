@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('membership_id')->constrained()->onDelete('cascade');
+            $table->foreignId('price_id')->constrained('membership_prices')->onDelete('cascade');
+            $table->enum('status', ['active', 'pending', 'suspended','cancelled','pending_documents'])->default('active');
             $table->date('start_date');
             $table->date('end_date')->nullable();
+            $table->timestamp('document_submission_deadline')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

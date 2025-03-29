@@ -1,7 +1,7 @@
 <footer class="site-footer">
     <div class="container">
-    <a class="site-footer__logo" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php">
-        <img src="images/resources/IMENTET-DARK-PYRAMIDS.png" width="240px" alt=""/>
+    <a class="site-footer__logo" href="{{route('pyramid.home')}}">
+        <img src="{{ asset('assets/GEM/images/IMENTET-DARK-PYRAMIDS.png') }}" width="240px" alt=""/>
     </a>
     <form class="site-footer__form">
         <div class="site-footer__form-icon">
@@ -18,7 +18,7 @@
         <a href="https://www.instagram.com/explore/locations/250717230/great-pyramids-of-giza/"><i class="egypt-icon-instagram"></i></a>
     </div>
     <p class="site-footer__copy">
-        Copyrights &copy; <?php echo date('Y') ?> <a href="http://localhost/Imentet-1/Pyramids/pyramids/AboutUs.php">Imentet</a>, All Rights Reserved.
+        Copyrights &copy; {{ date('Y') }} <a href="{{route('pyramid.about')}}">Imentet</a>, All Rights Reserved.
     </p>
     </div>
 </footer>

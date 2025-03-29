@@ -1,0 +1,3 @@
+add migration to event to hanlde Event Schedule, Organizer
+add migration to FAQ's to handle categories for it
+add migration to collections to handle the type , highlightes , Artist , Year ,Style, Object Num

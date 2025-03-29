@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\web\Museum;
 
 use App\Http\Controllers\Controller;
-use App\Services\HomeService;
+use App\Services\Museum\HomeService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

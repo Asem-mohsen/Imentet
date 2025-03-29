@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('membership_id')->constrained()->onDelete('cascade');
             $table->foreignId('visitor_type_id')->constrained()->onDelete('cascade');
+            $table->enum('duration', \App\Enums\MembershipDuration::values());
             $table->decimal('price', 10, 2);
             $table->string('currency')->default('EGP');
             $table->timestamps();

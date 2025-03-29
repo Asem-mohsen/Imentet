@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             MembershipSeeder::class,
             FeatureSeeder::class,
             EventCategorySeeder::class,
-            MembershipDurationSeeder::class,
             MembershipFeatureSeeder::class,
             ShopItemCategorySeeder::class,
             CollectionCategorySeeder::class,

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('collection_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->json('name')->unique();
+            $table->json('description')->nullable();
             $table->timestamps();
         });
     }

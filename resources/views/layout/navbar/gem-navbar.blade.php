@@ -2,11 +2,11 @@
     <div class="container">
         <div class="inner-container">
             <div class="topbar-one__left">
-                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php" class="topbar-one__link">
+                <a href="{{route('gem.tickets.plan-visit')}}" class="topbar-one__link">
                     <i class="egypt-icon-clock"></i> Plan Your Visit Today :
                     <span class="topbar-one__time-wrap">
                         <span class="topbar-one__time">
-                            <?php echo date('h'  , strtotime('+1 hour')) ?> <span class="topbar-one__minute"><?php echo date('i') ?></span>
+                            {{ date('h'  , strtotime('+1 hour')) }} <span class="topbar-one__minute">{{ date('i') }}</span>
                         </span>
 
                         <span class="topbar-one__sep"></span>
@@ -14,7 +14,7 @@
                             7 <span class="topbar-one__minute">30</span></span>
                     </span>
                 </a>
-                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/contact.php#map" class="topbar-one__link">
+                <a href="{{route('gem.contact.index')}}" class="topbar-one__link">
                     <i class="egypt-icon-maps-and-location"></i>
                     Get Direction
                 </a>
@@ -39,35 +39,21 @@
                         <option>FR</option>
                     </select>
                 </li>
-                <?php if (isset($_SESSION["UserID"])){ ?>
+                @if(auth()->user())
                     <span class="top-wrapper">
                         <li>
-                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/profile.php" class="user-icon topbar-one__search">
+                            <a href="{{route('profile.index')}}" class="user-icon topbar-one__search">
                                 <i class="fa fa-user"></i>
                             </a>
                             <ul class="submenu">
-                                <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/profile.php">Edit Profile </a></li>
-                                <li><a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php'>Log out</a></li>
+                                <li><a href="{{route('profile.index')}}">Edit Profile </a></li>
+                                <li><a href='{{route('auth.logout.all')}}'>Log out</a></li>
                             </ul>
                         </li>
                     </span>
-                <?php }elseif(isset($_SESSION["AdminID"])){
-                    $AdminID = $_SESSION["AdminID"] ;
-                    ?>
-                    <span class="top-wrapper">
-                        <li>
-                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
-                                <i class="fa fa-user"></i>
-                            </a>
-                            <ul class="submenu">
-                                <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">Edit Profile </a></li>
-                                <li><a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php'>Log out</a></li>
-                            </ul>
-                        </li>
-                    </span>
-                <?php }  ?>
+                @endif
                 <li>
-                    <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php" class="thm-btn topbar-one__btn">Tickets</a>
+                    <a href="{{route('gem.tickets.index')}}" class="thm-btn topbar-one__btn">Tickets</a>
                 </li>
             </ul>
         </div>
@@ -78,8 +64,8 @@
     <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
         <div class="container clearfix">
             <div class="logo-box">
-                <a class="navbar-brand" href="http://localhost/imentet-1/Pyramids/pyramids/index.php">
-                    <img src="images/resources/imentet-gem-logo.svg" class="main-logo" alt="Awesome Image" />
+                <a class="navbar-brand" href="{{route('gem.home')}}">
+                    <img src="{{asset('assets/GEM/images/resources/imentet-gem-logo.svg')}}" class="main-logo" alt="Awesome Image" />
                 </a>
                 <button class="menu-toggler" data-target=".main-navigation">
                     <span class="fa fa-bars"></span>
@@ -88,37 +74,37 @@
             <div class="main-navigation">
                 <ul class="navigation-box @@extra_class">
                     <li>
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">Home</a>
+                        <a href="{{route('gem.home')}}">Home</a>
                     </li>
                     <li>
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">The Museum</a>
+                        <a href="{{route('gem.about')}}">The Museum</a>
                         <ul class="submenu">
-                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/about.php">About Us </a></li>
-                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/contact.php">Contact</a></li>
-                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/donation.php">Donation</a></li>
-                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Careers.php">Careers</a></li>
-                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/membership.php">Membership</a></li>
-                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/FAQ.php">FAQ's</a></li>
+                            <li><a href="{{route('gem.about')}}">About Us </a></li>
+                            <li><a href="{{route('gem.contact.index')}}">Contact</a></li>
+                            <li><a href="{{route('gem.donations.index')}}">Donation</a></li>
+                            <li><a href="{{route('gem.careers.index')}}">Careers</a></li>
+                            <li><a href="{{route('gem.memberships.index')}}">Membership</a></li>
+                            <li><a href="{{route('gem.faqs')}}">FAQ's</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php">Visit</a>
+                        <a href="{{route('gem.tickets.plan-visit')}}">Visit</a>
                         <ul class="submenu">
                             <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#open-hrs">Opening Hours</a>
+                                <a href="{{route('gem.tickets.plan-visit')}}#open-hrs">Opening Hours</a>
                             </li>
                             <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#admission">Admission Cost</a>
+                                <a href="{{route('gem.tickets.plan-visit')}}#admission">Admission Cost</a>
                             </li>
                             <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#how-to-get">How to Get Here</a>
+                                <a href="{{route('gem.tickets.plan-visit')}}#how-to-get">How to Get Here</a>
                             </li>
                             <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#anenities">Amenities</a>
+                                <a href="{{route('gem.tickets.plan-visit')}}#anenities">Amenities</a>
                             </li>
                             <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/PlanVisit.php#interior">Interior Map</a>
+                                <a href="{{route('gem.tickets.plan-visit')}}#interior">Interior Map</a>
                             </li>
                         </ul>
                     </li>
@@ -126,65 +112,60 @@
                         <a href="#">What's On</a>
                         <ul class="submenu">
                             <li>
-                                <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/events.php?Page=1">Events </a>
+                                <a href="{{ route('gem.events') }}">Events</a>
                                 <ul class="submenu">
-                                    <?php 
-                                        $SelectEvent = "SELECT * FROM entertainmnet ORDER BY ID ASC LIMIT 4 ";
-                                        $SpecificEvent = mysqli_query($con , $SelectEvent);
-                                        $SpecificRow = mysqli_fetch_assoc($SpecificEvent); 
-                                        foreach ($SpecificEvent as $RowEvent){ ?>
-                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $RowEvent['ID'] ?>"><?php echo $RowEvent['Name'] ?> </a></li>
-                                        <?php } ?>
+                                    @foreach ($data['events'] as $event)
+                                        <li>
+                                            <a href="{{ route('gem.events.show', $event->id) }}">
+                                                {{ $event->title }}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </li>
-                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Exhibition.php">Exhibition</a></li>
                             <li>
-                                <a >Museums </a>
+                                {{-- {{ url('GrandEgyptianMuseum/Backend/Project/Exhibition.php') }} --}}
+                                <a href="{{ route('gem.events') }}">Exhibition</a> 
+                            </li>
+                            <li>
+                                <a>Museums</a>
                                 <ul class="submenu">
-                                    <?php 
-                                        $SelectEvent = "SELECT * FROM entertainmnet WHERE CatID = 10 AND ID != 82 LIMIT 4 ";
-                                        $SpecificEvent = mysqli_query($con , $SelectEvent);
-                                        $SpecificRow = mysqli_fetch_assoc($SpecificEvent); 
-                                        foreach ($SpecificEvent as $RowEvent){ ?>
-                                            <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/EventDetails.php?EventID=<?php echo $RowEvent['ID'] ?>"><?php echo $RowEvent['Name'] ?> </a></li>
-                                        <?php } ?>
+                                    @foreach ($data['exhibitions'] as $exhibition)
+                                        <li>
+                                            <a href="{{ route('gem.events.show', $exhibition->id) }}">
+                                                {{ $exhibition->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>
                     </li>
+                    
                     <li>
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Collections.php">Collections</a>
+                        <a href="{{ route('gem.collections.index') }}">Collections</a>
                         <ul class="submenu">
-                                <?php 
-                                    $SelectCollections = "SELECT * FROM collectionscategories LIMIT 5 ";
-                                                            
-                                    $SpecificCategory = mysqli_query($con , $SelectCollections);
-                                    $SpecificRow = mysqli_fetch_assoc($SpecificCategory); 
-                                    foreach ($SpecificCategory as $RowCat){ ?>
-                                        <li><a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Antiquities.php?CatID=<?php echo $RowCat['ID'] ?>"><?php echo $RowCat['Category'] ?> </a></li>
-                                    <?php } ?>
+                            @foreach ($data['categories'] as $category)
+                                <li>
+                                    <a href="{{ route('gem.collections.category', $category->slug) }}">
+                                        {{ $category->name }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li>
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1">Shop</a>
+                        <a href="{{ route('gem.shop.index') }}">Shop</a>
                     </li>
                 </ul>
             </div>
             <div class="right-side-box">
-            <?php  if(isset($_SESSION['cart'])){ 
-                        if(count($_SESSION['cart']) > 0 ){?>
-                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/Cart.php" class="site-header__cart">
-                                <i class="egypt-icon-supermarket"></i>
-                        <?php }
-                    }else{ ?>
-                            <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/OnlineShop.php?Page=1" class="site-header__cart">
-                                <i class="egypt-icon-supermarket"></i>
-                    <?php }
-                    if(isset($_SESSION['cart'])){ 
-                                if(count($_SESSION['cart']) > 0 ){ ?>
-                                    <span class="count"><?php echo count($_SESSION['cart']) ; ?> </span>
-                                <?php }
-                            } ?>
+                
+                <a href="{{ $data['cartItemCount'] > 0 ? route('gem.cart.index') : route('gem.shop.index') }}" class="site-header__cart">
+                    <i class="egypt-icon-supermarket"></i>
+                    <span class="count" id="cart-count">
+                        {{ $data['cartItemCount'] ?? 0 }}
+                    </span>
                 </a>
 
                 <a href="#" class="site-header__sidemenu-nav side-menu__toggler">

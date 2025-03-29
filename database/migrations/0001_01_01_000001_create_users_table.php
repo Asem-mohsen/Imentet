@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->longText('address');
+            $table->longText('address')->nullable();
             $table->date('dob')->nullable();
             $table->string('status')->default('active');
             $table->boolean('is_admin')->default(false);

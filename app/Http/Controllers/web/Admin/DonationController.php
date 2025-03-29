@@ -3,63 +3,40 @@
 namespace App\Http\Controllers\web\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Donations\{StoreDonationRequest, SuccessPaymentRequest, CancelPaymentRequest};
+use App\Services\DonationService;
 
 class DonationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct(protected DonationService $donationService)
     {
-        //
+        $this->donationService = $donationService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function gemDonations()
     {
-        //
+        $data = $this->donationService->getDonationsData();
+
+        return view('website.gem.donations', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreDonationRequest $request)
     {
-        //
+        try {
+            $checkoutUrl = $this->donationService->createDonation($request->all());
+            return redirect($checkoutUrl);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Something went wrong. Please try again.');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function success(SuccessPaymentRequest $request)
     {
-        //
+        return $this->donationService->handleSuccessfulPayment($request->validated());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function cancel(CancelPaymentRequest $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return $this->donationService->handleCanceledPayment($request->validated());
     }
 }

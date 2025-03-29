@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\LaravelPackageTools\Concerns\Package\HasTranslations;
+use Spatie\Translatable\HasTranslations;
 
 class Faq extends Model
 {

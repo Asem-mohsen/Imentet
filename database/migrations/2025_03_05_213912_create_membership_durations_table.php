@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('membership_durations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('membership_id')->constrained()->onDelete('cascade');
-            $table->string('duration');
+            $table->json('duration');
             $table->timestamps();
         });
     }

@@ -10,10 +10,10 @@ class ShopItemCategory extends Model
 {
     use HasFactory , HasTranslations;
     protected $guarded = ['id'];
-    public $translatable = ['name'];
+    public $translatable = ['name' , 'description'];
 
     public function items()
     {
-        return $this->hasMany(ShopItem::class);
+        return $this->hasMany(ShopItem::class , 'category_id');
     }
 }

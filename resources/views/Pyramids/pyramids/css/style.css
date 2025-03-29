@@ -10191,7 +10191,7 @@ border-color: #d99578;
 }
 
 input[type="file"] {
-  padding-top: 15px;
+  padding: 8px;
 }
 
 .product-details__categories a {

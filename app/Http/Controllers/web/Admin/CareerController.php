@@ -3,63 +3,42 @@
 namespace App\Http\Controllers\web\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Careers\StoreCareerRequest;
+use App\Services\CareerService;
 use Illuminate\Http\Request;
 
 class CareerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct(protected CareerService $careerService)
     {
-        //
+        $this->careerService = $careerService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function gemCareers()
     {
-        //
+        $data = $this->careerService->getCareers('Grand Egyptian Museum');
+
+        return view('website.gem.careers', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function pyramidsCareers()
     {
-        //
+        $data = $this->careerService->getCareers('Pyramids');
+
+        return view('website.pyramids.careers', $data);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function store(StoreCareerRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $user = auth()->user();
+
+        $cvFile = $request->file('cv'); 
+
+        $this->careerService->submitApplication($validated,$user,$cvFile);
+
+        return redirect()->back()->with('success', 'Application submitted successfully!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

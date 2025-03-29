@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable implements HasName
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $guarded = ['id'];
 
@@ -46,9 +47,9 @@ class User extends Authenticatable implements HasName
         return $this->belongsTo(Role::class, 'role_id');
     }
     
-    public function membership(): HasOne
+    public function memberships(): HasMany
     {
-        return $this->hasOne(UserMembership::class);
+        return $this->hasMany(UserMembership::class);
     }
 
     public function payments(): HasMany
@@ -66,7 +67,7 @@ class User extends Authenticatable implements HasName
         return $this->hasMany(UserTicket::class);
     }
 
-    public function userReviews(): HasMany
+    public function reviews()
     {
         return $this->hasMany(UserReview::class);
     }
@@ -86,8 +87,37 @@ class User extends Authenticatable implements HasName
         return $this->hasMany(Donation::class);
     }
 
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => "{$this->first_name} {$this->last_name}",
+        );
+    }
+
     public function getFilamentName(): string
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+
+
+    public function latestActiveMembership($returnAll = false)
+    {
+        $activeMemberships = $this->memberships()
+            ->where('end_date', '>=', now()) // Get only active memberships
+            ->with(['membership' => function ($query) {
+                $query->withCount('features'); // Count features in the Membership model
+            }])
+            ->get()
+            ->sortByDesc(fn ($membershipUser) => $membershipUser->membership->features_count) // Sort in PHP
+            ->sortByDesc('price_id'); // Secondary sort by price_id
+
+        if ($returnAll) {
+            return $activeMemberships->map(function ($membershipUser) {
+                return "{$membershipUser->membership->name} ({$membershipUser->start_date->format('d M Y')} - {$membershipUser->end_date->format('d M Y')})";
+            })->implode(' - ');
+        }
+
+        return $activeMemberships->first();
     }
 }

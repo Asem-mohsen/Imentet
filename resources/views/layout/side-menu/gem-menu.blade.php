@@ -4,8 +4,8 @@
       <div class="cursor-follower"></div>
     </div>
     <div class="side-menu__block-inner">
-      <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/index.php">
-        <img src="images/resources/dark-logo-imentet.png" alt="Awesome Image" />
+      <a href="{{route('gem.home')}}">
+        <img src="{{asset('assets/GEM/images/resources/dark-logo-imentet.png')}}" alt="Imentet" />
       </a>
       <div class="side-menu__block-about">
         <h3 class="side-menu__block__title">About Us</h3>
@@ -14,7 +14,7 @@
           permanent collection of over 2.3 million objects that span over 5,000
           which is toil and pain these cases are perfectly.
         </p>
-        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Project/VisitTickets.php" class="thm-btn side-menu__block-about__btn">Get Your Tickets</a>
+        <a href="{{route('gem.tickets.index')}}" class="thm-btn side-menu__block-about__btn">Get Your Tickets</a>
       </div>
       <hr class="side-menu__block-line" />
       <div class="side-menu__block-contact">
@@ -40,7 +40,7 @@
       </div>
       <p class="side-menu__block__text site-footer__copy-text">
         <a href="#">Egypt</a>
-        <i class="fa fa-copyright"></i> <?php echo date('Y') ?> All Right
+        <i class="fa fa-copyright"></i> {{ date('Y') }} All Right
         Reserved
       </p>
     </div>

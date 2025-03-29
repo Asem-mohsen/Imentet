@@ -3,63 +3,45 @@
 namespace App\Http\Controllers\web\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ShopItem;
+use App\Services\ShopItemsService;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct(protected ShopItemsService $shopItemsService)
     {
-        //
+        $this->shopItemsService = $shopItemsService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function index(Request $request)
     {
-        //
+        $sortOption = $request->input('Sort', 'default');
+        
+        switch ($sortOption) {
+            case '1': // Top Selling
+                $products = ShopItem::orderByDesc('sales_count')->paginate(12);
+                break;
+            case 'ASC': // Lowest Price
+                $products = ShopItem::orderBy('price')->paginate(12);
+                break;
+            case 'DESC': // Highest Price
+                $products = ShopItem::orderByDesc('price')->paginate(12);
+                break;
+            default: // Default Sorting
+                $products = $this->shopItemsService->getProducts(10);
+                break;
+        }
+
+        return view('website.gem.shop.index', compact('products'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show(ShopItem $shopItem)
     {
-        //
-    }
+        $product = $this->shopItemsService->getProduct($shopItem->id);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $products = $this->shopItemsService->getProducts();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('website.gem.shop.show', compact('product' , 'products'));
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('career_id')->constrained()->onDelete('cascade');
-            $table->string('cv_path');
+            $table->longText('cover_letter')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
 
