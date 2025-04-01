@@ -5,8 +5,8 @@
         <div class="cursor-follower"></div>
     </div>
     <div class="side-menu__block-inner">
-        <a href="{{route('gem.home')}}">
-        <img src="{{asset('assets/GEM/images/resources/dark-logo-imentet.png')}}" alt="Awesome Image" />
+        <a href="{{route('pyramids.home')}}">
+        <img src="{{asset('assets/GEM/images/resources/dark-logo-imentet.png')}}" alt="Pyramids Imentet" />
         </a>
         <div class="side-menu__block-about">
             <h3 class="side-menu__block__title">About Us</h3>
@@ -16,7 +16,7 @@
             tombs for the pharaohs, the ancient Egyptian kings, who believed in an afterlife
             and wanted to ensure their eternal journey
             </p>
-            <a href="{{route('.index')}}" class="thm-btn side-menu__block-about__btn">Get Tickets</a>
+            <a href="{{route('pyramids.tickets.index')}}" class="thm-btn side-menu__block-about__btn">Get Tickets</a>
         </div>
 
         <hr class="side-menu__block-line" />
@@ -33,7 +33,7 @@
             </li>
             <li class="side-menu__block-contact__list-item">
             <i class="fa fa-envelope"></i>
-            <a href="mailto:example@mail.com">Pyramids@mail.com</a>
+            <a href="mailto:Imentet@mail.com">Imentet@mgail.com</a>
             </li>
             <li class="side-menu__block-contact__list-item">
             <i class="fa fa-clock-o"></i>

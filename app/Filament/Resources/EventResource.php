@@ -146,6 +146,7 @@ class EventResource extends Resource
 
                             Repeater::make('prices')
                                 ->label('Event Prices')
+                                ->relationship('prices') 
                                 ->schema([
                                     Select::make('category')
                                         ->options([

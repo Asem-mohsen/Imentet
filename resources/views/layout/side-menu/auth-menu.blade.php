@@ -14,7 +14,7 @@
           permanent collection of over 2.3 million objects that span over 5,000
           which is toil and pain these cases are perfectly.
         </p>
-        <a href="{{route('gem.about')}}" class="thm-btn side-menu__block-about__btn">
+        <a href="{{route('about')}}" class="thm-btn side-menu__block-about__btn">
           More About Us
         </a>
       </div>
@@ -41,7 +41,7 @@
         </ul>
       </div>
       <p class="side-menu__block__text site-footer__copy-text">
-        <a href="#">Imenet</a>
+        <a href="{{route('about')}}">Imenet</a>
           <i class="fa fa-copyright"></i> {{ date('Y') }} All Right
         Reserved
       </p>

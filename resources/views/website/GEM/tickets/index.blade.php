@@ -26,7 +26,7 @@
                     
                     <!-- Tickets -->
                     <div class="tab-pane show active animated fadeInUp" id="tickets">
-                        <form method='POST' action="{{ route('gem.tickets.storeSelections') }}">
+                        <form method='POST' action="{{ route('gem.tickets.storeSelections') }}" id="ticketForm">
                             @csrf
                             <div class="top-tabs">
                                 <ul class="nav nav-tabs plan-visit__map-tab-links" role="tablist">
@@ -42,7 +42,7 @@
                                         <i class="fa fa-calendar-o"></i> Select Date
                                     </div>
                                     <div id="searchByDate-tab" class="event-sorting__tab-content tab-pane animated fadeInUp">
-                                        <input type="text" name="date" class="searchByDate-datepicker" value="{{date('Y-m-d')}}" readonly />                        
+                                        <input type="text" name="visit_date" class="searchByDate-datepicker" value="{{date('Y-m-d')}}" readonly />                        
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,8 @@
                                                                 {{ $egyptian->price }} EGP
                                                             </td>
                                                             <td class="qty">
-                                                                <input class="quantity-spinner Quantity" max="10" min="0" type="number" value="0" name="quantity[]" />
+                                                                <input type="hidden" name="ticket_id[]" value="{{ $egyptian->id }}">
+                                                                <input class="quantity-spinner Quantity" max="10" min="0" type="number" name="quantity[]" />
                                                             </td>
                                                             <td class="SubTotal"></td>
                                                         </tr>
@@ -122,7 +123,8 @@
                                                                 {{ $foreigner->price }} EGP
                                                             </td>
                                                             <td class="qty">
-                                                                <input class="quantity-spinner Quantity" max="10" min="0" type="number" value="0" name="quantity[]" />
+                                                                <input type="hidden" name="ticket_id[]" value="{{ $foreigner->id }}">
+                                                                <input class="quantity-spinner Quantity" max="10" min="0" type="number"  name="quantity[]" />
                                                             </td>
                                                             <td class="SubTotal"></td>
                                                         </tr>
@@ -150,7 +152,7 @@
 
                     <!-- Contact -->
                     <div class="tab-pane animated fadeInUp" id="contact">
-                        <form method='POST' action="" class="donation-form__form">
+                        <form method='POST' action="{{ route('gem.contact.store') }}" class="donation-form__form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -163,14 +165,24 @@
                                         <input type="text" name="last_name" placeholder="Last Name" value="{{old('last_name')}}" />
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="donation-form__form-field">
                                         <input type="email" name="email" placeholder="Your Email Address" value="{{old('email')}}"/>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="donation-form__form-field">
                                         <input type="number" name="phone" placeholder="Your Phone Number" value="{{old('phone')}}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="donation-form__form-field">
+                                        <input type="text" name="subject" placeholder="Subject" value="{{ old(key: 'subject') }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="donation-form__form-field">
+                                        <textarea name="message"placeholder="Leave your message here..." rows="5" required>{{old('message')}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
@@ -193,7 +205,7 @@
                     <!-- Payment -->
                     @if($user)
                         <div class="tab-pane animated fadeInUp" id="payment">
-                            <form method="POST" action="" class="donation-form__form">
+                            <form method="POST" action="{{route('gem.payments.tickets')}}" class="donation-form__form">
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
                                         <h3>Payment Summary</h3>
@@ -201,9 +213,9 @@
                                             <table class="cart-table custom">
                                                 <thead class="cart-header">
                                                     <tr>
-                                                    <th>Name</th>
-                                                    <th>Phone Number</th>
-                                                    <th>Email</th>
+                                                        <th>Name</th>
+                                                        <th>Phone Number</th>
+                                                        <th>Email</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -221,8 +233,9 @@
                                     <div class="col-md-12 mt-8">
                                         <h3>Your Cart</h3>
 
-                                        {{-- {{$user->selected_date}} --}}
-                                        <p>Selected ticket date : </p> 
+                                        @if($selectedTickets->isNotEmpty())
+                                            <p>Selected ticket date: {{ $selectedTickets->first()->visit_date->format('d F Y') }}</p>
+                                        @endif
 
                                         <div class="table-outer table-responsive">
                                             <table class="cart-table custom">
@@ -237,18 +250,18 @@
                                                 <tbody>
                                                     @forelse($selectedTickets as $ticket)
                                                         <tr>
-                                                            <td>{{ $ticket['type'] }}</td>
-                                                            <td>{{ $ticket['price'] }} EGP</td>
-                                                            <td class="qty">{{ $ticket['quantity'] }}</td>
-                                                            <td class="sub-total">{{ $ticket['total'] }} EGP</td>
+                                                            <td>{{ $ticket->type }}</td>
+                                                            <td>{{ $ticket->price }} EGP</td>
+                                                            <td class="qty">{{ $ticket->quantity }}</td>
+                                                            <td class="sub-total">{{ $ticket->total }} EGP</td>
                                                         </tr>
                                                     @empty
-                                                        <tr><td colspan="4">No tickets selected.</td></tr>
+                                                        <tr><td colspan="4" style="text-align: center">No tickets selected.</td></tr>
                                                     @endforelse
                                                 </tbody>
                                             </table>
                                             <div class="cart-total custom-cart-total">
-                                                @if($selectedTickets > 0)
+                                                @if($selectedTickets->isNotEmpty())
                                                     <button type="submit" class="thm-btn cart-update__btn cart-update__btn-three">
                                                         Pay Now
                                                     </button>

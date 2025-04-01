@@ -6,6 +6,8 @@ use App\Filament\Resources\EventCategoryResource\Pages;
 use App\Filament\Resources\EventCategoryResource\RelationManagers;
 use App\Models\EventCategory;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -43,15 +45,27 @@ class EventCategoryResource extends Resource
                                 ]),
                         Tabs\Tab::make('Arabic')
                             ->schema([
-
                                     TextInput::make('name.ar')
                                         ->required()
                                         ->label('Category Name (Arabic)')
                                         ->maxLength(255),
-                                        
 
                                     Textarea::make('description.ar')->label('Description (Arabic)')->columnSpanFull(),
                                 ]),
+                        Tabs\Tab::make('Place & Media')
+                                ->schema([
+                                    Select::make('place_id')
+                                        ->label('Select Place')
+                                        ->relationship('place', 'name')
+                                        ->preload()
+                                        ->searchable()
+                                        ->required(),
+
+                                    SpatieMediaLibraryFileUpload::make('event_category_media')
+                                        ->collection('event_category_media')
+                                        ->helperText('Upload media for category.'),
+                                    ]),
+                                    
                     ])->columnSpan(2),
             ]);
     }
@@ -62,6 +76,7 @@ class EventCategoryResource extends Resource
             ->columns([
                 TextColumn::make('id')->sortable(),
                 TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('place.name')->sortable()->searchable(),
                 TextColumn::make('description')->sortable()->searchable()->words(5),
                 TextColumn::make('events_count')->label('No. Events')->counts('events')->sortable(),
                 TextColumn::make('created_at')->sortable()->date(),

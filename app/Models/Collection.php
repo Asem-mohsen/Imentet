@@ -27,7 +27,6 @@ class Collection extends Model implements HasMedia
         return $this->belongsToMany(Place::class, 'collection_locations');
     }
 
-
     public function getPlaceNames($onlyOne = false): string
     {
         $places = $this->places;

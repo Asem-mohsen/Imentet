@@ -28,7 +28,7 @@ class RegisterController extends Controller
         try {
             $result = $this->authService->register($validated);
             Auth::login($result['user']);
-            return redirect()->route('gem.home')->with('success', 'Registration successful.');
+            return redirect()->route('index')->with('success', 'Registration successful.');
         } catch (\Exception $e) {
             Log::error('Registration failed: ' . $e->getMessage());
             return back()->withErrors(['error' => $e->getMessage()]);

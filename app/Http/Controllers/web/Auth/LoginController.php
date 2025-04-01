@@ -25,7 +25,7 @@ class LoginController extends Controller
             $validated = $request->validated();
             $this->authService->webLoign($validated);
 
-            return redirect()->route('gem.home');
+            return redirect()->route('index');
         } catch (\Exception $e) {
             Log::error('Login failed: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();

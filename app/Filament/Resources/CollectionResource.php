@@ -63,6 +63,14 @@ class CollectionResource extends Resource
                                     ->searchable()
                                     ->required(),
 
+                                Select::make('place_id')
+                                    ->label('Select Places')
+                                    ->relationship('places', 'name')
+                                    ->preload()
+                                    ->multiple()
+                                    ->searchable()
+                                    ->required(),
+
                                 SpatieMediaLibraryFileUpload::make('collection_media')
                                     ->collection('collection_media')
                                     ->multiple()

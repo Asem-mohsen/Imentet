@@ -17,7 +17,7 @@ class NavbarService
 
     public function getNavbarData()
     {
-        $events = $this->eventRepository->getAllEvents();
+        $events = $this->eventRepository->getAllEvents(excludeCategories: ['Exhibitions']);
         $exhibitions = $this->eventRepository->getAllEvents(categoryName: 'Exhibitions');
         $categories = $this->collectionRepository->getCategories();
         $cartItemCount = $this->cartRepository->getCartItemCount();

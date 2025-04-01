@@ -29,6 +29,11 @@ class Place extends Model
         return $this->hasMany(Event::class);
     }
 
+    public function eventCategories(): HasMany
+    {
+        return $this->hasMany(EventCategory::class);
+    }
+
     public function donations(): HasMany
     {
         return $this->hasMany(Donation::class);

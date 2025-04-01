@@ -11,7 +11,10 @@ class UserTicket extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-
+    protected $casts = [
+        'visit_date' => 'datetime',
+    ];
+    
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

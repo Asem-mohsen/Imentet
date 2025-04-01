@@ -16,7 +16,7 @@ class HomeService
         $this->collectionRepository = $collectionRepository;
     }
 
-    public function getHomeData()
+    public function getHomeData(?string $placeName = null)
     {
         $exhibitions   = $this->eventRepository->getAllEvents(categoryName: 'Exhibitions');
         $currentEvents = $this->eventRepository->getAllEvents(
@@ -31,10 +31,11 @@ class HomeService
                 ]
             ],
             orderBy: ['id' => 'desc'],
-            limit: 3
+            limit: 3,
+            excludeCategories: ['Exhibitions']
         );
         $upcomingEvents = $this->eventRepository->getAllEvents(
-            placeName: 'Grand Egyptian Museum',
+            placeName: $placeName,
             whereDates: [
                 'start_time' => [
                     'operator' => 'BETWEEN',
@@ -45,10 +46,11 @@ class HomeService
                 ]
             ],
             orderBy: ['id' => 'desc'],
-            limit: 3
+            limit: 3,
+            excludeCategories: ['Exhibitions']
         );
         $pastEvents = $this->eventRepository->getAllEvents(
-            placeName: 'Grand Egyptian Museum',
+            placeName: $placeName,
             whereDates: [
                 'start_time' => [
                     'operator' => 'BETWEEN',
@@ -59,9 +61,34 @@ class HomeService
                 ]
             ],
             orderBy: ['id' => 'desc'],
-            limit: 3
+            limit: 3,
+            excludeCategories: ['Exhibitions']
         );
-        $collections   = $this->collectionRepository->getAllCollections(limit: 6);
+        $collections  = $this->collectionRepository->getAllCollections(placeName: $placeName, limit: 6);
+
+        return get_defined_vars();
+    }
+
+    public function getPyramidsHomeData(?string $placeName = null): array
+    {
+        $exhibitions   = $this->eventRepository->getAllEvents(categoryName: 'Exhibitions');
+        $eventCategories= $this->eventRepository->getCategories(where: ['place_id'=> 1]);
+        $events = $this->eventRepository->getAllEvents(
+            placeName: $placeName,
+            whereDates: [
+                'start_time' => [
+                    'operator' => 'BETWEEN',
+                    'value' => [
+                        Carbon::today()->toDateString(), 
+                        Carbon::today()->addYear()->toDateString()
+                    ]
+                ]
+            ],
+            orderBy: ['id' => 'desc'],
+            limit: 3,
+            excludeCategories: ['Exhibitions']
+        );
+        $collections   = $this->collectionRepository->getAllCollections(placeName: $placeName,limit: 6);
         
         return get_defined_vars();
     }

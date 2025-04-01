@@ -20,6 +20,11 @@ class Event extends Model implements HasMedia
 
     public $translatable = ['title' , 'description', 'location'];
 
+    protected $casts = [
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
+    ];
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(EventCategory::class, 'event_category_id');
@@ -58,8 +63,19 @@ class Event extends Model implements HasMedia
     public function isHappening()
     {
         $today = Carbon::now();
-        $eventEndDate = Carbon::parse($this->end_date);
+        $eventEndDate = Carbon::parse($this->end_time);
 
         return ($today->lessThanOrEqualTo($eventEndDate) || $this->repeated) && !in_array($this->status, ['postponed', 'cancelled', 'banned']);
+    }
+
+    public function getSponsorNames(bool $multiple = true): string
+    {
+        $sponsors = $this->sponsors->pluck('name');
+
+        if ($multiple) {
+            return $sponsors->implode(' - '); 
+        }
+
+        return $sponsors->first() ?? '';
     }
 }

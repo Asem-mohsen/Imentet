@@ -49,7 +49,7 @@
           <p class="slider-one__text">
             Let Your Inner Light Grow With the Silence of History
           </p>
-          <a href="{{ route('gem.events') }}" class="thm-btn slider-one__btn">Find Out More</a>
+          <a href="{{ route('gem.events.index') }}" class="thm-btn slider-one__btn">Find Out More</a>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@
                     <span class="exhibhition-one__image-border-3"></span>
                     <span class="exhibhition-one__image-border-4"></span>
 
-                    <img src="{{ $exhibition->getFirstMediaUrl() }}" alt="{{ $exhibition->title }}"/>
+                    <img src="{{ $exhibition->getFirstMediaUrl('event_media') }}" alt="{{ $exhibition->title }}"/>
                     <a href="{{route('gem.events.show' , $exhibition->id )}}" class="exhibhition-one__image-link">
                       <i class="egypt-icon-arrow-1"></i>
                     </a>
@@ -196,7 +196,7 @@
                   </a>
                 </li>
               </ul>
-              <a href="{{route('gem.events')}}" class="event-two__more-link">
+              <a href="{{route('gem.events.index')}}" class="event-two__more-link">
                 View All Upcoming Events 
                 <span>+</span>
               </a>
@@ -216,7 +216,7 @@
                       </div>
                       <div class="event-two__image-inner">
                         <div class="event-two__price">
-                          <span>{{$currentEvent->prices->min('egyption_price')}}</span>
+                          <span>{{$currentEvent->prices->min('price_egyptian')}} <a style="color: #d99578;"> EGP /Person</a></span>
                         </div>
                         <img src="{{ $currentEvent->getFirstMediaUrl('event_media') }}" width="170px" height="170px" alt="{{ $currentEvent->title }}" />
                       </div>
@@ -224,10 +224,10 @@
                     <div class="event-two__content">
                       <div class="event-two__content-top">
                         <div class="event-two__date">
-                          <div class="event-two__date-num">{{ \Carbon\Carbon::parse($currentEvent->start_time)->format('d') }}</div>
+                          <div class="event-two__date-num">{{$currentEvent->start_time->format('d') }}</div>
                           <div class="event-two__date-text">
-                              <span>{{ \Carbon\Carbon::parse($currentEvent->start_time)->format('F') }}</span>
-                              {{ \Carbon\Carbon::parse($currentEvent->start_time)->format('Y') }}
+                              <span>{{$currentEvent->start_time->format('F') }}</span>
+                              {{$currentEvent->start_time->format('Y') }}
                           </div>
                       </div>
                       </div>
@@ -239,9 +239,11 @@
                       <p class="event-two__text">
                         {{ $currentEvent->place->name }}
                       </p>
-                      <a href="{{route('gem.events.show' , $currentEvent->id )}}" class="event-two__link">
+                      <a href="{{route('gem.events.show', $currentEvent->id )}}" class="event-two__link">
                         <span>
-                          <i class="fa fa-angle-right"></i>More Details</span>
+                          <i class="fa fa-angle-right"></i>
+                          More Details
+                        </span>
                       </a>
                     </div>
                   </div>
@@ -258,7 +260,7 @@
                       </div>
                       <div class="event-two__image-inner">
                         <div class="event-two__price">
-                          <span>{{$upcomingEvent->prices->egyption_price}}</span>
+                          <span>{{$upcomingEvent->prices->min('price_egyptian')}}  <a style="color: #d99578;"> EGP /Person</a></span>
                         </div>
                         <img src="{{ $upcomingEvent->getFirstMediaUrl('event_media') }}" width="170px" height="170px" alt="{{ $upcomingEvent->title }}" />
                       </div>
@@ -266,10 +268,10 @@
                     <div class="event-two__content">
                       <div class="event-two__content-top">
                         <div class="event-two__date">
-                          <div class="event-two__date-num">{{ \Carbon\Carbon::parse($upcomingEvent->start_time)->format('d') }}</div>
+                          <div class="event-two__date-num">{{ $upcomingEvent->start_time->format('d') }}</div>
                           <div class="event-two__date-text">
-                              <span>{{ \Carbon\Carbon::parse($upcomingEvent->start_time)->format('F') }}</span>
-                              {{ \Carbon\Carbon::parse($upcomingEvent->start_time)->format('Y') }}
+                              <span>{{ $upcomingEvent->start_time->format('F') }}</span>
+                              {{ $upcomingEvent->start_time->format('Y') }}
                           </div>
                       </div>
                       </div>
@@ -300,7 +302,7 @@
                       </div>
                       <div class="event-two__image-inner">
                         <div class="event-two__price">
-                          <span>{{$pastEvent->prices->min('egyption_price')}}</span>
+                          <span>{{$pastEvent->prices->min('price_egyptian')}}<a style="color: #d99578;"> EGP /Person</a></span>
                         </div>
                         <img src="{{ $pastEvent->getFirstMediaUrl('event_media') }}" width="170px" height="170px" alt="{{ $pastEvent->title }}" />
                       </div>
@@ -308,10 +310,10 @@
                     <div class="event-two__content">
                       <div class="event-two__content-top">
                         <div class="event-two__date">
-                          <div class="event-two__date-num">{{ \Carbon\Carbon::parse($pastEvent->start_time)->format('d') }}</div>
+                          <div class="event-two__date-num">{{$pastEvent->start_time->format('d') }}</div>
                           <div class="event-two__date-text">
-                              <span>{{ \Carbon\Carbon::parse($pastEvent->start_time)->format('F') }}</span>
-                              {{ \Carbon\Carbon::parse($pastEvent->start_time)->format('Y') }}
+                              <span>{{$pastEvent->start_time->format('F') }}</span>
+                              {{$pastEvent->start_time->format('Y') }}
                           </div>
                       </div>
                       </div>
@@ -463,7 +465,7 @@
         @foreach ($collections as $collection)
           <div class="col-lg-4 col-md-6 col-sm-12 masonary-item wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="000ms">
             <div class="collection-three__single">
-              <img src="{{ $collection->getFirstMediaUrl('collection_media') }}" alt="Awesome Image"/>
+              <img src="{{ $collection->getFirstMediaUrl('collection_media') }}" alt="{{$collection->name}}"/>
               <div class="collection-three__content">
                 <h3 class="collection-three__title">
                   <a href="{{ route('gem.collections.show' , $collection->id )}}">

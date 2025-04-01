@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $data = $this->homeService->getHomeData();
+        $data = $this->homeService->getHomeData(placeName: 'Grand Egyptian Museum');
         
         return view('website.gem.index' , $data);
     }

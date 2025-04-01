@@ -264,7 +264,7 @@
                                         <div class="tab-content">
                                             <div class="tab-pane animated fadeInUp show active"  id="first-floor" >
                                                 <div class="plan-visit__map-content">
-                                                <img class="img-fluid" src="{{asset('assets/GEM/images/new/157962228_769935400573835_5141445286589870490_n.jpg')}}" alt="Grand Egyption Museum Map" />
+                                                <img class="img-fluid" src="{{asset('assets/GEM/images/new/museum-interior.jpg')}}" alt="Grand Egyption Museum Map" />
                                                 </div>
                                             </div>
                                         </div>

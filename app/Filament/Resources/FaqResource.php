@@ -6,6 +6,7 @@ use App\Filament\Resources\FaqResource\Pages;
 use App\Filament\Resources\FaqResource\RelationManagers;
 use App\Models\Faq;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -25,7 +26,7 @@ class FaqResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-signal';
 
-    protected static ?string $navigationGroup = 'Others';
+    protected static ?string $navigationGroup = 'FAQs';
 
     public static function form(Form $form): Form
     {
@@ -54,14 +55,26 @@ class FaqResource extends Resource
                                         
                                     Textarea::make('answer.ar')->label('Answer (Arabic)')->columnSpanFull(),
                                 ]),
+
+                        Tabs\Tab::make('Category & appearance')
+                                ->schema([
+    
+                                    Select::make('category')
+                                        ->label('Select Category')
+                                        ->relationship('category', 'name->en')
+                                        ->preload()
+                                        ->searchable()
+                                        ->required(),
+                                            
+                                        Toggle::make('is_shown')
+                                            ->onColor('success')
+                                            ->offColor('danger')
+                                            ->inline(true)
+                                            ->default(true)
+                                            ->required(),
+                                    ]),
                     ])->columnSpanFull(),
 
-                    Toggle::make('is_shown')
-                    ->onColor('success')
-                    ->offColor('danger')
-                    ->inline(true)
-                    ->default(true)
-                    ->required(),
             ]);
     }
 
@@ -70,6 +83,7 @@ class FaqResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
+                TextColumn::make('category.name')->sortable()->searchable(),
                 TextColumn::make('question')->sortable()->searchable()->words(10),
                 TextColumn::make('answer')->sortable()->searchable()->words(5),
                 IconColumn::make('is_shown')

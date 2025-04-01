@@ -30,7 +30,7 @@
           </li>
           <li class="side-menu__block-contact__list-item">
             <i class="fa fa-envelope"></i>
-            <a href="mailto:example@mail.com">example@mail.com</a>
+            <a href="mailto:Imentet@gmail.com">Imentet@gmail.com</a>
           </li>
           <li class="side-menu__block-contact__list-item">
             <i class="fa fa-clock-o"></i>

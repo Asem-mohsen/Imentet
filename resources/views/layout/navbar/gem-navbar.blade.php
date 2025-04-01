@@ -64,7 +64,7 @@
     <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
         <div class="container clearfix">
             <div class="logo-box">
-                <a class="navbar-brand" href="{{route('gem.home')}}">
+                <a class="navbar-brand" href="{{route('index')}}">
                     <img src="{{asset('assets/GEM/images/resources/imentet-gem-logo.svg')}}" class="main-logo" alt="Awesome Image" />
                 </a>
                 <button class="menu-toggler" data-target=".main-navigation">
@@ -112,7 +112,7 @@
                         <a href="#">What's On</a>
                         <ul class="submenu">
                             <li>
-                                <a href="{{ route('gem.events') }}">Events</a>
+                                <a href="{{ route('gem.events.index') }}">Events</a>
                                 <ul class="submenu">
                                     @foreach ($data['events'] as $event)
                                         <li>
@@ -124,8 +124,7 @@
                                 </ul>
                             </li>
                             <li>
-                                {{-- {{ url('GrandEgyptianMuseum/Backend/Project/Exhibition.php') }} --}}
-                                <a href="{{ route('gem.events') }}">Exhibition</a> 
+                                <a href="{{ route('gem.events.index', ['event_category' => 'exhibitions']) }}">Exhibition</a>
                             </li>
                             <li>
                                 <a>Museums</a>

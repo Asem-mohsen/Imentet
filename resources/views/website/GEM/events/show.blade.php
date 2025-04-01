@@ -11,7 +11,7 @@
           <h2 class="inner-banner__title">{{$event->title}}</h2>
           <ul class="list-unstyled thm-breadcrumb">
             <li><a href="{{route('gem.home')}}">Home</a></li>
-            <li><a href="{{route('gem.events')}}">Events</a></li>
+            <li><a href="{{route('gem.events.index')}}">Events</a></li>
             <li>{{$event->title}}</li>
           </ul>
         </div>
@@ -37,19 +37,19 @@
                     <li class="nav-item">
                         <a href="#gallery" data-target="#gallery" class="nav-link">Gallery</a>
                     </li>
-                @endif
+                  @endif
                 </ul>
                 <div class="event-details__single" id="about-event">
                   <div class="event-details__event-info">
                     <div class="row">
-                      <div class="col-lg-6 d-flex">
+                      <div class="col-lg-6 d-flex py-4 px-0">
                         <div class="my-auto">
                           <ul class="list-unstyled event-details__event-info__list">
                             <li>
                               <span>Date & Time</span>
                               <p>
                                 <i class="fa fa-clock-o"></i>
-                                {{$event->end_time ? $event->start_time. ' - ' . $event->end_time : $event->start_time }}
+                                {{$event->end_time ? $event->start_time->format('M d, Y'). ' - ' . $event->end_time->format('M d, Y') : $event->start_time->format('M d, Y') }}
                               </p>
                             </li>
                             <li>
@@ -63,7 +63,7 @@
                               <span>Organizer</span>
                               <p>
                                 <i class="fa fa-user"></i>
-                                {{-- {{$event->sponsors->name}} --}}
+                                {{ $event->getSponsorNames(true) }} 
                               </p>
                             </li>
                             <li>
@@ -83,7 +83,7 @@
                         </div>
                       </div>
                       <div class="col-lg-6 clearfix">
-                        <img src="{{$event->getFirstMediaUrl('event_media')}}" width="300px" height="330px"  class="float-right" alt="{{$event->title}}" />
+                        <img src="{{$event->getFirstMediaUrl('event_media')}}"  class="float-right w-100 h-100" alt="{{$event->title}}" />
                       </div>
                     </div>
                   </div>
@@ -266,47 +266,87 @@
             <!-- Online Booking -->
             <div class="col-lg-4">
               <div class="event-details__form">
-                <form method="post">
+                <form method="POST" action="{{ route('gem.events.store', $event->id) }}">
+                  @csrf
                   <h3 class="event-details__form-title">Online Booking</h3>
                     <div class="row">
+
                         <div class="col-sm-12">
                             <input type="text" name="email" placeholder="Email Address" value="{{old('email')}}"/>
                         </div>
-                        <div class="col-sm-6">
-                            <label>Egyptians</label>
-                            <input class="quantity-spinner Quantity" type="text" value="0" max='10' name="Quantity[]" onchange="subTotal()"/>
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Foreigners</label>
-                            <input class="quantity-spinner Quantity" type="text" value="0" max='10' name="Quantity[]" onchange="subTotal()"/>
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Arabs</label>
-                            <input class="quantity-spinner Quantity" type="text" value="0" max='10' name="Quantity[]" onchange="subTotal()"/>
-                        </div>
 
                         <div class="col-sm-12">
-                            Total
-                            <span class="text-capitalize cart-total__highlight" id="TotalPrice">
-                            
-                            </span>
+                          <select id="categorySelect" class="selectpicker" name="selected_categories[]" multiple onchange="toggleQuantities()">
+                            <option hidden disabled>Select Ticket Category</option>
+                            @foreach($event->prices as $price)
+                                <option value="{{ $price->category }}" 
+                                        data-egyptian="{{ $price->price_egyptian }}" 
+                                        data-arab="{{ $price->price_arab }}" 
+                                        data-foreigner="{{ $price->price_foreigner }}">
+                                    {{ $price->category }}
+                                </option>
+                            @endforeach
+                          </select>
+                        </div>
+
+                        <!-- Quantities (Initially Hidden) -->
+                        <div id="quantitiesContainer" style="display:none;">
+                          @foreach($event->prices as $price)
+                              <div class="category-quantity" id="category-{{ Str::slug($price->category) }}" style="display:none;">
+                                  <h4>{{ $price->category }}</h4>
+                                  
+                                  <div class="row">
+                                      <!-- Egyptians -->
+                                      <div class="col-sm-4">
+                                          <label>Egyptians</label>
+                                          <input class="quantity-spinner Quantity" type="text" value="0" min="0" max="10" 
+                                                 name="quantities[{{ $price->category }}][egyptian]" 
+                                                 data-price="{{ $price->price_egyptian }}" 
+                                                 onchange="subTotal()"/>
+                                      </div>
+              
+                                      <!-- Arabs -->
+                                      <div class="col-sm-4">
+                                          <label>Arabs</label>
+                                          <input class="quantity-spinner Quantity" type="text" value="0" min="0" max="10" 
+                                                 name="quantities[{{ $price->category }}][arab]" 
+                                                 data-price="{{ $price->price_arab }}" 
+                                                 onchange="subTotal()"/>
+                                      </div>
+              
+                                      <!-- Foreigners -->
+                                      <div class="col-sm-4">
+                                          <label>Foreigners</label>
+                                          <input class="quantity-spinner Quantity" type="text" value="0" min="0" max="10" 
+                                                 name="quantities[{{ $price->category }}][foreigner]" 
+                                                 data-price="{{ $price->price_foreigner }}" 
+                                                 onchange="subTotal()"/>
+                                      </div>
+                                  </div>
+                              </div>
+                          @endforeach
+                        </div>
+                        
+                        <div class="col-sm-12">
+                          <strong>Total:</strong>
+                          <span class="text-capitalize cart-total__highlight" id="TotalPrice">0</span> EGP
                         </div>
 
                         <div class="col-sm-12">
                             @if(!$event->isHappening())
-                                <?php if($TodaysDate > $StartDateInTime){ ?>
-                                    <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                @if(now() > $event->start_time)
+                                    <button type="submit" class="thm-btn event-details__form-btn" disabled>
                                         Event Date has Passed
                                     </button>
-                                <?php }elseif($row['EventStatus'] == 'Cancelled'){ ?>
-                                    <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                @elseif($event->status === 'cancelled')
+                                    <button type="submit" class="thm-btn event-details__form-btn" disabled>
                                         Event Cancelled
                                     </button>
-                                <?php }elseif($row['EventStatus'] == 'Postponed'){ ?>
-                                <button type="submit" name="Book" class="thm-btn event-details__form-btn" disabled >
+                                @elseif($event->status === 'postponed')
+                                    <button type="submit" class="thm-btn event-details__form-btn" disabled>
                                         Event Postponed
                                     </button>
-                                <?php } ?>
+                                @endif
                             @else
                                 @if(auth()->user())
                                     <button type="submit" class="thm-btn event-details__form-btn" >
@@ -343,7 +383,7 @@
                             </div>
                         </a>
                     @else
-                        <a href="{{ route('gem.events') }}" class="event-details__pagination__left">
+                        <a href="{{ route('gem.events.index') }}" class="event-details__pagination__left">
                             <div class="event-details__pagination-icon">
                                 <i class="fa fa-angle-left"></i>
                             </div>
@@ -373,4 +413,43 @@
         </div>
     </div>
 
+@endsection
+
+
+@section('js')
+
+<script>
+function toggleQuantities() {
+    let selectedOptions = document.getElementById('categorySelect').selectedOptions;
+    let quantitiesContainer = document.getElementById('quantitiesContainer');
+
+    // Hide all quantity inputs initially
+    document.querySelectorAll('.category-quantity').forEach(el => el.style.display = 'none');
+
+    if (selectedOptions.length > 0) {
+        quantitiesContainer.style.display = 'block';
+
+        for (let option of selectedOptions) {
+            let categorySlug = option.value.replace(/\s+/g, '-').toLowerCase();
+            let quantityDiv = document.getElementById('category-' + categorySlug);
+            if (quantityDiv) quantityDiv.style.display = 'block';
+        }
+    } else {
+        quantitiesContainer.style.display = 'none';
+    }
+}
+
+function subTotal() {
+    let total = 0;
+    document.querySelectorAll('.Quantity').forEach(input => {
+        let quantity = parseInt(input.value) || 0;
+        let price = parseFloat(input.getAttribute('data-price')) || 0;
+        total += quantity * price;
+    });
+
+    document.getElementById('TotalPrice').innerText = total.toFixed(2);
+}
+
+
+</script>
 @endsection

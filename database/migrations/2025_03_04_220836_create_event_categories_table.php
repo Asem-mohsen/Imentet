@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('event_categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('place_id')->constrained()->onDelete('cascade');
             $table->json('name');
             $table->json('description')->nullable();
             $table->timestamps();

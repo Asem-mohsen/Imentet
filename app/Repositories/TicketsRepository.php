@@ -1,7 +1,7 @@
 <?php 
 namespace App\Repositories;
 
-use App\Models\VisitTicket;
+use App\Models\{UserTicket, VisitTicket};
 
 class TicketsRepository
 {
@@ -45,5 +45,46 @@ class TicketsRepository
                 });
             })
             ->get();
+    }
+
+    public function findOrFail(int $ticketId)
+    {
+        return VisitTicket::findOrFail($ticketId);
+    }
+
+    public function bulkInsert(array $tickets)
+    {
+        return UserTicket::insert($tickets);
+    }
+
+    public function getUserCart($userId)
+    {
+        return UserTicket::where('user_id', $userId)
+            ->where('status', 'pending')
+            ->get();
+    }
+
+    public function findPendingTicket($userId, $ticketId)
+    {
+        return UserTicket::where('user_id', $userId)
+            ->where('visit_ticket_id', $ticketId)
+            ->where('status', 'pending')
+            ->first();
+    }
+
+    public function getUserTickets($userId)
+    {
+        return UserTicket::where('user_id', $userId)
+            ->with('visitTicket')
+            ->get()
+            ->map(function ($ticket) {
+                return (object) [ 
+                    'type' => $ticket->visitTicket->ticket_type,
+                    'price' => $ticket->visitTicket->price,
+                    'quantity' => $ticket->quantity,
+                    'total' => $ticket->total,
+                    'visit_date' => $ticket->visit_date,
+                ];
+            });
     }
 }

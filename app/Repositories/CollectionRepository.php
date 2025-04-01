@@ -1,15 +1,21 @@
 <?php 
 namespace App\Repositories;
 
-use App\Models\Collection;
-use App\Models\CollectionCategory;
+use App\Models\{Collection, CollectionCategory};
+use Illuminate\Database\Eloquent\Builder;
 
 class CollectionRepository
 {
-    public function getAllCollections(?int $limit = null)
+    public function getAllCollections(?string $placeName = null,?int $limit = null)
     {
         $query = Collection::query();
-    
+
+        if ($placeName) {
+            $query->whereHas('places', function (Builder $q) use ($placeName) {
+                $q->where('name->en', $placeName);
+            });
+        }
+
         if ($limit) {
             $query->limit($limit);
         }

@@ -25,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
             $navbarService = app(NavbarService::class);
             $view->with('data', $navbarService->getNavbarData());
         });
+
+        View::composer('layout.navbar.pyramids-navbar', function ($view) {
+            $navbarService = app(NavbarService::class);
+            $view->with('data', $navbarService->getNavbarData());
+        });
     
     }
 }
