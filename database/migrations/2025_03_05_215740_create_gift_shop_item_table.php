@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         // the items available on the gift shopes to be shown 
-        Schema::create('gift_shop_item', function (Blueprint $table) {
+        Schema::create('gift_shop_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('gift_shop_id')->constrained()->onDelete('cascade');
             $table->foreignId('shop_item_id')->constrained()->onDelete('cascade');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gift_shop_item');
+        Schema::dropIfExists('gift_shop_items');
     }
 };

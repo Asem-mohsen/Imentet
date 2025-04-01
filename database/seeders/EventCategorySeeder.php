@@ -3,17 +3,23 @@
 namespace Database\Seeders;
 
 use App\Models\EventCategory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class EventCategorySeeder extends Seeder
 {
     public function run()
     {
-        $categories = ['Concerts', 'Festivals', 'Exhibitions', 'Education'];
+        $categories = [
+            'Concerts' => 'الحفلات الموسيقية',
+            'Festivals' => 'المهرجانات',
+            'Exhibitions' => 'المعارض',
+            'Education' => 'تعليم',
+        ];
 
-        foreach ($categories as $category) {
-            EventCategory::firstOrCreate(['name' => $category]);
+        foreach ($categories as $en => $ar) {
+            EventCategory::create([
+                'name' => ['en' => $en, 'ar' => $ar]
+            ]);
         }
     }
 }

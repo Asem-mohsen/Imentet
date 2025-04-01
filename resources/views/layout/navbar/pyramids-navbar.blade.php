@@ -2,8 +2,8 @@
     <div class="container">
         <div class="inner-container">
         <div class="topbar-two__left">
-            <a class="topbar-two__logo" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php">
-                <img src="images/resources/dark-logo-pyramids.svg" alt="" />
+            <a class="topbar-two__logo" href="{{route('index')}}">
+                <img src="{{asset('assets/GEM/images/resources/dark-logo-pyramids.svg')}}" alt="Imentet Pyramids" />
             </a>
             <div class="topbar-two__info">
             <div class="topbar-two__icon">
@@ -12,7 +12,7 @@
             <div class="topbar-two__text">
                 <p>
                 Plan Your Visit <br />
-                <?php echo date('h.i'  , strtotime('+1 hour')) ?> - 07.30 
+                {{ date('h:i'  , strtotime('+1 hour')) }} -  05.00
                 </p>
             </div>
             </div>
@@ -31,33 +31,19 @@
             </li>
 
             <!-- Profile Icon -->
-            <?php if (isset($_SESSION["UserID"])){ ?>
+            @if(auth()->user())
                 <span class="top-wrapper">
                     <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/Profile.php" class="user-icon topbar-one__search">
+                        <a href="{{route('profile.index')}}" class="user-icon topbar-one__search">
                             <i class="fa fa-user"></i>
                         </a>
                         <ul class="submenu">
-                            <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Profile.php">Edit Profile </a></li>
-                            <li><a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php'>Log out</a></li>
+                            <li><a href="{{route('profile.index')}}">Edit Profile </a></li>
+                            <li><a href='{{route('auth.logout.all')}}'>Log out</a></li>
                         </ul>
                     </li>
                 </span>
-            <?php }elseif(isset($_SESSION["AdminID"])){
-                $AdminID = $_SESSION["AdminID"] ;
-                ?>
-                <span class="top-wrapper">
-                    <li>
-                        <a href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>" class="user-icon topbar-one__search">
-                            <i class="fa fa-user"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="hhttp://localhost/imentet-1/GrandEgyptianMuseum/Backend/Profile.php?action=Manage&AdminID=<?php echo $AdminID ?>">Edit Profile </a></li>
-                            <li><a href='http://localhost/imentet-1/GrandEgyptianMuseum/Backend/logout.php'>Log out</a></li>
-                        </ul>
-                    </li>
-                </span>
-            <?php }  ?>
+            @endif
 
             <!-- Social Media Icons -->
             <li>
@@ -89,88 +75,80 @@
 <header class="site-header site-header__header-two">
     <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
         <div class="container clearfix">
-        <div class="logo-box">
-            <button class="menu-toggler" data-target=".main-navigation">
-            <span class="fa fa-bars"></span>
-            </button>
-        </div>
-        <div class="main-navigation">
-            <ul class="navigation-box @@extra_class">
-            <li>
-                <a href="http://localhost/imentet-1/Pyramids/pyramids/index.php">Home</a>
-            </li>
-            <li>
-                <a href="http://localhost/Imentet-1/Pyramids/pyramids/AboutUs.php">The Pyramids</a>
-                <ul class="submenu">
-                <li><a href="http://localhost/Imentet-1/Pyramids/pyramids/AboutUs.php">About Us </a></li>
-                <li><a href="http://localhost/imentet-1/Pyramids/pyramids/ContactUs.php">Contact</a></li>
-                <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Donation.php">Donation</a></li>
-                <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Membership.php">Membership</a></li>
-                <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Careers.php">Careers</a></li>
-                <li><a href="contact.html">FAQ's</a></li>
+            
+            <div class="logo-box">
+                <button class="menu-toggler" data-target=".main-navigation">
+                <span class="fa fa-bars"></span>
+                </button>
+            </div>
+
+            <div class="main-navigation">
+                <ul class="navigation-box @@extra_class">
+                    <li>
+                        <a href="{{route('pyramids.home')}}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{route('pyramids.about')}}">The Pyramids</a>
+                        <ul class="submenu">
+                        <li><a href="{{route('pyramids.about')}}">About Us </a></li>
+                        <li><a href="{{route('pyramids.contact.index')}}">Contact</a></li>
+                        <li><a href="{{route('pyramids.donations.index')}}">Donation</a></li>
+                        <li><a href="{{route('pyramids.memberships.index')}}">Membership</a></li>
+                        <li><a href="{{route('pyramids.careers.index')}}">Careers</a></li>
+                        <li><a href="{{route('pyramids.faqs')}}">FAQ's</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="{{route('pyramids.tickets.plan-visit')}}">Visit</a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="{{route('pyramids.tickets.plan-visit')}}#open-hrs">Opening Hours</a>
+                            </li>
+                            <li>
+                                <a href="{{route('pyramids.tickets.plan-visit')}}#admission">Admission Cost</a>
+                            </li>
+                            <li>
+                                <a href="{{route('pyramids.tickets.plan-visit')}}#how-to-get">How to Get Here</a>
+                            </li>
+                            <li>
+                                <a href="{{route('pyramids.tickets.plan-visit')}}#anenities">Amenities</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">What's On</a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="{{ route('pyramids.events.index') }}">Events </a>
+                            </li>
+                            <a href="{{ route('pyramids.events.index', ['event_category' => 'exhibitions']) }}">Exhibition</a>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('pyramids.shop.index') }}">Shop</a>
+                    </li>
                 </ul>
-            </li>
+            </div>
 
-            <li>
-                <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php">Visit</a>
-                <ul class="submenu">
-                    <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#open-hrs">Opening Hours</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#admission">Admission Cost</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#how-to-get">How to Get Here</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/imentet-1/Pyramids/pyramids/PlanVisit.php#anenities">Amenities</a>
-                    </li>
-                </ul>
-            </li>
+            <div class="right-side-box">
 
-            <li>
-                <a href="#">What's On</a>
-                <ul class="submenu">
-                <li>
-                    <a href="http://localhost/imentet-1/Pyramids/pyramids/Events.php?Page=1">Events </a>
-                </li>
-                <li><a href="http://localhost/imentet-1/Pyramids/pyramids/Exhibition.php">Exhibition</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="http://localhost/imentet-1/Pyramids/pyramids/OnlineShop.php?Page=1">Shop</a>
-            </li>
-            </ul>
-        </div>
+                <a href="{{ $data['cartItemCount'] > 0 ? route('pyramids.cart.index') : route('pyramids.shop.index') }}" class="site-header__cart">
+                    <i class="egypt-icon-supermarket"></i>
+                    <span class="count" id="cart-count">
+                        {{ $data['cartItemCount'] ?? 0 }}
+                    </span>
+                </a>
 
-        <div class="right-side-box">
-            <?php  if(isset($_SESSION['cart'])){ 
-                        if(count($_SESSION['cart']) > 0 ){?>
-                            <a href="http://localhost/imentet-1/Pyramids/pyramids/Cart.php" class="site-header__cart" style="margin: 28px;">
-                                <i class="egypt-icon-supermarket"  style="color:#302e2f ;"></i>
-                            
-                        <?php }
-                    }else{ ?>
-                            <a href="http://localhost/imentet-1/Pyramids/pyramids/OnlineShop.php?Page=1" class="site-header__cart" style="margin: 28px;">
-                                <i class="egypt-icon-supermarket"  style="color:#302e2f ;"></i>
-                            
-                    <?php }
-                    if(isset($_SESSION['cart'])){ 
-                        if(count($_SESSION['cart']) > 0 ){ ?>
-                            <span class="count"><?php echo count($_SESSION['cart']) ; ?> </span>
-                        <?php }
-                    } ?>
-            </a>
+                <!-- Search Icon -->
+                <a href="#" class="site-header__header-two__search search-popup__toggler">
+                    <i class="egypt-icon-search"></i>
+                </a>
+            
 
-            <!-- Search Icon -->
-            <a href="#" class="site-header__header-two__search search-popup__toggler">
-                <i class="egypt-icon-search"></i>
-            </a>
-          
-
-            <a href="http://localhost/imentet-1/Pyramids/pyramids/VisitTickets.php" class="thm-btn site-header__header-two__btn">Buy Tickets</a>
-        </div>
+                <a href="{{route('pyramids.tickets.index')}}" class="thm-btn site-header__header-two__btn">Buy Tickets</a>
+            </div>
         </div>
     </nav>
 </header>

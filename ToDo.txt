@@ -1,0 +1,4 @@
+add migration to event to hanlde Event Schedule times
+add migration to collections to handle the type , highlightes , Artist , Year ,Style, Object Num
+//
+in admin/sponsors/create => membership should only be shown when both toggles are on 

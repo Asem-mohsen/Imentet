@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('memberships', function (Blueprint $table) {
             $table->id();
             $table->json('name');
+            $table->json('title')->nullable();
+            $table->json('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

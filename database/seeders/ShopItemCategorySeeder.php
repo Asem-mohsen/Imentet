@@ -10,10 +10,16 @@ class ShopItemCategorySeeder extends Seeder
 {
     public function run()
     {
-        $categories = ['Hand Made', 'Furniture', 'Paintings', 'Antiquities', 'Sculpture'];
+        $categories = [
+            'Hand Made' => 'صناعة يدوية',
+            'Furniture' => 'أثاث',
+            'Paintings' => 'لوحات فنية',
+            'Antiquities' => 'الآثار',
+            'Sculpture' => 'النحت',
+        ];
 
-        foreach ($categories as $category) {
-            ShopItemCategory::firstOrCreate(['name' => $category]);
+        foreach ($categories as $en => $ar) {
+            ShopItemCategory::create(['name' => ['en' => $en, 'ar' => $ar]]);
         }
     }
 }

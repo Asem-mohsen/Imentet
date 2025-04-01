@@ -9,6 +9,7 @@
     <meta name="msapplication-navbutton-color" content="#d99578" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#d99578" />
     <link href="https://fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i%7CPrata&display=swap" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}" />
@@ -24,6 +25,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/nouislider.pips.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/jquery.bootstrap-touchspin.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/jquery.mCustomScrollbar.min.css')}}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/payment.css')}}" />

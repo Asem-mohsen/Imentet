@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
+            $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->longText('address');
+            $table->longText('address')->nullable();
             $table->date('dob')->nullable();
             $table->string('status')->default('active');
             $table->boolean('is_admin')->default(false);

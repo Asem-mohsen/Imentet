@@ -127,7 +127,7 @@ a:focus {
   font-size: 13px;
   color: #fff;
   text-transform: uppercase;
-  padding: 12px 52px;
+  padding: 12px 32px;
   border-radius: 4px;
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
@@ -317,7 +317,7 @@ a:focus {
   bottom: 0;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url(../images/resources/imentet-video.gif);
+  background-image: url(../GEM/images/resources/imentet-video.gif);
 }
 
 .scroll-to-top {
@@ -1682,7 +1682,7 @@ a:focus {
 .about-one .inner-container {
   border-radius: 4px;
   background-color: #f3ece9;
-  background-image: url(../images/resources/about-1-bg.jpeg);
+  background-image: url(../GEM/Images/resources/about-1-bg.jpeg);
   background-position: top center;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -2101,7 +2101,7 @@ a:focus {
   bottom: 9px;
   left: 9px;
   right: 9px;
-  background-image: url(../images/resources/dot-pattern-1-1.png);
+  background-image: url(../GEM/Images/resources/dot-pattern-1-1.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -2382,7 +2382,7 @@ a:focus {
       -ms-flex-pack: center;
           justify-content: center;
   text-align: center;
-  background-image: url(../images/resources/collections-link-decor-1-1.png);
+  background-image: url(../GEM/Images/resources/collections-link-decor-1-1.png);
   background-repeat: no-repeat;
   background-position: center center;
   border-radius: 50%;
@@ -2736,7 +2736,7 @@ a:focus {
           transform: translate(-50%, -51%);
   width: 80px;
   height: 80px;
-  background-image: url(../images/collection/collection-link-decor.png);
+  background-image: url(../GEM/Images/collection/collection-link-decor.png);
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-transition: all .4s ease;
@@ -5023,8 +5023,9 @@ a:focus {
 
 .event-two {
   background-color: #fff;
-  background-image: url(../images/background/event-bg-1-1.jpeg);
+  background-image: url(../GEM/Images/background/event-bg-1-1.jpeg);
   background-position: top left;
+  padding: 100px 0;
 }
 .event-two__main {
   padding-top: 120px;
@@ -5300,8 +5301,8 @@ a:focus {
   text-transform: uppercase;
   border-radius: 4px;
   line-height: 36px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
   min-width: 80px;
 }
 .event-two__single:hover .event-two__image-inner > img {
@@ -5509,7 +5510,7 @@ a:focus {
 }
 
 .event-page-header {
-  background-image: url(../images/new/background/background-1.png);
+  background-image: url(../GEM/images/new/background/background-1.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -5646,10 +5647,12 @@ a:focus {
 .event-three__btn .main-text,
 .event-three__btn .hover-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  height: 100%;
+  text-align: center;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   opacity: 1;
   overflow: hidden;
   -webkit-transition: opacity .4s ease, -webkit-transform .4s ease;
@@ -5822,8 +5825,8 @@ a:focus {
 }
 .event-details__form {
   background-color: #302e2f;
-  padding: 40px;
-  padding-bottom: 20px;
+  padding: 25px;
+  padding-bottom: 5px;
   border-radius: 4px;
 }
 @media (max-width: 1199px) {
@@ -5937,6 +5940,27 @@ a:focus {
   background-color: transparent;
   color: #a19b9d;
   height: 50px;
+  padding: 0;
+}
+.event-details__form .bootstrap-select > .dropdown-toggle, .subject-picker .bootstrap-select>.dropdown-toggle {
+  outline: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #3f3e3f;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  background-color: #fff;
+  line-height: 48px;
+  padding-left: 22px;
+  font-size: 14px;
+  color: #a19b9d;
+  background-color: #302e2f;
+}
+.event-details__form .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+  width: 100% !important;
 }
 .event-details__event-info {
   margin: 40px 0;
@@ -6224,7 +6248,7 @@ a:focus {
 * 10. testimonials styles
 */
 .testimonials-one {
-  background-image: url(../images/background/testi-1-1-bg.jpeg);
+  background-image: url(../GEM/Images/background/testi-1-1-bg.jpeg);
   background-position: right center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -6261,7 +6285,7 @@ a:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url(../images/resources/testi-decor.png);
+  background-image: url(../GEM/Images/resources/testi-decor.png);
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -6413,7 +6437,7 @@ a:focus {
   border: 1px solid #ebebeb;
   width: 60px;
   height: 60px;
-  background-image: url(../images/resources/testi-qoute-2.png);
+  background-image: url(../GEM/Images/resources/testi-qoute-2.png);
   background-repeat: no-repeat;
   background-position: center center;
   -webkit-transition: all .4s ease;
@@ -6463,14 +6487,14 @@ a:focus {
 .testimonials-two__single:hover .testimonials-two__qoute {
   border-color: #d99578;
   background-color: #d99578;
-  background-image: url(../images/resources/testi-qoute-2-hvr.png);
+  background-image: url(../GEM/Images/resources/testi-qoute-2-hvr.png);
 }
 
 /*
 * 11. cta styles
 */
 .cta-one {
-  background-image: url(../images/background/cta-1-bg.jpeg);
+  background-image: url(../GEM/Images/background/cta-1-bg.jpeg);
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6846,7 +6870,7 @@ a:focus {
 */
 .site-footer {
   background-color: #302e2f;
-  background-image: url(../images/resources/footer-bg-1-1.jpeg);
+  background-image: url(../GEM/Images/resources/footer-bg-1-1.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top left;
@@ -7107,7 +7131,7 @@ a:focus {
 */
 .video-one {
   position: relative;
-  background-image: url(../images/background/video-bg-1-1.jpeg);
+  background-image: url(../GEM/Images/background/video-bg-1-1.jpeg);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -7134,7 +7158,7 @@ a:focus {
   left: 0;
   width: 100%;
   height: 30px;
-  background-image: url(../images/resources/video-decor-1-1.png);
+  background-image: url(../GEM/Images/resources/video-decor-1-1.png);
   background-repeat: repeat-x;
 }
 .video-one__content {
@@ -7238,7 +7262,7 @@ a:focus {
   padding-top: 120px;
 }
 .video-two .inner-container {
-  background-image: url(../images/new/background/video-2-1.png);
+  background-image: url(../GEM/Images/new/background/video-2-1.png);
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
@@ -7296,7 +7320,7 @@ a:focus {
   content: '';
   width: 100%;
   height: 20px;
-  background-image: url(../images/resources/exhibition-decor-1-1.png);
+  background-image: url(../GEM/Images/resources/exhibition-decor-1-1.png);
   background-repeat: repeat-x;
   background-position: left top;
   position: absolute;
@@ -7654,11 +7678,14 @@ a:focus {
 /*
 * 17. inner-banner styles
 */
+.inner-banner.index-page{
+  background-position: center top;
+}
 .inner-banner {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-image: url(../images/background/inner-banner-bg-1-1.jpg);
+  background-image: url(../GEM/Images/background/inner-banner-bg-1-1.jpg);
 }
 .inner-banner__title {
   margin: 0;
@@ -8179,7 +8206,7 @@ a:focus {
   text-transform: uppercase;
 }
 .department-one__carrer {
-  background-image: url(../images/new/about-us/career-1-1.png);
+  background-image: url(../GEM/Images/new/about-us/career-1-1.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -8483,6 +8510,19 @@ a:focus {
   color: #777777;
   font-size: 16px;
 }
+.donation-form__form textarea {
+  outline: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e4e4e4;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  padding-left: 30px;
+  color: #777777;
+  font-size: 16px;
+}
+
 .donation-form__form input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #777777;
@@ -9060,6 +9100,18 @@ a:focus {
   border-radius: 4px;
   padding-top: 50px;
   padding-bottom: 50px;
+}
+.pricing-one__single .start-from{
+  position: absolute;
+  background: #302e2f;
+  color: #ffffff;
+  border-radius: 0px 0px 10px 10px;
+  transform: rotate(270deg);
+  left: -22px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
 .pricing-one__bottom {
   padding-top: 23px;
@@ -9707,6 +9759,10 @@ a:focus {
   background-color: #d99578;
 }
 
+.min-width-0{
+  min-width: 0px !important;
+}
+
 .cart-table {
   width: 100%;
   min-width: 900px;
@@ -9770,6 +9826,23 @@ a:focus {
   transition: all .4s ease;
 }
 .cart-table .remove a:hover {
+  color: #d99578;
+}
+.cart-table .remove button {
+  color: #aeaeae;
+  font-size: 34px;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+  background: transparent;
+  border: none;
+}
+
+.cart-table .remove button:focus {
+  border: none;
+  outline: none;
+}
+
+.cart-table .remove button:hover {
   color: #d99578;
 }
 .cart-table th,
@@ -10182,7 +10255,7 @@ border-color: #d99578;
 }
 
 input[type="file"] {
-  padding-top: 15px;
+  padding: 8px;
 }
 
 .product-details__categories a {
@@ -11068,18 +11141,18 @@ input[type="file"] {
 
 .welcome-section .grid-wrapper .box:first-child
 {
-  background-image: url(../images/slider/slider-gem.jpeg);
+  background-image: url(../GEM/Images/slider/slider-gem.jpeg);
 
 }
 
 .welcome-section .grid-wrapper .box:last-child
 {
-  background-image: url(../images/slider/slider-pyramids.jpeg);
+  background-image: url(../GEM/Images/slider/slider-pyramids.jpeg);
 }
 
 .auth
 {
-  background-image: url(../images/slider/slider-pyramids.jpeg);
+  background-image: url(../GEM/Images/slider/slider-pyramids.jpeg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11212,4 +11285,10 @@ width: 100%;
 
 .subject-picker .bootstrap-select .dropdown-toggle .filter-option {
   padding-left: 15px !important;
+}
+.w-100{
+  width: 100%;
+}
+.h-100{
+  height: 100%;
 }

@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\LaravelPackageTools\Concerns\Package\HasTranslations;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Translatable\HasTranslations;
 
 class Faq extends Model
 {
@@ -12,4 +13,9 @@ class Faq extends Model
     public $translatable = ['question', 'answer'];
 
     protected $guarded = ['id'];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(FaqCategory::class, 'faq_category_id');
+    }
 }

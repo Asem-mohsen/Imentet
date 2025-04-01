@@ -7,12 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Translatable\HasTranslations;
+use Carbon\Carbon;
 
-class Event extends Model
+class Event extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, HasTranslations, InteractsWithMedia;
 
     protected $guarded = ['id'];
+
+    public $translatable = ['title' , 'description', 'location'];
+
+    protected $casts = [
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
+    ];
 
     public function category(): BelongsTo
     {
@@ -42,5 +53,29 @@ class Event extends Model
     public function contracts(): HasMany
     {
         return $this->hasMany(Contract::class);
+    }
+
+    public function paymentItems(): HasMany
+    {
+        return $this->hasMany(PaymentItem::class, 'payable_id')->where('payable_type', self::class);
+    }
+
+    public function isHappening()
+    {
+        $today = Carbon::now();
+        $eventEndDate = Carbon::parse($this->end_time);
+
+        return ($today->lessThanOrEqualTo($eventEndDate) || $this->repeated) && !in_array($this->status, ['postponed', 'cancelled', 'banned']);
+    }
+
+    public function getSponsorNames(bool $multiple = true): string
+    {
+        $sponsors = $this->sponsors->pluck('name');
+
+        if ($multiple) {
+            return $sponsors->implode(' - '); 
+        }
+
+        return $sponsors->first() ?? '';
     }
 }

@@ -1,7 +1,7 @@
 <footer class="site-footer">
     <div class="container">
-      <a class="site-footer__logo" href="http://localhost/imentet-1/GrandEgyptianMuseum/Backend/home.php"
-        ><img src="images/resources/footer-logo-imentet-gem.png" alt=""
+      <a class="site-footer__logo" href="{{ route('gem.home') }}"
+        ><img src="{{ asset('assets/GEM/images/resources/footer-logo-imentet-gem.png') }}" alt=""
       /></a>
       <form action="#" class="site-footer__form">
         <div class="site-footer__form-icon">
@@ -18,7 +18,7 @@
         <a href="https://www.instagram.com/grandegyptianmuseum/?hl=en"  target="_blank"><i class="egypt-icon-instagram"></i></a>
       </div>
       <p class="site-footer__copy">
-        Copyrights &copy; <?php echo date('Y') ?> <a href="#">Egypt</a>, All Rights Reserved.
+        Copyrights &copy; {{ date('Y') }}<a href="#"> Egypt</a>, All Rights Reserved.
       </p>
     </div>
 </footer>

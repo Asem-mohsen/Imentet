@@ -8,6 +8,8 @@
         @include('layout.preloader.preloader')
 
         <div class="page-wrapper">
+            
+            @include('layout.navbar.gem-navbar')
 
             @yield('content')
 

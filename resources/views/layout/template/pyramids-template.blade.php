@@ -9,6 +9,8 @@
 
         <div class="page-wrapper">
 
+            @include('layout.navbar.pyramids-navbar')
+
             @yield('content')
 
             @include('layout.footer.pyramids-footer')
