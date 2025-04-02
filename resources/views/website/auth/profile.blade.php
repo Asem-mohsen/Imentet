@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-md-4 details">
           <div class="testimonials-one__image">
-            <img src="{{$user->getFirstMediaUrl('user_profile_image') ?? asset('assets/GEM/images/team/avatar.png') }}" id="Image" style="width: 100px !important" height="100px" alt="{{$user->fullName}}"/>
+            <img src="{{ $user->getFirstMediaUrl('user_profile_image') ?: asset('assets/GEM/images/team/avatar.png') }}" id="Image" style="width: 100px !important" height="100px" alt="{{$user->fullName}}"/>
           </div>
           <div class="testimonials-one__info">
             <h3 class="testimonials-one__name">{{$user->fullName}}</h3>
@@ -25,6 +25,7 @@
         <div class="col-md-8 has-seperator">
           <h3 class="login-form__title">Edit Profile</h3>
           <form action="{{route('profile.update' , $user->id)}}" method='POST' class="login-form__form" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <div class="row">
               <div class="col-md-6">
@@ -87,4 +88,25 @@
     document.getElementById('Image').src = URL.createObjectURL(UserImage.files[0]); //Preview New Image
     }
   </script>
+@endsection
+
+@section('js')
+
+<script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+      let dobInput = document.querySelector('input[name="dob"]');
+      let dobValue = dobInput.value;
+
+      // Attempt to format the date
+      let date = new Date(dobValue);
+      if (!isNaN(date)) {
+          dobInput.value = date.toLocaleDateString('en-US'); // 'm/d/Y' format
+      } else {
+          // Handle invalid date
+          alert('Please enter a valid date.');
+          event.preventDefault();
+      }
+  });
+
+</script>
 @endsection

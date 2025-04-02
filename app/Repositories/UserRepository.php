@@ -37,6 +37,26 @@ class UserRepository
         ]);
     }
 
+    public function updateUser(User $user, array $data)
+    {
+        $user->update([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'dob' => $data['dob'] ?? null,
+            'phone' => $data['phone'] ?? null,
+            'password' => isset($data['password']) ? bcrypt($data['password']) : $user->password,
+        ]);
+
+        return $user;
+    }
+
+    public function updateProfileImage(User $user, $image)
+    {
+        $user->clearMediaCollection('user_profile_image');
+        $user->addMedia($image)->toMediaCollection('user_profile_image');
+    }
+    
     public function findById(int $id)
     {
         return User::find($id);

@@ -27,7 +27,9 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product-details__content">
-                        <form method="post" action="" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('gem.cart.add') }}" id="add-to-cart-form">
+                            @csrf
+                            <input type="hidden" name="shop_item_id" value="{{ $product->id }}">
 
                             <h3 class="product-details__title">{{$product->name}}</h3>
                             <p class="product-details__price">{{$product->price . ' EGP'}}</p>
@@ -40,6 +42,7 @@
                             </p>
                             <div class="product-details__button-block">
                                 @if ($product->stock_quantity > 0)
+                                    <input class="quantity-spinner Quantity" type="number" value="1" min="1" max="{{ $product->stock_quantity }}" name="quantity"  />
                                     <button class="thm-btn product-details__cart-btn">Add to Cart <span>+</span></button>
                                 @else
                                     Out Of Stock
@@ -184,5 +187,33 @@
             </div>
         </div>
     </section>
+
+@endsection
+
+@section('js')
+
+<script>
+    $(document).ready(function() {
+        $('#add-to-cart-form').submit(function(event) {
+            event.preventDefault();
+
+            $.ajax({
+                url: "{{ route('gem.cart.add') }}",
+                method: "POST",
+                data: $(this).serialize(),
+                success: function(response) {
+                    if (response.status === "success") {
+                        toastr.success(response.message);
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function(xhr) {
+                    toastr.error("Something went wrong! Please try again.");
+                }
+            });
+        });
+    });
+</script>
 
 @endsection

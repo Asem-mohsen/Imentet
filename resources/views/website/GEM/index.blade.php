@@ -205,136 +205,28 @@
         </div>
         <div class="col-lg-7">
           <div class="tab-content">
-
             <!-- Current Events -->
             <div class="event-two__main tab-pane animated fadeInRight show active" id="current" role="tabpanel">
-                @foreach($currentEvents as $currentEvent)
-                  <div class="event-two__single">
-                    <div class="event-two__image">
-                      <div class="event-two__time">
-                        {{$currentEvent->category->name}}
-                      </div>
-                      <div class="event-two__image-inner">
-                        <div class="event-two__price">
-                          <span>{{$currentEvent->prices->min('price_egyptian')}} <a style="color: #d99578;"> EGP /Person</a></span>
-                        </div>
-                        <img src="{{ $currentEvent->getFirstMediaUrl('event_media') }}" width="170px" height="170px" alt="{{ $currentEvent->title }}" />
-                      </div>
-                    </div>
-                    <div class="event-two__content">
-                      <div class="event-two__content-top">
-                        <div class="event-two__date">
-                          <div class="event-two__date-num">{{$currentEvent->start_time->format('d') }}</div>
-                          <div class="event-two__date-text">
-                              <span>{{$currentEvent->start_time->format('F') }}</span>
-                              {{$currentEvent->start_time->format('Y') }}
-                          </div>
-                      </div>
-                      </div>
-                      <h3 class="event-two__title">
-                        <a href="{{route('gem.events.show' , $currentEvent->id )}}">
-                          {{ $currentEvent->title }}
-                        </a>
-                      </h3>
-                      <p class="event-two__text">
-                        {{ $currentEvent->place->name }}
-                      </p>
-                      <a href="{{route('gem.events.show', $currentEvent->id )}}" class="event-two__link">
-                        <span>
-                          <i class="fa fa-angle-right"></i>
-                          More Details
-                        </span>
-                      </a>
-                    </div>
-                  </div>
-                @endforeach
+              @foreach($currentEvents as $currentEvent)
+                <x-event-card :event="$currentEvent" />
+              @endforeach
             </div>
-
+          
             <!-- Upcoming Events -->
-            <div class="event-two__main tab-pane animated fadeInRight" id="upcoming" role="tabpanel" >
+            <div class="event-two__main tab-pane animated fadeInRight" id="upcoming" role="tabpanel">
               @foreach($upcomingEvents as $upcomingEvent)
-                  <div class="event-two__single">
-                    <div class="event-two__image">
-                      <div class="event-two__time">
-                        {{$upcomingEvent->category->name}}
-                      </div>
-                      <div class="event-two__image-inner">
-                        <div class="event-two__price">
-                          <span>{{$upcomingEvent->prices->min('price_egyptian')}}  <a style="color: #d99578;"> EGP /Person</a></span>
-                        </div>
-                        <img src="{{ $upcomingEvent->getFirstMediaUrl('event_media') }}" width="170px" height="170px" alt="{{ $upcomingEvent->title }}" />
-                      </div>
-                    </div>
-                    <div class="event-two__content">
-                      <div class="event-two__content-top">
-                        <div class="event-two__date">
-                          <div class="event-two__date-num">{{ $upcomingEvent->start_time->format('d') }}</div>
-                          <div class="event-two__date-text">
-                              <span>{{ $upcomingEvent->start_time->format('F') }}</span>
-                              {{ $upcomingEvent->start_time->format('Y') }}
-                          </div>
-                      </div>
-                      </div>
-                      <h3 class="event-two__title">
-                        <a href="{{route('gem.events.show' , $upcomingEvent->id )}}">
-                          {{ $upcomingEvent->title }}
-                        </a>
-                      </h3>
-                      <p class="event-two__text">
-                        {{ $upcomingEvent->place->name }}
-                      </p>
-                      <a href="{{route('gem.events.show' , $upcomingEvent->id )}}" class="event-two__link">
-                        <span>
-                          <i class="fa fa-angle-right"></i>More Details</span>
-                      </a>
-                    </div>
-                  </div>
+                <x-event-card :event="$upcomingEvent" />
               @endforeach
             </div>
-
+          
             <!-- Past Events -->
-            <div class="event-two__main tab-pane animated fadeInRight" id="past" role="tabpanel" >
+            <div class="event-two__main tab-pane animated fadeInRight" id="past" role="tabpanel">
               @foreach($pastEvents as $pastEvent)
-                  <div class="event-two__single">
-                    <div class="event-two__image">
-                      <div class="event-two__time">
-                        {{$pastEvent->category->name}}
-                      </div>
-                      <div class="event-two__image-inner">
-                        <div class="event-two__price">
-                          <span>{{$pastEvent->prices->min('price_egyptian')}}<a style="color: #d99578;"> EGP /Person</a></span>
-                        </div>
-                        <img src="{{ $pastEvent->getFirstMediaUrl('event_media') }}" width="170px" height="170px" alt="{{ $pastEvent->title }}" />
-                      </div>
-                    </div>
-                    <div class="event-two__content">
-                      <div class="event-two__content-top">
-                        <div class="event-two__date">
-                          <div class="event-two__date-num">{{$pastEvent->start_time->format('d') }}</div>
-                          <div class="event-two__date-text">
-                              <span>{{$pastEvent->start_time->format('F') }}</span>
-                              {{$pastEvent->start_time->format('Y') }}
-                          </div>
-                      </div>
-                      </div>
-                      <h3 class="event-two__title">
-                        <a href="{{route('gem.events.show' , $pastEvent->id )}}">
-                          {{ $pastEvent->title }}
-                        </a>
-                      </h3>
-                      <p class="event-two__text">
-                        {{ $pastEvent->place->name }}
-                      </p>
-                      <a href="{{route('gem.events.show' , $pastEvent->id )}}" class="event-two__link">
-                        <span>
-                          <i class="fa fa-angle-right"></i>More Details</span>
-                      </a>
-                    </div>
-                  </div>
+                <x-event-card :event="$pastEvent" />
               @endforeach
             </div>
-
           </div>
+          
         </div>
       </div>
     </div>
