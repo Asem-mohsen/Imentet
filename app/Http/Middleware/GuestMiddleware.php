@@ -12,7 +12,7 @@ class GuestMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            return redirect()->route('gem.home');
+            return redirect()->route('index');
         }
 
         return $next($request);

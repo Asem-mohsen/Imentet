@@ -56,7 +56,7 @@
                                 {{$item->shopItem->price}}
                               </td>
                               <td class="qty">
-                                <input class="quantity-spinner Quantity" onchange="subTotal()" type="number" min="1" max="{{$item->shopItem->stock_quantity}}"  value="1" name="quantity[]">
+                                <input class="quantity-spinner Quantity" type="number" min="1" max="{{$item->shopItem->stock_quantity}}"  value="{{$item->quantity}}" name="quantity[]">
                               </td>
                               <td class="sub-total SubTotal"></td>
                               <td class="remove">
