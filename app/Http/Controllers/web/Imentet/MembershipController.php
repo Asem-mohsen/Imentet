@@ -4,14 +4,16 @@ namespace App\Http\Controllers\web\Imentet;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Memberships\{MembershipCheckoutRequest, MembershipDocsRequest};
-use App\Models\{MembershipPrice, Membership};
+use App\Models\{MembershipPrice, Membership, UserMembership};
 use App\Services\MembershipService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MembershipController extends Controller
 {
-    public function __construct(protected MembershipService $membershipService)
+    protected $membershipService;
+
+    public function __construct(MembershipService $membershipService)
     {
         $this->membershipService = $membershipService;
     }
@@ -70,27 +72,35 @@ class MembershipController extends Controller
 
     public function checkout(MembershipCheckoutRequest $request, Membership $membership)
     {
-        $validated  = $request->validated();
+        $validated = $request->validated();
+        $user = Auth::user();
+        $price = MembershipPrice::findOrFail($validated['price_id']);
 
-        $user       = Auth::user();
-        $price      = $this->membershipService->findMembershipPrice($validated['price_id']);
+        if ($price->membership_id !== $membership->id) {
+            return redirect()->back()->with('error', 'Invalid price selection.');
+        }
 
         $checkoutUrl = $this->membershipService->initiatePayment($user, $membership, $price);
 
         return redirect($checkoutUrl);
     }
 
-    public function paymentSuccess(Request $request ,Membership $membership, MembershipPrice $membershipPrice)
+    public function paymentSuccess(Request $request, Membership $membership, MembershipPrice $price)
     {
         $user = Auth::user();
 
-        if (!$membership || !$membershipPrice) {
+        if (!$membership || !$price) {
             return redirect()->route('gem.memberships.index')->with('error', 'Invalid membership or price.');
         }
 
-        $this->membershipService->handleSuccessfulPayment($user->id, $membership->id, $membershipPrice->id);
+        if ($price->membership_id !== $membership->id) {
+            return redirect()->route('gem.memberships.index')->with('error', 'Invalid price selection.');
+        }
 
-        return redirect()->route('gem.memberships.show', ['membership' => $membership->id])->with('success', 'Membership purchased successfully! Check your email for next steps.');
+        $this->membershipService->handleSuccessfulPayment($user->id, $membership->id, $price->id);
+
+        return redirect()->route('gem.memberships.show', ['membership' => $membership->id])
+            ->with('success', 'Membership purchased successfully! Check your email for next steps.');
     }
 
     public function paymentCancel(Request $request)
@@ -100,15 +110,33 @@ class MembershipController extends Controller
 
     public function uploadDocuments($token)
     {
-        return view('website.gem.memberships.upload-documents', compact('token'));
+        try {
+            $userMembershipId = decrypt($token);
+            dd($userMembershipId);
+            $userMembership = UserMembership::findOrFail($userMembershipId);
+
+            if ($userMembership->status === 'active') {
+                return redirect()->route('gem.memberships.show', $userMembership->membership_id)
+                    ->with('info', 'You have already submitted your documents.');
+            }
+
+            return view('website.gem.memberships.upload-documents', compact('token'));
+        } catch (\Exception $e) {
+            return redirect()->route('gem.memberships.index')
+                ->with('error', 'Invalid or expired submission link.');
+        }
     }
 
     public function handleUploadDocuments(MembershipDocsRequest $request)
     {
-        $userMembership = $this->membershipService->handleDocumentUpload($request->validated());
+        $user = Auth::user();
+        $userMembership = $this->membershipService->handleDocumentUpload($user, $request->token, $request->validated());
 
-        return redirect()
-            ->route('gem.memberships.show', ['membership' => $userMembership->membership_id])
+        if ($userMembership instanceof \Illuminate\Http\RedirectResponse) {
+            return $userMembership;
+        }
+
+        return redirect()->route('gem.memberships.show', ['membership' => $userMembership->membership_id])
             ->with('success', 'Documents submitted successfully!');
     }
 

@@ -15,6 +15,11 @@ class ShopItemsService
         return $this->shopItemsRepository->ShopItems($perPage);
     }
 
+    public function getSortedProducts(string $sortOption = 'default', int $perPage = 12)
+    {
+        return $this->shopItemsRepository->getSortedItems($sortOption, $perPage);
+    }
+    
     public function getProduct(int $productId)
     {
         return $this->shopItemsRepository->findById($productId);

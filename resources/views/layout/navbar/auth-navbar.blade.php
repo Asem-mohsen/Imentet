@@ -3,7 +3,7 @@
       <div class="container clearfix">
         <div class="logo-box">
           <a class="navbar-brand" href="{{route('index')}}">
-            <img src="{{ asset('assets/GEM/images/resources/imentet-logo.svg') }}" class="main-logo" alt="Imentet" />
+            <img loading="lazy" src="{{ asset('assets/GEM/images/resources/imentet-logo.svg') }}" class="main-logo" alt="Imentet" />
           </a>
           <button class="menu-toggler" data-target=".main-navigation">
             <span class="fa fa-bars"></span>

@@ -40,12 +40,15 @@ class UserRepository
     public function updateUser(User $user, array $data)
     {
         $user->update([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'dob' => $data['dob'] ?? null,
-            'phone' => $data['phone'] ?? null,
+            'first_name' => $data['first_name'] ?? $user->first_name,
+            'last_name' => $data['last_name'] ?? $user->last_name,
+            'email' => $data['email'] ?? $user->email,
+            'dob' => $data['dob'] ?? $user->dob,
+            'address' => $data['address'] ?? $user->address,
+            'phone' => $data['phone'] ?? $user->phone,
             'password' => isset($data['password']) ? bcrypt($data['password']) : $user->password,
+            'password_reset_token' => $data['password_reset_token'] ?? null,
+            'password_reset_token_expires_at' => $data['password_reset_token_expires_at'] ?? null,
         ]);
 
         return $user;
@@ -65,11 +68,12 @@ class UserRepository
     public function findBy(array $where)
     {
         return User::when(!empty($where), function ($query) use ($where) {
-            foreach ($where as $column => $condition) {
-                if (is_array($condition) && isset($condition['operator'], $condition['value'])) {
-                    $query->where($column, $condition['operator'], $condition['value']);
-                } else {
-                    $query->where($column, $condition);
+            foreach ($where as $key => $condition) {
+                if (is_array($condition) && count($condition) === 3) {
+                    [$column, $operator, $value] = $condition;
+                    $query->where($column, $operator, $value);
+                } elseif (!is_int($key)) {
+                    $query->where($key, $condition);
                 }
             }
         })->first();

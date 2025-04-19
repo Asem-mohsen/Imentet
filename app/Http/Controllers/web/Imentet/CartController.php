@@ -55,12 +55,22 @@ class CartController extends Controller
     {
         $this->cartService->clearCart();
 
-
         return redirect()->back()->with('success', 'Cart cleared successfully!');
     }
 
     public function updateQuantity(Request $request, $cartItemId)
     {
         return $this->cartService->updateQuantity($cartItemId, $request->quantity);
+    }
+
+    public function checkout()
+    {
+        $cart = $this->cartService->getCart();
+        
+        if (!$cart || $cart->items->isEmpty()) {
+            return redirect()->route('gem.cart.index')->with('error', 'Your cart is empty.');
+        }
+
+        return view('website.gem.cart.checkout', compact('cart'));
     }
 }

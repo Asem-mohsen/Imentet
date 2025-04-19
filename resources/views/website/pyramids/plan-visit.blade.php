@@ -35,7 +35,7 @@
                     <div class="plan-visit__tab-main">
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src="{{asset('assets/GEM/images/resources/visit-1.png')}}" class="plan-visit__tab-main-image" alt="Plan Visit" />
+                                <img loading="lazy" src="{{asset('assets/GEM/images/resources/visit-1.png')}}" class="plan-visit__tab-main-image" alt="Plan Visit" />
                             </div>
                             <div class="col-lg-6">
                                 <div class="plan-visit__content">

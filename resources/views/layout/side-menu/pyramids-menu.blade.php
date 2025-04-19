@@ -6,7 +6,7 @@
     </div>
     <div class="side-menu__block-inner">
         <a href="{{route('pyramids.home')}}">
-        <img src="{{asset('assets/GEM/images/resources/dark-logo-imentet.png')}}" alt="Pyramids Imentet" />
+        <img loading="lazy" src="{{asset('assets/GEM/images/resources/dark-logo-imentet.png')}}" alt="Pyramids Imentet" />
         </a>
         <div class="side-menu__block-about">
             <h3 class="side-menu__block__title">About Us</h3>
@@ -42,7 +42,7 @@
         </ul>
         </div>
         <p class="side-menu__block__text site-footer__copy-text">
-        <a href="#">Imentet</a> 
+        <a href="{{ url()->current() }}">Imentet</a> 
         <i class="fa fa-copyright"></i>{{ date('Y') }} All Right
         Reserved
         </p>

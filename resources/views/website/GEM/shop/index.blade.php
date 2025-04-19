@@ -41,37 +41,34 @@
             <div class="row">
                 @foreach ($products as $product)
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-duration="1500ms">
-                        <form method="POST" action="{{ route('gem.cart.add') }}">
-                            @csrf
-                            <input type="hidden" name="shop_item_id" value="{{ $product->id }}">
-                            <input type="hidden" name="quantity" value="1">
-                            <div class="product-one__single">
-                                <div class="product-one__image">
-                                    <img src="{{$product->getFirstMediaUrl('shop_item')}}" height="270px" alt="{{$product->name}}" />
+                        <input type="hidden" name="shop_item_id" value="{{ $product->id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <div class="product-one__single">
+                            <div class="product-one__image">
+                                <img loading="lazy" src="{{$product->getFirstMediaUrl('shop_item')}}" height="270px" alt="{{$product->name}}" />
+                            </div>
+                            <div class="product-one__content">
+                                <div class="product-one__content-left">
+                                    <h3 class="product-one__title">
+                                        <a href="{{route('gem.shop.products.show' , $product->id)}}"> {{$product->name}} </a>
+                                    </h3>
+                                    <p class="product-one__text"> EGP {{ $product->sale ? $product->sale->discounted_price : $product->price }}</p>
+                                    <p class="product-one__stars">
+                                        Available {{$product->stock_quantity . ' Items'}}
+                                    </p>
                                 </div>
-                                <div class="product-one__content">
-                                    <div class="product-one__content-left">
-                                        <h3 class="product-one__title">
-                                            <a href="{{route('gem.shop.products.show' , $product->id)}}"> {{$product->name}} </a>
-                                        </h3>
-                                        <p class="product-one__text">{{'EGP' . $product->price}}</p>
-                                        <p class="product-one__stars">
-                                            Available {{$product->stock_quantity . ' Items'}}
-                                        </p>
-                                    </div>
-                                    <div class="product-one__content-right">
-                                        @if($product->stock_quantity > 0)
-                                            <button data-toggle="tooltip" class="product-one__cart-btn add-to-cart" data-id="{{ $product->id }}"
-                                                data-id="{{ $product->id }}">
-                                                <i class="egypt-icon-supermarket"></i>
-                                            </button>
-                                        @else
-                                            Out of Stock
-                                        @endif
-                                    </div>
+                                <div class="product-one__content-right">
+                                    @if($product->stock_quantity > 0)
+                                        <button data-toggle="tooltip" class="product-one__cart-btn add-to-cart" data-id="{{ $product->id }}"
+                                            data-id="{{ $product->id }}">
+                                            <i class="egypt-icon-supermarket"></i>
+                                        </button>
+                                    @else
+                                        Out of Stock
+                                    @endif
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 @endforeach
             </div>
@@ -91,5 +88,5 @@
 @endsection
 
 @section('js')
-    @include('components.scripts.cart-actions')
+    @include('components.scripts.add-to-cart')
 @endsection

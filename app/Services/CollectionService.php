@@ -1,7 +1,7 @@
 <?php 
 namespace App\Services;
 
-use App\Repositories\{CollectionRepository};
+use App\Repositories\CollectionRepository;
 
 class CollectionService
 {
@@ -11,14 +11,14 @@ class CollectionService
         $this->collectionRepository = $collectionRepository;
     }
 
-    public function getCollections()
+    public function getCollections(string $placeName, ?int $limit = null)
     {
-        return $this->collectionRepository->getAllCollections();
+        return $this->collectionRepository->getAllCollections($placeName,limit: $limit);
     }
 
-    public function getCategoriesWithCollections(?string $slug = null , ?int $limit = null)
+    public function getCategoriesWithCollections(string $placeName, ?string $slug = null , ?int $limit = null)
     {
-        return $this->collectionRepository->getCategoriesWithCollections($slug ,limit: $limit);
+        return $this->collectionRepository->getCategoriesWithCollections(placeName: $placeName, slug: $slug ,limit: $limit);
     }
 
     public function getCollection(int $id)
@@ -31,11 +31,11 @@ class CollectionService
         return $this->collectionRepository->getCategories();
     }
 
-    public function getAdjacentCollections(int $collectionId): array
+    public function getAdjacentCollections(int $collectionId, string $placeName): array
     {
         return [
-            'prev' => $this->collectionRepository->getAdjacentCollection($collectionId, 'prev'),
-            'next' => $this->collectionRepository->getAdjacentCollection($collectionId, 'next'),
+            'prev' => $this->collectionRepository->getAdjacentCollection($collectionId, 'prev', $placeName),
+            'next' => $this->collectionRepository->getAdjacentCollection($collectionId, 'next', $placeName),
         ];
     }
 }

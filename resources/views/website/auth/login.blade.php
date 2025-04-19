@@ -17,8 +17,8 @@
                             <div class="content">
                                 <h3 class="login-form__title">Sign In</h3>
                                 <p>
-                                New to Imentet ?
-                                <a href="{{route('auth.register.index')}}">Create an Account</a>
+                                    New to Imentet ?
+                                    <a href="{{route('auth.register.index')}}">Create an Account</a>
                                 </p>
                             </div>
                             
@@ -44,7 +44,7 @@
                                     </div>
 
                                     <p>
-                                        <a href="{{route('auth.forget-password')}}">Forgot Password?</a>
+                                        <a href="{{route('auth.password.request')}}">Forgot Password?</a>
                                     </p>
 
                                     <button type="submit" name="sumbit" class="thm-btn contact-one__btn">

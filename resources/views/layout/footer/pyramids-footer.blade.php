@@ -1,7 +1,7 @@
 <footer class="site-footer">
     <div class="container">
         <a class="site-footer__logo" href="{{route('pyramids.home')}}">
-            <img src="{{ asset('assets/GEM/images/resources/IMENTET-DARK-PYRAMIDS.png') }}" width="240px" alt="Imentet"/>
+            <img loading="lazy" src="{{ asset('assets/GEM/images/resources/IMENTET-DARK-PYRAMIDS.png') }}" width="240px" alt="Imentet"/>
         </a>
         <form class="site-footer__form">
             <div class="site-footer__form-icon">

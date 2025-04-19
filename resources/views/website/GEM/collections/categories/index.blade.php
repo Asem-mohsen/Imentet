@@ -1,6 +1,6 @@
 @extends('layout.template.gem-template')
 
-@section('title' , 'Antiquities')
+@section('title' , $category->name)
 
 @section('content')
 
@@ -15,7 +15,6 @@
     </div>
   </section>
 
-  <!-- Search bar -->
   <form method="GET">
     <div class="collection-search collection-page">
       <div class="container">
@@ -40,8 +39,38 @@
 
   @php
     $partialView = 'website.gem.collections.categories.partials.' . Str::slug($category->name);
+    $defaultView = 'website.gem.collections.categories.partials.default';
   @endphp
 
-  @includeIf($partialView, ['collections' => $collections])
+  @if(View::exists($partialView))
+    @include($partialView, ['collections' => $collections])
+  @else
+    @include($defaultView, ['collections' => $collections])
+  @endif
 
+@endsection
+
+@section('js')
+  <script>
+      $(document).ready(function () {
+        $('#loadMoreBtn').on('click', function () {
+          let nextPageUrl = $(this).data('next-page');
+
+          if (!nextPageUrl) return; 
+
+          $.get(nextPageUrl, function (data) {
+            let newCollections = $(data).find('#collectionContainer').html();
+            $('#collectionContainer').append(newCollections);
+
+            // Update the "Load More" button
+            let nextPage = $(data).find('#loadMoreBtn').data('next-page');
+            if (nextPage) {
+              $('#loadMoreBtn').data('next-page', nextPage);
+            } else {
+              $('#loadMoreBtn').remove();
+            }
+          });
+        });
+      });
+  </script>
 @endsection

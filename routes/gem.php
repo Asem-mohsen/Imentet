@@ -17,7 +17,8 @@ use App\Http\Controllers\web\Imentet\{
     CareerController,
     DonationController,
     FaqController,
-    StripeController
+    StripeController,
+    UserController
 };
 
 Route::prefix('GEM')->name('gem.')->group(function () {
@@ -29,17 +30,14 @@ Route::prefix('GEM')->name('gem.')->group(function () {
     Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
         Route::get('/',  'gemEvents')->name('index');
         Route::get('/{event}',  'gemEventsShow')->name('show');
-        Route::post('/{event}/book',  'store')->name('store');
     });
 
     Route::prefix('memberships')->name('memberships.')->controller(MembershipController::class)->group(function () {
         Route::get('/', 'gemMemberships')->name('index');;
         Route::get('/{membership}',  'show')->name('show');
         Route::get('/{membership}/VIP', 'vips')->name('vip');
-        Route::post('/{membership}/checkout', 'checkout')->name('checkout');
         Route::get('/success/{membership}/{membershipPrice}',  'paymentSuccess')->name('success');
         Route::get('/upload-documents/{token}', 'uploadDocuments')->name('upload-documents');
-        Route::post('/upload-documents',  'handleUploadDocuments')->name('handle-upload');
         Route::get('/membership/cancel', 'paymentCancel')->name('cancel');
     });
 
@@ -58,18 +56,18 @@ Route::prefix('GEM')->name('gem.')->group(function () {
 
     Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::post('/add', 'addToCart')->name('add');
-        Route::post('/update/{cartItemId}', 'update')->name('update');
-        Route::delete('/remove/{cartItemId}',  'removeFromCart')->name('remove');
-        Route::delete('/clear','clear')->name('clearCart');
+        Route::get('/checkout', 'checkout')->name('checkout');
     });
 
     Route::get('/about-us', [AboutController::class, 'gemAbout'])->name('about');
 
     Route::prefix('tickets')->name('tickets.')->controller(TicketController::class)->group(function () {
         Route::get('/', 'gemTickets')->name('index');
-        Route::post('/selections', 'storeSelections')->name('storeSelections');
+        Route::post('/store', 'storeSelections')->name('storeSelections')->middleware(['auth']);
         Route::get('/plan-visit', 'gemPlanVisit')->name('plan-visit');
+        Route::post('/remove',  'removeTicket')->name('remove')->middleware(['auth']);
+        Route::get('/payment', 'processPayment')->name('payment');
+        Route::get('/success', 'paymentSuccess')->name('success');
     });
 
     Route::prefix('payments')->name('payments.')->controller(PaymentController::class)->group(function () {
@@ -78,26 +76,28 @@ Route::prefix('GEM')->name('gem.')->group(function () {
 
     Route::prefix('contact-us')->name('contact.')->controller(ContactController::class)->group(function () {
         Route::get('/', 'gemContact')->name('index');
-        Route::post('/store', 'store')->name('store');
     });
 
     Route::get('/faqs', [FaqController::class, 'gemFaqs'])->name('faqs');
 
     Route::prefix('careers')->name('careers.')->controller(CareerController::class)->group(function () {
         Route::get('/', 'gemCareers')->name('index');
-        Route::post('/store', 'store')->name('store');
     });
 
     Route::prefix('donations')->name('donations.')->controller(DonationController::class)->group(function () {
         Route::get('/', 'gemDonations')->name('index');
-        Route::post('/store', 'store')->name('store');
         Route::get('/success/{donation}', 'success')->name('success');
         Route::get('/cancel/{donation}', 'cancel')->name('cancel');
     });
 
-
+    // Stripe Payment Routes
     Route::get('/stripe/checkout/{payment}', [StripeController::class, 'checkout'])->name('stripe.checkout');
-    Route::get('/stripe/success/{payment}', [StripeController::class, 'success'])->name('stripe.success');
-    Route::get('/stripe/cancel/{payment}', [StripeController::class, 'cancel'])->name('stripe.cancel');
+    Route::get('/stripe/success', [StripeController::class, 'success'])->name('stripe.success');
+    Route::get('/stripe/cancel', [StripeController::class, 'cancel'])->name('stripe.cancel');
+
+    // Cart Stripe Payment Routes
+    Route::get('/stripe/cart/checkout', [StripeController::class, 'cartCheckout'])->name('stripe.cart.checkout');
+    Route::get('/stripe/cart/success', [StripeController::class, 'cartSuccess'])->name('stripe.cart.success');
+    Route::get('/stripe/cart/cancel', [StripeController::class, 'cartCancel'])->name('stripe.cart.cancel');
 
 });

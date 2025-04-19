@@ -45,10 +45,10 @@
       </div>
     </div>
     <div class="slider-two__nav">
-      <a class="slider-two__nav-left slide-one__left-btn" href="#">
+      <a class="slider-two__nav-left slide-one__left-btn" href="{{ url()->current() }}">
         <i class="egypt-icon-right-angle"></i>
       </a>
-      <a class="slider-two__nav-right slide-one__right-btn" href="#">
+      <a class="slider-two__nav-right slide-one__right-btn" href="{{ url()->current() }}">
         <i class="egypt-icon-left-angle"></i>
       </a>
     </div>
@@ -131,7 +131,7 @@
             <div class="collection-one__single">
               <div class="collection-one__icon">
                 <div class="collection-one__icon-img">
-                  <img src="{{$category->getFirstMediaUrl('event_category_media')}}" alt="{{$category->name}}" />
+                  <img loading="lazy" src="{{$category->getFirstMediaUrl('event_category_media')}}" alt="{{$category->name}}" />
                 </div>
               </div>
               <div class="collection-one__content">
@@ -174,7 +174,7 @@
               <div class="event-one__content">
                 <div class="event-one__image">
                   <div class="event-one__image-inner">
-                    <img src="{{$event->getFirstMediaUrl('event_media')}}" width="100px" height="100px" alt="{{$event->title}}" />
+                    <img loading="lazy" src="{{$event->getFirstMediaUrl('event_media')}}" width="100px" height="100px" alt="{{$event->title}}" />
                   </div>
                   <div class="event-one__image-hover">{{$event->prices->min('price_egyptian')}}  EGP</div>
                 </div>
@@ -260,7 +260,7 @@
   <!-- Membership -->
   <section class="cta-one">
     <div class="container">
-      <img src="{{ asset('assets/GEM/images/resources/cta-1-person.png') }}" class="cta-one__person wow fadeInRight" data-wow-duration="1500ms"/>
+      <img loading="lazy" src="{{ asset('assets/GEM/images/resources/cta-1-person.png') }}" class="cta-one__person wow fadeInRight" data-wow-duration="1500ms"/>
       <div class="row">
         <div class="col-xl-6 col-lg-8">
           <div class="cta-one__block">

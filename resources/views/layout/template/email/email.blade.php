@@ -18,7 +18,7 @@
                         <tr>
                             <td class="email-masthead">
                                 <a href="{{config('app.url')}}" class="f-fallback email-masthead_name">
-                                    <img src="{{asset('assets/GEM/images/logoImentet.png')}}" class="logo" style="margin-left: auto !important;" alt="Imentet">
+                                    <img loading="lazy" src="{{asset('assets/GEM/images/logoImentet.png')}}" class="logo" style="margin-left: auto !important;" alt="Imentet">
                                 </a>
                             </td>
                         </tr>

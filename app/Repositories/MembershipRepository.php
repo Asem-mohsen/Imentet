@@ -24,6 +24,25 @@ class MembershipRepository
         ->get();
     }
 
+    public function getAllUserMemberships(array $where = [], array $excludedNames = [])
+    {
+        return UserMembership::when(!empty($where), function ($query) use ($where) {
+            foreach ($where as $column => $condition) {
+                if (is_array($condition)) {
+                    if (isset($condition['operator'], $condition['value'])) {
+                        $query->where($column, $condition['operator'], $condition['value']);
+                    }
+                } else {
+                    $query->where($column, $condition);
+                }
+            }
+        })
+        ->when(!empty($excludedNames), function ($query) use ($excludedNames) {
+            $query->whereNotIn('name->en', $excludedNames);
+        })
+        ->get();
+    }
+
     public function createUserMembership($userId, $membershipId, $priceId)
     {
         return UserMembership::create([

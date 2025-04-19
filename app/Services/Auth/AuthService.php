@@ -1,11 +1,12 @@
 <?php 
 namespace App\Services\Auth;
 
-use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PasswordResetMail;
 class AuthService
 {
     public function __construct(protected UserRepository $userRepository)
@@ -72,4 +73,40 @@ class AuthService
 
         Auth::login($user);
    }
+
+   public function sendPasswordResetLink(string $email): void
+    {
+        $user = $this->userRepository->findBy(['email' => $email]);
+
+        if (!$user) {
+            throw new \Exception("We can't find a user with that email address.");
+        }
+
+        $token = Str::random(64);
+        $this->userRepository->updateUser($user, [
+            'password_reset_token' => $token,
+            'password_reset_token_expires_at' => now()->addHour(),
+        ]);
+
+        Mail::to($user->email)->send(new PasswordResetMail($token));
+    }
+
+    public function resetPassword(string $email, string $token, string $newPassword): void
+    {
+        $user = $this->userRepository->findBy(where: [
+            ['email', '=', $email],
+            ['password_reset_token', '=', $token],
+            ['password_reset_token_expires_at', '>', now()],
+        ]);
+
+        if (!$user) {
+            throw new \Exception("This password reset token is invalid or has expired.");
+        }
+
+        $userNew = $this->userRepository->updateUser($user, [
+            'password' => $newPassword,
+            'password_reset_token' => null,
+            'password_reset_token_expires_at' => null,
+        ]);
+    }
 }

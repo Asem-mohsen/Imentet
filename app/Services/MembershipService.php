@@ -53,20 +53,22 @@ class MembershipService
     {
         $userMembership = $this->membershipRepository->createUserMembership($userId, $membershipId, $priceId);
 
-        $submissionLink = route('gem.memberships.upload-documents', ['token' => encrypt($userMembership->id)]);
+        $submissionLink = route('gem.memberships.upload-documents', [
+            'token' => encrypt($userMembership->id),
+            'price_id' => $priceId
+        ]);
         
-        $userEmail = $this->userRepository->findById($userId)?->email;
-
-        Mail::to($userEmail)->send(new MembershipConfirmationMail($submissionLink));
+        Mail::to($userMembership->user->email)->send(new MembershipConfirmationMail($submissionLink));
 
         return $userMembership;
     }
 
     public function checkAndSuspendPendingMemberships()
     {
-        $pendingMemberships = UserMembership::where('status', 'pending_documents')
-            ->where('document_submission_deadline', '<', now())
-            ->get();
+        $pendingMemberships = $this->membershipRepository->getAllUserMemberships([
+            'status' => 'pending_documents',
+            'document_submission_deadline' => '<', now()
+        ]);
 
         foreach ($pendingMemberships as $membership) {
             $this->membershipRepository->suspendMembership($membership->id);
@@ -74,30 +76,41 @@ class MembershipService
         }
     }
 
-    public function handleDocumentUpload(array $data)
+    public function handleDocumentUpload($user, $token, $data)
     {
-        $membershipId = decrypt($data['token']);
+        try {
+            $userMembershipId = decrypt($token);
+            $userMembership = UserMembership::findOrFail($userMembershipId);
 
-        $userMembership = $this->membershipRepository->findById($membershipId);
+            if ($userMembership->status === 'active') {
+                return redirect()->route('gem.memberships.show', $userMembership->membership_id)
+                    ->with('info', 'You have already submitted your documents.');
+            }
 
-        // Update user info
-        $this->userRepository->update($userMembership->user_id, [
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'address' => $data['address'],
-        ]);
+            // Update user info
+            $this->userRepository->updateUser($user, $data);
 
-        // Attach documents using Spatie
-        $userMembership->addMediaFromRequest('personal_id')->toMediaCollection('personal_id');
-        $userMembership->addMediaFromRequest('personal_photo')->toMediaCollection('personal_photo');
+            // Update membership status
+            $userMembership->update(['status' => 'active']);
 
-        if (!$data['is_egyptian']) {
-            $userMembership->addMediaFromRequest('passport')->toMediaCollection('passport');
+            // Handle document uploads
+            if (isset($data['personal_id'])) {
+                $user->addMedia($data['personal_id'])->toMediaCollection('personal_id');
+            }
+
+            if (isset($data['personal_photo'])) {
+                $user->addMedia($data['personal_photo'])->toMediaCollection('user_profile_image');
+            }
+
+            if (isset($data['passport'])) {
+                $user->addMedia($data['passport'])->toMediaCollection('passport');
+            }
+
+            return $userMembership;
+        } catch (\Exception $e) {
+            return redirect()->route('gem.memberships.index')
+                ->with('error', 'Invalid or expired submission link.');
         }
-
-        return $userMembership;
     }
 
     private function formatMembershipDetails($membership)
@@ -131,14 +144,16 @@ class MembershipService
             'line_items' => [[
                 'price_data' => [
                     'currency' => 'egp',
-                    'product_data' => ['name' => $membership->name],
+                    'product_data' => [
+                        'name' => $membership->name,
+                    ],
                     'unit_amount' => $price->price * 100,
                 ],
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-           'success_url' => route('gem.memberships.success', ['membership' => $membership->id, 'membershipPrice' => $price->id]),
-            'cancel_url' => url('/GEM/memberships/cancel'),
+            'success_url' => route('gem.memberships.success', ['membership' => $membership->id, 'membershipPrice' => $price->id]),
+            'cancel_url' => route('gem.memberships.cancel'),
         ]);
 
         return $session->url;

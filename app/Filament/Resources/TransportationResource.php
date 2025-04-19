@@ -6,9 +6,13 @@ use App\Filament\Resources\TransportationResource\Pages;
 use App\Filament\Resources\TransportationResource\RelationManagers;
 use App\Models\Transportation;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -16,27 +20,47 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class TransportationResource extends Resource
 {
     protected static ?string $model = Transportation::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-map';
+    protected static ?string $navigationGroup = 'Transportations';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('vehicle_type')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Select::make('start_station_id')
-                    ->relationship('startStation', 'name')
-                    ->required(),
-                Forms\Components\Select::make('end_station_id')
-                    ->relationship('endStation', 'name')
-                    ->required(),
-                Forms\Components\TextInput::make('price')
-                    ->required()
-                    ->numeric()
-                    ->default(0.00)
-                    ->prefix('$'),
+                Tabs::make('Tabs')
+                    ->tabs([
+                        Tabs\Tab::make('English')
+                            ->schema([
+                                TextInput::make('vehicle_type.en')
+                                    ->label('Vehicle Type (English)')
+                                    ->required()
+                                    ->maxLength(255),
+
+                            ]),
+                        Tabs\Tab::make('Arabic')
+                            ->schema([
+                                TextInput::make('vehicle_type.ar')
+                                    ->label('Vehicle Type (English)')
+                                    ->required()
+                                    ->maxLength(255),
+                            ]),
+
+                        Tabs\Tab::make('More Information')
+                            ->schema([
+                            Select::make('start_station_id')
+                                ->relationship('startStation', 'name')
+                                ->required(),
+
+                            Select::make('end_station_id')
+                                ->relationship('endStation', 'name')
+                                ->required(),
+                            TextInput::make('price')
+                                ->required()
+                                ->numeric()
+                                ->default(0.00)
+                                ->prefix('$'),
+                            ]),
+                    ])->columnSpan(2),
             ]);
     }
 
@@ -44,20 +68,23 @@ class TransportationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('startStation.name')
+                TextColumn::make('id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('endStation.name')
+                TextColumn::make('startStation.name')
                     ->numeric()
+                    ->label('Start Station')
+                    ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('price')
+                TextColumn::make('endStation.name')
+                    ->numeric()
+                    ->label('End Station')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('price')
                     ->money()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -67,6 +94,7 @@ class TransportationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

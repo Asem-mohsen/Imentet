@@ -5,7 +5,7 @@
     </div>
     <div class="side-menu__block-inner">
       <a href="{{route('gem.home')}}">
-        <img src="{{ asset('assets/GEM/images/resources/dark-logo-imentet.png') }}" alt="Imentet" />
+        <img loading="lazy" src="{{ asset('assets/GEM/images/resources/dark-logo-imentet.png') }}" alt="Imentet" />
       </a>
       <div class="side-menu__block-about">
         <h3 class="side-menu__block__title">About Us</h3>

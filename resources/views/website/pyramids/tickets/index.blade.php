@@ -152,7 +152,7 @@
 
                     <!-- Contact -->
                     <div class="tab-pane animated fadeInUp" id="contact">
-                        <form method='POST' action="{{ route('pyramids.contact.store') }}" class="donation-form__form">
+                        <form method='POST' action="{{ route('imentet.contact.store') }}" class="donation-form__form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">

@@ -22,7 +22,7 @@
                 <div class="col-lg-6">
                     <div class="contact-one__main">
                         <div class="contact-one__image">
-                            <img src="{{ asset('assets/GEM/images/resources/contact-1-1.jpeg') }}" class="img-fluid" alt="" />
+                            <img loading="lazy" src="{{ asset('assets/GEM/images/resources/contact-1-1.jpeg') }}" class="img-fluid" alt="" />
                         </div>
                         <div class="contact-one__content">
                             <div class="row no-gutters">
@@ -45,48 +45,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <form action="{{ route('gem.contact.store') }}" method="POST" class="contact-one__form">
-                        @csrf
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p class="contact-one__field">
-                                    <label>First Name:</label>
-                                    <input type="text" name="first_name" value="{{ old('first_name') }}" required>
-                                </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="contact-one__field">
-                                    <label>Last Name:</label>
-                                    <input type="text" name="last_name"  value="{{ old('last_name') }}" required>
-                                </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="contact-one__field">
-                                    <label>Email:</label>
-                                    <input type="email" name="email" value="{{ old('email') }}" required>
-                                </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="contact-one__field">
-                                    <label>Phone:</label>
-                                    <input type="number" name="phone" pattern="[0-9]*" value="{{ old('phone') }}" required>
-                                </p>
-                            </div>
-                            <div class="col-lg-12">
-                                <p class="contact-one__field">
-                                    <label>Subject:</label>
-                                    <input type="text" name="subject" value="{{ old('subject') }}" required>
-                                </p>
-                            </div>
-                            <div class="col-lg-12">
-                                <p class="contact-one__field">
-                                    <label>Message:</label>
-                                    <textarea name="message" required>{{old('message')}}</textarea>
-                                    <button type="submit" class="thm-btn contact-one__btn">Send Message</button>
-                                </p>
-                            </div>
-                        </div>
-                    </form>
+                    <x-forms.contact-form :route="route('imentet.contact.store')" />
                 </div>
             </div>
         </div>

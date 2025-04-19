@@ -52,7 +52,7 @@ class GiftShopsResource extends Resource
                                 Textarea::make('location.ar')->label('Location (Arabic)'),
                             ]),
                             
-                    Tabs\Tab::make('Place')
+                    Tabs\Tab::make('Place & Items')
                         ->schema([
                             Select::make('place_id')
                                 ->label('Select Place')
@@ -60,6 +60,13 @@ class GiftShopsResource extends Resource
                                 ->preload()
                                 ->searchable()
                                 ->required(),
+
+                            Select::make('shopItems')
+                                ->label('Select Items')
+                                ->relationship('shopItems', 'name')
+                                ->preload()
+                                ->searchable()
+                                ->multiple(),
                             ]),
 
                     Tabs\Tab::make('Media')

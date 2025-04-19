@@ -22,14 +22,14 @@
                     <div class="collection-details__content">
                         <h3 class="collection-details__title">{{$collection->name}}</h3>
                         <br>
-                        <img src="{{$collection->getFirstMediaUrl('collection_media')}}" alt="{{$collection->name}}" class="img-fluid" />
+                        <img loading="lazy" src="{{$collection->getFirstMediaUrl('collection_media')}}" alt="{{$collection->name}}" class="img-fluid" />
                         @php 
                             $imagePath = $collection->getFirstMediaPath('collection_media');
                             $imageSize = getimagesize($imagePath); 
                         @endphp
                         <br>
                         <br>
-                        <a href="#" class="collection-details__link"><i class="fa fa-download"></i> Download Image</a>
+                        <a href="{{ url()->current() }}" class="collection-details__link"><i class="fa fa-download"></i> Download Image</a>
                         <br>
                         <p class="collection-details__text">{{$collection->description}}</p>
                         <br>
@@ -114,7 +114,7 @@
                             <div class="collection-details__sidebar-social">
                                 <a href="https://www.facebook.com/GrandEgyptianMuseum/" target="_blank" class="fa fa-facebook-f"></a>
                                 <a href="https://twitter.com/EgyptMuseumGem" target="_blank" class="fa fa-twitter"></a>
-                                <a href="#" class="fa fa-rss"></a>
+                                <a href="{{ url()->current() }}" class="fa fa-rss"></a>
                             </div>
                         </div>
                     </div>
@@ -163,14 +163,14 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp masonary-item" data-wow-duration="1500ms" data-wow-delay="0ms">
                         <div class="collection-two__single">
                             <div class="collection-two__image">
-                                <img src="{{$collection->getFirstMediaUrl('collection_media')}}" height="200px" alt="{{$collection->name}}">
+                                <img loading="lazy" src="{{$collection->getFirstMediaUrl('collection_media')}}" height="200px" alt="{{$collection->name}}">
                                 <div class="collection-two__hover">
                                     <a class="img-popup" href="{{$collection->getFirstMediaUrl('collection_media')}}"><i class="egypt-icon-focus"></i>
                                     </a>
                                 </div>
                             </div>
                             <div class="collection-two__content">
-                                <p class="collection-two__category"><a href="#">{{$collection->category->name}}</a></p>
+                                <p class="collection-two__category"><a href="{{route('gem.collections.category' , $collection->category->slug)}}">{{$collection->category->name}}</a></p>
                                 
                                 <h3 class="collection-two__title">
                                     <a href="{{route('gem.collections.show' , $collection->id)}}">

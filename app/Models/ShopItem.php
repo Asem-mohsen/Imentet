@@ -21,9 +21,14 @@ class ShopItem extends Model implements HasMedia
         return $this->belongsTo(ShopItemCategory::class, 'category_id');
     }
 
-    public function sales(): HasMany
+    public function giftShops()
     {
-        return $this->hasMany(Sale::class);
+        return $this->belongsToMany(GiftShop::class, 'gift_shop_items');
+    }
+    
+    public function sale()
+    {
+        return $this->hasOne(Sale::class , 'shop_item_id')->wherePast('start_date')->whereFuture('end_date');
     }
 
     public function reviews(): HasMany

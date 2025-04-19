@@ -9831,6 +9831,9 @@ a:focus {
   border: none;
   outline: none;
 }
+button:focus {
+  outline: none !important;
+}
 
 .cart-table .remove button:hover {
   color: #d99578;
@@ -9846,6 +9849,10 @@ a:focus {
 .cart-table th + th,
 .cart-table td + td {
   border-left: 1px solid #e4e4e4;
+}
+.cart-table .cart-empty{
+  padding: 50px;
+  font-size: 24px;
 }
 .cart-table tr + tr {
   border-top: 1px solid #e4e4e4;

@@ -91,8 +91,8 @@
         </div>
         <div class="col-lg-6 d-flex align-items-end justify-content-center wow fadeInRight" data-wow-duration="1500ms">
           <div class="about-two__image">
-            <img src="{{ asset('assets/GEM/images/new/about-home/about-2-new.png') }}" class="about-two__image--1" alt="Grand Egyption Museum" />
-            <img src="{{ asset('assets/GEM/images/new/about-home/about-1-new.png') }}" class="about-two__image--2" alt="Grand Egyption Museum" />
+            <img loading="lazy" src="{{ asset('assets/GEM/images/new/about-home/about-2-new.png') }}" class="about-two__image--1" alt="Grand Egyption Museum" />
+            <img loading="lazy" src="{{ asset('assets/GEM/images/new/about-home/about-1-new.png') }}" class="about-two__image--2" alt="Grand Egyption Museum" />
             <div class="about-two__image-content">
               <div class="about-two__image-decor"></div>
               <div class="about-two__image-content-main">
@@ -128,7 +128,7 @@
                     <span class="exhibhition-one__image-border-3"></span>
                     <span class="exhibhition-one__image-border-4"></span>
 
-                    <img src="{{ $exhibition->getFirstMediaUrl('event_media') }}" alt="{{ $exhibition->title }}"/>
+                    <img loading="lazy" src="{{ $exhibition->getFirstMediaUrl('event_media') }}" alt="{{ $exhibition->title }}"/>
                     <a href="{{route('gem.events.show' , $exhibition->id )}}" class="exhibhition-one__image-link">
                       <i class="egypt-icon-arrow-1"></i>
                     </a>
@@ -208,21 +208,21 @@
             <!-- Current Events -->
             <div class="event-two__main tab-pane animated fadeInRight show active" id="current" role="tabpanel">
               @foreach($currentEvents as $currentEvent)
-                <x-event-card :event="$currentEvent" />
+                <x-cards.event-card :event="$currentEvent" />
               @endforeach
             </div>
           
             <!-- Upcoming Events -->
             <div class="event-two__main tab-pane animated fadeInRight" id="upcoming" role="tabpanel">
               @foreach($upcomingEvents as $upcomingEvent)
-                <x-event-card :event="$upcomingEvent" />
+                <x-cards.event-card :event="$upcomingEvent" />
               @endforeach
             </div>
           
             <!-- Past Events -->
             <div class="event-two__main tab-pane animated fadeInRight" id="past" role="tabpanel">
               @foreach($pastEvents as $pastEvent)
-                <x-event-card :event="$pastEvent" />
+                <x-cards.event-card :event="$pastEvent" />
               @endforeach
             </div>
           </div>
@@ -239,7 +239,7 @@
         <i class="fa fa-play"></i>
       </a> 
       <a href="https://www.youtube.com/watch?v=GiMbVa6XzTw" class="video-popup">
-        <img src="{{ asset('assets/GEM/images/new/about-home/video-1-1.png') }}" alt="Awesome Image"/>
+        <img loading="lazy" src="{{ asset('assets/GEM/images/new/about-home/video-1-1.png') }}" alt="Memberships"/>
       </a>
     </div>
     <div class="container">

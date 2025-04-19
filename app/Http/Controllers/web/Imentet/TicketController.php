@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\web\Imentet;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Tickets\StoreTicketSelectionRequest;
+use App\Http\Requests\Tickets\{RemoveTicketRequest, StoreTicketSelectionRequest};
 use App\Services\TicketsService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 class TicketController extends Controller
 {
@@ -74,6 +75,95 @@ class TicketController extends Controller
         }
 
         return response()->json(['success' => true, 'message' => 'Tickets saved successfully.']);
+    }
+
+    public function removeTicket(RemoveTicketRequest $request)
+    {
+        $validated = $request->validated();
+
+        try {
+            $user = Auth::user();
+            $ticketId = $validated['ticket_id'];
+            
+            $selectedTicket = $this->ticketsService->findUserSelectedTicket($user , $ticketId);
+            
+            if (!$selectedTicket) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Ticket not found in your cart',
+                ], 404);
+            }
+            
+            $selectedTicket->delete();
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Ticket removed successfully',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to remove ticket from cart',
+            ], 500);
+        }
+    }
+
+    public function processPayment()
+    {
+        $user = Auth::user();
+        $selectedTickets = $this->ticketsService->getUserSelectedTickets($user);
+        
+        if ($selectedTickets->isEmpty()) {
+            return redirect()->route('gem.tickets.index')->with('error', 'No tickets selected');
+        }
+
+        $total = $selectedTickets->sum('total');
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'egp',
+                    'product_data' => [
+                        'name' => 'GEM Tickets',
+                    ],
+                    'unit_amount' => $total * 100,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('gem.tickets.success'),
+            'cancel_url' => route('gem.tickets.index'),
+            'customer_email' => $user->email,
+            'metadata' => [
+                'user_id' => $user->id,
+            ],
+        ]);
+
+        return redirect($session->url);
+    }
+
+    public function paymentSuccess()
+    {
+        $user = Auth::user();
+        $selectedTickets = $this->ticketsService->getUserSelectedTickets($user);
+        
+        if ($selectedTickets->isEmpty()) {
+            return redirect()->route('gem.tickets.index')->with('error', 'No tickets found');
+        }
+
+        // Update ticket status to paid
+        // foreach ($selectedTickets as $ticket) {
+        //     $ticket->update(['status' => 'paid']);
+        // }
+
+        return view('website.gem.tickets.ticket', [
+            'user' => $user,
+            'tickets' => $selectedTickets,
+            'total' => $selectedTickets->sum('total'),
+        ]);
     }
 
 }

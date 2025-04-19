@@ -1,6 +1,6 @@
 <section class="collection-four">
   <div class="container-fluid">
-    <div class="row high-gutters">
+    <div class="row high-gutters" id="collectionContainer">
       @foreach ($collections as $collection)
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="collection-four__single">

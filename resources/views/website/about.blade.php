@@ -31,7 +31,7 @@
                     Our team is made up of experts in web and business development, archaeology, 
                     and digital media, who work together to connect the past to the future through innovative technology.
                 </p>
-                <a href="#" class="about-three__content-link">
+                <a href="{{ url()->current() }}" class="about-three__content-link">
                     <i class="egypt-icon-download"></i>
                     <span>Download Story in PDF</span>
                 </a>
@@ -99,26 +99,26 @@
                     <div class="col-lg-4">
                         <ul class="department-one__list list-unstyled">
                             <li>
-                                <a href="#">Department of <br />Ancient Collection</a>
+                                <a href="{{ url()->current() }}">Department of <br />Ancient Collection</a>
                             </li>
                             <li>
-                                <a href="#">Department of Information Technology</a>
+                                <a href="{{ url()->current() }}">Department of Information Technology</a>
                             </li>
                             <li>
-                                <a href="#">Department of Public </br>Relations</a>
+                                <a href="{{ url()->current() }}">Department of Public </br>Relations</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4">
                         <ul class="department-one__list list-unstyled">
                             <li>
-                                <a href="#">Department of Exhibitions, <br />Communication and Events</a>
+                                <a href="{{ url()->current() }}">Department of Exhibitions, <br />Communication and Events</a>
                             </li>
                             <li>
-                                <a href="#">Department of Customer Support</a>
+                                <a href="{{ url()->current() }}">Department of Customer Support</a>
                             </li>
                             <li>
-                                <a href="#">Department of Administrative and <br/> Financial </a>
+                                <a href="{{ url()->current() }}">Department of Administrative and <br/> Financial </a>
                             </li>
                         </ul>
                     </div>
@@ -155,7 +155,7 @@
             data-wow-delay="000ms"
             >
             <div class="team-one__image">
-                <img src="images/team/team-1-1.jpg" alt="Awesome Image" />
+                <img loading="lazy" src="images/team/team-1-1.jpg" alt="Awesome Image" />
             </div>
             <div class="team-one__content">
                 <h3 class="team-one__name">Rawan Ayman</h3>
@@ -165,9 +165,9 @@
                     <i class="egypt-icon-share"></i>Get Touch With Me
                 </p>
                 <div class="team-one__social-links">
-                    <a href="#" class="fa fa-facebook-f"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-facebook-f"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-twitter"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-linkedin"></a>
                 </div>
                 </div>
             </div>
@@ -180,7 +180,7 @@
             data-wow-delay="100ms"
             >
             <div class="team-one__image">
-                <img src="images/team/team-1-2.jpg" alt="Awesome Image" />
+                <img loading="lazy" src="images/team/team-1-2.jpg" alt="Awesome Image" />
             </div>
             <div class="team-one__content">
                 <h3 class="team-one__name">Ruqaya Amr</h3>
@@ -190,9 +190,9 @@
                     <i class="egypt-icon-share"></i>Get Touch With Me
                 </p>
                 <div class="team-one__social-links">
-                    <a href="#" class="fa fa-facebook-f"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-facebook-f"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-twitter"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-linkedin"></a>
                 </div>
                 </div>
             </div>
@@ -205,7 +205,7 @@
             data-wow-delay="200ms"
             >
             <div class="team-one__image">
-                <img src="images/team/team-1-3.jpg" alt="Awesome Image" />
+                <img loading="lazy" src="images/team/team-1-3.jpg" alt="Awesome Image" />
             </div>
             <div class="team-one__content">
                 <h3 class="team-one__name">Farah Khaled</h3>
@@ -215,9 +215,9 @@
                     <i class="egypt-icon-share"></i>Get Touch With Me
                 </p>
                 <div class="team-one__social-links">
-                    <a href="#" class="fa fa-facebook-f"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-facebook-f"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-twitter"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-linkedin"></a>
                 </div>
                 </div>
             </div>
@@ -230,7 +230,7 @@
             data-wow-delay="300ms"
             >
             <div class="team-one__image">
-                <img src="images/team/team-1-4.jpg" alt="Awesome Image" />
+                <img loading="lazy" src="images/team/team-1-4.jpg" alt="Awesome Image" />
             </div>
             <div class="team-one__content">
                 <h3 class="team-one__name">Assem Mohsen</h3>
@@ -240,9 +240,9 @@
                     <i class="egypt-icon-share"></i>Get Touch With Me
                 </p>
                 <div class="team-one__social-links">
-                    <a href="#" class="fa fa-facebook-f"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-facebook-f"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-twitter"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-linkedin"></a>
                 </div>
                 </div>
             </div>
@@ -255,7 +255,7 @@
             data-wow-delay="100ms"
             >
             <div class="team-one__image">
-                <img src="images/team/team-1-2.jpg" alt="Awesome Image" />
+                <img loading="lazy" src="images/team/team-1-2.jpg" alt="Awesome Image" />
             </div>
             <div class="team-one__content">
                 <h3 class="team-one__name">Amgad Mahmoud</h3>
@@ -265,9 +265,9 @@
                     <i class="egypt-icon-share"></i>Get Touch With Me
                 </p>
                 <div class="team-one__social-links">
-                    <a href="#" class="fa fa-facebook-f"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-facebook-f"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-twitter"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-linkedin"></a>
                 </div>
                 </div>
             </div>
@@ -280,7 +280,7 @@
             data-wow-delay="100ms"
             >
             <div class="team-one__image">
-                <img src="images/team/team-1-2.jpg" alt="Awesome Image" />
+                <img loading="lazy" src="images/team/team-1-2.jpg" alt="Awesome Image" />
             </div>
             <div class="team-one__content">
                 <h3 class="team-one__name">Ziad Mahmoud</h3>
@@ -290,9 +290,9 @@
                     <i class="egypt-icon-share"></i>Get Touch With Me
                 </p>
                 <div class="team-one__social-links">
-                    <a href="#" class="fa fa-facebook-f"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-facebook-f"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-twitter"></a>
+                    <a href="{{ url()->current() }}" class="fa fa-linkedin"></a>
                 </div>
                 </div>
             </div>
@@ -305,7 +305,7 @@
     <footer class="site-footer">
     <div class="container">
         <a class="site-footer__logo" href="https://gem.infinityfreeapp.com/GrandEgyptianMuseum/Backend/Project/index.php"
-        ><img src="https://gem.infinityfreeapp.com/GrandEgyptianMuseum/Backend/Images/resources/footer-logo-imentet-gem.svg" class="footer-logo"
+        ><img loading="lazy" src="https://gem.infinityfreeapp.com/GrandEgyptianMuseum/Backend/Images/resources/footer-logo-imentet-gem.svg" class="footer-logo"
 
 alt=""
         /></a>
@@ -323,14 +323,14 @@ alt=""
         </form>
         <!-- /.site-footer__form -->
         <div class="site-footer__social">
-        <a href="#"><i class="egypt-icon-logo"></i></a>
-        <a href="#"><i class="egypt-icon-twitter"></i></a>
-        <a href="#"><i class="egypt-icon-instagram"></i></a>
-        <a href="#"><i class="egypt-icon-play"></i></a>
+        <a href="{{ url()->current() }}"><i class="egypt-icon-logo"></i></a>
+        <a href="{{ url()->current() }}"><i class="egypt-icon-twitter"></i></a>
+        <a href="{{ url()->current() }}"><i class="egypt-icon-instagram"></i></a>
+        <a href="{{ url()->current() }}"><i class="egypt-icon-play"></i></a>
         </div>
         <!-- /.site-footer__social -->
         <p class="site-footer__copy">
-        Copyrights &copy; 2023 <a href="#">Egypt</a>, All Rights Reserved.
+        Copyrights &copy; 2023 <a href="{{ url()->current() }}">Egypt</a>, All Rights Reserved.
         </p>
         <!-- /.site-footer__copy -->
     </div>
