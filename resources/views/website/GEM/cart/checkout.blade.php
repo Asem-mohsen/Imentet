@@ -89,7 +89,7 @@
                     <div class="payment-methods">
                         <h3 class="cart-total__text text-uppercase mb-4">Payment Method</h3>
                         
-                        <form id="payment-form" action="{{ route('gem.cart.checkout.process') }}" method="POST">
+                        <form id="payment-form" action="{{ route('imentet.cart.checkout.process') }}" method="POST">
                             @csrf
                             <div class="payment-methods__options">
                                 <!-- Cash Payment -->
