@@ -6,9 +6,12 @@ use App\Filament\Resources\TicketsResource\Pages;
 use App\Filament\Resources\TicketsResource\RelationManagers;
 use App\Models\UserTicket;
 use Filament\Forms;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,7 +28,12 @@ class TicketsResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('user.fullName')->label('User Name'),
+                TextInput::make('visitTicket.ticket_type')->label('Ticket Type'),
+                TextInput::make('visitTicket.price')->label('Price'),
+                TextInput::make('visitTicket.place.name')->label('Place'),
+                TextInput::make('visit_date')->label('Visit Date'),
+                TextInput::make('status')->label('Status'),
             ]);
     }
 
@@ -33,18 +41,23 @@ class TicketsResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('user.fullName')->label('User Name'),
+                TextColumn::make('visitTicket.ticket_type')->label('Ticket Type'),
+                TextColumn::make('visitTicket.price')->label('Price'),
+                TextColumn::make('visitTicket.place.name')->label('Place'),
+                DateTimePicker::make('visit_date')->label('Visit Date')->dateTime('d-m-Y H:i'),
+                TextColumn::make('status')->label('Status')->badge(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Tables\Actions\BulkActionGroup::make([
+                //     Tables\Actions\DeleteBulkAction::make(),
+                // ]),
             ]);
     }
 
@@ -59,8 +72,9 @@ class TicketsResource extends Resource
     {
         return [
             'index' => Pages\ListTickets::route('/'),
-            'create' => Pages\CreateTickets::route('/create'),
-            'edit' => Pages\EditTickets::route('/{record}/edit'),
+            // 'create' => Pages\CreateTickets::route('/create'),
+            // 'edit' => Pages\EditTickets::route('/{record}/edit'),
+            'view' => Pages\ViewTickets::route('/{record}'),
         ];
     }
 }

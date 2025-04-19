@@ -79,6 +79,7 @@ class TicketsRepository
             ->get()
             ->map(function ($ticket) {
                 return (object) [ 
+                    'id' => $ticket->id,
                     'type' => $ticket->visitTicket->ticket_type,
                     'price' => $ticket->visitTicket->price,
                     'quantity' => $ticket->quantity,
@@ -86,5 +87,12 @@ class TicketsRepository
                     'visit_date' => $ticket->visit_date,
                 ];
             });
+    }
+
+    public function findUserTickets($userId , $ticketId)
+    {
+        return UserTicket::where('user_id', $userId)
+            ->where('id', $ticketId)
+            ->first();
     }
 }

@@ -18,7 +18,7 @@
                             @foreach($category->collections as $collection)
                                 <div class="col-lg-4 col-md-6 col-sm-12 masonary-item wow fadeInUp" data-wow-duration="1500ms"data-wow-delay="000ms">
                                     <div class="collection-three__single">
-                                        <img src="{{$collection->getFirstMediaUrl('collection_media')}}" alt="Awesome Image" />
+                                        <img src="{{$collection->getFirstMediaUrl('collection_media')}}" alt="{{$category->name}}" />
                                         <div class="collection-three__content">
                                             <h3 class="collection-three__title">
                                                 <a href="{{route('gem.collections.show' , $collection->id)}}">

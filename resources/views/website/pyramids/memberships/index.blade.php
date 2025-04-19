@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-12">
-                    <img src="{{asset('assets/GEM/images/resources/membership-1.png')}}" alt="GEM Memberships" class="img-fluid" />
+                    <img loading="lazy" src="{{asset('assets/GEM/images/resources/membership-1.png')}}" alt="GEM Memberships" class="img-fluid" />
                 </div>
             </div>
         </div>

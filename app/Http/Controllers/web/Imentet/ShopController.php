@@ -17,44 +17,18 @@ class ShopController extends Controller
     public function index(Request $request)
     {
         $sortOption = $request->input('Sort', 'default');
-        
-        switch ($sortOption) {
-            case '1': // Top Selling
-                $products = ShopItem::orderByDesc('sales_count')->paginate(12);
-                break;
-            case 'ASC': // Lowest Price
-                $products = ShopItem::orderBy('price')->paginate(12);
-                break;
-            case 'DESC': // Highest Price
-                $products = ShopItem::orderByDesc('price')->paginate(12);
-                break;
-            default: // Default Sorting
-                $products = $this->shopItemsService->getProducts(10);
-                break;
-        }
-
+    
+        $products = $this->shopItemsService->getSortedProducts($sortOption, 12);
+    
         return view('website.gem.shop.index', compact('products'));
     }
 
     public function pyramidsShop(Request $request)
     {
         $sortOption = $request->input('Sort', 'default');
-        
-        switch ($sortOption) {
-            case '1': // Top Selling
-                $products = ShopItem::orderByDesc('sales_count')->paginate(12);
-                break;
-            case 'ASC': // Lowest Price
-                $products = ShopItem::orderBy('price')->paginate(12);
-                break;
-            case 'DESC': // Highest Price
-                $products = ShopItem::orderByDesc('price')->paginate(12);
-                break;
-            default: // Default Sorting
-                $products = $this->shopItemsService->getProducts(10);
-                break;
-        }
-
+    
+        $products = $this->shopItemsService->getSortedProducts($sortOption, 12);
+    
         return view('website.pyramids.shop.index', compact('products'));
     }
 

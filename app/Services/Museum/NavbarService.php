@@ -17,10 +17,11 @@ class NavbarService
 
     public function getNavbarData()
     {
-        $events = $this->eventRepository->getAllEvents(excludeCategories: ['Exhibitions']);
+        $events = $this->eventRepository->getAllEvents(excludeCategories: ['Exhibitions', 'Museums']);
         $exhibitions = $this->eventRepository->getAllEvents(categoryName: 'Exhibitions');
         $categories = $this->collectionRepository->getCategories();
         $cartItemCount = $this->cartRepository->getCartItemCount();
+        $museums = $this->eventRepository->getAllEvents(categoryName: 'Museums' , limit: 3);
 
         return get_defined_vars();
     }

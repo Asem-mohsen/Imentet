@@ -46,7 +46,7 @@
                                   <div class="column-box">
                                       <figure class="prod-thumb">
                                         <a href="{{route('pyramids.shop.products.show' , $item->shop_item_id)}}">
-                                          <img src="{{$item->shopItem->getFirstMediaUrl('shop_item')}}" width="100px" height="100px" style="padding-right:20px;" alt="">
+                                          <img loading="lazy" src="{{$item->shopItem->getFirstMediaUrl('shop_item')}}" width="100px" height="100px" style="padding-right:20px;" alt="">
                                         </a>
                                       </figure>
                                       <h3 class="prod-title padd-top-20">{{$item->shopItem->name}}</h3>
@@ -62,7 +62,7 @@
                               <td class="remove">
                                 <button type="button"
                                       class="remove-btn"
-                                      data-remove-url="{{ route('pyramids.cart.remove', $item->shop_item_id) }}">
+                                      data-remove-url="{{ route('imentet.cart.remove', $item->shop_item_id) }}">
                                   <span class="egypt-icon-remove"></span> 
                                 </button>
                               </td>

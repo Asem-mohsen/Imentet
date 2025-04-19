@@ -18,16 +18,15 @@ class CollectionController extends Controller
 
     public function gemCollections()
     {
-        $categories = $this->collectionService->getCategoriesWithCollections(limit:8);
-        
+        $categories = $this->collectionService->getCategoriesWithCollections(placeName: 'Grand Egyptian Museum', limit:8);
         return view('website.gem.collections.index' , get_defined_vars());
     }
 
     public function show(Collection $collection)
     {
-        $collections = $this->collectionService->getCollections();
+        $collections = $this->collectionService->getCollections(placeName: 'Grand Egyptian Museum', limit:3);
         $collection = $this->collectionService->getCollection($collection->id);
-        $adjacentCollections = $this->collectionService->getAdjacentCollections($collection->id);
+        $adjacentCollections = $this->collectionService->getAdjacentCollections($collection->id, 'Grand Egyptian Museum');
 
          return view('website.gem.collections.show', [
             'collection' => $collection,
@@ -39,7 +38,7 @@ class CollectionController extends Controller
 
     public function showByCategory(Request $request, $slug)
     {
-        $category = $this->collectionService->getCategoriesWithCollections(slug:$slug);
+        $category = $this->collectionService->getCategoriesWithCollections(placeName: 'Grand Egyptian Museum', slug: $slug);
 
         if (!$category) {
             abort(404);
@@ -53,11 +52,15 @@ class CollectionController extends Controller
             $category = $categories->firstWhere('id', $filteredCategoryId);
         }
 
-        $collections = $category->collections()->paginate(6);
+        $collections = $category->collections()
+            ->whereHas('places', function ($query) {
+                $query->where('name->en', 'Grand Egyptian Museum');
+            })
+            ->paginate(6);
 
         $view = View::exists('website.gem.collections.categories.partials.' . Str::slug($category->name))
-        ? 'website.gem.collections.categories.default'
-        : 'website.gem.collections.categories.default';
+        ? 'website.gem.collections.categories.index'
+        : 'website.gem.collections.categories.index';
 
         return view($view, compact('category', 'categories', 'collections'));
     }

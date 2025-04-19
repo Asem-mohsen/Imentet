@@ -5,7 +5,6 @@ namespace App\Http\Controllers\web\Imentet;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Careers\StoreCareerRequest;
 use App\Services\CareerService;
-use Illuminate\Http\Request;
 
 class CareerController extends Controller
 {

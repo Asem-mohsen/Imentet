@@ -25,4 +25,9 @@ class GiftShop extends Model implements HasMedia
     {
         return $this->belongsTo(Place::class);
     }
+
+    public function shopItems()
+    {
+        return $this->belongsToMany(ShopItem::class, 'gift_shop_items')->withTimestamps();
+    }
 }

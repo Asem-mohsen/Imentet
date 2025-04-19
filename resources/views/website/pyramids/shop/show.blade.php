@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="product-details__image">
-                        <img class="img-fluid" src="{{$product->getFirstMediaUrl('shop_item')}}" width="500px" height="500px" alt="{{$product->name}}" />
+                        <img loading="lazy" class="img-fluid" src="{{$product->getFirstMediaUrl('shop_item')}}" width="500px" height="500px" alt="{{$product->name}}" />
                         <a href="{{$product->getFirstMediaUrl('shop_item')}}" class="product-details__img-popup img-popup">
                             <i class="fa fa-search"></i>
                         </a>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product-details__content">
-                        <form method="POST" action="{{ route('gem.cart.add') }}" id="add-to-cart-form">
+                        <form method="POST" action="{{ route('imentet.cart.add') }}" id="add-to-cart-form">
                             @csrf
                             <input type="hidden" name="shop_item_id" value="{{ $product->id }}">
 
@@ -85,7 +85,7 @@
                                                     <form action="" method="post" class="mb-5">
                                                         <div class="product-details__review-single">
                                                             <div class="product-details__review-left">
-                                                                <img src="{{asset('assets/GEM/images/team/avatar.png')}}" width="70px" height="70px" alt="{{$review->user->fullName}}" />
+                                                                <img loading="lazy" src="{{asset('assets/GEM/images/team/avatar.png')}}" width="70px" height="70px" alt="{{$review->user->fullName}}" />
                                                             </div>
                                                             <div class="product-details__review-right">
                                                                 <div class="product-details__review-top">
@@ -111,34 +111,9 @@
 
                                             <h3 class="product-details__review-form__title">Add Your Comment</h3>
                                             <p class="product-details__review-form__text" style="margin-bottom: 20px;">Your Email address will not be published.</p>
-                                            <form method="post" class="contact-one__form">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <p class="contact-one__field">
-                                                            <label>Your Name</label>
-                                                            <input type="text" name="first_name" placeholder="Your Full Name" value="{{old('first_name')}}" />
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <p class="contact-one__field">
-                                                            <label>Email</label>
-                                                            <input type="email" name="email" placeholder="Email Address" value="{{old('email')}}" />
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <p class="contact-one__field">
-                                                            <label>Your Comment</label>
-                                                            <textarea name="review" required></textarea>
+                                            
+                                            <x-forms.product-review-form :product="$product" />
 
-                                                            @if(auth()->user())
-                                                                <button type="submit" class="thm-btn contact-one__btn"> Submit Review </button>
-                                                            @else
-                                                                <a href="{{route('auth.login.index')}}" class="thm-btn contact-one__btn"> Sign In to Countine </a>
-                                                            @endif
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -160,7 +135,7 @@
                         <form method="post" action="" enctype="multipart/form-data">
                             <div class="product-one__single">
                                 <div class="product-one__image">
-                                    <img src="{{$product->getFirstMediaUrl('shop_item')}}" height="270px" alt="{{$product->name}}" />
+                                    <img loading="lazy" src="{{$product->getFirstMediaUrl('shop_item')}}" height="270px" alt="{{$product->name}}" />
                                 </div>
                                 <div class="product-one__content">
                                     <div class="product-one__content-left">
@@ -192,28 +167,8 @@
 
 @section('js')
 
-<script>
-    $(document).ready(function() {
-        $('#add-to-cart-form').submit(function(event) {
-            event.preventDefault();
+    @include('components.scripts.add-to-cart')
 
-            $.ajax({
-                url: "{{ route('gem.cart.add') }}",
-                method: "POST",
-                data: $(this).serialize(),
-                success: function(response) {
-                    if (response.status === "success") {
-                        toastr.success(response.message);
-                    } else {
-                        toastr.error(response.message);
-                    }
-                },
-                error: function(xhr) {
-                    toastr.error("Something went wrong! Please try again.");
-                }
-            });
-        });
-    });
-</script>
+    @include('components.scripts.review-product-script')
 
 @endsection

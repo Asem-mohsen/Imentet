@@ -29,17 +29,14 @@ Route::prefix('Pyramids')->name('pyramids.')->group(function () {
     Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
         Route::get('/',  'pyramidsEvents')->name('index');
         Route::get('/{event}',  'pyramidsEventsShow')->name('show');
-        Route::post('/{event}/book',  'store')->name('store');
     });
 
     Route::prefix('memberships')->name('memberships.')->controller(MembershipController::class)->group(function () {
         Route::get('/', 'pyramidsMemberships')->name('index');;
         Route::get('/{membership}',  'showInPyramids')->name('show');
         Route::get('/{membership}/VIP', 'vips')->name('vip');
-        Route::post('/{membership}/checkout', 'checkout')->name('checkout');
         Route::get('/success/{membership}/{membershipPrice}',  'paymentSuccess')->name('success');
         Route::get('/upload-documents/{token}', 'uploadDocuments')->name('upload-documents');
-        Route::post('/upload-documents',  'handleUploadDocuments')->name('handle-upload');
         Route::get('/membership/cancel', 'paymentCancel')->name('cancel');
     });
 
@@ -58,10 +55,7 @@ Route::prefix('Pyramids')->name('pyramids.')->group(function () {
 
     Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function () {
         Route::get('/', 'pyramidsCart')->name('index');
-        Route::post('/add', 'addToCart')->name('add');
-        Route::post('/update/{cartItemId}', 'update')->name('update');
-        Route::delete('/remove/{cartItemId}',  'removeFromCart')->name('remove');
-        Route::delete('/clear','clear')->name('clearCart');
+        Route::get('/checkout', 'pyramidsCheckout')->name('checkout');
     });
 
     Route::get('/about-us', [AboutController::class, 'pyramidsAbout'])->name('about');
@@ -78,17 +72,14 @@ Route::prefix('Pyramids')->name('pyramids.')->group(function () {
 
     Route::prefix('contact-us')->name('contact.')->controller(ContactController::class)->group(function () {
         Route::get('/', 'pyramidsContact')->name('index');
-        Route::post('/store', 'store')->name('store');
     });
 
     Route::prefix('careers')->name('careers.')->controller(CareerController::class)->group(function () {
         Route::get('/', 'pyramidsCareers')->name('index');
-        Route::post('/store', 'store')->name('store');
     });
 
     Route::prefix('donations')->name('donations.')->controller(DonationController::class)->group(function () {
         Route::get('/', 'pyramidsDonations')->name('index');
-        Route::post('/store', 'store')->name('store');
         Route::get('/success/{donation}', 'success')->name('success');
         Route::get('/cancel/{donation}', 'cancel')->name('cancel');
     });

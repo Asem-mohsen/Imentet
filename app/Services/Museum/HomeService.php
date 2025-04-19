@@ -32,7 +32,7 @@ class HomeService
             ],
             orderBy: ['id' => 'desc'],
             limit: 3,
-            excludeCategories: ['Exhibitions']
+            excludeCategories: ['Exhibitions' , 'Museums']
         );
         $upcomingEvents = $this->eventRepository->getAllEvents(
             placeName: $placeName,
@@ -47,7 +47,7 @@ class HomeService
             ],
             orderBy: ['id' => 'desc'],
             limit: 3,
-            excludeCategories: ['Exhibitions']
+            excludeCategories: ['Exhibitions' , 'Museums']
         );
         $pastEvents = $this->eventRepository->getAllEvents(
             placeName: $placeName,
@@ -62,7 +62,7 @@ class HomeService
             ],
             orderBy: ['id' => 'desc'],
             limit: 3,
-            excludeCategories: ['Exhibitions']
+            excludeCategories: ['Exhibitions' , 'Museums']
         );
         $collections  = $this->collectionRepository->getAllCollections(placeName: $placeName, limit: 6);
 
@@ -86,7 +86,7 @@ class HomeService
             ],
             orderBy: ['id' => 'desc'],
             limit: 3,
-            excludeCategories: ['Exhibitions']
+            excludeCategories: ['Exhibitions' , 'Museums']
         );
         $collections   = $this->collectionRepository->getAllCollections(placeName: $placeName,limit: 6);
         

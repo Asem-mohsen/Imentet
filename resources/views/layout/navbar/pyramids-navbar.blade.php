@@ -3,7 +3,7 @@
         <div class="inner-container">
         <div class="topbar-two__left">
             <a class="topbar-two__logo" href="{{route('index')}}">
-                <img src="{{asset('assets/GEM/images/resources/dark-logo-pyramids.svg')}}" alt="Imentet Pyramids" />
+                <img loading="lazy" src="{{asset('assets/GEM/images/resources/dark-logo-pyramids.svg')}}" alt="Imentet Pyramids" />
             </a>
             <div class="topbar-two__info">
             <div class="topbar-two__icon">

@@ -949,6 +949,7 @@ a:focus {
 {
   padding : 6px 14.5px;
   font-size: 13px;
+  color: white !important;
 }
 .header-navigation ul.navigation-box > li.current > a, .header-navigation ul.navigation-box > li:hover > a {
   color: #d99578;
@@ -7603,6 +7604,10 @@ a:focus {
 
 .exhibhition-one__more-link {
   display: inline-block;
+  padding: 0;
+  background-color: white;
+  border-radius: 50%;
+  border-color: transparent;
 }
 .exhibhition-one__more-link i {
   background-color: #302e2f;
@@ -9841,6 +9846,9 @@ a:focus {
   border: none;
   outline: none;
 }
+button:focus {
+  outline: none !important;
+}
 
 .cart-table .remove button:hover {
   color: #d99578;
@@ -10068,6 +10076,175 @@ a:focus {
 .product-one .post-pagination {
   margin-top: 10px;
 }
+
+/* start custom radio */
+.custom-radio {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0px;
+  cursor: pointer;
+}
+
+.custom-radio input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom-radio .radio-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid rgb(217, 149, 120);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.custom-radio input[type="radio"]:checked ~ .radio-checkmark {
+  background-color: rgb(217, 149, 120);
+}
+
+.custom-radio .radio-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  transform: translate(-50%, -50%);
+}
+
+.custom-radio input[type="radio"]:checked ~ .radio-checkmark:after {
+  display: block;
+}
+
+.price-row {
+  transition: all 0.3s ease;
+}
+
+.price-row:hover {
+  background-color: rgba(217, 149, 120, 0.1);
+}
+
+.login-form__field.custom-file .custom-file-label {
+  display: flex;
+  align-items: center;
+  height: 62px;
+}
+.login-form__field.custom-file .custom-file-label::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.membership-container {
+  margin: 0 auto;
+  padding: 20px;
+
+.ticket {
+  display: flex;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.ticket-header {
+  background: #302e2f;
+  color: #fff;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.ticket-logo {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.ticket-header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  font-family: 'Times New Roman', serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.ticket-date {
+  font-size: 1.2rem;
+  margin: 10px 0 0;
+  opacity: 0.8;
+}
+
+.ticket-body {
+  padding: 30px;
+}
+
+.ticket-info {
+  margin-bottom: 30px;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.label {
+  font-weight: bold;
+  width: 150px;
+  color: #2c3e50;
+}
+
+.value {
+  flex: 1;
+}
+
+.ticket-details h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.ticket-details .thm-btn.login-form__btn {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  justify-self: center;
+}
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  color: white;
+}
+
+.qr-code {
+  flex: 0 0 150px;
+}
+
+.ticket-terms {
+  flex: 1;
+  font-size: 0.9rem;
+  color: white;
+  margin-top: 20px;
+}
+}
+/* end custom radio */
 
 /* related products*/
 .related-product {
@@ -11166,16 +11343,9 @@ input[type="file"] {
   position: relative;
 }
 
-/* .auth::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 0 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.4;
+.toast-success{
+  background-color: #d99578 !important;
 }
-*/
 
 .auth .wrapper 
 {

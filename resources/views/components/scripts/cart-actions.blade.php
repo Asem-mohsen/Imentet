@@ -2,12 +2,26 @@
 document.addEventListener('DOMContentLoaded', function () {
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
+    // Add CSS for cart-updated animation
+    const style = document.createElement('style');
+    style.textContent = `
+        .cart-updated {
+            animation: pulse 0.3s ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    `;
+    document.head.appendChild(style);
+
     // Update the cart count (for the cart icon)
     function updateCartCount(count) {
         const cartCountEl = document.querySelector('#cart-count');
         if (cartCountEl) {
             cartCountEl.innerText = count;
-            cartCountEl.style.display = count > 0 ? 'inline-block' : 'none';
+            cartCountEl.style.display = count > 0 ? 'flex' : 'none';
             cartCountEl.classList.add('cart-updated');
             setTimeout(() => cartCountEl.classList.remove('cart-updated'), 300);
         }
@@ -124,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (data.cartCount === 0) {
                             const cartTable = document.querySelector('#cart-table');
                             if (cartTable) {
-                                cartTable.innerHTML = '<tr><td colspan="5" class="text-center">Your cart is empty.</td></tr>';
+                                cartTable.innerHTML = '<tr><td colspan="5" class="text-center cart-empty">Your cart is empty.</td></tr>';
                             }
                         }
                     } else {

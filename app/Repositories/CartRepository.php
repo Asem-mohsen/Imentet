@@ -67,6 +67,13 @@ class CartRepository
         return CartItem::where('shop_item_id', $cartItemId)->delete();
     }
 
+    public function getAbandonedCartsOlderThanDays(int $days)
+    {
+        return Cart::whereNull('user_id')
+            ->where('created_at', '<', now()->subDays($days))
+            ->get();
+    }
+
     public function clearCart($cart)
     {
         return $cart->items()->delete();

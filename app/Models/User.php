@@ -106,13 +106,13 @@ class User extends Authenticatable implements HasName, HasMedia
     public function latestActiveMembership($returnAll = false)
     {
         $activeMemberships = $this->memberships()
-            ->where('end_date', '>=', now()) // Get only active memberships
+            ->where('end_date', '>=', now())
             ->with(['membership' => function ($query) {
-                $query->withCount('features'); // Count features in the Membership model
+                $query->withCount('features');
             }])
             ->get()
             ->sortByDesc(fn ($membershipUser) => $membershipUser->membership->features_count) // Sort in PHP
-            ->sortByDesc('price_id'); // Secondary sort by price_id
+            ->sortByDesc('price_id');
 
         if ($returnAll) {
             return $activeMemberships->map(function ($membershipUser) {

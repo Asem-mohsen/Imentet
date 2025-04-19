@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="col-xl-6 col-lg-12">
-          <img src="{{asset('assets/GEM/images/resources/donation-pyramids.png')}}" alt="Donations for Pyramids" class="img-fluid" />
+          <img loading="lazy" src="{{asset('assets/GEM/images/resources/donation-pyramids.png')}}" alt="Donations for Pyramids" class="img-fluid" />
         </div>
       </div>
     </div>
@@ -76,62 +76,7 @@
             </a>
           </li>
         </ul>
-        <div class="tab-content">
-          <div class="tab-pane show active animated fadeInUp" id="money">
-            <form method='POST' action="{{route('gem.donations.store')}}" class="donation-form__form">
-              @csrf
-              <div class="row">
-                  <div class="col-md-6">
-                      <div class="donation-form__form-field">
-                          <input type="text" name="first_name" placeholder="Your First Name*" value="{{ old('first_name') }}" required/>
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="donation-form__form-field">
-                      <input type="text" name="last_name" placeholder="Your Last Name*" value="{{ old('last_name') }}" required/>
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="donation-form__form-field">
-                          <input type="email" name="email" placeholder="Email Address*" value="{{ old('email') }}" required />
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="donation-form__form-field">
-                          <input type="number" name="phone" pattern="[0-9]*" placeholder="Phone Number" value="{{ old('phone') }}" />
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="donation-form__form-field">
-                        <input type="number" name="amount" placeholder="$ Custom Amount" required/>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="donation-form__form-field">
-                        <select class="selectpicker" name="place_id">
-                        <option selected disabled hidden>Donation For</option>
-                            @foreach($places as $place)
-                                <option value="{{$place->id}}">{{$place->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="donation-form__form-field">
-                      <textarea name="message" rows="5" placeholder="Leave a Message for us"></textarea>
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                      <div class="text-center">
-                          <button type="submit" class="thm-btn donation-form__form-btn" style="background-color: white; color: black;">
-                            Make Donation
-                          </button>
-                      </div>
-                  </div>
-              </div>
-            </form>
-          </div>
-        </div>
+        <x-forms.donation-form :route="route('imentet.donations.store')" :places="$places" :dark="true" />
       </div>
     </div>
   </section>

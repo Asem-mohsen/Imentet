@@ -74,7 +74,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="event-four__single">
                             <div class="event-four__image">
-                                <img src="{{$event->getFirstMediaUrl('event_media')}}" alt="{{$event->title}}"/>
+                                <img loading="lazy" src="{{$event->getFirstMediaUrl('event_media')}}" alt="{{$event->title}}"/>
                             <a href="{{route('pyramids.events.show' , $event->id)}}" class="event-four__cat">{{$event->category->name}}</a>
                             </div>
                             <div class="event-four__content">

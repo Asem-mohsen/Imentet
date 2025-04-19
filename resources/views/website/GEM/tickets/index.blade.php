@@ -4,6 +4,42 @@
 
 @section('content')
 
+<style>
+    #phone-cell {
+        display: flex;
+        justify-content: space-between;
+    }
+    #phone-edit-form{
+        width: 100%;
+    }
+    .save-phone-btn{
+        background-color: #d99578;
+        border-color: #d99578;
+    }
+    .save-phone-btn:hover{
+        background-color: #e5926f;
+        border-color: #e5926f;
+    }
+    #phone-edit-form .form-control:focus {
+        box-shadow: none;
+    }
+    .edit-phone-btn {
+        color: #302e2f;
+        border-color: #302e2f;
+    }
+    .edit-phone-btn:hover {
+        background-color: #d99578;
+        border-color: #d99578;
+    }
+    .cancel-phone-btn{
+        background-color: #302e2f;
+        border-color: #302e2f;
+    }
+    .cancel-phone-btn:hover{
+        background-color: #302e2f;
+        border-color: #302e2f;
+    }
+</style>
     <section class="donation-form spacing">
         <div class="container">
             <div class="inner-container">
@@ -74,7 +110,7 @@
                                                             </td>
                                                             <td class="qty">
                                                                 <input type="hidden" name="ticket_id[]" value="{{ $egyptian->id }}">
-                                                                <input class="quantity-spinner Quantity" max="10" min="0" type="number" name="quantity[]" />
+                                                                <input class="quantity-spinner Quantity" max="10" min="0" value="0" type="number" name="quantity[]" />
                                                             </td>
                                                             <td class="SubTotal"></td>
                                                         </tr>
@@ -89,9 +125,15 @@
                                                     
                                                     </span>
                                                 </h3>
-                                                <button type="submit" class="thm-btn cart-update__btn cart-update__btn-three">
-                                                    Next
-                                                </button>
+                                                @if (auth()->user())
+                                                    <button type="submit" class="thm-btn cart-update__btn cart-update__btn-three">
+                                                        Next
+                                                    </button>
+                                                @else
+                                                    <a href="{{route('auth.login.index')}}" class="thm-btn donation-form__form-btn" >
+                                                        Sign In To Continue
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -124,7 +166,7 @@
                                                             </td>
                                                             <td class="qty">
                                                                 <input type="hidden" name="ticket_id[]" value="{{ $foreigner->id }}">
-                                                                <input class="quantity-spinner Quantity" max="10" min="0" type="number"  name="quantity[]" />
+                                                                <input class="quantity-spinner Quantity" max="10" min="0" value="0" type="number"  name="quantity[]" />
                                                             </td>
                                                             <td class="SubTotal"></td>
                                                         </tr>
@@ -139,9 +181,15 @@
                                                     
                                                     </span>
                                                 </h3>
-                                                <button type="submit" class="thm-btn cart-update__btn cart-update__btn-three">
-                                                    Next
-                                                </button>
+                                                @if (auth()->user())
+                                                    <button type="submit" class="thm-btn cart-update__btn cart-update__btn-three">
+                                                        Next
+                                                    </button>
+                                                @else
+                                                    <a href="{{route('auth.login.index')}}" class="thm-btn donation-form__form-btn" >
+                                                        Sign In To Continue
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +200,7 @@
 
                     <!-- Contact -->
                     <div class="tab-pane animated fadeInUp" id="contact">
-                        <form method='POST' action="{{ route('gem.contact.store') }}" class="donation-form__form">
+                        <form method='POST' action="{{ route('imentet.contact.store') }}" class="donation-form__form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -221,7 +269,28 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>{{$user->fullName}}</td>
-                                                        <td>{{$user->phone}}</td>
+                                                        <td id="phone-cell">
+                                                            @if($user->phone)
+                                                                <span id="phone-display">{{$user->phone}}</span>
+                                                                <button type="button" class="btn btn-sm btn-outline-primary edit-phone-btn" data-toggle="tooltip" title="Edit phone number">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+                                                            @else
+                                                                <span id="phone-display">No phone number</span>
+                                                                <button type="button" class="btn btn-sm btn-primary add-phone-btn">
+                                                                    Add Phone Number
+                                                                </button>
+                                                            @endif
+                                                            <div id="phone-edit-form" class="d-none">
+                                                                <div class="input-group">
+                                                                    <input type="tel" id="phone-input" class="form-control" placeholder="Enter your phone number" value="{{$user->phone}}">
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="btn btn-success save-phone-btn">Save</button>
+                                                                        <button type="button" class="btn btn-secondary cancel-phone-btn">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
                                                         <td>{{$user->email}}</td>
                                                     </tr>
                                                 </tbody>
@@ -245,26 +314,32 @@
                                                     <th class="price">Price</th>
                                                     <th>Quantity</th>
                                                     <th>Subtotal</th>
+                                                    <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse($selectedTickets as $ticket)
-                                                        <tr>
+                                                        <tr data-ticket-id="{{ $ticket->id }}">
                                                             <td>{{ $ticket->type }}</td>
                                                             <td>{{ $ticket->price }} EGP</td>
                                                             <td class="qty">{{ $ticket->quantity }}</td>
                                                             <td class="sub-total">{{ $ticket->total }} EGP</td>
+                                                            <td class="remove">
+                                                                <button type="button" class="remove-ticket-btn" data-ticket-id="{{ $ticket->id }}">
+                                                                    <span class="egypt-icon-remove"></span> 
+                                                                </button>
+                                                            </td>
                                                         </tr>
                                                     @empty
-                                                        <tr><td colspan="4" style="text-align: center">No tickets selected.</td></tr>
+                                                        <tr><td colspan="5" style="text-align: center">No tickets selected.</td></tr>
                                                     @endforelse
                                                 </tbody>
                                             </table>
                                             <div class="cart-total custom-cart-total">
                                                 @if($selectedTickets->isNotEmpty())
-                                                    <button type="submit" class="thm-btn cart-update__btn cart-update__btn-three">
+                                                    <a href="{{ route('gem.tickets.payment') }}" class="thm-btn cart-update__btn cart-update__btn-three">
                                                         Pay Now
-                                                    </button>
+                                                    </a>
                                                 @else
                                                     <a href="{{route('gem.tickets.index')}}" class="thm-btn cart-update__btn cart-update__btn-three">
                                                         Select Tickets

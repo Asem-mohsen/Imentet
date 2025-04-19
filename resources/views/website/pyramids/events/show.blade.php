@@ -82,7 +82,7 @@
                         </div>
                       </div>
                       <div class="col-lg-6 clearfix">
-                        <img src="{{$event->getFirstMediaUrl('event_media')}}"  class="float-right w-100 h-100" alt="{{$event->title}}" />
+                        <img loading="lazy" src="{{$event->getFirstMediaUrl('event_media')}}"  class="float-right w-100 h-100" alt="{{$event->title}}" />
                       </div>
                     </div>
                   </div>
@@ -120,7 +120,7 @@
                       <div class="row masonary-layout">
                         @foreach($event->getMedia('gallery') as $image)
                             <div class="col-md-6 masonary-item">
-                                <img class="img-fluid" src="{{ $image->getUrl() }}" width="370px" style="height: 270px" alt="Gallery Image"/>
+                                <img loading="lazy" class="img-fluid" src="{{ $image->getUrl() }}" width="370px" style="height: 270px" alt="{{$event->title}}"/>
                             </div>
                         @endforeach
                       </div>
@@ -188,72 +188,29 @@
                           </div>
 
                           <!-- Feedback -->
-                          <?php if(isset($_SESSION['UserID'])){
-                                    if($TodaysDate >= $StartDateInTime || $row['Everyday'] == 'Daily'){ 
-                                      $SelectUser = "SELECT * FROM entertainmnetticket WHERE UserID = $UserID AND EventID = $EventID";
-                                      $RunQuery = mysqli_query($con , $SelectUser);
-                                      $UserPaid = mysqli_fetch_assoc($RunQuery);
-                                      $CountUserPaid = mysqli_num_rows($RunQuery);
+                          @if(auth()->user() && $event->isHappening())
+                            <div class="accrodion active">
+                              <div class="accrodion-title">
+                                <h4>Feedback</h4>
+                              </div>
+                              <div class="accrodion-content pt-0">
+                                <div class="inner">
+                                  <div class="product-details__review-form">
+                                    <h3 class="product-details__review-form__title">
+                                      Share with us your Feedback!
+                                    </h3>
+                                    <p class="product-details__review-form__text">
+                                      Your email address will not be published.
+                                    </p>
+                                    <br>
 
-                                      if($CountUserPaid >= 1 ){ ?>
-                                        <div class="accrodion active">
-                                          <div class="accrodion-title">
-                                            <h4>Feedback</h4>
-                                          </div>
-                                          <div class="accrodion-content" style="padding-top: 0">
-                                            <div class="inner">
-                                              <div class="product-details__review-form">
-                                                  <?php if(isset($FeedbackCannotEmpty)){
-                                                    echo "<div class='TicketsBooked' style='margin-bottom: 20px; color:red'>";
-                                                      echo "<i class='egypt-icon-remove'></i>";
-                                                      echo "<p>" . $FeedbackCannotEmpty . "</p>" ;
-                                                    echo "</div>";
-                                                  } ?>
-                                                  <?php if(isset($RunFeedback)){
-                                                    echo "<div class='TicketsBooked' style='margin-bottom: 20px;'>";
-                                                      echo "<i class='egypt-icon-check'></i>";
-                                                      echo "<p> Feedback Sent Successfully </p>" ;
-                                                    echo "</div>";
-                                                  } ?>
-                                                <h3 class="product-details__review-form__title">
-                                                  Share with us your Feedback!
-                                                </h3>
-                                                <p class="product-details__review-form__text">
-                                                  Your email address will not be published.
-                                                </p>
-                                                <br>
-                                                <form method="POST" class="contact-one__form">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <p class="contact-one__field">
-                                                                <label>Your Name </label>
-                                                                <input type="hidden" name="UserID"  value="<?php  echo $UserID ?>" >
-                                                                <input type="hidden" name="EventID"  value="<?php  echo $EventID ?>" >
-                                                                <input type="text" name="Name"  value="<?php if(isset($FullName )){ echo $FullName ; } ?>" <?php if(isset($FullName )){ echo "disabled" ;} ?>  >
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <p class="contact-one__field">
-                                                                <label>Email</label>
-                                                                <input type="email" name="Email" value="<?php if(isset($User['Email'])){ echo $User['Email']; } ?>" <?php if(isset($User['Email'])){ echo "disabled" ;} ?>>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <p class="contact-one__field">
-                                                                <label>Your Feedback</label>
-                                                                <textarea name="Feedback" required></textarea>
-                                                                <button type="submit" name="SubmitFeedback" class="thm-btn contact-one__btn"> Submit </button>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      <?php  } 
-                                    } 
-                                  } ?>
+                                    <x-forms.event-review-form :event="$event" />
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          @endif
                         </div>
                       </div>
                     </div>
@@ -264,191 +221,63 @@
 
             <!-- Online Booking -->
             <div class="col-lg-4">
-              <div class="event-details__form">
-                <form method="POST" action="{{ route('pyramids.events.store', $event->id) }}">
-                  @csrf
-                  <h3 class="event-details__form-title">Online Booking</h3>
-                    <div class="row">
-
-                        <div class="col-sm-12">
-                            <input type="text" name="email" placeholder="Email Address" value="{{old('email')}}"/>
-                        </div>
-
-                        <div class="col-sm-12">
-                          <select id="categorySelect" class="selectpicker" name="selected_categories[]" multiple onchange="toggleQuantities()">
-                            <option hidden disabled>Select Ticket Category</option>
-                            @foreach($event->prices as $price)
-                                <option value="{{ $price->category }}" 
-                                        data-egyptian="{{ $price->price_egyptian }}" 
-                                        data-arab="{{ $price->price_arab }}" 
-                                        data-foreigner="{{ $price->price_foreigner }}">
-                                    {{ $price->category }}
-                                </option>
-                            @endforeach
-                          </select>
-                        </div>
-
-                        <!-- Quantities (Initially Hidden) -->
-                        <div id="quantitiesContainer" style="display:none;">
-                          @foreach($event->prices as $price)
-                              <div class="category-quantity" id="category-{{ Str::slug($price->category) }}" style="display:none;">
-                                  <h4>{{ $price->category }}</h4>
-                                  
-                                  <div class="row">
-                                      <!-- Egyptians -->
-                                      <div class="col-sm-4">
-                                          <label>Egyptians</label>
-                                          <input class="quantity-spinner Quantity" type="text" value="0" min="0" max="10" 
-                                                 name="quantities[{{ $price->category }}][egyptian]" 
-                                                 data-price="{{ $price->price_egyptian }}" 
-                                                 onchange="subTotal()"/>
-                                      </div>
-              
-                                      <!-- Arabs -->
-                                      <div class="col-sm-4">
-                                          <label>Arabs</label>
-                                          <input class="quantity-spinner Quantity" type="text" value="0" min="0" max="10" 
-                                                 name="quantities[{{ $price->category }}][arab]" 
-                                                 data-price="{{ $price->price_arab }}" 
-                                                 onchange="subTotal()"/>
-                                      </div>
-              
-                                      <!-- Foreigners -->
-                                      <div class="col-sm-4">
-                                          <label>Foreigners</label>
-                                          <input class="quantity-spinner Quantity" type="text" value="0" min="0" max="10" 
-                                                 name="quantities[{{ $price->category }}][foreigner]" 
-                                                 data-price="{{ $price->price_foreigner }}" 
-                                                 onchange="subTotal()"/>
-                                      </div>
-                                  </div>
-                              </div>
-                          @endforeach
-                        </div>
-                        
-                        <div class="col-sm-12">
-                          <strong>Total:</strong>
-                          <span class="text-capitalize cart-total__highlight" id="TotalPrice">0</span> EGP
-                        </div>
-
-                        <div class="col-sm-12">
-                            @if(!$event->isHappening())
-                                @if(now() > $event->start_time)
-                                    <button type="submit" class="thm-btn event-details__form-btn" disabled>
-                                        Event Date has Passed
-                                    </button>
-                                @elseif($event->status === 'cancelled')
-                                    <button type="submit" class="thm-btn event-details__form-btn" disabled>
-                                        Event Cancelled
-                                    </button>
-                                @elseif($event->status === 'postponed')
-                                    <button type="submit" class="thm-btn event-details__form-btn" disabled>
-                                        Event Postponed
-                                    </button>
-                                @endif
-                            @else
-                                @if(auth()->user())
-                                    <button type="submit" class="thm-btn event-details__form-btn" >
-                                        Proceed to Book
-                                    </button>
-                                @else
-                                    <a href="{{route('auth.login.index')}}" class="thm-btn event-details__form-btn" >
-                                        Sign In to Continue
-                                    </a>
-                                @endif
-                            @endif
-                        </div>
-                    </div>
-                </form>
+              <div class="col-lg-4">
+                <x-forms.event-form :event="$event" />
               </div>
             </div>
+            
           </div>
       </section>
 
-      <!-- Pagination -->
-      <div class="event-details__pagination">
-        <div class="container">
-            <div class="row">
-                <!-- Prev Event -->
-                <div class="col-lg-6">
-                    @if(isset($prevEvent))
-                        <a href="{{ route('pyramids.events.show', $prevEvent->id) }}" class="event-details__pagination__left">
-                            <div class="event-details__pagination-icon">
-                                <i class="fa fa-angle-left"></i>
-                            </div>
-                            <div class="event-details__pagination-content">
-                                <span>Prev Event</span>
-                                <h3>{{ $prevEvent->title }}</h3>
-                            </div>
-                        </a>
-                    @else
-                        <a href="{{ route('pyramids.events.index') }}" class="event-details__pagination__left">
-                            <div class="event-details__pagination-icon">
-                                <i class="fa fa-angle-left"></i>
-                            </div>
-                            <div class="event-details__pagination-content">
-                                <span>Events Page</span>
-                                <h3>Back</h3>
-                            </div>
-                        </a>
-                    @endif
-                </div>
-    
-                <!-- Next Event -->
-                <div class="col-lg-6">
-                    @if(isset($nextEvent))
-                        <a href="{{ route('pyramids.events.show', $nextEvent->id) }}" class="event-details__pagination__right">
-                            <div class="event-details__pagination-icon">
-                                <i class="fa fa-angle-right"></i>
-                            </div>
-                            <div class="event-details__pagination-content">
-                                <span>Next Event</span>
-                                <h3>{{ $nextEvent->title }}</h3>
-                            </div>
-                        </a>
-                    @endif
-                </div>
-            </div>
-        </div>
+    <!-- Pagination -->
+    <div class="event-details__pagination">
+      <div class="container">
+          <div class="row">
+              <!-- Prev Event -->
+              <div class="col-lg-6">
+                  @if(isset($prevEvent))
+                      <a href="{{ route('pyramids.events.show', $prevEvent->id) }}" class="event-details__pagination__left">
+                          <div class="event-details__pagination-icon">
+                              <i class="fa fa-angle-left"></i>
+                          </div>
+                          <div class="event-details__pagination-content">
+                              <span>Prev Event</span>
+                              <h3>{{ $prevEvent->title }}</h3>
+                          </div>
+                      </a>
+                  @else
+                      <a href="{{ route('pyramids.events.index') }}" class="event-details__pagination__left">
+                          <div class="event-details__pagination-icon">
+                              <i class="fa fa-angle-left"></i>
+                          </div>
+                          <div class="event-details__pagination-content">
+                              <span>Events Page</span>
+                              <h3>Back</h3>
+                          </div>
+                      </a>
+                  @endif
+              </div>
+  
+              <!-- Next Event -->
+              <div class="col-lg-6">
+                  @if(isset($nextEvent))
+                      <a href="{{ route('pyramids.events.show', $nextEvent->id) }}" class="event-details__pagination__right">
+                          <div class="event-details__pagination-icon">
+                              <i class="fa fa-angle-right"></i>
+                          </div>
+                          <div class="event-details__pagination-content">
+                              <span>Next Event</span>
+                              <h3>{{ $nextEvent->title }}</h3>
+                          </div>
+                      </a>
+                  @endif
+              </div>
+          </div>
+      </div>
     </div>
 
 @endsection
 
-
 @section('js')
-
-<script>
-function toggleQuantities() {
-    let selectedOptions = document.getElementById('categorySelect').selectedOptions;
-    let quantitiesContainer = document.getElementById('quantitiesContainer');
-
-    // Hide all quantity inputs initially
-    document.querySelectorAll('.category-quantity').forEach(el => el.style.display = 'none');
-
-    if (selectedOptions.length > 0) {
-        quantitiesContainer.style.display = 'block';
-
-        for (let option of selectedOptions) {
-            let categorySlug = option.value.replace(/\s+/g, '-').toLowerCase();
-            let quantityDiv = document.getElementById('category-' + categorySlug);
-            if (quantityDiv) quantityDiv.style.display = 'block';
-        }
-    } else {
-        quantitiesContainer.style.display = 'none';
-    }
-}
-
-function subTotal() {
-    let total = 0;
-    document.querySelectorAll('.Quantity').forEach(input => {
-        let quantity = parseInt(input.value) || 0;
-        let price = parseFloat(input.getAttribute('data-price')) || 0;
-        total += quantity * price;
-    });
-
-    document.getElementById('TotalPrice').innerText = total.toFixed(2);
-}
-
-
-</script>
+  @include('components.scripts.events-script')
 @endsection

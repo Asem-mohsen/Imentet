@@ -23,9 +23,13 @@ class CollectionRepository
         return $query->get();
     }
 
-    public function getCategoriesWithCollections(?string $slug = null, ?int $limit = null)
+    public function getCategoriesWithCollections(?string $placeName = null, ?string $slug = null, ?int $limit = null)
     {
-        $query = CollectionCategory::with('collections.places');
+        $query = CollectionCategory::query()->with(['collections' => function ($query) use ($placeName) {
+            $query->whereHas('places', function ($q) use ($placeName) {
+                $q->where('name->en', $placeName);
+            });
+        }]);
     
         if ($limit) {
             $query->limit($limit);
@@ -50,13 +54,16 @@ class CollectionRepository
         return CollectionCategory::withCount('collections')->get();
     }
     
-    public function getAdjacentCollection(int $collectionId, string $direction): ?Collection
+    public function getAdjacentCollection(int $collectionId, string $direction, string $placeName): ?Collection
     {
         $operator = $direction === 'prev' ? '<' : '>';
         $orderBy = $direction === 'prev' ? 'desc' : 'asc';
 
         return Collection::where('id', $operator, $collectionId)
+            ->whereHas('places', function ($query) use ($placeName) {
+                $query->where('name->en', $placeName);
+            })
             ->orderBy('id', $orderBy)
-            ->first();
+            ->first();  
     }
 }

@@ -41,13 +41,13 @@
             <div class="row">
                 @foreach ($products as $product)
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-duration="1500ms">
-                        <form method="POST" action="{{ route('pyramids.cart.add') }}">
+                        <form method="POST" action="{{ route('imentet.cart.add') }}">
                             @csrf
                             <input type="hidden" name="shop_item_id" value="{{ $product->id }}">
                             <input type="hidden" name="quantity" value="1">
                             <div class="product-one__single">
                                 <div class="product-one__image">
-                                    <img src="{{$product->getFirstMediaUrl('shop_item')}}" height="270px" alt="{{$product->name}}" />
+                                    <img loading="lazy" src="{{$product->getFirstMediaUrl('shop_item')}}" height="270px" alt="{{$product->name}}" />
                                 </div>
                                 <div class="product-one__content">
                                     <div class="product-one__content-left">

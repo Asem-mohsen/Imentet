@@ -13,9 +13,17 @@ class MembershipConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public $submissionLink)
+    public $submissionLink;
+
+    public function __construct($submissionLink)
     {
         $this->submissionLink = $submissionLink;
+    }
+
+    public function build()
+    {
+        return $this->subject('Complete Your Membership Registration')
+            ->view('emails.membership-confirmation');
     }
 
     public function envelope(): Envelope

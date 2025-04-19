@@ -7,7 +7,7 @@
         <div class="event-two__price">
           <span>{{ $event->prices->min('price_egyptian') }} <a style="color: #d99578;"> EGP /Person</a></span>
         </div>
-        <img src="{{ $event->getFirstMediaUrl('event_media') }}" width="170px" height="170px" alt="{{ $event->title }}" />
+        <img loading="lazy" src="{{ $event->getFirstMediaUrl('event_media') }}" width="170px" height="170px" alt="{{ $event->title }}" />
       </div>
     </div>
     <div class="event-two__content">

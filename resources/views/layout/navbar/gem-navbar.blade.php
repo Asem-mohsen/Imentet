@@ -65,7 +65,7 @@
         <div class="container clearfix">
             <div class="logo-box">
                 <a class="navbar-brand" href="{{route('index')}}">
-                    <img src="{{asset('assets/GEM/images/resources/imentet-gem-logo.svg')}}" class="main-logo" alt="Awesome Image" />
+                    <img loading="lazy" src="{{asset('assets/GEM/images/resources/imentet-gem-logo.svg')}}" class="main-logo" alt="Imentent" />
                 </a>
                 <button class="menu-toggler" data-target=".main-navigation">
                     <span class="fa fa-bars"></span>
@@ -117,7 +117,7 @@
                                     @foreach ($data['events'] as $event)
                                         <li>
                                             <a href="{{ route('gem.events.show', $event->id) }}">
-                                                {{ $event->title }}
+                                                {{ Illuminate\Support\Str::limit($event->title, 15) }}
                                             </a>
                                         </li>
                                     @endforeach
@@ -129,10 +129,10 @@
                             <li>
                                 <a>Museums</a>
                                 <ul class="submenu">
-                                    @foreach ($data['exhibitions'] as $exhibition)
+                                    @foreach ($data['museums'] as $museum)
                                         <li>
-                                            <a href="{{ route('gem.events.show', $exhibition->id) }}">
-                                                {{ $exhibition->name }}
+                                            <a href="{{ route('gem.events.show', $museum->id) }}">
+                                                {{ $museum->title }}
                                             </a>
                                         </li>
                                     @endforeach

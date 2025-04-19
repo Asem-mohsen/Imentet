@@ -10,7 +10,7 @@
         <ul class="list-unstyled thm-breadcrumb">
           <li><a href="{{route('gem.home')}}">Home</a></li>
           <li><a href="{{route('gem.memberships.index')}}">Memberships</a></li>
-          <li>{{$membership->nmae . " Membership"}}</li>
+          <li>{{$membership->name . " Membership"}}</li>
         </ul>
     </div>
   </section>
@@ -36,7 +36,7 @@
 
                   @if ($isMultipleDurations)
                     <h3 class="event-details__title">Plan Pricing</h3>
-
+                    
                     <table class="cart-table mb-5 min-width-0">
                       <thead class="cart-header">
                           <tr>
@@ -48,7 +48,7 @@
                       </thead>
                       <tbody>
                           @foreach ($membership->prices as $price)
-                              <tr>
+                              <tr class="price-row">
                                   <td style="white-space: nowrap">
                                       <div class="column-box">
                                           <h3 class="prod-title padd-top-20">
@@ -62,8 +62,11 @@
                                   <td>
                                     {{$price->duration}}
                                   </td>
-                                  <td>
-                                    <input type="radio" name="selected_price" value="{{ $price->id }}" onchange="updatePrice(this.value)">
+                                  <td class="text-center">
+                                    <label class="custom-radio">
+                                        <input type="radio" name="selected_price" value="{{ $price->id }}" onchange="updatePrice(this.value)">
+                                        <span class="radio-checkmark"></span>
+                                    </label>
                                   </td>
                               </tr>
                           @endforeach
@@ -98,65 +101,17 @@
 
         <!-- Payment -->
         <div class="col-lg-4">
-          <div class="event-details__form">
-            <h3 class="event-details__form-title">Membership Payement</h3>
-            <form action="{{ route('gem.memberships.checkout' , $membership->id) }}" method="post">
-              @csrf
-              @if ($userMembership)
-                <div class="row">
-                  <div class="col-sm-12">
-                    <p>
-                      You Already Enrolled In <span style="color: #d99578"> {{ $userMembership->membership->name }} Plan </span>
-                    </p>
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="started_at">Started At</label>
-                    <input type="text" id="start_date" value="{{ $userMembership->start_date->format('d M Y') }}" disabled/>
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="ends_at">Ends At</label>
-                    <input type="text" id="end_date" value="{{ $userMembership->end_date->format('d M Y') }}" disabled/>
-                  </div>
-                  <div class="col-sm-12">
-                    <button class="thm-btn event-details__form-btn" disabled>
-                      You can Renew it Soon
-                    </button>
-                  </div>
-                </div>
-              @else
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <input type="text" name="name" placeholder="Your Name" value="{{old('name')}}"/>
-                      <input type="hidden" id="price_id" name="price_id" value="{{ $membership->prices->first()->id }}"/>
-                    </div>
-                    <div class="col-sm-12">
-                      <input type="text" name="email" placeholder="Email Address" value="{{old('email')}}"/>
-                    </div>
-                    <div class="col-sm-12">
-                      <input type="text" name="start_date" placeholder="Start Date" class="datepicker normal-datepicker" value="{{old('start_date')}}"/>
-                    </div>
-                    <div class="col-sm-12">
-                      @if(auth()->user())
-                          <button class="thm-btn event-details__form-btn" >
-                            Proceed to Book
-                          </button>
-                      @else
-                        <a href="{{route('auth.login.index')}}" class="thm-btn event-details__form-btn" >
-                          Sign In to Continue
-                        </a>
-                      @endif
-                    </div>
-                  </div>
-              @endif
-            </form>
-          </div>
+            <x-forms.membership-form 
+                :route="route('imentet.memberships.checkout', $membership->id)"
+                :userMembership="$userMembership"
+                :membership="$membership"
+            />
         </div>
       </div>
     </div>
   </section>
 
 @endsection
-
 
 @section('js')
   <script>

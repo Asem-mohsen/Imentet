@@ -38,7 +38,7 @@
                     <div class="plan-visit__tab-main">
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src="{{asset('assets/GEM/images/new/about-us/plan-1-1.jpg')}}" class="plan-visit__tab-main-image" alt="Plan Visit" />
+                                <img loading="lazy" src="{{asset('assets/GEM/images/new/about-us/plan-1-1.jpg')}}" class="plan-visit__tab-main-image" alt="Plan Visit" />
                             </div>
                             <div class="col-lg-6">
                                 <div class="plan-visit__content">
@@ -264,7 +264,7 @@
                                         <div class="tab-content">
                                             <div class="tab-pane animated fadeInUp show active"  id="first-floor" >
                                                 <div class="plan-visit__map-content">
-                                                <img class="img-fluid" src="{{asset('assets/GEM/images/new/museum-interior.jpg')}}" alt="Grand Egyption Museum Map" />
+                                                <img loading="lazy" class="img-fluid" src="{{asset('assets/GEM/images/new/museum-interior.jpg')}}" alt="Grand Egyption Museum Map" />
                                                 </div>
                                             </div>
                                         </div>

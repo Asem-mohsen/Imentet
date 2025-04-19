@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/jquery.mCustomScrollbar.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/pyramids-style.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/payment.css')}}" />
 </head>
 
 @yield('css')

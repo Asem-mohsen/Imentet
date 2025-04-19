@@ -50,6 +50,9 @@ class CartService
         }
 
         $this->cartRepository->addItem($cart->id, $shopItemId, $quantity);
+        
+        // Refresh the cart to get the updated count
+        $cart = $this->getCart();
 
         return response()->json(['status' => 'success', 'message' => 'Item added to cart successfully!', 'cartCount' => $cart->items()->count()]);
     }
@@ -69,6 +72,17 @@ class CartService
     {
         $cart = $this->getCart();
         $this->cartRepository->clearCart($cart);
+    }
+
+    public function clearAbandonedCarts(int $days = 3): void
+    {
+        $abandonedCarts = $this->cartRepository->getAbandonedCartsOlderThanDays($days);
+
+        $count = $abandonedCarts->count();
+
+        foreach ($abandonedCarts as $cart) {
+            $this->cartRepository->clearCart($cart);
+        }
     }
 
     public function updateQuantity($cartItemId, $quantity)

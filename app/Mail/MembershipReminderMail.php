@@ -2,39 +2,29 @@
 
 namespace App\Mail;
 
-use App\Models\UserMembership;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\UserMembership;
 
 class MembershipReminderMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public UserMembership $userMembership)
+    public $submissionLink;
+    public $userMembership;
+
+    public function __construct(UserMembership $userMembership)
     {
         $this->userMembership = $userMembership;
+        $this->submissionLink = route('gem.memberships.upload-documents', [
+            'token' => encrypt($userMembership->id)
+        ]);
     }
 
-    public function envelope(): Envelope
+    public function build()
     {
-        return new Envelope(
-            subject: 'Reminder: Submit Your Membership Documents',
-        );
-    }
-
-    public function content(): Content
-    {
-        return new Content(
-            view: 'emails.membership_reminder',
-        );
-    }
-
-    public function attachments(): array
-    {
-        return [];
+        return $this->subject('Reminder: Complete Your Membership Registration')
+            ->view('emails.membership-reminder');
     }
 }
