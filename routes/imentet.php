@@ -9,7 +9,7 @@ use App\Http\Controllers\web\Imentet\{
     EventController,
     CartController,
     PaymentController,
-    UserController
+    TicketController
 };
 
 Route::prefix('Imentet')->controller(HomeController::class)->group(function () {
@@ -24,6 +24,15 @@ Route::prefix('Imentet')->controller(HomeController::class)->group(function () {
 
         Route::prefix('careers')->name('careers.')->controller(CareerController::class)->group(function () {
             Route::post('/store', 'store')->name('store');
+        });
+
+        Route::prefix('tickets')->name('tickets.')->controller(TicketController::class)->group(function () {
+            Route::post('/selections', 'storeSelections')->name('storeSelections');
+            Route::post('/remove',  'removeTicket')->name('remove')->middleware(['auth']);
+        });
+
+        Route::prefix('payments')->name('payments.')->controller(PaymentController::class)->group(function () {
+            Route::get('/tickets', 'ticketsPayment')->name('tickets');
         });
 
         Route::prefix('donations')->name('donations.')->controller(DonationController::class)->group(function () {

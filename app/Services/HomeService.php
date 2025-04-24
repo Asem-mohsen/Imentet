@@ -1,5 +1,5 @@
 <?php 
-namespace App\Services\Museum;
+namespace App\Services;
 
 use App\Repositories\{CollectionRepository, EventRepository , MembershipRepository};
 use Carbon\Carbon;

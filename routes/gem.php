@@ -6,6 +6,7 @@ use App\Http\Controllers\web\Museum\{
 };
 use App\Http\Controllers\web\Imentet\{
     AboutController,
+    BlogController,
     EventController,
     MembershipController,
     CollectionController,
@@ -18,7 +19,6 @@ use App\Http\Controllers\web\Imentet\{
     DonationController,
     FaqController,
     StripeController,
-    UserController
 };
 
 Route::prefix('GEM')->name('gem.')->group(function () {
@@ -63,15 +63,13 @@ Route::prefix('GEM')->name('gem.')->group(function () {
 
     Route::prefix('tickets')->name('tickets.')->controller(TicketController::class)->group(function () {
         Route::get('/', 'gemTickets')->name('index');
-        Route::post('/store', 'storeSelections')->name('storeSelections')->middleware(['auth']);
         Route::get('/plan-visit', 'gemPlanVisit')->name('plan-visit');
-        Route::post('/remove',  'removeTicket')->name('remove')->middleware(['auth']);
         Route::get('/payment', 'processPayment')->name('payment');
         Route::get('/success', 'paymentSuccess')->name('success');
     });
 
-    Route::prefix('payments')->name('payments.')->controller(PaymentController::class)->group(function () {
-        Route::get('/tickets', 'ticketsPayment')->name('tickets');
+    Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(function () {
+        Route::get('/', 'gemBlog')->name('index');
     });
 
     Route::prefix('contact-us')->name('contact.')->controller(ContactController::class)->group(function () {

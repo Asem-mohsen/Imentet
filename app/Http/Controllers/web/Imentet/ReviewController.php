@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    protected $reviewService;
-
-    public function __construct(ReviewService $reviewService)
+    public function __construct(protected ReviewService $reviewService)
     {
         $this->reviewService = $reviewService;
     }

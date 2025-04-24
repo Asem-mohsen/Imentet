@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/nouislider.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/nouislider.pips.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/jquery.bootstrap-touchspin.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/jquery.mCustomScrollbar.min.css')}}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}" />

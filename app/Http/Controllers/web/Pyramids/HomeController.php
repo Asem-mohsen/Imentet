@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\web\Pyramids;
 
 use App\Http\Controllers\Controller;
-use App\Services\Museum\HomeService;
+use App\Services\HomeService;
 
 class HomeController extends Controller
 {

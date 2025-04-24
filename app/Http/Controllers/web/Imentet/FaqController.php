@@ -10,7 +10,7 @@ class FaqController extends Controller
 {
     public function __construct(protected FaqService $faqService)
     {
-        // 
+        $this->faqService = $faqService;
     }
 
     public function gemFaqs()

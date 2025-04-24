@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Services\Museum\NavbarService;
+use App\Services\NavbarService;
 
 class AppServiceProvider extends ServiceProvider
 {
