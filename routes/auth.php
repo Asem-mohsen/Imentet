@@ -8,7 +8,7 @@ use App\Http\Controllers\web\Auth\{
 };
 use App\Http\Controllers\web\Imentet\UserController;
 
-Route::middleware(['guest.only'])->prefix('auth')->name('auth.')->group(function () {
+Route::middleware(['guest.only' , 'throttle:6,1'])->prefix('auth')->name('auth.')->group(function () {
     Route::controller(RegisterController::class)->name('register.')->group(function () {
         Route::get('/register', 'index')->name('index');
         Route::post('/register', 'register')->name('store');

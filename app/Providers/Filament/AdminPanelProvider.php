@@ -18,6 +18,13 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\TicketPaymentsChart;
+use App\Filament\Widgets\DashboardStats;
+use App\Filament\Widgets\EventsByCategoryChart;
+use App\Filament\Widgets\RevenueBreakdownChart;
+use App\Filament\Widgets\CareersApplicantsChart;
+use App\Filament\Widgets\MembershipChart;
+use App\Filament\Widgets\TicketsComparisonChart;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -38,8 +45,13 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                DashboardStats::class,
+                TicketPaymentsChart::class,
+                EventsByCategoryChart::class,
+                RevenueBreakdownChart::class,
+                CareersApplicantsChart::class,
+                MembershipChart::class,
+                TicketsComparisonChart::class,
             ])
             ->profile(EditProfile::class)
             ->middleware([

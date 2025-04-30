@@ -949,11 +949,13 @@ a:focus {
 {
   padding : 6px 14.5px;
   font-size: 13px;
-  color: white !important;
+  color: white;
 }
-.header-navigation ul.navigation-box > li.current > a, .header-navigation ul.navigation-box > li:hover > a {
+.header-navigation ul.navigation-box>li>a.topbar-one__btn:hover
+{
   color: #d99578;
-}
+} 
+
 .header-navigation ul.navigation-box > li > .submenu,
 .top-wrapper >li > .submenu {
   position: absolute;
@@ -8327,6 +8329,7 @@ a:focus {
   height: 50px;
   padding-left: 15px;
   margin-bottom: 20px;
+  outline-color: #302e2f75;
 }
 .contact-one__field textarea {
   height: 136px;
@@ -8620,6 +8623,7 @@ a:focus {
   padding-right: 20px;
   color: #777777;
   font-size: 16px;
+  outline-color: #302e2f75;
   background-image: none !important;
 }
 .login-form__form input::-webkit-input-placeholder {
@@ -11298,6 +11302,19 @@ input[type="file"] {
 
 }
 
+@media screen and (max-width: 992px) {
+  .welcome-section .grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+  }
+  .welcome-section .grid-wrapper .box{
+    height: 50vh;
+    flex: 1 1 50%;
+    background-size: cover;
+  }
+}
+
 .welcome-section .grid-wrapper .box {
   display: flex;
   align-items: center;
@@ -11354,7 +11371,16 @@ input[type="file"] {
   align-items: center;
   width: 100%;
 }
-
+@media (max-width: 992px) {
+  .auth .wrapper {
+    flex-direction: column;
+    padding-bottom: 20px;
+    margin: 20px 0;
+  }
+  .auth .box {
+    max-width: 100%;
+  }
+}
 .auth .details {
   color: #fff;
   text-align: center;

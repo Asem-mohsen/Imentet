@@ -36,7 +36,7 @@
 
           <div class="col-md-6">
 
-            <x-forms.career-form/>
+            <x-forms.career-form :careers="$careers"/>
 
           </div>
         </div>

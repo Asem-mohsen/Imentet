@@ -956,9 +956,10 @@ a:focus {
   padding : 6px 14.5px;
   font-size: 13px;
 }
-.header-navigation ul.navigation-box > li.current > a, .header-navigation ul.navigation-box > li:hover > a {
+.header-navigation ul.navigation-box>li>a.topbar-one__btn:hover
+{
   color: #d99578;
-}
+} 
 .header-navigation ul.navigation-box > li > .submenu,
 .top-wrapper >li > .submenu {
   position: absolute;
@@ -8278,6 +8279,7 @@ a:focus {
   height: 50px;
   padding-left: 15px;
   margin-bottom: 20px;
+  outline-color: #302e2f75;
 }
 .contact-one__field textarea {
   height: 136px;
@@ -8612,6 +8614,7 @@ a:focus {
   color: #777777;
   font-size: 16px;
   background-image: none !important;
+  outline-color: #302e2f75;
 }
 .login-form__form input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -11123,7 +11126,18 @@ input[type="file"] {
   height: calc(100vh - 90px); 
 
 }
-
+@media screen and (max-width: 768px) {
+  .welcome-section .grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+  }
+  .welcome-section .grid-wrapper .box{
+    height: 50vh;
+    flex: 1 1 50%;
+    background-size: cover;
+  }
+}
 .welcome-section .grid-wrapper .box {
   display: flex;
   align-items: center;
@@ -11186,6 +11200,11 @@ input[type="file"] {
   height: 100%;
   align-items: center;
   width: 100%;
+}
+@media (max-width: 768px) {
+  .auth .wrapper {
+    flex-direction: column;
+  }
 }
 
 .auth .details {
