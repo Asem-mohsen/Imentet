@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\EventCategory;
+use App\Models\Place;
 use Illuminate\Database\Seeder;
 
 class EventCategorySeeder extends Seeder
@@ -16,10 +17,18 @@ class EventCategorySeeder extends Seeder
             'Education' => 'تعليم',
         ];
 
-        foreach ($categories as $en => $ar) {
-            EventCategory::create([
-                'name' => ['en' => $en, 'ar' => $ar]
-            ]);
+        $places = Place::all();
+
+        foreach ($places as $place) {
+            foreach ($categories as $en => $ar) {
+                EventCategory::create([
+                    'place_id' => $place->id,
+                    'name' => [
+                        'en' => $en,
+                        'ar' => $ar,
+                    ],
+                ]);
+            }
         }
     }
 }

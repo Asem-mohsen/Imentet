@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('faq_categories', function (Blueprint $table) {
             $table->id();
-            $table->json('name')->unique();
+            $table->json('name');
             $table->timestamps();
         });
 

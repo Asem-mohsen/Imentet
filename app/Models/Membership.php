@@ -15,17 +15,23 @@ class Membership extends Model implements HasMedia
     use HasTranslations, SoftDeletes , InteractsWithMedia;
     public $translatable = ['name' , 'description' , 'title'];
     protected $guarded = ['id'];
+    public static bool $skipDurationSaving = false;
+
 
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($membership) {
-            self::handleDurationSaving($membership);
+            if (!self::$skipDurationSaving) {
+                self::handleDurationSaving($membership);
+            }
         });
 
         static::updating(function ($membership) {
-            self::handleDurationSaving($membership);
+            if (!self::$skipDurationSaving) {
+                self::handleDurationSaving($membership);
+            }
         });
     }
 
@@ -42,6 +48,11 @@ class Membership extends Model implements HasMedia
     public function features(): BelongsToMany
     {
         return $this->belongsToMany(Feature::class, 'membership_feature');
+    }
+
+    public function durations()
+    {
+        return $this->hasMany(MembershipDuration::class);
     }
 
     // ------------------------------------------------------------------------------------------------------------------------

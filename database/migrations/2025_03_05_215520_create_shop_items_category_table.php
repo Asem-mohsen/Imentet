@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('shop_item_categories', function (Blueprint $table) {
             $table->id();
-            $table->json('name')->unique(); // Example: "Statues", "Books", "Souvenirs"
+            $table->json('name'); // Example: "Statues", "Books", "Souvenirs"
             $table->json('description')->nullable();
             $table->timestamps();
         });
