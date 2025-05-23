@@ -84,7 +84,7 @@
                     </table>
                     <div class="cart-total custom-cart-total">
                         @if($selectedTickets->isNotEmpty())
-                            <a href="{{ route('imentet.tickets.payment') }}" class="thm-btn cart-update__btn cart-update__btn-three">
+                            <a href="{{ route('imentet.payments.tickets') }}" class="thm-btn cart-update__btn cart-update__btn-three">
                                 Pay Now
                             </a>
                         @else

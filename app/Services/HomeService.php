@@ -66,7 +66,21 @@ class HomeService
         );
         $collections  = $this->collectionRepository->getAllCollections(placeName: $placeName, limit: 6);
 
-        return get_defined_vars();
+        $tabs = [];
+
+        if ($currentEvents->isNotEmpty()) {
+            $tabs[] = ['id' => 'current', 'label' => 'Current', 'events' => $currentEvents];
+        }
+    
+        if ($upcomingEvents->isNotEmpty()) {
+            $tabs[] = ['id' => 'upcoming', 'label' => 'Upcoming', 'events' => $upcomingEvents];
+        }
+    
+        if ($pastEvents->isNotEmpty()) {
+            $tabs[] = ['id' => 'past', 'label' => 'Past', 'events' => $pastEvents];
+        }
+
+        return compact('exhibitions', 'collections', 'tabs');
     }
 
     public function getPyramidsHomeData(?string $placeName = null): array

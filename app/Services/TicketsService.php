@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Repositories\TicketsRepository;
+use Carbon\Carbon;
 
 class TicketsService
 {
@@ -53,6 +54,8 @@ class TicketsService
         foreach ($ticketData['quantity'] as $index => $quantity) {
             if ($quantity > 0) {
                 $ticketId = $ticketData['ticket_id'][$index];
+                $visitDate = Carbon::parse($ticketData['visit_date'])->format('Y-m-d');
+
                 $ticket = $this->ticketsRepository->findOrFail($ticketId);
 
                 $existingTicket = $this->ticketsRepository->findPendingTicket($user->id, $ticketId);
@@ -62,7 +65,7 @@ class TicketsService
                     $existingTicket->update([
                         'quantity' => $quantity,
                         'total' => $ticket->price * $quantity,
-                        'visit_date' => $ticketData['visit_date'],
+                        'visit_date' => $visitDate,
                         'updated_at' => now(),
                     ]);
                 } else {
@@ -72,7 +75,7 @@ class TicketsService
                         'visit_ticket_id' => $ticketId,
                         'quantity' => $quantity,
                         'total' => $ticket->price * $quantity,
-                        'visit_date' => $ticketData['visit_date'],
+                        'visit_date' => $visitDate,
                         'purchase_date' => now(),
                         'status' => 'pending',
                         'created_at' => now(),
