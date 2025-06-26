@@ -83,6 +83,7 @@
                             <li><a href="{{route('gem.contact.index')}}">Contact</a></li>
                             <li><a href="{{route('gem.donations.index')}}">Donation</a></li>
                             <li><a href="{{route('gem.careers.index')}}">Careers</a></li>
+                            <li><a href="{{route('gem.blog.index')}}">Blog</a></li>
                             <li><a href="{{route('gem.memberships.index')}}">Membership</a></li>
                             <li><a href="{{route('gem.faqs')}}">FAQ's</a></li>
                         </ul>

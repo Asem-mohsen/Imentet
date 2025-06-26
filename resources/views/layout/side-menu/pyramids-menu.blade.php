@@ -57,10 +57,10 @@
     </div>
     <div class="search-popup__inner">
         <form action="#" class="search-popup__form">
-        <input type="text" name="search" placeholder="Type here to Search...." />
-        <button type="submit">
-            <i class="egypt-icon-search"></i>
-        </button>
+            <input type="text" name="search" placeholder="Type here to Search...." />
+            <button type="submit">
+                <i class="egypt-icon-search"></i>
+            </button>
         </form>
     </div>
 </div>

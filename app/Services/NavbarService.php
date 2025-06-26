@@ -1,5 +1,5 @@
 <?php 
-namespace App\Services\Museum;
+namespace App\Services;
 
 use App\Repositories\{CartRepository, EventRepository, CollectionRepository};
 
@@ -17,7 +17,7 @@ class NavbarService
 
     public function getNavbarData()
     {
-        $events = $this->eventRepository->getAllEvents(excludeCategories: ['Exhibitions', 'Museums']);
+        $events = $this->eventRepository->getAllEvents(excludeCategories: ['Exhibitions', 'Museums'] , limit:5);
         $exhibitions = $this->eventRepository->getAllEvents(categoryName: 'Exhibitions');
         $categories = $this->collectionRepository->getCategories();
         $cartItemCount = $this->cartRepository->getCartItemCount();

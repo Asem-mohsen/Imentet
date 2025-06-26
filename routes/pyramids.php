@@ -17,7 +17,8 @@ use App\Http\Controllers\web\Imentet\{
     CareerController,
     DonationController,
     FaqController,
-    StripeController
+    StripeController,
+    BlogController,
 };
 
 Route::prefix('Pyramids')->name('pyramids.')->group(function () {
@@ -62,16 +63,15 @@ Route::prefix('Pyramids')->name('pyramids.')->group(function () {
 
     Route::prefix('tickets')->name('tickets.')->controller(TicketController::class)->group(function () {
         Route::get('/', 'pyramidsTickets')->name('index');
-        Route::post('/selections', 'storeSelections')->name('storeSelections');
         Route::get('/plan-visit', 'pyramidsPlanVisit')->name('plan-visit');
-    });
-
-    Route::prefix('payments')->name('payments.')->controller(PaymentController::class)->group(function () {
-        Route::get('/tickets', 'ticketsPayment')->name('tickets');
     });
 
     Route::prefix('contact-us')->name('contact.')->controller(ContactController::class)->group(function () {
         Route::get('/', 'pyramidsContact')->name('index');
+    });
+
+    Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(function () {
+        Route::get('/', 'pyramidsBlog')->name('index');
     });
 
     Route::prefix('careers')->name('careers.')->controller(CareerController::class)->group(function () {

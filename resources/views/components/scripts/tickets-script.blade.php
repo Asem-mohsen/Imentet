@@ -38,7 +38,7 @@
             }
             
             // Send AJAX request to remove ticket
-            fetch('{{ route("gem.tickets.remove") }}', {
+            fetch('{{ route("imentet.tickets.remove") }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,7 +65,7 @@
                             const cartTotal = document.querySelector('.cart-total');
                             if (cartTotal) {
                                 cartTotal.innerHTML = `
-                                    <a href="{{route('gem.tickets.index')}}" class="thm-btn cart-update__btn cart-update__btn-three">
+                                    <a href="{{ $ticketsIndexRoute }}" class="thm-btn cart-update__btn cart-update__btn-three">
                                         Select Tickets
                                     </a>
                                 `;

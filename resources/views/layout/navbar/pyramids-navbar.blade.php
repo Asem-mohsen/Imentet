@@ -123,9 +123,16 @@
                             <li>
                                 <a href="{{ route('pyramids.events.index') }}">Events </a>
                             </li>
-                            <a href="{{ route('pyramids.events.index', ['event_category' => 'exhibitions']) }}">Exhibition</a>
+                            <li>
+                                <a href="{{ route('pyramids.events.index', ['event_category' => 'exhibitions']) }}">Exhibition</a>
+                            </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="{{ route('pyramids.blog.index') }}">Blog</a>
+                    </li>
+
                     <li>
                         <a href="{{ route('pyramids.shop.index') }}">Shop</a>
                     </li>

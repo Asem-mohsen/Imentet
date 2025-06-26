@@ -38,4 +38,13 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'youtube' => [
+        'key' => env('YOUTUBE_API_KEY'),
+    ],
+    'newsapi' => [
+        'key' => env('NEWSAPI_API_KEY'),
+    ],
+    'nytimes' => [
+        'key' => env('NYTIMES_KEY'),
+    ],
 ];

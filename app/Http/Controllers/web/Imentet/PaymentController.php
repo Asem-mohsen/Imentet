@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
-    protected $paymentService;
-    protected $cartService;
+    protected $paymentService, $cartService;
 
     public function __construct(PaymentService $paymentService, CartService $cartService)
     {

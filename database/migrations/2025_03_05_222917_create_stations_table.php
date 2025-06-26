@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('stations', function (Blueprint $table) {
             $table->id();
-            $table->json('name')->unique(); // e.g., Museum Main Gate, Pyramid Entrance
+            $table->json('name'); // e.g., Museum Main Gate, Pyramid Entrance
             $table->json('description')->nullable();
             $table->timestamps();
         });

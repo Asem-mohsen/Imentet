@@ -174,27 +174,15 @@
                 </h2>
               </div>
               <ul class="list-unstyled event-two__list nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" href="#current" role="tab" >
-                    <span class="number">01.</span>
-                    Current
-                    <i class="fa fa-angle-right"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#upcoming" role="tab">
-                    <span class="number">02.</span>
-                    Upcoming
-                    <i class="fa fa-angle-right"></i>
-                  </a>
-                </li>
-                <li class="nav-item"> 
-                  <a class="nav-link" data-toggle="tab" href="#past" role="tab" >
-                    <span class="number">03.</span>
-                    Past
-                    <i class="fa fa-angle-right"></i>
-                  </a>
-                </li>
+                @foreach($tabs as $index => $tab)
+                    <li class="nav-item">
+                        <a class="nav-link {{ $index === 0 ? 'active' : '' }}" data-toggle="tab" href="#{{ $tab['id'] }}" role="tab">
+                            <span class="number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}.</span>
+                            {{ $tab['label'] }}
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                @endforeach
               </ul>
               <a href="{{route('gem.events.index')}}" class="event-two__more-link">
                 View All Upcoming Events 
@@ -205,28 +193,14 @@
         </div>
         <div class="col-lg-7">
           <div class="tab-content">
-            <!-- Current Events -->
-            <div class="event-two__main tab-pane animated fadeInRight show active" id="current" role="tabpanel">
-              @foreach($currentEvents as $currentEvent)
-                <x-cards.event-card :event="$currentEvent" />
-              @endforeach
-            </div>
-          
-            <!-- Upcoming Events -->
-            <div class="event-two__main tab-pane animated fadeInRight" id="upcoming" role="tabpanel">
-              @foreach($upcomingEvents as $upcomingEvent)
-                <x-cards.event-card :event="$upcomingEvent" />
-              @endforeach
-            </div>
-          
-            <!-- Past Events -->
-            <div class="event-two__main tab-pane animated fadeInRight" id="past" role="tabpanel">
-              @foreach($pastEvents as $pastEvent)
-                <x-cards.event-card :event="$pastEvent" />
-              @endforeach
-            </div>
+            @foreach($tabs as $index => $tab)
+              <div class="event-two__main tab-pane animated fadeInRight {{ $index === 0 ? 'show active' : '' }}" id="{{ $tab['id'] }}" role="tabpanel">
+                  @foreach($tab['events'] as $event)
+                      <x-cards.event-card :event="$event" />
+                  @endforeach
+              </div>
+            @endforeach
           </div>
-          
         </div>
       </div>
     </div>

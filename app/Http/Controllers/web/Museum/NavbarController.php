@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\web\Museum;
 
 use App\Http\Controllers\Controller;
-use App\Services\Museum\NavbarService;
+use App\Services\NavbarService;
 
 class NavbarController extends Controller
 {
