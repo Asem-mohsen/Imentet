@@ -6,37 +6,28 @@ use Illuminate\Support\Facades\Auth;
 class LogoutService
 {
      /**
-     * Logout from the current session (Revoke current token).
+     * Logout from the current session.
      */
     public function logoutFromCurrentSession(): void
     {
-        $token = Auth::user()->currentAccessToken();
-        if ($token) {
-            $token->delete();
-        }
+        Auth::logout();
     }
 
     /**
-     * Logout from all sessions (Revoke all tokens for the user).
+     * Logout from all sessions (for web sessions, this is the same as current session).
      */
     public function logoutFromAllSessions(): void
     {
-        $user = Auth::user();
-        if ($user) {
-            $user->tokens()->delete();
-        }
+        Auth::logout();
     }
 
     /**
-     * Logout from all other sessions except the current one.
+     * Logout from other sessions (for web sessions, this doesn't apply.
      */
     public function logoutFromOtherSessions(): void
     {
-        $user = Auth::user();
-        $currentTokenId = Auth::user()->currentAccessToken()->id;
-
-        if ($user) {
-            $user->tokens()->where('id', '!=', $currentTokenId)->delete();
-        }
+        // For web sessions, there's no concept of "other sessions" like with API tokens
+        // This method is kept for consistency with the API structure
+        // In a web session context, this could be used to invalidate other session data if needed
     }
 }
