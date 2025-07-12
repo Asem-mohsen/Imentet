@@ -40,8 +40,8 @@ class AuthService
 
         $user = $this->userRepository->createUser($data);
 
-        Auth::login($user);
-
+        Auth::guard('web')->login($user);
+        
         return [
             'user' => $user,
             'token' => $this->generateToken($user),

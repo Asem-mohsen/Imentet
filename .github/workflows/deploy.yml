@@ -1,0 +1,63 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - development
+      - staging
+      - pre-production
+      - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Push to staging, pre-production, and production (if development)
+        if: github.ref == 'refs/heads/development'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          git fetch origin
+
+          git checkout development
+
+          git push origin development:staging --force
+          git push origin development:pre-production --force
+          git push origin development:production --force
+
+      - name: Set environment variables
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/development" ]]; then
+            echo "DEPLOY_PATH=${{ secrets.DEV_PATH }}" >> $GITHUB_ENV
+            echo "BRANCH_NAME=development" >> $GITHUB_ENV
+          elif [[ "${{ github.ref }}" == "refs/heads/staging" ]]; then
+            echo "DEPLOY_PATH=${{ secrets.STG_PATH }}" >> $GITHUB_ENV
+            echo "BRANCH_NAME=staging" >> $GITHUB_ENV
+          elif [[ "${{ github.ref }}" == "refs/heads/pre-production" ]]; then
+            echo "DEPLOY_PATH=${{ secrets.PREPROD_PATH }}" >> $GITHUB_ENV
+            echo "BRANCH_NAME=pre-production" >> $GITHUB_ENV
+          elif [[ "${{ github.ref }}" == "refs/heads/production" ]]; then
+            echo "DEPLOY_PATH=${{ secrets.PROD_PATH }}" >> $GITHUB_ENV
+            echo "BRANCH_NAME=production" >> $GITHUB_ENV
+          fi
+
+      - name: SSH and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          envs: DEPLOY_PATH,BRANCH_NAME
+          script: |
+            echo "DEPLOY_PATH is set to $DEPLOY_PATH"
+            echo "BRANCH_NAME is set to $BRANCH_NAME"
+            cd $DEPLOY_PATH
+            chmod u+x build-script.sh
+            ./build-script.sh
